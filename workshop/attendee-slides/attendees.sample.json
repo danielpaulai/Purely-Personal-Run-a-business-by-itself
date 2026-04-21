@@ -1,0 +1,60 @@
+{
+  "workshop": "01",
+  "date": "Apr 2026",
+  "attendees": [
+    {
+      "name": "Daniel Paul",
+      "initials": "DP",
+      "linkedin_url": "https://linkedin.com/in/danielpaulai",
+      "headshot_url": null,
+      "verdict_bold": "Direct. Conversational. Allergic to corporate.",
+      "verdict_rest": "You write like you talk. The AI already knows.",
+      "data": {
+        "posts": { "value": "30", "sub": "Last 90 days · LinkedIn" },
+        "hook": { "value": "Personal<br>Proof", "small": true, "sub": "\"I built X. It cost me zero dollars.\"" },
+        "word": { "value": "\"system\"", "size": 26, "sub": "Used 27 times · non-stopword" },
+        "slop": { "value": "7", "unit": "/10", "sub": "Em-dashes in 19 of 30 posts", "warn": true }
+      },
+      "observation": {
+        "bold": "34% of your sentences",
+        "text": "start with \"And\" or \"But.\" That's not an accident. That's your voice."
+      }
+    },
+    {
+      "name": "Sarah Chen",
+      "initials": "SC",
+      "linkedin_url": "https://linkedin.com/in/example-sarah-chen",
+      "headshot_url": null,
+      "verdict_bold": "Data-driven. Evidence-first. Skeptical by default.",
+      "verdict_rest": "You build trust with numbers, not adjectives.",
+      "data": {
+        "posts": { "value": "24", "sub": "Last 90 days · LinkedIn" },
+        "hook": { "value": "Stat<br>Contrast", "small": true, "sub": "\"73% of X fail at Y because...\"" },
+        "word": { "value": "\"actually\"", "size": 22, "sub": "Used 41 times · non-stopword" },
+        "slop": { "value": "3", "unit": "/10", "sub": "Clean voice · minimal AI slop" }
+      },
+      "observation": {
+        "bold": "Every 4th post opens with a number.",
+        "text": "You already know how to stop the scroll. Just do it more."
+      }
+    },
+    {
+      "name": "Marcus Obi",
+      "initials": "MO",
+      "linkedin_url": "https://linkedin.com/in/example-marcus-obi",
+      "headshot_url": null,
+      "verdict_bold": "Storyteller. Warm. Patient.",
+      "verdict_rest": "You sell with scenes, not bullet points.",
+      "data": {
+        "posts": { "value": "18", "sub": "Last 90 days · LinkedIn" },
+        "hook": { "value": "The<br>Scene", "small": true, "sub": "\"At 11pm on Tuesday, I was about to...\"" },
+        "word": { "value": "\"moment\"", "size": 24, "sub": "Used 19 times · non-stopword" },
+        "slop": { "value": "5", "unit": "/10", "sub": "Occasional em-dashes creep in", "warn": true }
+      },
+      "observation": {
+        "bold": "You post 4x per month.",
+        "text": "Your last 3 posts averaged 280 words. Stories work. Post more."
+      }
+    }
+  ]
+}

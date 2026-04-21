@@ -34,7 +34,9 @@
     "commands/sales-engine.md",
     "commands/operations-engine.md",
     "commands/cash-engine.md",
-    "commands/leadership-engine.md"
+    "commands/leadership-engine.md",
+    "commands/prep-workshop-slides.md",
+    "commands/ship-it-live.md"
   ],
   "scripts": [
     "scripts/build_pdf.py"

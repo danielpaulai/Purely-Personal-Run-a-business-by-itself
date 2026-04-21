@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Workshop 01 — Attendee Opening Slideshow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rethink+Sans:wght@400;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dark:#0f0f10;--dark-card:#1a1a1d;--dark-border:#2a2a2e;
+  --pp-red:#e90d41;--pp-red-deep:#c70a38;--pp-red-soft:#fce8ed;
+  --text-light:#fff;--text-dim:rgba(255,255,255,0.65);--text-faint:rgba(255,255,255,0.4);
+  --display:'Rethink Sans','Inter',sans-serif;--body:'Inter',sans-serif;--mono:'JetBrains Mono',Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden}
+body{background:var(--dark);color:var(--text-light);font-family:var(--body);font-size:16px;line-height:1.5}
+
+.glow-1{position:fixed;top:-200px;left:-200px;width:600px;height:600px;border-radius:999px;background:radial-gradient(circle,rgba(233,13,65,0.15) 0%,transparent 60%);pointer-events:none;z-index:1}
+.glow-2{position:fixed;bottom:-160px;right:-160px;width:500px;height:500px;border-radius:999px;background:radial-gradient(circle,rgba(233,13,65,0.08) 0%,transparent 60%);pointer-events:none;z-index:1}
+
+/* ========= SLIDE STAGE ========= */
+.slide{
+  position:fixed;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity 600ms ease;
+  z-index:5;pointer-events:none;
+}
+.slide.active{opacity:1;pointer-events:auto}
+
+.meta-top{
+  position:absolute;top:28px;left:40px;right:40px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;
+  color:var(--pp-red);z-index:10;
+}
+.meta-top .right{color:var(--text-faint);font-weight:500}
+
+.stage{max-width:1100px;margin:0 auto;padding:48px 64px;position:relative;z-index:5;text-align:center}
+
+.headshot{
+  width:160px;height:160px;border-radius:999px;overflow:hidden;margin:0 auto 28px;
+  box-shadow:0 0 60px rgba(233,13,65,0.35),0 8px 32px rgba(0,0,0,0.5);
+  background:var(--pp-red-soft);position:relative;
+}
+.headshot svg,.headshot img{width:100%;height:100%;display:block;object-fit:cover}
+
+.welcome-line{font-family:var(--mono);font-size:13px;letter-spacing:0.2em;font-weight:500;color:var(--pp-red);text-transform:uppercase;margin-bottom:10px}
+.name{font-family:var(--display);font-size:104px;font-weight:800;letter-spacing:-0.04em;line-height:0.95;margin:0 0 20px;color:var(--text-light)}
+.underline{width:72px;height:4px;background:var(--pp-red);border-radius:2px;margin:0 auto 20px}
+.verdict{font-family:var(--display);font-size:24px;font-weight:400;line-height:1.3;margin:0 auto 40px;max-width:720px;color:var(--text-dim)}
+.verdict strong{color:var(--text-light);font-weight:700}
+
+.data-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:36px;max-width:860px;margin-left:auto;margin-right:auto}
+.data-cell{padding:20px 18px;background:var(--dark-card);border:1px solid var(--dark-border);border-radius:6px;text-align:left}
+.data-cell .label{font-family:var(--mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:var(--pp-red);margin-bottom:8px;display:block}
+.data-cell .value{font-family:var(--display);font-size:36px;font-weight:800;line-height:1.05;margin-bottom:4px;color:var(--text-light);letter-spacing:-0.02em;font-feature-settings:'tnum'}
+.data-cell .value.small{font-size:22px;line-height:1.15}
+.data-cell .unit{font-size:14px;color:var(--text-faint);font-weight:500}
+.data-cell .sub{font-size:11px;color:var(--text-dim);line-height:1.4;margin-top:4px}
+.data-cell.warn .value{color:var(--pp-red)}
+
+.observation{background:linear-gradient(135deg,var(--dark-card) 0%,#15151a 100%);border-left:4px solid var(--pp-red);border-radius:6px;padding:24px 32px;margin:0 auto 28px;max-width:860px;text-align:left;position:relative}
+.observation::before{content:'"';position:absolute;top:-12px;right:20px;font-family:var(--display);font-size:80px;color:var(--pp-red);opacity:0.5;line-height:0.7;font-weight:800}
+.observation .obs-label{font-family:var(--mono);font-size:10px;letter-spacing:0.2em;color:var(--pp-red);font-weight:700;text-transform:uppercase;margin-bottom:8px}
+.observation .obs-text{font-family:var(--display);font-size:22px;line-height:1.35;font-weight:400;font-style:italic;color:var(--text-light);margin:0}
+.observation .obs-text strong{font-weight:700;font-style:normal;color:var(--pp-red)}
+
+.close-line{display:flex;align-items:center;justify-content:center;gap:12px;font-family:var(--mono);font-size:12px;letter-spacing:0.12em;color:var(--text-dim);text-transform:uppercase}
+.close-line .arrow{color:var(--pp-red);font-weight:700}
+
+/* ========= GLOBAL CHROME ========= */
+.brand-bottom{position:fixed;bottom:24px;left:40px;display:flex;align-items:center;gap:8px;z-index:20}
+.brand-bottom .dot{width:22px;height:22px;background:var(--pp-red);border-radius:4px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--display);font-weight:800;font-size:11px}
+.brand-bottom .txt{font-family:var(--display);font-weight:800;font-size:14px}
+.brand-bottom .dim{font-family:var(--mono);font-size:11px;color:var(--text-faint);margin-left:4px;letter-spacing:0.04em}
+
+.slide-nav{position:fixed;bottom:24px;right:40px;font-family:var(--mono);font-size:11px;color:var(--text-faint);letter-spacing:0.15em;font-weight:500;z-index:20;display:flex;align-items:center;gap:16px}
+.slide-nav .progress{width:120px;height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden}
+.slide-nav .progress-bar{height:100%;background:var(--pp-red);width:0%;transition:width 100ms linear}
+
+.controls{position:fixed;top:28px;right:180px;display:flex;gap:6px;z-index:20}
+.controls button{padding:6px 10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:4px;color:var(--text-dim);font-family:var(--mono);font-size:11px;cursor:pointer;letter-spacing:0.06em;font-weight:500}
+.controls button:hover{background:rgba(255,255,255,0.1);color:#fff;border-color:var(--pp-red)}
+.controls button.active{background:var(--pp-red);color:#fff;border-color:var(--pp-red)}
+
+/* ========= WELCOME SCREEN ========= */
+#welcome-screen{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:var(--dark);flex-direction:column;gap:24px}
+#welcome-screen.hidden{display:none}
+#welcome-screen h1{font-family:var(--display);font-size:56px;font-weight:800;margin:0;letter-spacing:-0.02em;text-align:center;max-width:820px;line-height:1.1}
+#welcome-screen h1 em{font-style:normal;color:var(--pp-red)}
+#welcome-screen p{color:var(--text-dim);font-size:17px;max-width:560px;text-align:center;line-height:1.55;margin:0}
+#welcome-screen .kbd-hints{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;justify-content:center}
+#welcome-screen .kbd{padding:4px 10px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:4px;font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:0.04em}
+#welcome-screen .kbd strong{color:var(--pp-red);font-weight:700}
+#welcome-screen button{margin-top:20px;padding:14px 28px;background:var(--pp-red);color:#fff;border:0;border-radius:6px;font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;box-shadow:0 4px 16px rgba(233,13,65,0.35)}
+#welcome-screen button:hover{background:var(--pp-red-deep)}
+
+@media (max-width:1100px){
+  .name{font-size:72px}
+  .stage{padding:40px 32px}
+  .data-grid{grid-template-columns:repeat(2,1fr)}
+  .headshot{width:120px;height:120px}
+  .verdict{font-size:20px}
+}
+@media (max-width:640px){
+  .meta-top{left:20px;right:20px;font-size:10px}
+  .brand-bottom,.slide-nav,.controls{left:20px;right:20px}
+  .name{font-size:48px}
+  .verdict{font-size:17px}
+  .data-grid{grid-template-columns:1fr}
+  .observation .obs-text{font-size:17px}
+}
+</style>
+</head>
+<body>
+
+<div class="glow-1"></div>
+<div class="glow-2"></div>
+
+<!-- Welcome screen -->
+<div id="welcome-screen">
+  <h1>Welcome to <em>Purely Personal</em> — Workshop 01</h1>
+  <p>When this starts, each attendee's personalized slide will cycle every 12 seconds. Use the keyboard to navigate, pause, or jump to the next one.</p>
+  <div class="kbd-hints">
+    <div class="kbd"><strong>SPACE</strong> Pause / resume</div>
+    <div class="kbd"><strong>←</strong> Previous</div>
+    <div class="kbd"><strong>→</strong> Next</div>
+    <div class="kbd"><strong>F</strong> Full screen</div>
+  </div>
+  <button id="start-btn">Start slideshow →</button>
+</div>
+
+<!-- Global chrome -->
+<div class="meta-top">
+  <div>◆ Workshop 01 · <span id="meta-date">Apr 2026</span></div>
+  <div class="right">Attendee <span id="meta-current">01</span> / <span id="meta-total">01</span></div>
+</div>
+
+<div class="controls">
+  <button id="btn-prev">← PREV</button>
+  <button id="btn-pause" class="active">PAUSE</button>
+  <button id="btn-next">NEXT →</button>
+</div>
+
+<!-- Slide stage (populated by JS) -->
+<div id="slide-container"></div>
+
+<!-- Bottom chrome -->
+<div class="brand-bottom">
+  <div class="dot">pp</div>
+  <div class="txt">Purely Personal</div>
+  <div class="dim">· Workshop 01 · Day 1 · 10:00am</div>
+</div>
+
+<div class="slide-nav">
+  <span>Next in <span id="countdown">12</span>s</span>
+  <div class="progress"><div class="progress-bar" id="progress-bar"></div></div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  // ===========================================
+  // ATTENDEE DATA
+  // Replace this array with output from /prep-workshop-slides
+  // ===========================================
+  const ATTENDEES = [
+    {
+      name: 'Daniel Paul',
+      initials: 'DP',
+      verdict_bold: 'Direct. Conversational. Allergic to corporate.',
+      verdict_rest: 'You write like you talk. The AI already knows.',
+      data: {
+        posts: { value: '30', sub: 'Last 90 days · LinkedIn' },
+        hook: { value: 'Personal<br>Proof', small: true, sub: '"I built X. It cost me zero dollars."' },
+        word: { value: '"system"', size: 26, sub: 'Used 27 times · non-stopword' },
+        slop: { value: '7', unit: '/10', sub: 'Em-dashes in 19 of 30 posts', warn: true }
+      },
+      observation: { bold: '34% of your sentences', text: 'start with "And" or "But." That\'s not an accident. That\'s your voice.' }
+    },
+    {
+      name: 'Sarah Chen',
+      initials: 'SC',
+      verdict_bold: 'Data-driven. Evidence-first. Skeptical by default.',
+      verdict_rest: 'You build trust with numbers, not adjectives.',
+      data: {
+        posts: { value: '24', sub: 'Last 90 days · LinkedIn' },
+        hook: { value: 'Stat<br>Contrast', small: true, sub: '"73% of X fail at Y because..."' },
+        word: { value: '"actually"', size: 22, sub: 'Used 41 times · non-stopword' },
+        slop: { value: '3', unit: '/10', sub: 'Clean voice · minimal AI slop' }
+      },
+      observation: { bold: 'Every 4th post opens with a number.', text: 'You already know how to stop the scroll. Just do it more.' }
+    },
+    {
+      name: 'Marcus Obi',
+      initials: 'MO',
+      verdict_bold: 'Storyteller. Warm. Patient.',
+      verdict_rest: 'You sell with scenes, not bullet points.',
+      data: {
+        posts: { value: '18', sub: 'Last 90 days · LinkedIn' },
+        hook: { value: 'The<br>Scene', small: true, sub: '"At 11pm on Tuesday, I was about to..."' },
+        word: { value: '"moment"', size: 24, sub: 'Used 19 times · non-stopword' },
+        slop: { value: '5', unit: '/10', sub: 'Occasional em-dashes creep in', warn: true }
+      },
+      observation: { bold: 'You post 4x per month.', text: 'Your last 3 posts averaged 280 words. Stories work. Post more.' }
+    }
+  ];
+
+  // ===========================================
+  // SLIDE RENDERING
+  // ===========================================
+  const container = document.getElementById('slide-container');
+  const SLIDE_DURATION_MS = 12000;
+
+  function renderCell(label, cellData) {
+    if (!cellData) return '';
+    const klass = cellData.warn ? 'data-cell warn' : 'data-cell';
+    const valueStyle = cellData.size ? `style="font-size:${cellData.size}px"` : '';
+    const valueKlass = cellData.small ? 'value small' : 'value';
+    const unit = cellData.unit ? `<span class="unit">${cellData.unit}</span>` : '';
+    return `
+      <div class="${klass}">
+        <span class="label">${label}</span>
+        <div class="${valueKlass}" ${valueStyle}>${cellData.value}${unit}</div>
+        <div class="sub">${cellData.sub}</div>
+      </div>
+    `;
+  }
+
+  function renderSlide(a, idx) {
+    const headshotContent = a.headshot_url
+      ? `<img src="${a.headshot_url}" alt="${a.name}">`
+      : `<svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="80" cy="80" r="80" fill="#fce8ed"/>
+          <text x="80" y="100" text-anchor="middle" font-family="Rethink Sans, Inter, sans-serif" font-size="68" font-weight="800" fill="#e90d41">${a.initials}</text>
+        </svg>`;
+
+    return `
+      <div class="slide" data-slide="${idx}">
+        <div class="stage">
+          <div class="headshot">${headshotContent}</div>
+          <div class="welcome-line">— Welcome, —</div>
+          <h1 class="name">${a.name}</h1>
+          <div class="underline"></div>
+          <p class="verdict"><strong>${a.verdict_bold}</strong> ${a.verdict_rest}</p>
+          <div class="data-grid">
+            ${renderCell('Posts analyzed', a.data.posts)}
+            ${renderCell('Signature hook', a.data.hook)}
+            ${renderCell('Favorite word', a.data.word)}
+            ${renderCell('AI-slop risk', a.data.slop)}
+          </div>
+          <div class="observation">
+            <div class="obs-label">◆ One thing you didn't notice</div>
+            <p class="obs-text"><strong>${a.observation.bold}</strong> ${a.observation.text}</p>
+          </div>
+          <div class="close-line">Your Business Brain is ready to load <span class="arrow">→</span></div>
+        </div>
+      </div>
+    `;
+  }
+
+  container.innerHTML = ATTENDEES.map(renderSlide).join('');
+  document.getElementById('meta-total').textContent = String(ATTENDEES.length).padStart(2, '0');
+
+  // ===========================================
+  // SLIDESHOW CONTROLLER
+  // ===========================================
+  let currentIdx = 0;
+  let isPaused = false;
+  let tickInterval = null;
+  let msRemaining = SLIDE_DURATION_MS;
+
+  const slides = document.querySelectorAll('.slide');
+  const progressBar = document.getElementById('progress-bar');
+  const countdown = document.getElementById('countdown');
+  const metaCurrent = document.getElementById('meta-current');
+  const btnPause = document.getElementById('btn-pause');
+
+  function showSlide(i) {
+    slides.forEach(s => s.classList.remove('active'));
+    slides[i].classList.add('active');
+    metaCurrent.textContent = String(i + 1).padStart(2, '0');
+    msRemaining = SLIDE_DURATION_MS;
+    updateCountdown();
+  }
+
+  function updateCountdown() {
+    const seconds = Math.ceil(msRemaining / 1000);
+    countdown.textContent = seconds;
+    const pct = ((SLIDE_DURATION_MS - msRemaining) / SLIDE_DURATION_MS) * 100;
+    progressBar.style.width = pct + '%';
+  }
+
+  function next() {
+    currentIdx = (currentIdx + 1) % slides.length;
+    showSlide(currentIdx);
+  }
+
+  function prev() {
+    currentIdx = (currentIdx - 1 + slides.length) % slides.length;
+    showSlide(currentIdx);
+  }
+
+  function togglePause() {
+    isPaused = !isPaused;
+    btnPause.textContent = isPaused ? 'RESUME' : 'PAUSE';
+    btnPause.classList.toggle('active', !isPaused);
+  }
+
+  function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen?.().catch(() => {});
+    } else {
+      document.exitFullscreen?.();
+    }
+  }
+
+  function startTicker() {
+    clearInterval(tickInterval);
+    tickInterval = setInterval(() => {
+      if (isPaused) return;
+      msRemaining -= 100;
+      updateCountdown();
+      if (msRemaining <= 0) next();
+    }, 100);
+  }
+
+  // Controls
+  document.getElementById('btn-next').addEventListener('click', next);
+  document.getElementById('btn-prev').addEventListener('click', prev);
+  btnPause.addEventListener('click', togglePause);
+
+  // Keyboard
+  document.addEventListener('keydown', (e) => {
+    if (document.getElementById('welcome-screen').classList.contains('hidden') === false) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        document.getElementById('start-btn').click();
+      }
+      return;
+    }
+    switch (e.key) {
+      case 'ArrowRight': e.preventDefault(); next(); break;
+      case 'ArrowLeft': e.preventDefault(); prev(); break;
+      case ' ': e.preventDefault(); togglePause(); break;
+      case 'f': case 'F': toggleFullscreen(); break;
+    }
+  });
+
+  // Welcome screen → start
+  document.getElementById('start-btn').addEventListener('click', () => {
+    document.getElementById('welcome-screen').classList.add('hidden');
+    showSlide(0);
+    startTicker();
+  });
+
+})();
+</script>
+
+</body>
+</html>
