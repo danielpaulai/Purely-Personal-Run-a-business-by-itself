@@ -50,9 +50,9 @@ a:hover{border-color:var(--pp-red)}
 .hero::after{content:'';position:absolute;bottom:-160px;right:-160px;width:500px;height:500px;border-radius:999px;background:radial-gradient(circle,rgba(233,13,65,0.04) 0%,transparent 60%);pointer-events:none}
 .hero-inner{position:relative;z-index:2;text-align:center}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--pp-red);background:var(--pp-red-soft);padding:6px 14px;border-radius:3px;margin-bottom:28px}
-.hero h1{font-family:var(--display);font-size:72px;font-weight:800;line-height:1;letter-spacing:-0.03em;margin:0 auto 24px;max-width:980px}
+.hero h1{font-family:var(--display);font-size:48px;font-weight:800;line-height:1.05;letter-spacing:-0.025em;margin:0 auto 18px;max-width:820px}
 .hero h1 em{font-style:normal;color:var(--pp-red)}
-.hero-sub{font-size:22px;color:var(--text-secondary);line-height:1.45;max-width:780px;margin:0 auto 32px}
+.hero-sub{font-size:18px;color:var(--text-secondary);line-height:1.5;max-width:700px;margin:0 auto 28px}
 .hero-sub strong{color:var(--text-primary);font-weight:700}
 .hero-dates{display:flex;gap:16px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
 .hero-date{padding:14px 18px;background:var(--card-bg);border:1px solid var(--divider);border-radius:6px;min-width:200px}
@@ -69,7 +69,58 @@ a:hover{border-color:var(--pp-red)}
 .hero-meta{font-family:var(--mono);font-size:12px;color:var(--text-muted);letter-spacing:0.08em}
 .hero-meta strong{color:var(--pp-red);font-weight:700}
 
-@media (max-width:800px){.hero h1{font-size:48px}.hero-sub{font-size:18px}.hero{padding:48px 0 40px}}
+@media (max-width:800px){.hero h1{font-size:34px}.hero-sub{font-size:16px}.hero{padding:48px 0 40px}}
+
+/* ============= VSL (Video Sales Letter) ============= */
+.hero-vsl{
+  position:relative;max-width:780px;margin:32px auto 36px;
+  aspect-ratio:16/9;
+  background:linear-gradient(135deg,var(--dark) 0%,var(--dark-card) 100%);
+  border-radius:12px;overflow:hidden;
+  box-shadow:0 24px 60px rgba(20,14,8,0.15),0 4px 12px rgba(233,13,65,0.12);
+  cursor:pointer;
+  transition:transform 200ms ease,box-shadow 200ms ease;
+}
+.hero-vsl:hover{transform:translateY(-2px);box-shadow:0 32px 80px rgba(20,14,8,0.2),0 6px 16px rgba(233,13,65,0.18)}
+.hero-vsl iframe{width:100%;height:100%;border:0;display:block}
+/* Placeholder shown until iframe src is filled in */
+.vsl-placeholder{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:#fff;text-align:center;padding:24px;
+}
+.vsl-placeholder::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at center,rgba(233,13,65,0.2) 0%,transparent 60%);pointer-events:none}
+.vsl-eyebrow{font-family:var(--mono);font-size:11px;color:var(--pp-red);letter-spacing:0.2em;font-weight:700;text-transform:uppercase;margin-bottom:16px;position:relative;z-index:2}
+.vsl-play{
+  width:88px;height:88px;border-radius:999px;
+  background:var(--pp-red);color:#fff;
+  border:0;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 32px rgba(233,13,65,0.5),0 0 0 8px rgba(255,255,255,0.1);
+  transition:transform 160ms ease;
+  position:relative;z-index:2;margin-bottom:20px;
+}
+.vsl-play::before{content:'';border-left:26px solid #fff;border-top:16px solid transparent;border-bottom:16px solid transparent;margin-left:6px}
+.vsl-play:hover{transform:scale(1.08);box-shadow:0 10px 40px rgba(233,13,65,0.6),0 0 0 10px rgba(255,255,255,0.15)}
+.vsl-title{font-family:var(--display);font-size:22px;font-weight:700;margin:0 0 6px;color:#fff;letter-spacing:-0.01em;position:relative;z-index:2}
+.vsl-sub{font-size:14px;color:rgba(255,255,255,0.7);max-width:420px;margin:0;line-height:1.45;position:relative;z-index:2}
+.vsl-duration{
+  position:absolute;top:16px;right:16px;
+  padding:4px 10px;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);
+  color:#fff;font-family:var(--mono);font-size:11px;font-weight:700;
+  border-radius:3px;letter-spacing:0.08em;z-index:3;
+}
+.vsl-host{
+  position:absolute;bottom:16px;left:16px;
+  display:flex;align-items:center;gap:8px;
+  padding:6px 12px 6px 6px;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);
+  border-radius:999px;z-index:3;
+}
+.vsl-host .avatar{width:22px;height:22px;border-radius:999px;overflow:hidden;background:#fce8ed;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;color:var(--pp-red);font-size:10px}
+.vsl-host .name{font-family:var(--mono);font-size:11px;color:#fff;letter-spacing:0.04em;font-weight:500}
+.vsl-caption{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:0.08em;text-align:center;margin:-16px auto 24px;max-width:580px}
+.vsl-caption strong{color:var(--pp-red);font-weight:700}
+@media (max-width:600px){.hero-vsl{margin:24px auto 28px}.vsl-play{width:64px;height:64px}.vsl-play::before{border-left-width:18px;border-top-width:11px;border-bottom-width:11px}.vsl-title{font-size:17px}.vsl-sub{font-size:13px}}
 
 /* ============= PROOF BAND ============= */
 .proof-band{background:var(--dark);color:#fff;padding:56px 0;position:relative;overflow:hidden;border-top:3px solid var(--pp-red);border-bottom:3px solid var(--pp-red)}
@@ -265,8 +316,25 @@ footer{padding:48px 0 32px;background:var(--page-bg)}
 <section class="hero" id="top">
   <div class="container hero-inner">
     <div class="hero-eyebrow">◆ Live Online Workshop · May 2–3, 2026 · Only $49</div>
-    <h1>Your Marketing and Sales running on <em>autopilot.</em><br>Without hiring anyone or writing a single line of code.</h1>
-    <p class="hero-sub">A 2-day live workshop where you build a <strong>Marketing Machine</strong> and a <strong>Sales Machine</strong> in real time using Claude. Every output in your voice. Every week. Forever yours.</p>
+    <h1>Your Marketing and Sales running on <em>autopilot.</em><br>Without hiring anyone or writing code.</h1>
+    <p class="hero-sub">A 2-day live workshop where you build a <strong>Marketing Machine</strong> and a <strong>Sales Machine</strong> in real time using Claude.</p>
+
+    <!-- ============= VSL (replace iframe src with Loom / Wistia / YouTube link) ============= -->
+    <div class="hero-vsl" id="vsl">
+      <!-- Placeholder until video is ready. Replace this div with <iframe src="YOUR_VIDEO_URL" allowfullscreen></iframe> -->
+      <div class="vsl-placeholder">
+        <div class="vsl-eyebrow">◆ Watch before reading</div>
+        <button class="vsl-play" type="button" aria-label="Play video"></button>
+        <div class="vsl-title">The 2-minute walkthrough</div>
+        <p class="vsl-sub">See the Marketing Machine and Sales Machine run live on my own Brain. Then decide.</p>
+      </div>
+      <div class="vsl-duration">2:14</div>
+      <div class="vsl-host">
+        <div class="avatar">DP</div>
+        <div class="name">Daniel Paul</div>
+      </div>
+    </div>
+    <div class="vsl-caption">▶ 2-minute watch · decides whether the rest of this page matters to you</div>
 
     <div class="hero-dates">
       <div class="hero-date">
