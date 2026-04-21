@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# macOS
+.DS_Store
+._*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# User-specific brains / outputs (keep the samples, skip real user data)
+/BUSINESS-BRAIN.md
+/marketing-output/
+/sales-output/
+/operations-output/
+/cash-output/
+/leadership-output/
+
+# Rendered demo artifacts (regenerate from .tape — don't commit binaries)
+/demo/build-my-brain.mp4
+/demo/build-my-brain.gif
+
+# Local Claude Code state
+.claude-cache/

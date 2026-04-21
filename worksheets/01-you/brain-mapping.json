@@ -1,0 +1,76 @@
+{
+  "worksheet": "01-you",
+  "framework_name": "YOU™",
+  "module": "01",
+  "maps_to_brain_sections": ["01-operator", "02-voice"],
+  "fields": [
+    {
+      "worksheet_key": "name",
+      "brain_path": "01-operator.name",
+      "required": true,
+      "type": "string",
+      "label": "Your name"
+    },
+    {
+      "worksheet_key": "date",
+      "brain_path": "01-operator.date_filled",
+      "required": false,
+      "type": "string",
+      "label": "Date filled"
+    },
+    {
+      "worksheet_key": "current",
+      "brain_path": "01-operator.current_tagline",
+      "required": true,
+      "type": "string",
+      "label": "Current headline / tagline (before rewrite)"
+    },
+    {
+      "worksheet_key": "insight",
+      "brain_path": "01-operator.insight",
+      "required": false,
+      "type": "string",
+      "label": "Insight from comparing yours to Best Practice"
+    },
+    {
+      "worksheet_key": "ideas",
+      "brain_path": "01-operator.tagline",
+      "required": true,
+      "type": "string",
+      "label": "Rewritten tagline (after comparing)"
+    },
+    {
+      "worksheet_key": "voice.banned",
+      "brain_path": "02-voice.banned_phrases",
+      "required": true,
+      "type": "array_from_csv",
+      "label": "Banned phrases (comma or newline separated)"
+    },
+    {
+      "worksheet_key": "voice.last_post",
+      "brain_path": "02-voice.example_openings[0]",
+      "required": true,
+      "type": "string",
+      "label": "Last LinkedIn post opening line (voice reference)"
+    },
+    {
+      "worksheet_key": "voice.tone",
+      "brain_path": "02-voice.tone_3words",
+      "required": true,
+      "type": "string",
+      "label": "Tone in 3 words"
+    }
+  ],
+  "output_markdown_template": "## 01 · Operator\n\n- **Name:** {{name}}\n- **Tagline:** {{ideas || current}}\n- **Date filled:** {{date}}\n\n## 02 · Voice\n\n### Tone\n{{voice.tone}}\n\n### Banned phrases\n{{voice.banned as list}}\n\n### Example opening\n> {{voice.last_post}}\n",
+  "workshop_activity": {
+    "duration_minutes": 15,
+    "sequence": [
+      { "minutes": 1, "phase": "teach", "detail": "Frame the 4-column worksheet: Best Practice / Examples / Current / Ideas. Show the template." },
+      { "minutes": 5, "phase": "fill", "detail": "Attendees fill silently. Focus on Current + Ideas + Voice." },
+      { "minutes": 5, "phase": "share", "detail": "Pairs swap worksheets, one round of feedback per attendee." },
+      { "minutes": 3, "phase": "debrief", "detail": "2 volunteers share their Ideas rewrite. Facilitator annotates." },
+      { "minutes": 1, "phase": "capture", "detail": "Click 'Copy to Brain' → paste into running BUSINESS-BRAIN.md." }
+    ]
+  },
+  "next_worksheet": "02-the-offer"
+}

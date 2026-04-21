@@ -1,0 +1,45 @@
+{
+  "name": "purely-personal",
+  "version": "0.1.0",
+  "description": "A Claude Code plugin that installs an AI C-Suite inside your business. One BUSINESS-BRAIN.md, five AI executives (Marketing, Sales, Operations, Cash, Leadership), zero SaaS. Renders your Brain into a visually stunning one-pager with PDF export, produces publish-ready content cards for LinkedIn/X/Instagram/Newsletter, and ships real work via slash commands that read the Brain as context.",
+  "author": {
+    "name": "Daniel Paul",
+    "url": "https://purelypersonal.ai"
+  },
+  "homepage": "https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself",
+  "repository": "https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself.git",
+  "license": "MIT",
+  "keywords": [
+    "business-brain",
+    "purely-personal",
+    "content-machine",
+    "ai-c-suite",
+    "marketing-engine",
+    "sales-engine",
+    "operations-engine",
+    "cash-engine",
+    "leadership-engine",
+    "workshop",
+    "linkedin",
+    "claude-code-plugin"
+  ],
+  "skills": [
+    "skills/business-brain-renderer",
+    "skills/content-visual-builder",
+    "skills/engine-output-builder"
+  ],
+  "commands": [
+    "commands/build-my-brain.md",
+    "commands/marketing-engine.md",
+    "commands/sales-engine.md",
+    "commands/operations-engine.md",
+    "commands/cash-engine.md",
+    "commands/leadership-engine.md"
+  ],
+  "scripts": [
+    "scripts/build_pdf.py"
+  ],
+  "requires": {
+    "claudeCode": ">=1.0.0"
+  }
+}

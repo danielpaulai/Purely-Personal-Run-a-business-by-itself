@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Worksheet 2 — The Offer™ (interactive)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rethink+Sans:wght@400;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--page-bg:#faf8f4;--card-bg:#ffffff;--header-bg:#e2dfd9;--sub-card-bg:#fbf9f6;--text:#3d3d3d;--text-primary:#1a1a1a;--muted:#888;--border:#d0cdc8;--pp-red:#e90d41;--pp-red-soft:#fce8ed;--pp-red-deep:#c70a38;--pp-red-whisper:#fdf2f5;--dark:#0f0f10;--dark-card:#1a1a1d;--engine-leadership:#DC2626;--display:'Rethink Sans','Inter',sans-serif;--body:-apple-system,'Inter',sans-serif;--mono:'JetBrains Mono',Menlo,monospace}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--page-bg);font-family:var(--body);color:var(--text);font-size:14px;line-height:1.55}
+.page{max-width:980px;margin:0 auto;padding:48px 32px 80px;position:relative}
+
+.header{margin-bottom:20px}
+.framework{font-family:var(--display);font-size:44px;font-weight:800;margin:0 0 6px;line-height:1.05;letter-spacing:-0.02em;color:var(--text-primary)}
+.framework .tm{font-size:22px;vertical-align:super;color:var(--pp-red);font-weight:700}
+.subtitle{font-size:15px;color:var(--muted);margin:0 0 12px}
+.meta-row{display:flex;gap:24px;align-items:center;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:12px;flex-wrap:wrap}
+.meta-row .tag{background:var(--pp-red-soft);color:var(--pp-red);padding:4px 10px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border-radius:3px}
+
+/* Taki 4-col */
+.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border:1px solid var(--border);margin-top:20px}
+.col-head{background:var(--header-bg);padding:10px 14px;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border:1px solid var(--border)}
+.col-body{background:var(--card-bg);border:1px solid var(--border);padding:14px 16px;font-size:13px;line-height:1.75;min-height:300px;display:flex;flex-direction:column}
+.col-body.prefilled ul{margin:0;padding-left:16px}
+.col-body.prefilled li{margin-bottom:5px}
+.col-body .prompt{font-style:italic;font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:8px}
+.col-body .fill-area{flex:1;margin-bottom:10px}
+.insight-box{margin-top:10px;padding-top:8px;border-top:1px dashed var(--border)}
+.insight-box .label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:4px;display:block}
+
+/* Stat strip */
+.stat-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:20px}
+.stat-cell{background:var(--card-bg);border:1px solid var(--border);padding:16px 18px;border-radius:4px;position:relative}
+.stat-cell.hero{background:linear-gradient(135deg,var(--pp-red) 0%,var(--pp-red-deep) 100%);color:#fff;border-color:var(--pp-red);box-shadow:0 4px 16px rgba(233,13,65,0.2)}
+.stat-cell .label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:8px;display:block}
+.stat-cell.hero .label{color:rgba(255,255,255,0.8)}
+.stat-cell [contenteditable]{font-family:var(--display);font-size:26px;font-weight:800;letter-spacing:-0.02em;line-height:1.1;min-height:40px}
+.stat-cell.hero [contenteditable]{color:#fff}
+.stat-cell .sublabel{font-size:11px;color:var(--muted);margin-top:4px}
+.stat-cell.hero .sublabel{color:rgba(255,255,255,0.7)}
+
+/* editables */
+[contenteditable="true"]{min-height:40px;padding:6px 8px;background:#fdfcfa;border:1px dashed var(--border);outline:none;font-family:var(--body);font-size:13px;line-height:1.6;border-radius:2px;transition:border-color 120ms,background 120ms}
+[contenteditable="true"]:empty::before{content:attr(data-placeholder);color:#b8b8b8;font-style:italic}
+[contenteditable="true"]:hover{background:var(--pp-red-soft);border-color:var(--pp-red)}
+[contenteditable="true"]:focus{background:var(--pp-red-soft);border-color:var(--pp-red);border-style:solid}
+.stat-cell [contenteditable="true"]{background:transparent;border-color:transparent}
+.stat-cell [contenteditable="true"]:hover{background:rgba(255,255,255,0.1);border-color:transparent}
+.stat-cell.hero [contenteditable="true"]:empty::before{color:rgba(255,255,255,0.5)}
+
+.guidelines{margin-top:24px;background:var(--sub-card-bg);border:1px solid var(--border);border-radius:6px;padding:20px 24px;position:relative}
+.guidelines .gl-tag{font-family:var(--mono);font-size:10px;color:var(--pp-red);letter-spacing:0.2em;font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.guidelines h3{font-family:var(--display);font-size:20px;font-weight:800;margin:0 0 6px;color:var(--text-primary);line-height:1.15}
+.guidelines .gl-sub{font-size:13px;color:var(--muted);margin:0 0 16px}
+.guidelines .time-chip{display:inline-block;margin-left:10px;padding:2px 8px;background:var(--pp-red-soft);color:var(--pp-red);border-radius:3px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.06em;vertical-align:middle}
+.gl-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.gl-col h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin:0 0 10px}
+.gl-col ul{margin:0;padding:0;list-style:none}
+.gl-col li{font-size:13px;line-height:1.5;margin-bottom:10px;padding-left:22px;position:relative}
+.gl-col li::before{position:absolute;left:0;top:0;font-family:var(--mono);font-size:13px;color:var(--pp-red);font-weight:700}
+.gl-col.what li::before{content:'\2610'}
+.gl-col.how li::before{content:'\2192'}
+@media (max-width:700px){.gl-grid{grid-template-columns:1fr}}
+
+/* Claude Prompts (dark section) */
+.claude-prompts{margin-top:28px;background:var(--dark);color:#fff;border-radius:8px;padding:24px 28px;position:relative;overflow:hidden;border-left:4px solid var(--pp-red)}
+.claude-prompts .ph-label{font-family:var(--mono);font-size:10px;color:var(--pp-red);letter-spacing:0.2em;font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.claude-prompts h3{font-family:var(--display);font-size:22px;font-weight:800;margin:0 0 6px;line-height:1.15;color:#fff;letter-spacing:-0.01em}
+.claude-prompts .ph-sub{font-size:13px;color:rgba(255,255,255,0.6);margin:0 0 18px}
+.prompts-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.prompt-card{background:var(--dark-card);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;transition:border-color 120ms}
+.prompt-card:hover{border-color:var(--pp-red)}
+.prompt-card .type{font-family:var(--mono);font-size:9px;color:var(--pp-red);letter-spacing:0.15em;font-weight:700;text-transform:uppercase}
+.prompt-card .text{font-family:var(--mono);font-size:12px;color:#fff;line-height:1.4;background:rgba(255,255,255,0.04);padding:8px 10px;border-radius:3px;word-break:break-word}
+.prompt-card .why{font-size:11px;color:rgba(255,255,255,0.6);line-height:1.4;flex:1}
+.prompt-card button{padding:6px 12px;background:var(--pp-red);color:#fff;border:0;border-radius:3px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;align-self:flex-start}
+.prompt-card button:hover{background:var(--pp-red-deep)}
+
+/* toolbar + save */
+.toolbar{position:fixed;top:16px;right:16px;display:flex;gap:8px;z-index:50}
+.toolbar button{padding:8px 14px;background:var(--card-bg);border:1px solid var(--border);border-radius:4px;font-family:var(--body);font-size:13px;font-weight:500;color:var(--text-primary);cursor:pointer;transition:background 120ms,border-color 120ms}
+.toolbar button:hover{background:var(--sub-card-bg);border-color:var(--muted)}
+.toolbar button.primary{background:var(--pp-red);color:#fff;border-color:var(--pp-red);box-shadow:0 2px 8px rgba(233,13,65,0.25)}
+.toolbar button.primary:hover{background:var(--pp-red-deep);border-color:var(--pp-red-deep)}
+#save-indicator{position:fixed;top:16px;left:16px;padding:6px 12px;background:var(--text-primary);color:#fff;font-size:12px;font-family:var(--mono);border-radius:4px;opacity:0;transform:translateY(-4px);transition:opacity 200ms,transform 200ms;pointer-events:none;z-index:100}
+#save-indicator.visible{opacity:1;transform:translateY(0)}
+
+.send-banner{margin-top:20px;padding:16px 20px;background:linear-gradient(135deg,var(--pp-red),var(--pp-red-deep));color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;box-shadow:0 4px 16px rgba(233,13,65,0.25)}
+.send-banner .text{font-size:14px;line-height:1.4}
+.send-banner .text strong{font-weight:700}
+.send-banner button{padding:10px 18px;background:#fff;color:var(--pp-red);border:0;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:700;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase}
+.send-banner button:hover{background:#fef9fa}
+
+.footer{display:flex;align-items:center;gap:10px;padding-top:14px;margin-top:18px;border-top:1px solid var(--border)}
+.footer .brand-dot{width:18px;height:18px;background:var(--pp-red);display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--display);font-weight:800;font-size:10px;border-radius:2px}
+.footer .brand{font-family:var(--display);font-weight:800;font-size:13px}
+.footer .meta{font-size:11px;color:var(--muted);font-family:var(--mono);letter-spacing:0.04em}
+.footer .page-num{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.08em}
+
+@media print{.toolbar,.send-banner,#save-indicator{display:none!important}[contenteditable="true"]{border:0;background:transparent!important}.page{padding:12mm 16mm}}
+@media (max-width:700px){.grid-4{grid-template-columns:1fr 1fr}.stat-strip{grid-template-columns:1fr}.prompts-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="save-indicator" class="no-print">Saved</div>
+<div class="toolbar no-print">
+  <button id="reset-btn" type="button">Reset</button>
+  <button id="export-pdf" type="button" class="primary">Export PDF</button>
+</div>
+
+<div class="page">
+
+  <div class="header">
+    <h1 class="framework">Worksheet 2 &mdash; The Offer<span class="tm">&#8482;</span></h1>
+    <p class="subtitle">One sentence your ICP can repeat back. Every engine reads this.</p>
+    <div class="meta-row">
+      <span class="tag">Module 02 · Business</span>
+      <span>Name: <span contenteditable="true" data-key="name" data-placeholder="your name"></span></span>
+      <span>Date: <span contenteditable="true" data-key="date" data-placeholder="today"></span></span>
+    </div>
+  </div>
+
+  <div class="grid-4">
+    <div class="col-head">Best Practice</div>
+    <div class="col-head">Examples</div>
+    <div class="col-head">Current · Your Offer</div>
+    <div class="col-head">Ideas · Sharpen</div>
+
+    <div class="col-body prefilled">
+      <ul>
+        <li><strong>Verb + outcome + timeframe</strong></li>
+        <li>Named ICP inside the offer</li>
+        <li>Specific result, not vague</li>
+        <li>One sentence &#8804; 15 words</li>
+        <li>No jargon, no buzzwords</li>
+        <li>Cheaper/faster/simpler than competition</li>
+      </ul>
+    </div>
+
+    <div class="col-body prefilled">
+      <ul>
+        <li>&quot;Install an AI C-Suite in 2 days.&quot;</li>
+        <li>&quot;Replace your VA stack with Claude skills.&quot;</li>
+        <li>&quot;Ship a week of content in 2 hours.&quot;</li>
+        <li>&quot;Done-with-you, not done-for-you.&quot;</li>
+      </ul>
+    </div>
+
+    <div class="col-body">
+      <div class="prompt">What you currently say when someone asks &ldquo;what do you do?&rdquo;</div>
+      <div class="fill-area" contenteditable="true" data-key="offer.current" data-placeholder="write your current offer line..."></div>
+      <div class="insight-box">
+        <span class="label">Insight</span>
+        <div contenteditable="true" data-key="offer.insight" data-placeholder="what you noticed vs Best Practice"></div>
+      </div>
+    </div>
+
+    <div class="col-body">
+      <div class="prompt">Rewrite for the 5-second test. Verb + outcome + ICP.</div>
+      <div class="fill-area" contenteditable="true" data-key="offer.rewrite" data-placeholder="your sharpened offer..."></div>
+    </div>
+  </div>
+
+  <!-- Positioning sentence -->
+  <div style="margin-top:20px;background:var(--card-bg);border:1px solid var(--border);padding:18px 22px;border-radius:4px">
+    <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);display:block;margin-bottom:8px">Positioning · one sentence on why you vs anyone else</span>
+    <div contenteditable="true" data-key="offer.positioning" data-placeholder='e.g. "Done-for-you is dying. Done-with-you is the future."'></div>
+  </div>
+
+  <!-- Stat strip: Pricing, 90-day goal, key metric -->
+  <div class="stat-strip">
+    <div class="stat-cell">
+      <span class="label">Pricing</span>
+      <div contenteditable="true" data-key="offer.pricing" data-placeholder='$49'></div>
+      <div class="sublabel">starting price · exact number</div>
+    </div>
+    <div class="stat-cell hero">
+      <span class="label">90-Day Goal</span>
+      <div contenteditable="true" data-key="offer.goal_value" data-placeholder="$75K"></div>
+      <div class="sublabel">must be a number · specific</div>
+    </div>
+    <div class="stat-cell">
+      <span class="label">Daily Key Metric</span>
+      <div contenteditable="true" data-key="offer.metric" data-placeholder='MRR / new signups / DMs'></div>
+      <div class="sublabel">the one number you check daily</div>
+    </div>
+  </div>
+
+  <!-- GUIDELINES -->
+  <div class="guidelines no-print">
+    <div class="gl-tag">◆ Guidelines</div>
+    <h3>Before you ship Worksheet 2 <span class="time-chip">~7 min</span></h3>
+    <p class="gl-sub">Your offer must pass the 5-second test.</p>
+    <div class="gl-grid">
+      <div class="gl-col what">
+        <h4>What to fill</h4>
+        <ul>
+          <li>Current offer line (Column 3)</li>
+          <li>Sharpened offer (Column 4)</li>
+          <li>Insight from comparing to Examples</li>
+          <li>Positioning sentence &mdash; why you vs anyone else</li>
+          <li>Starting price (exact number)</li>
+          <li>90-day goal with a number</li>
+          <li>Daily key metric</li>
+        </ul>
+      </div>
+      <div class="gl-col how">
+        <h4>How to fill it well</h4>
+        <ul>
+          <li>Offer &le; 15 words. Verb + outcome + ICP.</li>
+          <li>No jargon. Must read in 5 seconds.</li>
+          <li>Positioning is one line. Why you vs everyone else.</li>
+          <li>Price is a number, not a range ("$49" not "$40&ndash;60")</li>
+          <li>90-day goal must contain a quantifiable number (revenue, sign-ups, clients)</li>
+          <li>Daily metric is something you can check every morning in under 30 seconds</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLAUDE PROMPTS -->
+  <div class="claude-prompts no-print">
+    <div class="ph-label">◆ Claude prompts · ship the next action</div>
+    <h3>Take your offer from worksheet to running engine.</h3>
+    <p class="ph-sub">Copy any prompt. Run in Claude Code. Engine reads your filled Brain for context.</p>
+    <div class="prompts-grid">
+      <div class="prompt-card">
+        <div class="type">Slash command</div>
+        <code class="text">/cash-engine pricing</code>
+        <div class="why">Analyze your pricing vs your ICP's willingness to pay + competitors.</div>
+        <button data-copy="/cash-engine pricing">Copy</button>
+      </div>
+      <div class="prompt-card">
+        <div class="type">Slash command</div>
+        <code class="text">/marketing-engine</code>
+        <div class="why">Draft 3 LinkedIn posts + X thread + newsletter about this offer.</div>
+        <button data-copy="/marketing-engine">Copy</button>
+      </div>
+      <div class="prompt-card">
+        <div class="type">Natural prompt</div>
+        <code class="text">Using my BUSINESS-BRAIN.md, give me 3 ways to sharpen this offer for a cold LinkedIn audience. Specifics over vague.</code>
+        <div class="why">Iterate on the Ideas column with Claude's help.</div>
+        <button data-copy="Using my BUSINESS-BRAIN.md, give me 3 ways to sharpen this offer for a cold LinkedIn audience. Specifics over vague.">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="send-banner no-print">
+    <div class="text"><strong>Done with Worksheet 2?</strong><br>Copy your answers as a <code>BUSINESS-BRAIN.md</code> snippet.</div>
+    <button id="send-to-brain" type="button">Copy to Brain &rarr;</button>
+  </div>
+
+  <div class="footer">
+    <div class="brand-dot">pp</div>
+    <div class="brand">Purely Personal</div>
+    <div class="meta">Business Brain&trade; &middot; Workshop 02 &middot; The Offer</div>
+    <div class="page-num">02 / 05</div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  const STORAGE_KEY='pp-worksheet-02-offer';
+  const DEBOUNCE=500;
+  const fields=document.querySelectorAll('[contenteditable="true"]');
+  fields.forEach(el=>{el.addEventListener('input',scheduleSave);el.addEventListener('blur',save)});
+  try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');Object.entries(saved).forEach(([k,v])=>{const el=document.querySelector(`[data-key="${k}"]`);if(el)el.innerHTML=v})}catch(e){}
+  let t=null;function scheduleSave(){clearTimeout(t);t=setTimeout(save,DEBOUNCE)}
+  function save(){const out={};fields.forEach(el=>{const k=el.getAttribute('data-key');if(k)out[k]=el.innerHTML.trim()});try{localStorage.setItem(STORAGE_KEY,JSON.stringify(out));flash('Saved')}catch(e){}}
+  const ind=document.getElementById('save-indicator');function flash(m){if(!ind)return;ind.textContent=m;ind.classList.add('visible');clearTimeout(ind._t);ind._t=setTimeout(()=>ind.classList.remove('visible'),1400)}
+  document.getElementById('reset-btn').addEventListener('click',()=>{if(confirm('Clear all answers?')){localStorage.removeItem(STORAGE_KEY);fields.forEach(el=>el.innerHTML='');flash('Reset')}});
+  document.getElementById('export-pdf').addEventListener('click',()=>window.print());
+  // Copy prompt buttons
+  document.querySelectorAll('.prompt-card [data-copy]').forEach(b=>{
+    b.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(b.dataset.copy);const o=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=o,1500)}catch(e){flash('Copy blocked')}});
+  });
+  document.getElementById('send-to-brain').addEventListener('click',async()=>{
+    const g=k=>{const el=document.querySelector(`[data-key="${k}"]`);const t=(el?.innerText||'').trim();return t||'_(fill in later)_'};
+    const md=`## 03 · Business
+
+- **Offer:** ${g('offer.rewrite')!=='_(fill in later)_'?g('offer.rewrite'):g('offer.current')}
+- **Positioning:** ${g('offer.positioning')}
+- **Pricing:** ${g('offer.pricing')}
+- **90-Day Goal:** ${g('offer.goal_value')}
+- **Key Metric:** ${g('offer.metric')}
+
+### Insight from Worksheet 2
+${g('offer.insight')}
+`;
+    try{await navigator.clipboard.writeText(md);flash('Copied to Brain');const btn=document.getElementById('send-to-brain');const o=btn.textContent;btn.textContent='Copied ✓';setTimeout(()=>btn.textContent=o,1500)}catch(e){alert('Clipboard blocked:\n\n'+md)}
+  });
+})();
+</script>
+
+</body>
+</html>

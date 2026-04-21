@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Worksheet 5 — Your Engines™ (interactive)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rethink+Sans:wght@400;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--page-bg:#faf8f4;--card-bg:#ffffff;--header-bg:#e2dfd9;--sub-card-bg:#fbf9f6;--text:#3d3d3d;--text-primary:#1a1a1a;--muted:#888;--border:#d0cdc8;--pp-red:#e90d41;--pp-red-soft:#fce8ed;--pp-red-deep:#c70a38;--dark:#0f0f10;--dark-card:#1a1a1d;--engine-marketing:#3B82F6;--engine-sales:#22C55E;--engine-operations:#8B5CF6;--engine-cash:#EAB308;--engine-leadership:#DC2626;--display:'Rethink Sans','Inter',sans-serif;--body:-apple-system,'Inter',sans-serif;--mono:'JetBrains Mono',Menlo,monospace}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--page-bg);font-family:var(--body);color:var(--text);font-size:14px;line-height:1.55}
+.page{max-width:980px;margin:0 auto;padding:48px 32px 80px;position:relative}
+
+.header{margin-bottom:20px}
+.framework{font-family:var(--display);font-size:44px;font-weight:800;margin:0 0 6px;line-height:1.05;letter-spacing:-0.02em;color:var(--text-primary)}
+.framework .tm{font-size:22px;vertical-align:super;color:var(--pp-red);font-weight:700}
+.subtitle{font-size:15px;color:var(--muted);margin:0 0 12px}
+.meta-row{display:flex;gap:24px;align-items:center;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:12px;flex-wrap:wrap}
+.meta-row .tag{background:var(--pp-red-soft);color:var(--pp-red);padding:4px 10px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border-radius:3px}
+
+.section-heading{display:flex;align-items:center;gap:12px;margin:28px 0 14px}
+.section-heading .num{font-family:var(--display);font-size:30px;font-weight:800;color:var(--pp-red);line-height:1}
+.section-heading h2{font-family:var(--display);font-size:22px;font-weight:800;margin:0;line-height:1.15;color:var(--text-primary);letter-spacing:-0.01em}
+.section-heading .sub{margin-left:auto;font-size:12px;color:var(--muted);font-style:italic}
+
+/* Brand card */
+.brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:12px}
+.brand-card{background:var(--card-bg);border:1px solid var(--border);border-radius:6px;padding:18px 20px}
+.brand-card .label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:10px;display:block}
+.swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:16px}
+.swatch{display:flex;flex-direction:column;gap:4px}
+.swatch .box{aspect-ratio:1;border:1px solid var(--border);border-radius:4px;transition:background 120ms}
+.swatch [contenteditable]{font-size:9px;font-family:var(--mono);color:var(--muted);text-align:center;min-height:16px;padding:2px 4px;border:1px dashed transparent;background:transparent}
+.swatch [contenteditable]:hover{background:var(--pp-red-soft);border-color:var(--pp-red)}
+.swatch [contenteditable]:empty::before{content:'#......';color:#d0d0d0}
+
+/* AI Visibility */
+.ai-queries{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.ai-query{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fcf5d9;border-left:3px solid var(--engine-cash);border-radius:4px}
+.ai-query .mark{color:var(--engine-cash);font-weight:800;font-size:14px}
+.ai-query [contenteditable]{flex:1;font-family:var(--mono);font-size:13px;background:transparent;border-color:transparent!important;min-height:24px;padding:2px 6px}
+
+/* Goals */
+.goals-grid{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:12px}
+.goal-card{background:var(--card-bg);border:1px solid var(--border);border-radius:6px;padding:18px 20px}
+.goal-card.priority{background:linear-gradient(135deg,var(--dark) 0%,var(--dark-card) 100%);color:#fff;border-color:var(--dark);position:relative;overflow:hidden}
+.goal-card.priority::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:999px;background:rgba(233,13,65,0.1);pointer-events:none}
+.goal-card .label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);display:block;margin-bottom:8px}
+.goal-card.priority .label{color:var(--pp-red)}
+.goal-card [contenteditable]{font-size:16px;line-height:1.5;min-height:60px}
+.goal-card.priority [contenteditable]{color:#fff;background:transparent;border-color:rgba(255,255,255,0.15)}
+.goal-card.priority [contenteditable]:hover{background:rgba(255,255,255,0.08)!important;border-color:var(--pp-red)}
+.goal-card.priority [contenteditable]:empty::before{color:rgba(255,255,255,0.4)!important}
+.stack-list{display:flex;flex-direction:column;gap:8px}
+.stack-row{display:flex;gap:8px;align-items:center}
+.stack-row .n{font-family:var(--mono);font-size:10px;color:var(--muted);font-weight:700;width:24px;letter-spacing:0.08em}
+.stack-row [contenteditable]{flex:1;min-height:32px}
+
+[contenteditable="true"]{min-height:40px;padding:6px 8px;background:#fdfcfa;border:1px dashed var(--border);outline:none;font-family:var(--body);font-size:13px;line-height:1.55;border-radius:2px;transition:border-color 120ms,background 120ms}
+[contenteditable="true"]:empty::before{content:attr(data-placeholder);color:#b8b8b8;font-style:italic}
+[contenteditable="true"]:hover{background:var(--pp-red-soft);border-color:var(--pp-red)}
+[contenteditable="true"]:focus{background:var(--pp-red-soft);border-color:var(--pp-red);border-style:solid}
+
+.guidelines{margin-top:24px;background:var(--sub-card-bg);border:1px solid var(--border);border-radius:6px;padding:20px 24px;position:relative}
+.guidelines .gl-tag{font-family:var(--mono);font-size:10px;color:var(--pp-red);letter-spacing:0.2em;font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.guidelines h3{font-family:var(--display);font-size:20px;font-weight:800;margin:0 0 6px;color:var(--text-primary);line-height:1.15}
+.guidelines .gl-sub{font-size:13px;color:var(--muted);margin:0 0 16px}
+.guidelines .time-chip{display:inline-block;margin-left:10px;padding:2px 8px;background:var(--pp-red-soft);color:var(--pp-red);border-radius:3px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.06em;vertical-align:middle}
+.gl-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.gl-col h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin:0 0 10px}
+.gl-col ul{margin:0;padding:0;list-style:none}
+.gl-col li{font-size:13px;line-height:1.5;margin-bottom:10px;padding-left:22px;position:relative}
+.gl-col li::before{position:absolute;left:0;top:0;font-family:var(--mono);font-size:13px;color:var(--pp-red);font-weight:700}
+.gl-col.what li::before{content:'\2610'}
+.gl-col.how li::before{content:'\2192'}
+@media (max-width:700px){.gl-grid{grid-template-columns:1fr}}
+
+/* Claude prompts */
+.claude-prompts{margin-top:28px;background:var(--dark);color:#fff;border-radius:8px;padding:24px 28px;position:relative;overflow:hidden;border-left:4px solid var(--pp-red)}
+.claude-prompts .ph-label{font-family:var(--mono);font-size:10px;color:var(--pp-red);letter-spacing:0.2em;font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.claude-prompts h3{font-family:var(--display);font-size:22px;font-weight:800;margin:0 0 6px;line-height:1.15;color:#fff;letter-spacing:-0.01em}
+.claude-prompts .ph-sub{font-size:13px;color:rgba(255,255,255,0.6);margin:0 0 18px}
+.prompts-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.prompt-card{background:var(--dark-card);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;transition:border-color 120ms}
+.prompt-card:hover{border-color:var(--pp-red)}
+.prompt-card .type{font-family:var(--mono);font-size:9px;color:var(--pp-red);letter-spacing:0.15em;font-weight:700;text-transform:uppercase}
+.prompt-card .text{font-family:var(--mono);font-size:12px;color:#fff;line-height:1.4;background:rgba(255,255,255,0.04);padding:8px 10px;border-radius:3px;word-break:break-word}
+.prompt-card .why{font-size:11px;color:rgba(255,255,255,0.6);line-height:1.4;flex:1}
+.prompt-card button{padding:6px 12px;background:var(--pp-red);color:#fff;border:0;border-radius:3px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;align-self:flex-start}
+.prompt-card button:hover{background:var(--pp-red-deep)}
+
+.toolbar{position:fixed;top:16px;right:16px;display:flex;gap:8px;z-index:50}
+.toolbar button{padding:8px 14px;background:var(--card-bg);border:1px solid var(--border);border-radius:4px;font-family:var(--body);font-size:13px;font-weight:500;color:var(--text-primary);cursor:pointer;transition:background 120ms,border-color 120ms}
+.toolbar button:hover{background:var(--sub-card-bg);border-color:var(--muted)}
+.toolbar button.primary{background:var(--pp-red);color:#fff;border-color:var(--pp-red);box-shadow:0 2px 8px rgba(233,13,65,0.25)}
+.toolbar button.primary:hover{background:var(--pp-red-deep);border-color:var(--pp-red-deep)}
+#save-indicator{position:fixed;top:16px;left:16px;padding:6px 12px;background:var(--text-primary);color:#fff;font-size:12px;font-family:var(--mono);border-radius:4px;opacity:0;transform:translateY(-4px);transition:opacity 200ms,transform 200ms;pointer-events:none;z-index:100}
+#save-indicator.visible{opacity:1;transform:translateY(0)}
+.send-banner{margin-top:20px;padding:16px 20px;background:linear-gradient(135deg,var(--pp-red),var(--pp-red-deep));color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;box-shadow:0 4px 16px rgba(233,13,65,0.25)}
+.send-banner .text{font-size:14px;line-height:1.4}
+.send-banner button{padding:10px 18px;background:#fff;color:var(--pp-red);border:0;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:700;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase}
+.send-banner button:hover{background:#fef9fa}
+.footer{display:flex;align-items:center;gap:10px;padding-top:14px;margin-top:18px;border-top:1px solid var(--border)}
+.footer .brand-dot{width:18px;height:18px;background:var(--pp-red);display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--display);font-weight:800;font-size:10px;border-radius:2px}
+.footer .brand{font-family:var(--display);font-weight:800;font-size:13px}
+.footer .meta{font-size:11px;color:var(--muted);font-family:var(--mono);letter-spacing:0.04em}
+.footer .page-num{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.08em}
+
+@media print{.toolbar,.send-banner,#save-indicator,.claude-prompts{display:none!important}[contenteditable="true"]{border:0;background:transparent!important}.page{padding:12mm 16mm}}
+@media (max-width:700px){.brand-grid,.goals-grid{grid-template-columns:1fr}.prompts-grid{grid-template-columns:1fr}.swatches{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+
+<div id="save-indicator" class="no-print">Saved</div>
+<div class="toolbar no-print">
+  <button id="reset-btn" type="button">Reset</button>
+  <button id="export-pdf" type="button" class="primary">Export PDF</button>
+</div>
+
+<div class="page">
+
+  <div class="header">
+    <h1 class="framework">Worksheet 5 &mdash; Your Engines<span class="tm">&#8482;</span></h1>
+    <p class="subtitle">Brand. AI visibility. Your 90-day priority. The engines are ready.</p>
+    <div class="meta-row">
+      <span class="tag">Module 05 · Brand + AI + Goals</span>
+      <span>Name: <span contenteditable="true" data-key="name" data-placeholder="your name"></span></span>
+      <span>Date: <span contenteditable="true" data-key="date" data-placeholder="today"></span></span>
+    </div>
+  </div>
+
+  <!-- BRAND -->
+  <div class="section-heading">
+    <div class="num">01</div>
+    <h2>How You Look</h2>
+    <div class="sub">Colors + fonts + visual voice</div>
+  </div>
+
+  <div class="brand-grid">
+    <div class="brand-card">
+      <span class="label">Color palette · 3-5 brand colors</span>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="box" id="sw1"></div>
+          <div contenteditable="true" data-key="brand.color.1" data-placeholder="#e90d41" data-swatch="sw1"></div>
+        </div>
+        <div class="swatch">
+          <div class="box" id="sw2"></div>
+          <div contenteditable="true" data-key="brand.color.2" data-placeholder="#1a1a1a" data-swatch="sw2"></div>
+        </div>
+        <div class="swatch">
+          <div class="box" id="sw3"></div>
+          <div contenteditable="true" data-key="brand.color.3" data-placeholder="#faf8f4" data-swatch="sw3"></div>
+        </div>
+        <div class="swatch">
+          <div class="box" id="sw4"></div>
+          <div contenteditable="true" data-key="brand.color.4" data-placeholder="#......" data-swatch="sw4"></div>
+        </div>
+        <div class="swatch">
+          <div class="box" id="sw5"></div>
+          <div contenteditable="true" data-key="brand.color.5" data-placeholder="#......" data-swatch="sw5"></div>
+        </div>
+      </div>
+      <span class="label" style="margin-top:8px">Visual voice · 3 words</span>
+      <div contenteditable="true" data-key="brand.voice" data-placeholder='e.g. "editorial, warm, precise"'></div>
+    </div>
+
+    <div class="brand-card">
+      <span class="label">Display font</span>
+      <div contenteditable="true" data-key="brand.display_font" data-placeholder='e.g. Rethink Sans · Georgia · Inter Display'></div>
+      <span class="label" style="margin-top:14px">Body font</span>
+      <div contenteditable="true" data-key="brand.body_font" data-placeholder='e.g. Inter · Helvetica Neue · system'></div>
+      <span class="label" style="margin-top:14px">Website URL</span>
+      <div contenteditable="true" data-key="brand.url" data-placeholder="yourdomain.com"></div>
+    </div>
+  </div>
+
+  <!-- AI VISIBILITY -->
+  <div class="section-heading">
+    <div class="num">02</div>
+    <h2>Where AI Should Find You</h2>
+    <div class="sub">5 queries ChatGPT / Perplexity / Claude should answer with your name</div>
+  </div>
+
+  <div class="ai-queries">
+    <div class="ai-query"><span class="mark">✗</span><div contenteditable="true" data-key="ai.query.1" data-placeholder='e.g. "best claude skill for linkedin posts"'></div></div>
+    <div class="ai-query"><span class="mark">✗</span><div contenteditable="true" data-key="ai.query.2" data-placeholder="query you want to rank on..."></div></div>
+    <div class="ai-query"><span class="mark">✗</span><div contenteditable="true" data-key="ai.query.3" data-placeholder="another query..."></div></div>
+    <div class="ai-query"><span class="mark">✗</span><div contenteditable="true" data-key="ai.query.4" data-placeholder="another..."></div></div>
+    <div class="ai-query"><span class="mark">✗</span><div contenteditable="true" data-key="ai.query.5" data-placeholder="and one more..."></div></div>
+  </div>
+
+  <!-- GOALS -->
+  <div class="section-heading">
+    <div class="num">03</div>
+    <h2>Goal + Stack</h2>
+    <div class="sub">Your 90-day priority + the 3 tools keeping you alive</div>
+  </div>
+
+  <div class="goals-grid">
+    <div class="goal-card priority">
+      <span class="label">90-day priority</span>
+      <div contenteditable="true" data-key="goal.priority" data-placeholder="One sentence. What would make the next 90 days a win?"></div>
+    </div>
+    <div class="goal-card">
+      <span class="label">Stack · 3 tools</span>
+      <div class="stack-list">
+        <div class="stack-row"><span class="n">01</span><div contenteditable="true" data-key="stack.1" data-placeholder="Tool + purpose"></div></div>
+        <div class="stack-row"><span class="n">02</span><div contenteditable="true" data-key="stack.2" data-placeholder="Tool + purpose"></div></div>
+        <div class="stack-row"><span class="n">03</span><div contenteditable="true" data-key="stack.3" data-placeholder="Tool + purpose"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GUIDELINES -->
+  <div class="guidelines no-print">
+    <div class="gl-tag">&#9670; Guidelines</div>
+    <h3>Before you ship Worksheet 5 <span class="time-chip">~8 min</span></h3>
+    <p class="gl-sub">Everything needed to fire all 5 engines.</p>
+    <div class="gl-grid">
+      <div class="gl-col what">
+        <h4>What to fill</h4>
+        <ul>
+        <li>3&ndash;5 brand colors (hex codes)</li>
+        <li>Display font + body font</li>
+        <li>Visual voice in 3 words</li>
+        <li>5 AI queries you want to rank on</li>
+        <li>90-day priority (one sentence)</li>
+        <li>3 tools in your daily stack</li>
+        </ul>
+      </div>
+      <div class="gl-col how">
+        <h4>How to fill it well</h4>
+        <ul>
+        <li>Hex codes are exact. Swatches update live as you type &mdash; check each box fills with color.</li>
+        <li>Fonts you ACTUALLY use. Not aspirational. Look at your real site.</li>
+        <li>Visual voice = 3 adjectives. "Editorial, warm, precise" not a sentence.</li>
+        <li>AI queries = how someone would actually search. Natural language, not keywords.</li>
+        <li>Priority must contain a number (revenue, attendees, conversions).</li>
+        <li>Stack = tools you use DAILY. Not tools you've installed or plan to use.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLAUDE PROMPTS -->
+  <div class="claude-prompts no-print">
+    <div class="ph-label">◆ Claude prompts · fire the engines</div>
+    <h3>Your Brain is filled. Now run the C-Suite.</h3>
+    <p class="ph-sub">Copy any prompt. Run in Claude Code. All 5 engines read your filled Brain as context.</p>
+    <div class="prompts-grid">
+      <div class="prompt-card">
+        <div class="type">Slash command</div>
+        <code class="text">/render-brain</code>
+        <div class="why">Render your complete BUSINESS-BRAIN.md as a one-page HTML artifact. Screenshot-ready.</div>
+        <button data-copy="/render-brain">Copy</button>
+      </div>
+      <div class="prompt-card">
+        <div class="type">Slash command</div>
+        <code class="text">/leadership-engine today</code>
+        <div class="why">Tomorrow's morning brief. 3 priorities derived from your 90-day goal + stack.</div>
+        <button data-copy="/leadership-engine today">Copy</button>
+      </div>
+      <div class="prompt-card">
+        <div class="type">Slash command</div>
+        <code class="text">/marketing-engine</code>
+        <div class="why">Ship this week's content — in your voice, using your brand, against your AI visibility gaps.</div>
+        <button data-copy="/marketing-engine">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="send-banner no-print">
+    <div class="text"><strong>Done with Worksheet 5?</strong><br>Brand + AI + Goals as a <code>BUSINESS-BRAIN.md</code> snippet.</div>
+    <button id="send-to-brain" type="button">Copy to Brain &rarr;</button>
+  </div>
+
+  <div class="footer">
+    <div class="brand-dot">pp</div>
+    <div class="brand">Purely Personal</div>
+    <div class="meta">Business Brain&trade; &middot; Workshop 05 &middot; Your Engines</div>
+    <div class="page-num">05 / 05</div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  const STORAGE_KEY='pp-worksheet-05-engines';
+  const DEBOUNCE=500;
+  const fields=document.querySelectorAll('[contenteditable="true"]');
+  fields.forEach(el=>{el.addEventListener('input',()=>{scheduleSave();updateSwatch(el)});el.addEventListener('blur',save)});
+
+  // live swatches
+  function updateSwatch(el){
+    const sid=el.getAttribute('data-swatch');
+    if(!sid)return;
+    const box=document.getElementById(sid);
+    if(!box)return;
+    const hex=(el.innerText||'').trim();
+    if(/^#[0-9a-fA-F]{3,8}$/.test(hex))box.style.background=hex;
+    else box.style.background='';
+  }
+
+  try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');Object.entries(saved).forEach(([k,v])=>{const el=document.querySelector(`[data-key="${k}"]`);if(el){el.innerHTML=v;updateSwatch(el)}})}catch(e){}
+  let t=null;function scheduleSave(){clearTimeout(t);t=setTimeout(save,DEBOUNCE)}
+  function save(){const out={};fields.forEach(el=>{const k=el.getAttribute('data-key');if(k)out[k]=el.innerHTML.trim()});try{localStorage.setItem(STORAGE_KEY,JSON.stringify(out));flash('Saved')}catch(e){}}
+  const ind=document.getElementById('save-indicator');function flash(m){if(!ind)return;ind.textContent=m;ind.classList.add('visible');clearTimeout(ind._t);ind._t=setTimeout(()=>ind.classList.remove('visible'),1400)}
+  document.getElementById('reset-btn').addEventListener('click',()=>{if(confirm('Clear all answers?')){localStorage.removeItem(STORAGE_KEY);fields.forEach(el=>{el.innerHTML='';updateSwatch(el)});flash('Reset')}});
+  document.getElementById('export-pdf').addEventListener('click',()=>window.print());
+  document.querySelectorAll('.prompt-card [data-copy]').forEach(b=>{
+    b.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(b.dataset.copy);const o=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=o,1500)}catch(e){flash('Copy blocked')}});
+  });
+  document.getElementById('send-to-brain').addEventListener('click',async()=>{
+    const g=k=>{const el=document.querySelector(`[data-key="${k}"]`);const t=(el?.innerText||'').trim();return t||'_(fill in later)_'};
+    const md=`## 06 · Brand Identity
+
+### Colors
+- ${g('brand.color.1')}
+- ${g('brand.color.2')}
+- ${g('brand.color.3')}
+- ${g('brand.color.4')}
+- ${g('brand.color.5')}
+
+### Typography
+- **Display:** ${g('brand.display_font')}
+- **Body:** ${g('brand.body_font')}
+
+### Visual voice
+${g('brand.voice')}
+
+### Website
+${g('brand.url')}
+
+## 07 · AI Visibility
+
+### Gap queries (where you don't rank)
+- ${g('ai.query.1')}
+- ${g('ai.query.2')}
+- ${g('ai.query.3')}
+- ${g('ai.query.4')}
+- ${g('ai.query.5')}
+
+## 09 · Goals & Stack
+
+### 90-day priority
+${g('goal.priority')}
+
+### Stack
+- ${g('stack.1')}
+- ${g('stack.2')}
+- ${g('stack.3')}
+`;
+    try{await navigator.clipboard.writeText(md);flash('Copied to Brain');const btn=document.getElementById('send-to-brain');const o=btn.textContent;btn.textContent='Copied ✓';setTimeout(()=>btn.textContent=o,1500)}catch(e){alert('Clipboard blocked:\n\n'+md)}
+  });
+})();
+</script>
+
+</body>
+</html>

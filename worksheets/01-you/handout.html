@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Worksheet 1 — YOU™ — Business Brain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Rethink+Sans:wght@400;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Taki × Purely Personal — printable A4 fill-in */
+:root {
+  --page-bg:#faf8f4;
+  --card-bg:#ffffff;
+  --header-bg:#e2dfd9;
+  --text:#3d3d3d;
+  --muted:#888;
+  --border:#d0cdc8;
+  --pp-red:#e90d41;
+  --pp-red-soft:#fce8ed;
+  --display:'Rethink Sans','Inter',sans-serif;
+  --body:-apple-system,'Inter',sans-serif;
+  --mono:'JetBrains Mono',Menlo,monospace;
+}
+@page { size: A4 portrait; margin: 0 }
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--page-bg);font-family:var(--body);color:var(--text);font-size:13px;line-height:1.5}
+
+/* A4 page */
+.page{
+  width:210mm; min-height:297mm; margin:0 auto;
+  padding:16mm 18mm;
+  background:var(--page-bg);
+  display:flex; flex-direction:column;
+  position:relative;
+}
+
+/* HEADER */
+.header{margin-bottom:12px}
+.framework{
+  font-family:var(--display);
+  font-size:30px; font-weight:800;
+  margin:0 0 4px; line-height:1.1;
+  letter-spacing:-0.01em;
+}
+.framework .tm{font-size:16px;vertical-align:super;color:var(--pp-red);font-weight:700}
+.meta-row{
+  display:flex; gap:32px; align-items:baseline;
+  font-size:11px; color:var(--muted);
+  border-bottom:1px solid var(--border);
+  padding-bottom:8px; margin-top:4px;
+}
+.meta-row span{letter-spacing:0.04em}
+.meta-row .tag{
+  background:var(--pp-red-soft); color:var(--pp-red);
+  padding:2px 8px; font-family:var(--mono);
+  font-size:10px; font-weight:700;
+  letter-spacing:0.08em; text-transform:uppercase;
+  border-radius:2px;
+}
+
+/* 4-COL HEADERS (Taki signature) */
+.grid-4{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1fr;
+  border:1px solid var(--border);
+  margin-top:14px;
+  flex:1;
+  min-height:170mm;
+}
+.col-head{
+  background:var(--header-bg);
+  padding:6px 12px;
+  font-size:11px; font-weight:700;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  border:1px solid var(--border);
+}
+.col-body{
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  padding:12px 14px;
+  font-size:11px;
+  line-height:1.8;
+  display:flex; flex-direction:column;
+}
+.col-body.prefilled ul{margin:0;padding-left:16px}
+.col-body.prefilled li{margin-bottom:3px}
+.col-body .prompt{
+  font-style:italic;
+  font-size:10.5px;
+  color:var(--muted);
+  line-height:1.4;
+  margin-bottom:auto;
+}
+.col-body .lines{
+  flex:1;
+  background-image:repeating-linear-gradient(transparent 0, transparent 21px, #ebe7df 21px, #ebe7df 22px);
+  background-position:0 3px;
+}
+.col-body .insight-box{
+  margin-top:auto;
+  padding-top:8px;
+  border-top:1px dashed var(--border);
+  font-size:10px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  color:var(--muted);
+}
+.col-body .insight-box::after{
+  content:'';
+  display:block;
+  height:28px;
+  background-image:repeating-linear-gradient(transparent 0, transparent 12px, #ebe7df 12px, #ebe7df 13px);
+  margin-top:4px;
+}
+
+/* VOICE SECTION — below the 4-col grid */
+.voice-section{
+  margin-top:14px;
+  border:1px solid var(--border);
+  background:var(--card-bg);
+}
+.voice-section-head{
+  background:var(--header-bg);
+  padding:6px 12px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  border-bottom:1px solid var(--border);
+  display:flex; justify-content:space-between;
+}
+.voice-section-head .hint{
+  font-weight:400; font-style:italic; color:var(--muted);
+  text-transform:none; letter-spacing:0;
+}
+.voice-row{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  border-bottom:1px solid var(--border);
+}
+.voice-row:last-child{border-bottom:0}
+.voice-cell{
+  padding:10px 12px;
+  border-right:1px solid var(--border);
+  display:flex; flex-direction:column; gap:4px;
+}
+.voice-cell:last-child{border-right:0}
+.voice-cell .label{
+  font-size:9.5px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  color:var(--muted);
+}
+.voice-cell .fill{
+  flex:1;
+  min-height:40px;
+  background-image:repeating-linear-gradient(transparent 0, transparent 17px, #ebe7df 17px, #ebe7df 18px);
+  background-position:0 3px;
+}
+
+/* FOOTER */
+.footer{
+  display:flex; align-items:center; gap:10px;
+  padding-top:8px; margin-top:12px;
+  border-top:1px solid var(--border);
+}
+.footer .brand-dot{
+  width:16px; height:16px; background:var(--pp-red);
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-family:var(--display); font-weight:800; font-size:9px;
+  border-radius:2px;
+}
+.footer .brand{
+  font-family:var(--display); font-weight:800; font-size:12px;
+}
+.footer .meta{
+  font-size:10px; color:var(--muted); font-family:var(--mono);
+  letter-spacing:0.04em;
+}
+.footer .page-num{
+  margin-left:auto;
+  font-family:var(--mono);
+  font-size:10px; color:var(--muted);
+  letter-spacing:0.08em;
+}
+
+/* PRINT */
+@media print {
+  html, body { background: #ffffff }
+  .page { width: 100%; min-height: auto; padding: 12mm 16mm; page-break-after: always }
+  .page:last-child { page-break-after: auto }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1 class="framework">Worksheet 1 &mdash; YOU<span class="tm">TM</span></h1>
+    <div class="meta-row">
+      <span class="tag">Module 01 · Operator + Voice</span>
+      <span>Name: _________________________________</span>
+      <span>Date: __________________</span>
+    </div>
+  </div>
+
+  <!-- 4-COLUMN GRID -->
+  <div class="grid-4">
+
+    <div class="col-head">Best Practice</div>
+    <div class="col-head">Examples</div>
+    <div class="col-head">Current · You</div>
+    <div class="col-head">Ideas · Rewrite</div>
+
+    <!-- Column A — Best Practice -->
+    <div class="col-body prefilled">
+      <ul>
+        <li><strong>One sentence</strong> of who you are</li>
+        <li>Named <strong>ICP</strong> in title</li>
+        <li>Clear <strong>before → after</strong></li>
+        <li>Specific <strong>proof</strong> number</li>
+        <li>No jargon &middot; no buzzwords</li>
+        <li>Reads in <strong>5 seconds</strong></li>
+      </ul>
+    </div>
+
+    <!-- Column B — Examples -->
+    <div class="col-body prefilled">
+      <ul>
+        <li>&quot;I help SaaS founders ship content in their voice using Claude Code.&quot;</li>
+        <li>&quot;I built my entire content team using Claude. $0/month.&quot;</li>
+        <li>&quot;Done-for-you is dying. Done-with-you is the future.&quot;</li>
+        <li>&quot;From 12 hours to 2 hours. Zero dollars.&quot;</li>
+      </ul>
+    </div>
+
+    <!-- Column C — Current -->
+    <div class="col-body">
+      <div class="prompt">It&rsquo;s designed to capture your current headline, your current tagline, and what people know you for today.</div>
+      <div class="lines"></div>
+      <div class="insight-box">Insight</div>
+    </div>
+
+    <!-- Column D — Ideas -->
+    <div class="col-body">
+      <div class="prompt">Rewrite based on what landed from Best Practice + Examples.</div>
+      <div class="lines"></div>
+    </div>
+
+  </div>
+
+  <!-- VOICE SECTION -->
+  <div class="voice-section">
+
+    <div class="voice-section-head">
+      <span>Your Voice · 3 inputs, 1 signature</span>
+      <span class="hint">Fill all three. The Brain reads these before it writes anything for you.</span>
+    </div>
+
+    <div class="voice-row">
+      <div class="voice-cell">
+        <div class="label">5 phrases you would NEVER say</div>
+        <div class="fill"></div>
+      </div>
+      <div class="voice-cell">
+        <div class="label">Your last LinkedIn post (paste opener)</div>
+        <div class="fill"></div>
+      </div>
+      <div class="voice-cell">
+        <div class="label">Tone, in 3 words</div>
+        <div class="fill"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand-dot">pp</div>
+    <div class="brand">Purely Personal</div>
+    <div class="meta">Business Brain&trade; &middot; Workshop 01 &middot; YOU</div>
+    <div class="page-num">01 / 05</div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Worksheet 3 — Your One Client™ (interactive)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rethink+Sans:wght@400;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--page-bg:#faf8f4;--card-bg:#ffffff;--header-bg:#e2dfd9;--sub-card-bg:#fbf9f6;--text:#3d3d3d;--text-primary:#1a1a1a;--muted:#888;--border:#d0cdc8;--pp-red:#e90d41;--pp-red-soft:#fce8ed;--pp-red-deep:#c70a38;--dark:#0f0f10;--dark-card:#1a1a1d;--engine-sales:#22C55E;--engine-leadership:#DC2626;--engine-cash:#EAB308;--display:'Rethink Sans','Inter',sans-serif;--body:-apple-system,'Inter',sans-serif;--mono:'JetBrains Mono',Menlo,monospace}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--page-bg);font-family:var(--body);color:var(--text);font-size:14px;line-height:1.55}
+.page{max-width:980px;margin:0 auto;padding:48px 32px 80px;position:relative}
+
+.header{margin-bottom:20px}
+.framework{font-family:var(--display);font-size:44px;font-weight:800;margin:0 0 6px;line-height:1.05;letter-spacing:-0.02em;color:var(--text-primary)}
+.framework .tm{font-size:22px;vertical-align:super;color:var(--pp-red);font-weight:700}
+.subtitle{font-size:15px;color:var(--muted);margin:0 0 12px}
+.meta-row{display:flex;gap:24px;align-items:center;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:12px;flex-wrap:wrap}
+.meta-row .tag{background:var(--pp-red-soft);color:var(--pp-red);padding:4px 10px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border-radius:3px}
+
+/* Persona header strip */
+.persona-strip{display:flex;align-items:center;gap:20px;padding:20px 22px;background:linear-gradient(135deg,var(--engine-sales) 0%,#16a34a 100%);border-radius:8px;margin:20px 0;color:#fff;box-shadow:0 4px 16px rgba(34,197,94,0.2)}
+.persona-strip .initial{width:64px;height:64px;border-radius:999px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:28px;font-family:var(--display);color:#fff;flex-shrink:0;border:2px solid rgba(255,255,255,0.3)}
+.persona-strip .info{flex:1}
+.persona-strip .name-field{display:block;font-family:var(--display);font-size:20px;font-weight:800;line-height:1.2;background:transparent;border-color:transparent!important;color:#fff;min-height:30px;padding:2px 6px}
+.persona-strip .where-field{display:block;font-size:13px;color:rgba(255,255,255,0.9);margin-top:4px;background:transparent;border-color:transparent!important;color:rgba(255,255,255,0.9);min-height:24px;padding:2px 6px}
+.persona-strip [contenteditable]:hover{background:rgba(255,255,255,0.1)!important}
+.persona-strip [contenteditable]:empty::before{color:rgba(255,255,255,0.5)!important}
+
+/* 3-col pain/desire/objection */
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:16px}
+.column{background:var(--card-bg);border:1px solid var(--border);border-radius:4px;padding:18px 20px}
+.column .col-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;display:block}
+.column.pain .col-label{color:var(--engine-leadership)}
+.column.desire .col-label{color:var(--engine-sales)}
+.column.objection .col-label{color:var(--engine-cash)}
+.column .sub{font-style:italic;font-size:11px;color:var(--muted);margin-bottom:14px;line-height:1.5}
+.column .field{margin-bottom:10px}
+.column .field .n{font-family:var(--mono);font-size:10px;color:var(--muted);font-weight:700;margin-bottom:2px;display:block;letter-spacing:0.08em}
+
+[contenteditable="true"]{min-height:40px;padding:6px 8px;background:#fdfcfa;border:1px dashed var(--border);outline:none;font-family:var(--body);font-size:13px;line-height:1.55;border-radius:2px;transition:border-color 120ms,background 120ms}
+[contenteditable="true"]:empty::before{content:attr(data-placeholder);color:#b8b8b8;font-style:italic}
+[contenteditable="true"]:hover{background:var(--pp-red-soft);border-color:var(--pp-red)}
+[contenteditable="true"]:focus{background:var(--pp-red-soft);border-color:var(--pp-red);border-style:solid}
+
+.guidelines{margin-top:24px;background:var(--sub-card-bg);border:1px solid var(--border);border-radius:6px;padding:20px 24px;position:relative}
+.guidelines .gl-tag{font-family:var(--mono);font-size:10px;color:var(--pp-red);letter-spacing:0.2em;font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.guidelines h3{font-family:var(--display);font-size:20px;font-weight:800;margin:0 0 6px;color:var(--text-primary);line-height:1.15}
+.guidelines .gl-sub{font-size:13px;color:var(--muted);margin:0 0 16px}
+.guidelines .time-chip{display:inline-block;margin-left:10px;padding:2px 8px;background:var(--pp-red-soft);color:var(--pp-red);border-radius:3px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.06em;vertical-align:middle}
+.gl-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.gl-col h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin:0 0 10px}
+.gl-col ul{margin:0;padding:0;list-style:none}
+.gl-col li{font-size:13px;line-height:1.5;margin-bottom:10px;padding-left:22px;position:relative}
+.gl-col li::before{position:absolute;left:0;top:0;font-family:var(--mono);font-size:13px;color:var(--pp-red);font-weight:700}
+.gl-col.what li::before{content:'\2610'}
+.gl-col.how li::before{content:'\2192'}
+@media (max-width:700px){.gl-grid{grid-template-columns:1fr}}
+
+/* Claude prompts section */
+.claude-prompts{margin-top:28px;background:var(--dark);color:#fff;border-radius:8px;padding:24px 28px;position:relative;overflow:hidden;border-left:4px solid var(--pp-red)}
+.claude-prompts .ph-label{font-family:var(--mono);font-size:10px;color:var(--pp-red);letter-spacing:0.2em;font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.claude-prompts h3{font-family:var(--display);font-size:22px;font-weight:800;margin:0 0 6px;line-height:1.15;color:#fff;letter-spacing:-0.01em}
+.claude-prompts .ph-sub{font-size:13px;color:rgba(255,255,255,0.6);margin:0 0 18px}
+.prompts-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.prompt-card{background:var(--dark-card);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;transition:border-color 120ms}
+.prompt-card:hover{border-color:var(--pp-red)}
+.prompt-card .type{font-family:var(--mono);font-size:9px;color:var(--pp-red);letter-spacing:0.15em;font-weight:700;text-transform:uppercase}
+.prompt-card .text{font-family:var(--mono);font-size:12px;color:#fff;line-height:1.4;background:rgba(255,255,255,0.04);padding:8px 10px;border-radius:3px;word-break:break-word}
+.prompt-card .why{font-size:11px;color:rgba(255,255,255,0.6);line-height:1.4;flex:1}
+.prompt-card button{padding:6px 12px;background:var(--pp-red);color:#fff;border:0;border-radius:3px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;align-self:flex-start}
+.prompt-card button:hover{background:var(--pp-red-deep)}
+
+.toolbar{position:fixed;top:16px;right:16px;display:flex;gap:8px;z-index:50}
+.toolbar button{padding:8px 14px;background:var(--card-bg);border:1px solid var(--border);border-radius:4px;font-family:var(--body);font-size:13px;font-weight:500;color:var(--text-primary);cursor:pointer;transition:background 120ms,border-color 120ms}
+.toolbar button:hover{background:var(--sub-card-bg);border-color:var(--muted)}
+.toolbar button.primary{background:var(--pp-red);color:#fff;border-color:var(--pp-red);box-shadow:0 2px 8px rgba(233,13,65,0.25)}
+.toolbar button.primary:hover{background:var(--pp-red-deep);border-color:var(--pp-red-deep)}
+#save-indicator{position:fixed;top:16px;left:16px;padding:6px 12px;background:var(--text-primary);color:#fff;font-size:12px;font-family:var(--mono);border-radius:4px;opacity:0;transform:translateY(-4px);transition:opacity 200ms,transform 200ms;pointer-events:none;z-index:100}
+#save-indicator.visible{opacity:1;transform:translateY(0)}
+.send-banner{margin-top:20px;padding:16px 20px;background:linear-gradient(135deg,var(--pp-red),var(--pp-red-deep));color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;box-shadow:0 4px 16px rgba(233,13,65,0.25)}
+.send-banner .text{font-size:14px;line-height:1.4}
+.send-banner .text strong{font-weight:700}
+.send-banner button{padding:10px 18px;background:#fff;color:var(--pp-red);border:0;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:700;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase}
+.send-banner button:hover{background:#fef9fa}
+.footer{display:flex;align-items:center;gap:10px;padding-top:14px;margin-top:18px;border-top:1px solid var(--border)}
+.footer .brand-dot{width:18px;height:18px;background:var(--pp-red);display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--display);font-weight:800;font-size:10px;border-radius:2px}
+.footer .brand{font-family:var(--display);font-weight:800;font-size:13px}
+.footer .meta{font-size:11px;color:var(--muted);font-family:var(--mono);letter-spacing:0.04em}
+.footer .page-num{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.08em}
+
+@media print{.toolbar,.send-banner,#save-indicator,.claude-prompts{display:none!important}[contenteditable="true"]{border:0;background:transparent!important}.page{padding:12mm 16mm}}
+@media (max-width:700px){.grid-3{grid-template-columns:1fr}.prompts-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="save-indicator" class="no-print">Saved</div>
+<div class="toolbar no-print">
+  <button id="reset-btn" type="button">Reset</button>
+  <button id="export-pdf" type="button" class="primary">Export PDF</button>
+</div>
+
+<div class="page">
+
+  <div class="header">
+    <h1 class="framework">Worksheet 3 &mdash; Your One Client<span class="tm">&#8482;</span></h1>
+    <p class="subtitle">One named persona. Specified deeply. Not a demographic.</p>
+    <div class="meta-row">
+      <span class="tag">Module 03 · Ideal Client</span>
+      <span>Name: <span contenteditable="true" data-key="name" data-placeholder="your name"></span></span>
+      <span>Date: <span contenteditable="true" data-key="date" data-placeholder="today"></span></span>
+    </div>
+  </div>
+
+  <!-- Persona header strip -->
+  <div class="persona-strip">
+    <div class="initial">
+      <span contenteditable="true" data-key="icp.initial" data-placeholder="S" style="min-height:auto;padding:0;background:transparent;border:0;font-family:inherit;font-size:inherit;font-weight:inherit;color:#fff"></span>
+    </div>
+    <div class="info">
+      <div class="name-field" contenteditable="true" data-key="icp.name" data-placeholder='Your ideal client — role + context (e.g. "SaaS founder, $500k–$5M ARR")'></div>
+      <div class="where-field" contenteditable="true" data-key="icp.where" data-placeholder='Hangs out at: LinkedIn (daily), Twitter/X, niche Slacks...'></div>
+    </div>
+  </div>
+
+  <!-- 3-col Pain / Desire / Objection -->
+  <div class="grid-3">
+
+    <div class="column pain">
+      <span class="col-label">Pain</span>
+      <div class="sub">Why they can't sleep at 2am. Specific complaints, not categories.</div>
+      <div class="field">
+        <span class="n">01</span>
+        <div contenteditable="true" data-key="icp.pain.1" data-placeholder="what keeps them up..."></div>
+      </div>
+      <div class="field">
+        <span class="n">02</span>
+        <div contenteditable="true" data-key="icp.pain.2" data-placeholder="...and the second pain"></div>
+      </div>
+      <div class="field">
+        <span class="n">03</span>
+        <div contenteditable="true" data-key="icp.pain.3" data-placeholder="...and the third"></div>
+      </div>
+    </div>
+
+    <div class="column desire">
+      <span class="col-label">Desire</span>
+      <div class="sub">What would make them celebrate. Specific outcomes, not feelings.</div>
+      <div class="field">
+        <span class="n">01</span>
+        <div contenteditable="true" data-key="icp.desire.1" data-placeholder="what they actually want..."></div>
+      </div>
+      <div class="field">
+        <span class="n">02</span>
+        <div contenteditable="true" data-key="icp.desire.2" data-placeholder="...and the second desire"></div>
+      </div>
+      <div class="field">
+        <span class="n">03</span>
+        <div contenteditable="true" data-key="icp.desire.3" data-placeholder="...and the third"></div>
+      </div>
+    </div>
+
+    <div class="column objection">
+      <span class="col-label">Objection</span>
+      <div class="sub">Why they say NO to you. Real reason, not polite excuse.</div>
+      <div class="field">
+        <span class="n">01</span>
+        <div contenteditable="true" data-key="icp.objection.1" data-placeholder='e.g. "I tried that, it didn\'t work"'></div>
+      </div>
+      <div class="field">
+        <span class="n">02</span>
+        <div contenteditable="true" data-key="icp.objection.2" data-placeholder="...second objection"></div>
+      </div>
+      <div class="field">
+        <span class="n">03</span>
+        <div contenteditable="true" data-key="icp.objection.3" data-placeholder="...third objection"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Named prospect sanity check -->
+  <div style="margin-top:20px;background:var(--card-bg);border:1px solid var(--border);padding:18px 22px;border-radius:4px">
+    <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);display:block;margin-bottom:8px">Name one real person who fits this ICP · sanity check</span>
+    <div contenteditable="true" data-key="icp.named_example" data-placeholder='First name + where you know them from. If you can\'t name one, the ICP is too vague.'></div>
+  </div>
+
+  <!-- GUIDELINES -->
+  <div class="guidelines no-print">
+    <div class="gl-tag">◆ Guidelines</div>
+    <h3>Before you ship Worksheet 3 <span class="time-chip">~12 min</span></h3>
+    <p class="gl-sub">One named persona. Not a demographic.</p>
+    <div class="gl-grid">
+      <div class="gl-col what">
+        <h4>What to fill</h4>
+        <ul>
+          <li>ICP name &mdash; role + context</li>
+          <li>Where they hang out (platforms / communities)</li>
+          <li>3 pains &mdash; specific complaints</li>
+          <li>3 desires &mdash; specific outcomes</li>
+          <li>3 objections &mdash; real reasons they say no</li>
+          <li>One real person you can name who fits</li>
+        </ul>
+      </div>
+      <div class="gl-col how">
+        <h4>How to fill it well</h4>
+        <ul>
+          <li>Role + context beats demographics. "SaaS founder, $500k&ndash;5M ARR" not "30-year-old professional".</li>
+          <li>Pains are specific complaints, not categories. "Pipeline dries up when I go quiet" not "marketing is hard".</li>
+          <li>Desires are outcomes, not feelings. "Close 3 deals this quarter" not "feel confident".</li>
+          <li>Objections are the REAL reason they say no (not the polite excuse).</li>
+          <li>If you can't name one real person, the ICP is too vague. Go tighter.</li>
+          <li>Use verbatim language from actual conversations &mdash; DMs, calls, Slack.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLAUDE PROMPTS -->
+  <div class="claude-prompts no-print">
+    <div class="ph-label">◆ Claude prompts · ship the next action</div>
+    <h3>Turn your ICP into a running sales engine.</h3>
+    <p class="ph-sub">Copy any prompt. Run in Claude Code. Engine reads your filled Brain for context.</p>
+    <div class="prompts-grid">
+      <div class="prompt-card">
+        <div class="type">Slash command</div>
+        <code class="text">/sales-engine</code>
+        <div class="why">Find 10 prospects matching this ICP. Score each. Draft 3-step outreach for the top 3.</div>
+        <button data-copy="/sales-engine">Copy</button>
+      </div>
+      <div class="prompt-card">
+        <div class="type">Natural prompt</div>
+        <code class="text">Using my BUSINESS-BRAIN.md ICP, write 3 LinkedIn hooks that would stop this person scrolling. Specifics only.</code>
+        <div class="why">Test whether your ICP is specific enough to write a scroll-stopper.</div>
+        <button data-copy="Using my BUSINESS-BRAIN.md ICP, write 3 LinkedIn hooks that would stop this person scrolling. Specifics only.">Copy</button>
+      </div>
+      <div class="prompt-card">
+        <div class="type">Natural prompt</div>
+        <code class="text">Compare my ICP's pain/desire/objection. Which one is my real hook — the one a competitor isn't already saying?</code>
+        <div class="why">Find the gap to own between your ICP's pain and every competitor's angle.</div>
+        <button data-copy="Compare my ICP's pain/desire/objection. Which one is my real hook — the one a competitor isn't already saying?">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="send-banner no-print">
+    <div class="text"><strong>Done with Worksheet 3?</strong><br>Copy your ICP as a <code>BUSINESS-BRAIN.md</code> snippet.</div>
+    <button id="send-to-brain" type="button">Copy to Brain &rarr;</button>
+  </div>
+
+  <div class="footer">
+    <div class="brand-dot">pp</div>
+    <div class="brand">Purely Personal</div>
+    <div class="meta">Business Brain&trade; &middot; Workshop 03 &middot; Your One Client</div>
+    <div class="page-num">03 / 05</div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  const STORAGE_KEY='pp-worksheet-03-icp';
+  const DEBOUNCE=500;
+  const fields=document.querySelectorAll('[contenteditable="true"]');
+  fields.forEach(el=>{el.addEventListener('input',scheduleSave);el.addEventListener('blur',save)});
+  try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');Object.entries(saved).forEach(([k,v])=>{const el=document.querySelector(`[data-key="${k}"]`);if(el)el.innerHTML=v})}catch(e){}
+  let t=null;function scheduleSave(){clearTimeout(t);t=setTimeout(save,DEBOUNCE)}
+  function save(){const out={};fields.forEach(el=>{const k=el.getAttribute('data-key');if(k)out[k]=el.innerHTML.trim()});try{localStorage.setItem(STORAGE_KEY,JSON.stringify(out));flash('Saved')}catch(e){}}
+  const ind=document.getElementById('save-indicator');function flash(m){if(!ind)return;ind.textContent=m;ind.classList.add('visible');clearTimeout(ind._t);ind._t=setTimeout(()=>ind.classList.remove('visible'),1400)}
+  document.getElementById('reset-btn').addEventListener('click',()=>{if(confirm('Clear all answers?')){localStorage.removeItem(STORAGE_KEY);fields.forEach(el=>el.innerHTML='');flash('Reset')}});
+  document.getElementById('export-pdf').addEventListener('click',()=>window.print());
+  document.querySelectorAll('.prompt-card [data-copy]').forEach(b=>{
+    b.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(b.dataset.copy);const o=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=o,1500)}catch(e){flash('Copy blocked')}});
+  });
+  document.getElementById('send-to-brain').addEventListener('click',async()=>{
+    const g=k=>{const el=document.querySelector(`[data-key="${k}"]`);const t=(el?.innerText||'').trim();return t||'_(fill in later)_'};
+    const md=`## 04 · Ideal Client
+
+- **Name:** ${g('icp.name')}
+- **Hangs out at:** ${g('icp.where')}
+- **Named example:** ${g('icp.named_example')}
+
+### Pain
+- ${g('icp.pain.1')}
+- ${g('icp.pain.2')}
+- ${g('icp.pain.3')}
+
+### Desire
+- ${g('icp.desire.1')}
+- ${g('icp.desire.2')}
+- ${g('icp.desire.3')}
+
+### Objection
+- ${g('icp.objection.1')}
+- ${g('icp.objection.2')}
+- ${g('icp.objection.3')}
+`;
+    try{await navigator.clipboard.writeText(md);flash('Copied to Brain');const btn=document.getElementById('send-to-brain');const o=btn.textContent;btn.textContent='Copied ✓';setTimeout(()=>btn.textContent=o,1500)}catch(e){alert('Clipboard blocked:\n\n'+md)}
+  });
+})();
+</script>
+
+</body>
+</html>

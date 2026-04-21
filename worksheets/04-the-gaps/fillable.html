@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Worksheet 4 — The Gaps™ (interactive)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rethink+Sans:wght@400;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--page-bg:#faf8f4;--card-bg:#ffffff;--header-bg:#e2dfd9;--sub-card-bg:#fbf9f6;--text:#3d3d3d;--text-primary:#1a1a1a;--muted:#888;--border:#d0cdc8;--pp-red:#e90d41;--pp-red-soft:#fce8ed;--pp-red-deep:#c70a38;--dark:#0f0f10;--dark-card:#1a1a1d;--engine-operations:#8B5CF6;--engine-operations-soft:#F1ECFD;--engine-sales:#22C55E;--display:'Rethink Sans','Inter',sans-serif;--body:-apple-system,'Inter',sans-serif;--mono:'JetBrains Mono',Menlo,monospace}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--page-bg);font-family:var(--body);color:var(--text);font-size:14px;line-height:1.55}
+.page{max-width:980px;margin:0 auto;padding:48px 32px 80px;position:relative}
+
+.header{margin-bottom:20px}
+.framework{font-family:var(--display);font-size:44px;font-weight:800;margin:0 0 6px;line-height:1.05;letter-spacing:-0.02em;color:var(--text-primary)}
+.framework .tm{font-size:22px;vertical-align:super;color:var(--pp-red);font-weight:700}
+.subtitle{font-size:15px;color:var(--muted);margin:0 0 12px}
+.meta-row{display:flex;gap:24px;align-items:center;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:12px;flex-wrap:wrap}
+.meta-row .tag{background:var(--pp-red-soft);color:var(--pp-red);padding:4px 10px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border-radius:3px}
+
+/* Section heading */
+.section-heading{display:flex;align-items:center;gap:12px;margin:28px 0 14px}
+.section-heading .num{font-family:var(--display);font-size:30px;font-weight:800;color:var(--pp-red);line-height:1}
+.section-heading h2{font-family:var(--display);font-size:22px;font-weight:800;margin:0;line-height:1.15;color:var(--text-primary);letter-spacing:-0.01em}
+.section-heading .sub{margin-left:auto;font-size:12px;color:var(--muted);font-style:italic}
+
+/* 3-col competitor grid */
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:10px}
+.comp-card{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.comp-row{padding:12px 16px;background:var(--sub-card-bg);border-bottom:1px solid var(--border)}
+.comp-row.angle{background:#ffffff;flex:1}
+.comp-row.gap{background:linear-gradient(135deg,var(--engine-operations) 0%,#7c3aed 100%);color:#fff;border-bottom:0}
+.comp-row .label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);display:block;margin-bottom:4px}
+.comp-row.gap .label{color:rgba(255,255,255,0.9)}
+.comp-row .name-field{font-family:var(--display);font-size:18px;font-weight:800;line-height:1.2;background:transparent;border-color:transparent!important;min-height:30px;padding:2px 6px}
+.comp-row .url-field{font-family:var(--mono);font-size:11px;color:var(--muted);background:transparent;border-color:transparent!important;min-height:20px;padding:2px 6px;margin-top:2px}
+.comp-row.gap [contenteditable]{color:#fff}
+.comp-row.gap [contenteditable]:hover{background:rgba(255,255,255,0.1)!important}
+.comp-row.gap [contenteditable]:empty::before{color:rgba(255,255,255,0.5)!important}
+
+/* Pain themes */
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.pain-card{padding:14px 18px;background:var(--sub-card-bg);border:1px solid var(--border);border-radius:6px;position:relative}
+.pain-card::before{content:'"';position:absolute;top:4px;right:12px;font-family:var(--display);font-size:44px;color:var(--pp-red);opacity:0.15;line-height:0.8;font-weight:800}
+.pain-card .theme{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--engine-sales);margin-bottom:8px;display:block}
+.pain-card .verbatim{font-size:13px;font-style:italic;line-height:1.55;color:var(--text-primary);margin-bottom:8px;position:relative;z-index:1}
+.pain-card .source{font-size:10px;color:var(--muted);font-family:var(--mono);letter-spacing:0.05em}
+
+[contenteditable="true"]{min-height:40px;padding:6px 8px;background:#fdfcfa;border:1px dashed var(--border);outline:none;font-family:var(--body);font-size:13px;line-height:1.55;border-radius:2px;transition:border-color 120ms,background 120ms}
+[contenteditable="true"]:empty::before{content:attr(data-placeholder);color:#b8b8b8;font-style:italic}
+[contenteditable="true"]:hover{background:var(--pp-red-soft);border-color:var(--pp-red)}
+[contenteditable="true"]:focus{background:var(--pp-red-soft);border-color:var(--pp-red);border-style:solid}
+
+.guidelines{margin-top:24px;background:var(--sub-card-bg);border:1px solid var(--border);border-radius:6px;padding:20px 24px;position:relative}
+.guidelines .gl-tag{font-family:var(--mono);font-size:10px;color:var(--pp-red);letter-spacing:0.2em;font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.guidelines h3{font-family:var(--display);font-size:20px;font-weight:800;margin:0 0 6px;color:var(--text-primary);line-height:1.15}
+.guidelines .gl-sub{font-size:13px;color:var(--muted);margin:0 0 16px}
+.guidelines .time-chip{display:inline-block;margin-left:10px;padding:2px 8px;background:var(--pp-red-soft);color:var(--pp-red);border-radius:3px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.06em;vertical-align:middle}
+.gl-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.gl-col h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin:0 0 10px}
+.gl-col ul{margin:0;padding:0;list-style:none}
+.gl-col li{font-size:13px;line-height:1.5;margin-bottom:10px;padding-left:22px;position:relative}
+.gl-col li::before{position:absolute;left:0;top:0;font-family:var(--mono);font-size:13px;color:var(--pp-red);font-weight:700}
+.gl-col.what li::before{content:'\2610'}
+.gl-col.how li::before{content:'\2192'}
+@media (max-width:700px){.gl-grid{grid-template-columns:1fr}}
+
+/* Claude prompts */
+.claude-prompts{margin-top:28px;background:var(--dark);color:#fff;border-radius:8px;padding:24px 28px;position:relative;overflow:hidden;border-left:4px solid var(--pp-red)}
+.claude-prompts .ph-label{font-family:var(--mono);font-size:10px;color:var(--pp-red);letter-spacing:0.2em;font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.claude-prompts h3{font-family:var(--display);font-size:22px;font-weight:800;margin:0 0 6px;line-height:1.15;color:#fff;letter-spacing:-0.01em}
+.claude-prompts .ph-sub{font-size:13px;color:rgba(255,255,255,0.6);margin:0 0 18px}
+.prompts-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.prompt-card{background:var(--dark-card);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;transition:border-color 120ms}
+.prompt-card:hover{border-color:var(--pp-red)}
+.prompt-card .type{font-family:var(--mono);font-size:9px;color:var(--pp-red);letter-spacing:0.15em;font-weight:700;text-transform:uppercase}
+.prompt-card .text{font-family:var(--mono);font-size:12px;color:#fff;line-height:1.4;background:rgba(255,255,255,0.04);padding:8px 10px;border-radius:3px;word-break:break-word}
+.prompt-card .why{font-size:11px;color:rgba(255,255,255,0.6);line-height:1.4;flex:1}
+.prompt-card button{padding:6px 12px;background:var(--pp-red);color:#fff;border:0;border-radius:3px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;align-self:flex-start}
+.prompt-card button:hover{background:var(--pp-red-deep)}
+
+.toolbar{position:fixed;top:16px;right:16px;display:flex;gap:8px;z-index:50}
+.toolbar button{padding:8px 14px;background:var(--card-bg);border:1px solid var(--border);border-radius:4px;font-family:var(--body);font-size:13px;font-weight:500;color:var(--text-primary);cursor:pointer;transition:background 120ms,border-color 120ms}
+.toolbar button:hover{background:var(--sub-card-bg);border-color:var(--muted)}
+.toolbar button.primary{background:var(--pp-red);color:#fff;border-color:var(--pp-red);box-shadow:0 2px 8px rgba(233,13,65,0.25)}
+.toolbar button.primary:hover{background:var(--pp-red-deep);border-color:var(--pp-red-deep)}
+#save-indicator{position:fixed;top:16px;left:16px;padding:6px 12px;background:var(--text-primary);color:#fff;font-size:12px;font-family:var(--mono);border-radius:4px;opacity:0;transform:translateY(-4px);transition:opacity 200ms,transform 200ms;pointer-events:none;z-index:100}
+#save-indicator.visible{opacity:1;transform:translateY(0)}
+.send-banner{margin-top:20px;padding:16px 20px;background:linear-gradient(135deg,var(--pp-red),var(--pp-red-deep));color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;box-shadow:0 4px 16px rgba(233,13,65,0.25)}
+.send-banner .text{font-size:14px;line-height:1.4}
+.send-banner button{padding:10px 18px;background:#fff;color:var(--pp-red);border:0;border-radius:4px;font-family:var(--mono);font-size:12px;font-weight:700;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase}
+.send-banner button:hover{background:#fef9fa}
+.footer{display:flex;align-items:center;gap:10px;padding-top:14px;margin-top:18px;border-top:1px solid var(--border)}
+.footer .brand-dot{width:18px;height:18px;background:var(--pp-red);display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--display);font-weight:800;font-size:10px;border-radius:2px}
+.footer .brand{font-family:var(--display);font-weight:800;font-size:13px}
+.footer .meta{font-size:11px;color:var(--muted);font-family:var(--mono);letter-spacing:0.04em}
+.footer .page-num{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.08em}
+
+@media print{.toolbar,.send-banner,#save-indicator,.claude-prompts{display:none!important}[contenteditable="true"]{border:0;background:transparent!important}.page{padding:12mm 16mm}}
+@media (max-width:700px){.grid-3{grid-template-columns:1fr}.pain-grid{grid-template-columns:1fr}.prompts-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="save-indicator" class="no-print">Saved</div>
+<div class="toolbar no-print">
+  <button id="reset-btn" type="button">Reset</button>
+  <button id="export-pdf" type="button" class="primary">Export PDF</button>
+</div>
+
+<div class="page">
+
+  <div class="header">
+    <h1 class="framework">Worksheet 4 &mdash; The Gaps<span class="tm">&#8482;</span></h1>
+    <p class="subtitle">Where competitors aren&rsquo;t looking. What your audience says out loud.</p>
+    <div class="meta-row">
+      <span class="tag">Module 04 · Competitors + Pain</span>
+      <span>Name: <span contenteditable="true" data-key="name" data-placeholder="your name"></span></span>
+      <span>Date: <span contenteditable="true" data-key="date" data-placeholder="today"></span></span>
+    </div>
+  </div>
+
+  <!-- SECTION 1 — 3 COMPETITORS -->
+  <div class="section-heading">
+    <div class="num">01</div>
+    <h2>Your Top 3 Competitors</h2>
+    <div class="sub">Their angle + the gap you can own</div>
+  </div>
+
+  <div class="grid-3">
+    <div class="comp-card">
+      <div class="comp-row">
+        <span class="label">Competitor 01</span>
+        <div class="name-field" contenteditable="true" data-key="comp.1.name" data-placeholder="Competitor name"></div>
+        <div class="url-field" contenteditable="true" data-key="comp.1.url" data-placeholder="domain.com"></div>
+      </div>
+      <div class="comp-row angle">
+        <span class="label">Their angle</span>
+        <div contenteditable="true" data-key="comp.1.angle" data-placeholder="What they say on their homepage..."></div>
+      </div>
+      <div class="comp-row gap">
+        <span class="label">▲ Gap to own</span>
+        <div contenteditable="true" data-key="comp.1.gap" data-placeholder="What YOU say they don't..."></div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-row">
+        <span class="label">Competitor 02</span>
+        <div class="name-field" contenteditable="true" data-key="comp.2.name" data-placeholder="Competitor name"></div>
+        <div class="url-field" contenteditable="true" data-key="comp.2.url" data-placeholder="domain.com"></div>
+      </div>
+      <div class="comp-row angle">
+        <span class="label">Their angle</span>
+        <div contenteditable="true" data-key="comp.2.angle" data-placeholder="What they say on their homepage..."></div>
+      </div>
+      <div class="comp-row gap">
+        <span class="label">▲ Gap to own</span>
+        <div contenteditable="true" data-key="comp.2.gap" data-placeholder="What YOU say they don't..."></div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-row">
+        <span class="label">Competitor 03</span>
+        <div class="name-field" contenteditable="true" data-key="comp.3.name" data-placeholder="Competitor name"></div>
+        <div class="url-field" contenteditable="true" data-key="comp.3.url" data-placeholder="domain.com"></div>
+      </div>
+      <div class="comp-row angle">
+        <span class="label">Their angle</span>
+        <div contenteditable="true" data-key="comp.3.angle" data-placeholder="What they say on their homepage..."></div>
+      </div>
+      <div class="comp-row gap">
+        <span class="label">▲ Gap to own</span>
+        <div contenteditable="true" data-key="comp.3.gap" data-placeholder="What YOU say they don't..."></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 — PAIN THEMES -->
+  <div class="section-heading">
+    <div class="num">02</div>
+    <h2>Audience Pain · Real Words</h2>
+    <div class="sub">Verbatim complaints from your ICP. Typos stay in.</div>
+  </div>
+
+  <div class="pain-grid">
+    <div class="pain-card">
+      <span class="theme">
+        <span contenteditable="true" data-key="pain.1.theme" data-placeholder="Theme name (2-4 words)" style="background:transparent;border-color:transparent!important;color:var(--engine-sales);font-weight:700"></span>
+      </span>
+      <div class="verbatim">
+        <span contenteditable="true" data-key="pain.1.quote" data-placeholder="Exact quote. Don't paraphrase."></span>
+      </div>
+      <div class="source">
+        &mdash; <span contenteditable="true" data-key="pain.1.source" data-placeholder="r/SaaS · Apr 2026" style="background:transparent;border-color:transparent!important;font-family:var(--mono);font-size:10px;color:var(--muted)"></span>
+      </div>
+    </div>
+
+    <div class="pain-card">
+      <span class="theme">
+        <span contenteditable="true" data-key="pain.2.theme" data-placeholder="Theme name" style="background:transparent;border-color:transparent!important;color:var(--engine-sales);font-weight:700"></span>
+      </span>
+      <div class="verbatim">
+        <span contenteditable="true" data-key="pain.2.quote" data-placeholder="Exact quote"></span>
+      </div>
+      <div class="source">
+        &mdash; <span contenteditable="true" data-key="pain.2.source" data-placeholder="source" style="background:transparent;border-color:transparent!important;font-family:var(--mono);font-size:10px;color:var(--muted)"></span>
+      </div>
+    </div>
+
+    <div class="pain-card">
+      <span class="theme">
+        <span contenteditable="true" data-key="pain.3.theme" data-placeholder="Theme name" style="background:transparent;border-color:transparent!important;color:var(--engine-sales);font-weight:700"></span>
+      </span>
+      <div class="verbatim">
+        <span contenteditable="true" data-key="pain.3.quote" data-placeholder="Exact quote"></span>
+      </div>
+      <div class="source">
+        &mdash; <span contenteditable="true" data-key="pain.3.source" data-placeholder="source" style="background:transparent;border-color:transparent!important;font-family:var(--mono);font-size:10px;color:var(--muted)"></span>
+      </div>
+    </div>
+
+    <div class="pain-card">
+      <span class="theme">
+        <span contenteditable="true" data-key="pain.4.theme" data-placeholder="Theme name" style="background:transparent;border-color:transparent!important;color:var(--engine-sales);font-weight:700"></span>
+      </span>
+      <div class="verbatim">
+        <span contenteditable="true" data-key="pain.4.quote" data-placeholder="Exact quote"></span>
+      </div>
+      <div class="source">
+        &mdash; <span contenteditable="true" data-key="pain.4.source" data-placeholder="source" style="background:transparent;border-color:transparent!important;font-family:var(--mono);font-size:10px;color:var(--muted)"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GUIDELINES -->
+  <div class="guidelines no-print">
+    <div class="gl-tag">&#9670; Guidelines</div>
+    <h3>Before you ship Worksheet 4 <span class="time-chip">~15 min</span></h3>
+    <p class="gl-sub">Real competitors. Real verbatim quotes. No paraphrasing.</p>
+    <div class="gl-grid">
+      <div class="gl-col what">
+        <h4>What to fill</h4>
+        <ul>
+        <li>3 competitor names + URLs</li>
+        <li>Each competitor's angle in one line</li>
+        <li>Your gap to own vs each one</li>
+        <li>4 audience pain themes</li>
+        <li>Exact verbatim quotes (typos stay in)</li>
+        <li>Source for each verbatim</li>
+        </ul>
+      </div>
+      <div class="gl-col how">
+        <h4>How to fill it well</h4>
+        <ul>
+        <li>Name real competitors &mdash; ones your prospects already compare you to.</li>
+        <li>"Their angle" is what their homepage says (one line).</li>
+        <li>"Gap to own" is what YOU will say that they don't &mdash; not what they "miss".</li>
+        <li>Verbatims are raw. Don't paraphrase. Typos stay in. Emoji stay in.</li>
+        <li>Sources are specific: "r/SaaS &middot; Apr 2026" not "Reddit".</li>
+        <li>4 themes max. Each distinct. Don't pick 4 variations of "AI sounds generic".</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLAUDE PROMPTS -->
+  <div class="claude-prompts no-print">
+    <div class="ph-label">◆ Claude prompts · ship the next action</div>
+    <h3>Turn gaps into positioning. Turn pain into posts.</h3>
+    <p class="ph-sub">Copy any prompt. Run in Claude Code. Engine reads your filled Brain for context.</p>
+    <div class="prompts-grid">
+      <div class="prompt-card">
+        <div class="type">Natural prompt</div>
+        <code class="text">Research each competitor in my BUSINESS-BRAIN.md. What are they NOT saying that my ICP actually needs?</code>
+        <div class="why">Deepen the "gap to own" with real competitor intel.</div>
+        <button data-copy="Research each competitor in my BUSINESS-BRAIN.md. What are they NOT saying that my ICP actually needs?">Copy</button>
+      </div>
+      <div class="prompt-card">
+        <div class="type">Slash command</div>
+        <code class="text">/sales-engine</code>
+        <div class="why">Find prospects engaging with competitor content. They're already warm.</div>
+        <button data-copy="/sales-engine">Copy</button>
+      </div>
+      <div class="prompt-card">
+        <div class="type">Natural prompt</div>
+        <code class="text">Take my top pain theme and write a 250-word LinkedIn post in my voice. Use the verbatim quote. End with P.S. question.</code>
+        <div class="why">Turn a real complaint into a scroll-stopping post.</div>
+        <button data-copy="Take my top pain theme and write a 250-word LinkedIn post in my voice. Use the verbatim quote. End with P.S. question.">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="send-banner no-print">
+    <div class="text"><strong>Done with Worksheet 4?</strong><br>Copy competitors + pain as a <code>BUSINESS-BRAIN.md</code> snippet.</div>
+    <button id="send-to-brain" type="button">Copy to Brain &rarr;</button>
+  </div>
+
+  <div class="footer">
+    <div class="brand-dot">pp</div>
+    <div class="brand">Purely Personal</div>
+    <div class="meta">Business Brain&trade; &middot; Workshop 04 &middot; The Gaps</div>
+    <div class="page-num">04 / 05</div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  const STORAGE_KEY='pp-worksheet-04-gaps';
+  const DEBOUNCE=500;
+  const fields=document.querySelectorAll('[contenteditable="true"]');
+  fields.forEach(el=>{el.addEventListener('input',scheduleSave);el.addEventListener('blur',save)});
+  try{const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');Object.entries(saved).forEach(([k,v])=>{const el=document.querySelector(`[data-key="${k}"]`);if(el)el.innerHTML=v})}catch(e){}
+  let t=null;function scheduleSave(){clearTimeout(t);t=setTimeout(save,DEBOUNCE)}
+  function save(){const out={};fields.forEach(el=>{const k=el.getAttribute('data-key');if(k)out[k]=el.innerHTML.trim()});try{localStorage.setItem(STORAGE_KEY,JSON.stringify(out));flash('Saved')}catch(e){}}
+  const ind=document.getElementById('save-indicator');function flash(m){if(!ind)return;ind.textContent=m;ind.classList.add('visible');clearTimeout(ind._t);ind._t=setTimeout(()=>ind.classList.remove('visible'),1400)}
+  document.getElementById('reset-btn').addEventListener('click',()=>{if(confirm('Clear all answers?')){localStorage.removeItem(STORAGE_KEY);fields.forEach(el=>el.innerHTML='');flash('Reset')}});
+  document.getElementById('export-pdf').addEventListener('click',()=>window.print());
+  document.querySelectorAll('.prompt-card [data-copy]').forEach(b=>{
+    b.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(b.dataset.copy);const o=b.textContent;b.textContent='Copied ✓';setTimeout(()=>b.textContent=o,1500)}catch(e){flash('Copy blocked')}});
+  });
+  document.getElementById('send-to-brain').addEventListener('click',async()=>{
+    const g=k=>{const el=document.querySelector(`[data-key="${k}"]`);const t=(el?.innerText||'').trim();return t||'_(fill in later)_'};
+    const md=`## 05 · Competitors
+
+### Competitor 1 — ${g('comp.1.name')}
+- **URL:** ${g('comp.1.url')}
+- **Their angle:** ${g('comp.1.angle')}
+- **Gap to own:** ${g('comp.1.gap')}
+
+### Competitor 2 — ${g('comp.2.name')}
+- **URL:** ${g('comp.2.url')}
+- **Their angle:** ${g('comp.2.angle')}
+- **Gap to own:** ${g('comp.2.gap')}
+
+### Competitor 3 — ${g('comp.3.name')}
+- **URL:** ${g('comp.3.url')}
+- **Their angle:** ${g('comp.3.angle')}
+- **Gap to own:** ${g('comp.3.gap')}
+
+## 08 · Audience Pain
+
+### ${g('pain.1.theme')}
+> ${g('pain.1.quote')}
+— ${g('pain.1.source')}
+
+### ${g('pain.2.theme')}
+> ${g('pain.2.quote')}
+— ${g('pain.2.source')}
+
+### ${g('pain.3.theme')}
+> ${g('pain.3.quote')}
+— ${g('pain.3.source')}
+
+### ${g('pain.4.theme')}
+> ${g('pain.4.quote')}
+— ${g('pain.4.source')}
+`;
+    try{await navigator.clipboard.writeText(md);flash('Copied to Brain');const btn=document.getElementById('send-to-brain');const o=btn.textContent;btn.textContent='Copied ✓';setTimeout(()=>btn.textContent=o,1500)}catch(e){alert('Clipboard blocked:\n\n'+md)}
+  });
+})();
+</script>
+
+</body>
+</html>
