@@ -499,7 +499,7 @@ html,body{margin:0;padding:0;background:var(--page-bg);font-family:var(--body);c
 ${g('voice.tone')}
 
 ### Banned phrases
-${g('voice.banned').split(/,\\s*|\\n/).filter(Boolean).map(p => '- ' + p.trim()).join('\\n') || '- _(fill in later)_'}
+${g('voice.banned').split(/,\s*|\n/).filter(Boolean).map(p => '- ' + p.trim()).join('\n') || '- _(fill in later)_'}
 
 ### Last post opening (voice reference)
 > ${g('voice.last_post')}
@@ -516,7 +516,7 @@ ${g('insight')}
       btn.textContent = 'Copied ✓';
       setTimeout(() => btn.textContent = original, 1500);
     } catch(e) {
-      alert('Clipboard blocked. Here\\'s the markdown — copy manually:\\n\\n' + md);
+      alert('Clipboard blocked. Copy manually:\n\n' + md);
     }
   });
 })();

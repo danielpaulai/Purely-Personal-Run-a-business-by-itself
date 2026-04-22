@@ -159,7 +159,7 @@ If Business section missing: render with placeholder text *"Run /extract-my-busi
 **Height:** ~360px
 
 ### Purpose
-Single persona, deeply specified. Pain / Desire / Objection — the three dimensions every sales copywriter needs. This unlocks `cold-outreach-sequence` and `sales-research-agent`.
+Single persona, deeply specified. Pain / Desire / Objection — the three dimensions every sales copywriter needs. Required context for `cold-outreach-sequence` and `sales-research-agent`.
 
 ### Structural spec
 - Engine indicator: 8×24px green pill top-left
