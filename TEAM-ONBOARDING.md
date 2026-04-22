@@ -177,7 +177,7 @@ All of this is live in the GitHub repo. 5 commits shipped. 56+ files.
 
 ## 8. Your Role (find yours below)
 
-### 🎨 Designer (Elif / Catherine / Anny)
+### 🎨 Designer (Ilef / Catherine / Anny)
 
 **What you own:** the visual layer.
 
