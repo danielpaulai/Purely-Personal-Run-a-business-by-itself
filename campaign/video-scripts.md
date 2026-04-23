@@ -1,190 +1,189 @@
-# Video Scripts v2 — 3 × 60-Second Reels · Ava Yuergens (@personalbrandlaunch) Style
+# Video Scripts v3 — 3 × 60-Second Reels · Ava Style · Whole-Business Focus
 
 > **Owner:** Danny + Sujal · **Filming:** Apr 25 (batch with VSL)
 > **Platforms:** Instagram Reels · TikTok · LinkedIn Video · X
 > **CTA across all 3:** "Comment **CLAUDE** and I'll send you the registration link"
 > **UTM:** `?ref=reels-{1|2|3}`
 
-**Voice rewritten in the style of Ava Yuergens (@personalbrandlaunch · 1M followers · Personal Brand Launch)** — educational frameworks, POV hooks, "3 Things" structures, warm emoji closes, personal dollar specifics, and her signature comment-keyword CTAs.
+**Voice style:** Ava Yuergens (@personalbrandlaunch · 1M followers · Personal Brand Launch).
+**Content focus:** the REAL small-business-owner pain — doing every job alone (content, sales, ops, admin) and watching things slip when life gets busy. The promise isn't "replace your AI tool stack." It's **build a business that runs itself so you're not the bottleneck on every single thing.**
 
-Voice data pulled via Apify from her recent reels (Apr 23, 2026):
+---
 
-| Ava signature | How we use it |
-|---|---|
-| "3 Things To Do After X" | Script 1 structure |
-| "POV: You Hire Me As Your Social Media Manager 😎" | Script 2 opening |
-| "Comment SCRIPTS for real scripts I wrote" | Every CTA |
-| "Follow along for the ride ✅" | Warm emoji close |
-| "Hi i'm Ava 👋" | Direct, conversational openers |
-| "Bad vs. Good vs. Great Scripts" | Three-tier frameworks |
-| Text-overlay-heavy edits | ~8 overlays per reel |
+## ⚠ What Changed From v2
+
+**v2 problem:** Scripts were too narrow. Script 1 led with "I stopped paying $99 for Jasper." That only lands with people already overpaying on content tools. The workshop sells to a much wider audience: **any solopreneur or small business owner doing 5 jobs by themselves.**
+
+**v3 fix:** Same Ava frameworks (3 Things · POV · Two Kinds) but the content now hits the universal truth — you're alone doing everything, and every time one job slips, the whole business feels it. Content still shows up as one of the jobs, but so do sales, ops, inbox, invoicing, and being the CEO of all of it.
 
 ---
 
 ## Voice Rules (every script)
 
-- ✅ Educational framework or POV opener
-- ✅ Personal dollar amounts ($173, $99, $49)
-- ✅ One warm emoji in the close (✨ 💫 💪 ❤️ ✅)
-- ✅ "Comment CLAUDE and I'll send you the link" — exact Ava CTA pattern
-- ✅ Conversational fillers: "OK so", "here's the thing", "I'll be real with you"
+- ✅ Open with a real small-business-owner truth, not a tool-stack complaint
+- ✅ Name the 5 jobs (content, sales, ops, cash, planning) OR the 5 engines (Marketing, Sales, Operations, Cash, Leadership)
+- ✅ Ava's warm emoji close (✨ 💫 💪)
+- ✅ "Comment CLAUDE and I'll send you the link" — exact Ava CTA
+- ✅ Personal, not philosophical
 - ❌ No em-dashes
-- ❌ No "unlock", "delve", "supercharge", "game-changer", "seamless", "elevate", "leverage"
-- ❌ No parallel-tricolon ad copy ("Do X. Do Y. Do Z.")
+- ❌ No banned phrases (unlock, delve, supercharge, seamless, elevate, leverage, game-changer)
+- ❌ No AI-vs-ChatGPT framing (audience doesn't care — they care about freedom)
+- ❌ No tricolons / parallel ad structures
 
 ---
 
-# 🎬 SCRIPT 1 — The "3 Things I Stopped Doing"
+# 🎬 SCRIPT 1 — The "3 Jobs I Stopped Doing"
 
-**Angle:** Ava's signature "3 Things" educational framework · event promo built into point 3
+**Angle:** Ava's "3 Things" framework → applied to 3 jobs the business owner no longer has to do themselves
 **Target platform:** Instagram Reels (primary) · LinkedIn Video · TikTok
-**Feel:** Warm. Confident. Founder-to-founder.
-**Word count:** 150 · **Runtime:** 0:58
+**Feel:** Warm. Confident. Relief-based.
+**Word count:** 158 · **Runtime:** 1:00
 
 ### The Script (say it exactly)
 
-> **[0:00 · Hook · 5s]**
-> OK so here are 3 things I stopped doing when I started running my business with Claude Code.
+> **[0:00 · Hook · 6s]**
+> OK so here are 3 jobs I stopped doing when I built a business that runs itself with Claude Code.
 
-> **[0:05 · Point 1 · 10s]**
-> Number one. I stopped paying 99 dollars a month for Jasper.
-> Because it didn't know my voice. And every draft came back sounding like a robot wrote it.
+> **[0:06 · Job 1 · 13s]**
+> Number one. I stopped writing my own content at 2am on Sundays.
+> My Marketing Machine drafts 3 LinkedIn posts and a newsletter in my voice every Monday. While I'm asleep.
 
-> **[0:15 · Point 2 · 12s]**
-> Number two. I stopped writing LinkedIn posts at 2am on Sundays.
-> Because I built a machine inside Claude Code that does it for me, in my voice, every single week. Automatically.
+> **[0:19 · Job 2 · 12s]**
+> Number two. I stopped chasing my own leads.
+> My Sales Machine finds me 10 prospects every week and drafts personalized outreach using their actual LinkedIn posts.
 
-> **[0:27 · Point 3 · 13s]**
-> Number three. I stopped asking ChatGPT questions like it was a search engine.
-> Because I built a system that actually knows my business. My ICP, my offer, the words I never use. All in one file.
+> **[0:31 · Job 3 · 13s]**
+> Number three. I stopped being the bottleneck on everything.
+> When I'm off, 5 AI executives keep running. Content still ships. Follow-ups still go out. Pipeline stays warm.
 
-> **[0:40 · Event Reveal · 12s]**
-> Here's the thing. On May 2nd and 3rd, I'm running a 2-day live workshop where you build the exact same system on your own laptop. Two hours a day. 49 bucks. 40 seats.
+> **[0:44 · Event Reveal · 11s]**
+> So here's what I'm doing next. May 2nd and 3rd, a 2-day live workshop where you build the same system on your own laptop. 49 bucks. 40 seats.
 
-> **[0:52 · CTA · 6s]**
-> If you're tired of AI tools that sound like a robot wrote them, comment CLAUDE and I'll send you the registration link. See you there ✨
-
-### On-screen text overlays (Ava-dense)
-
-| Time | Overlay |
-|------|---------|
-| 0:00 | `3 THINGS I STOPPED DOING WHEN I BUILT MY BUSINESS WITH CLAUDE` |
-| 0:05 | `#1 → Paying $99/mo for Jasper ❌` |
-| 0:15 | `#2 → Writing posts at 2am 😵‍💫` |
-| 0:27 | `#3 → Using ChatGPT like Google` |
-| 0:40 | `MAY 2–3 · LIVE WORKSHOP · $49` |
-| 0:52 | `Comment "CLAUDE" ⬇` |
-
-### Filming notes (Ava energy)
-
-- **Handheld cam feel.** Not static. Slight movement like you're walking through an idea.
-- **Cut every 3–5 seconds.** Ava rarely holds a shot longer.
-- **Counting gestures.** Hold up 1, 2, 3 fingers per point.
-- **Smile on "See you there ✨"** — the warmth is the close.
-- **Captions burned in, bottom-third, yellow-highlighted keywords** (Ava uses this pattern consistently)
-
----
-
-# 🎬 SCRIPT 2 — The POV Story
-
-**Angle:** Ava's signature "POV:" opener · personal scenario · reveal arc
-**Target platform:** TikTok (primary) · Instagram Reels
-**Feel:** Personal. Vulnerable. Story unfolds.
-**Word count:** 155 · **Runtime:** 1:00
-
-### The Script
-
-> **[0:00 · POV Hook · 6s]**
-> POV: You're a business owner who just spent 173 dollars a month on AI tools that STILL have you writing LinkedIn posts at midnight.
-
-> **[0:06 · The Turn · 4s]**
-> Here's exactly what I did about it.
-
-> **[0:10 · The Cancel · 8s]**
-> I cancelled everything. Taplio. Jasper. Canva Pro. ChatGPT Plus. All of it. Gone in January.
-
-> **[0:18 · The Build · 14s]**
-> Then I built one file on my laptop. It's called BUSINESS-BRAIN.md. It holds my voice, my offer, my ideal client, and the words I never use out loud.
-
-> **[0:32 · The System · 14s]**
-> Then I wired 5 slash commands inside Claude Code that read that file before they do anything. One writes my content. One finds me prospects. One runs my inbox. One pulls my Stripe. One gives me a morning brief before coffee.
-
-> **[0:46 · The Result · 6s]**
-> Cost: zero dollars a month. Two hours a week. Pipeline full.
-
-> **[0:52 · Event + CTA · 8s]**
-> May 2nd and 3rd I'm teaching you exactly how to build it. Comment CLAUDE and I'll send you the link 💫
+> **[0:55 · CTA · 5s]**
+> If you're tired of being the bottleneck in your own business, comment CLAUDE and I'll send you the link. See you there ✨
 
 ### On-screen text overlays
 
 | Time | Overlay |
 |------|---------|
-| 0:00 | `POV: You're spending $173/mo on AI tools that still have you writing at midnight` |
-| 0:10 | `CANCELLED: Taplio ❌ Jasper ❌ Canva Pro ❌ ChatGPT ❌` |
-| 0:18 | `BUSINESS-BRAIN.md` _(code style)_ |
-| 0:32 | `5 slash commands → 5 AI executives` |
-| 0:46 | `$0/mo · 2hr/wk · Pipeline: full` |
-| 0:52 | `Comment "CLAUDE" ⬇` |
+| 0:00 | `3 JOBS I STOPPED DOING WHEN I BUILT A BUSINESS THAT RUNS ITSELF` |
+| 0:06 | `#1 → Writing content at 2am 😵‍💫` |
+| 0:19 | `#2 → Chasing leads by hand` |
+| 0:31 | `#3 → Being the bottleneck on EVERYTHING` |
+| 0:44 | `MAY 2–3 · 2-DAY LIVE WORKSHOP · $49` |
+| 0:55 | `Comment "CLAUDE" ⬇` |
 
 ### Filming notes
 
-- **First 6 seconds = static on-screen text overlay.** Danny's voice under, face barely visible.
-- **"Here's exactly what I did about it" = reveal moment.** Zoom in or camera shift, energy changes.
-- **Cut every time a new tool gets named** in the "I cancelled everything" section.
-- **B-roll of laptop screen** (optional) when saying BUSINESS-BRAIN.md and slash commands.
-- **Close frame on face** for "Cost: zero dollars. Two hours. Pipeline full."
+- **Handheld cam feel**, slight movement like you're walking through ideas
+- **Cut every 3–5 seconds**, especially between numbered points
+- **Counting gestures**: hold up 1, 2, 3 fingers per point
+- **Smile on "See you there ✨"**
+- **Captions burned-in bottom-third, yellow-highlighted keywords** (Ava style)
+
+---
+
+# 🎬 SCRIPT 2 — The POV Story
+
+**Angle:** Ava's "POV:" opener → applied to the overwhelmed small business owner doing every job alone
+**Target platform:** TikTok (primary) · Instagram Reels
+**Feel:** Recognizable. Gutting. Then hopeful.
+**Word count:** 160 · **Runtime:** 1:02
+
+### The Script
+
+> **[0:00 · POV Hook · 6s]**
+> POV: You're a business owner doing every job by yourself.
+
+> **[0:06 · The 5 Jobs · 15s]**
+> You're writing your content at midnight. You're chasing your own leads. You're fixing your own inbox. You're making your own invoices. You're trying to think like a CEO at 11pm on a Tuesday.
+
+> **[0:21 · The Slip · 8s]**
+> And every time one of those jobs slips, the pipeline dries up 6 weeks later.
+
+> **[0:29 · The Turn · 4s]**
+> Here's what I did about it.
+
+> **[0:33 · The System · 16s]**
+> I built a business that runs itself inside Claude Code. One file holds my voice, my offer, my ICP, my competitors. Then 5 slash commands read that file before they do anything.
+
+> **[0:49 · The 5 Engines · 10s]**
+> One writes content. One finds prospects. One runs my inbox. One pulls my Stripe. One sends me a morning brief.
+
+> **[0:59 · Event + CTA · 3s]**
+> May 2nd and 3rd I'm teaching you how to build it. Comment CLAUDE for the link 💫
+
+### On-screen text overlays
+
+| Time | Overlay |
+|------|---------|
+| 0:00 | `POV: You're doing every job by yourself` |
+| 0:06 | `Content ✍️ · Leads 📞 · Inbox 📧 · Invoices 💸 · CEO 👑` _(each word appears in sequence)_ |
+| 0:21 | `ONE SLIP → PIPELINE DIES 6 WEEKS LATER` |
+| 0:33 | `BUSINESS-BRAIN.md` _(code style)_ |
+| 0:49 | `5 AI EXECUTIVES` _(color-coded row)_ |
+| 0:59 | `Comment "CLAUDE" ⬇ · $49 · May 2–3` |
+
+### Filming notes
+
+- **First 6 seconds = static on-screen text** ("POV: You're doing every job by yourself"). Danny's voice under. Face barely visible.
+- **0:06–0:21** = B-roll of laptop screens OR quick cuts showing different "jobs" (post draft, email, invoice, calendar). Energy builds.
+- **"Here's what I did about it"** = reveal moment. Zoom in. Camera shift. Energy calmer.
+- **0:49 · 5 engines line** = each engine as a quick on-screen chip in its color (blue/green/violet/gold/red)
+- **0:59 · CTA** = Danny face-to-camera, small smile
 
 ---
 
 # 🎬 SCRIPT 3 — The "Two Kinds of Business Owners"
 
-**Angle:** Ava's "I'm going to be real with you" vulnerability opener · 18-month identity fork · warm encouragement close
-**Target platform:** Instagram Reels · TikTok (emotional reel format performs best here)
+**Angle:** Ava's "OK I'm going to be real with you" → applied to the actual fork every small business owner faces
+**Target platform:** Instagram Reels · TikTok (emotional reels land best here)
 **Feel:** Direct. Vulnerable. Encouraging.
-**Word count:** 165 · **Runtime:** 1:03
+**Word count:** 165 · **Runtime:** 1:05
 
 ### The Script
 
 > **[0:00 · Real Talk Opener · 5s]**
 > OK I'm going to be real with you for a second.
 
-> **[0:05 · The Fork · 8s]**
-> In 18 months there's going to be two kinds of business owners online.
+> **[0:05 · The Fork · 6s]**
+> In 18 months there's going to be two kinds of business owners.
 
-> **[0:13 · Kind 1 · 12s]**
-> The ones who kept using AI like it's Google. They typed a question, copied the answer, closed the tab.
-> Nothing about their business actually changed.
+> **[0:11 · Kind 1 · 17s]**
+> The ones still doing every job themselves.
+> Writing their own content at midnight. Chasing their own leads. Answering every email. Making their own invoices. Watching their pipeline dry up every time life gets busy.
 
-> **[0:25 · Kind 2 · 11s]**
-> And the ones who built systems. Their content ships itself. Their sales pipeline fills itself. Their whole business runs itself.
+> **[0:28 · Kind 2 · 13s]**
+> And the ones who built systems.
+> Their content ships itself every week. Their pipeline fills itself every Monday. Their business actually runs when they take a weekend off.
 
-> **[0:36 · The Truth · 10s]**
-> But it's not about being technical. I learned this with zero coding experience.
+> **[0:41 · The Truth · 13s]**
+> But it's not about being technical. I built mine with zero coding experience. It's about whether you spend 4 hours building your system, or 4 more years doing every job by yourself.
 
-> **[0:46 · The Decision · 8s]**
-> The real difference is whether you build your system in the next 30 days, or you keep promising yourself you'll get to it.
+> **[0:54 · Event · 7s]**
+> May 2nd and 3rd I'm running a 2-day live workshop. You build the whole system with me, live. 49 bucks. 40 seats.
 
-> **[0:54 · Event + CTA · 9s]**
-> May 2nd and 3rd I'm running a 2-day live workshop. You build the whole system with me. 4 hours. 49 bucks.
-> Comment CLAUDE if you want the link. You've got this 💪
+> **[1:01 · CTA · 4s]**
+> If you want to be the second kind, comment CLAUDE and I'll send you the link. You've got this 💪
 
 ### On-screen text overlays
 
 | Time | Overlay |
 |------|---------|
 | 0:00 | `I'M GOING TO BE REAL WITH YOU.` |
-| 0:05 | `IN 18 MONTHS:` |
-| 0:13 | `KIND 1 → AI as Google 🤷‍♀️` |
-| 0:25 | `KIND 2 → AI as systems ⚡` |
-| 0:36 | `Zero coding required.` |
-| 0:46 | `Your call: 30 days or never` |
-| 0:54 | `Comment "CLAUDE" ⬇ · $49 · May 2–3` |
+| 0:05 | `IN 18 MONTHS → 2 KINDS OF BUSINESS OWNERS` |
+| 0:11 | `KIND 1 → Does every job themselves 😮‍💨` |
+| 0:28 | `KIND 2 → Built a business that runs itself ⚡` |
+| 0:41 | `Zero coding required.` |
+| 0:54 | `MAY 2–3 · 2-DAY WORKSHOP · $49` |
+| 1:01 | `Comment "CLAUDE" ⬇` |
 
 ### Filming notes
 
-- **Slower pacing than Scripts 1–2.** Let the beats land.
-- **Hold eye contact** through the entire take. This is the emotional reel.
-- **One zoom-in** on "the real difference is whether you build your system in the next 30 days."
+- **Slower pacing** than Scripts 1–2. Let each beat land.
+- **Unbroken eye contact** through the whole take. This is the emotional reel.
+- **0:41 · "4 hours vs 4 years"** line = zoom in OR hold a long beat before delivering.
+- **0:54 · event reveal** = energy shift to warmer, practical.
 - **Warm smile on "You've got this 💪"** — the encouragement is the close.
 - **Music:** quiet ambient underneath. Let the words carry.
 
@@ -192,16 +191,16 @@ Voice data pulled via Apify from her recent reels (Apr 23, 2026):
 
 # 📋 Batch Filming Checklist (Apr 25 · Sujal + Danny)
 
-All 3 reels + the 2:14 VSL film in ONE session. Same setup, same wardrobe.
+All 3 reels + the VSL film in ONE session. Same setup, same wardrobe.
 
 <details>
 <summary>▶ Pre-production (before Apr 25)</summary>
 
 - [ ] Sujal confirms location + lighting 24h before
-- [ ] Danny reviews all 3 scripts the night before (not memorized — internalized)
+- [ ] Danny internalizes (not memorizes) all 3 scripts
 - [ ] Lav mic tested + backup ready
 - [ ] Wardrobe: dark solid top (continuity with VSL)
-- [ ] Clean background (white wall or blurred bookshelf, no brand props)
+- [ ] Clean background: white wall OR blurred bookshelf
 - [ ] Trending audio pre-picked for Reels 1 + 2 (optional)
 
 </details>
@@ -209,21 +208,21 @@ All 3 reels + the 2:14 VSL film in ONE session. Same setup, same wardrobe.
 <details>
 <summary>▶ Day-of shot list</summary>
 
-- [ ] **VSL · 2:14 · minimum 5 takes**
-- [ ] **Script 1 · 3 Things · minimum 5 takes**
-- [ ] **Script 2 · POV Story · minimum 5 takes**
+- [ ] **VSL · 2:18 · minimum 5 takes**
+- [ ] **Script 1 · 3 Jobs I Stopped Doing · minimum 5 takes**
+- [ ] **Script 2 · POV Every Job · minimum 5 takes**
 - [ ] **Script 3 · Two Kinds · minimum 5 takes**
-- [ ] Extra: each script's last line as a clean 4-sec loop for remixing
-- [ ] B-roll: laptop screen showing Claude Code open (for Script 2 overlays)
+- [ ] Extra: clean 4-sec CTA loops per script for remixing
+- [ ] B-roll: laptop screens (post draft, prospect list, morning brief) for Script 2 overlays
 
 </details>
 
 <details>
 <summary>▶ Post-production (Apr 26 · Sujal)</summary>
 
-- [ ] Edit 4 final deliverables (VSL 2:14 + 3 × ~1:00 reels)
+- [ ] Edit 4 final deliverables (VSL 2:18 + 3 × ~1:00 reels)
 - [ ] Add on-screen text overlays per each script's cue table
-- [ ] Bottom-third burned-in captions (yellow-highlighted keywords — Ava style)
+- [ ] Bottom-third burned-in captions with yellow-highlighted keywords (Ava style)
 - [ ] Export 1080×1920 (9:16) for TikTok/Reels
 - [ ] Export 1080×1080 (1:1) for LinkedIn/X
 - [ ] Upload to shared Google Drive folder
@@ -235,50 +234,50 @@ All 3 reels + the 2:14 VSL film in ONE session. Same setup, same wardrobe.
 
 # 🚀 Distribution Plan (Apr 27 – May 1)
 
-| Day | Script | Where | Caption + Post Style | Owner |
-|-----|--------|-------|----------------------|-------|
-| Apr 27 | Script 1 · 3 Things | Instagram Reels + LinkedIn + X | Caption: "3 things I stopped doing 👇 Comment CLAUDE for the workshop" | Malik · Catherine |
-| Apr 29 | Script 2 · POV Story | TikTok + Instagram Reels | Caption: "POV: you've spent $173/mo on AI tools 💸 Comment CLAUDE ↓" | Catherine |
-| Apr 30 | Script 3 · Two Kinds | Instagram Reels + TikTok | Caption: "In 18 months there will be two kinds of business owners 👀 Comment CLAUDE to be the second kind" | Catherine |
-| May 1 | Script 1 reshare + Script 3 boost | All platforms · final 24h push | Caption: "Last call. Comment CLAUDE before tonight ⏰" | Whole team |
+| Day | Script | Where | Caption | Owner |
+|-----|--------|-------|---------|-------|
+| Apr 27 | Script 1 · 3 Jobs | IG Reels + LinkedIn + X | "3 jobs I stopped doing when I built a business that runs itself 👇 Comment CLAUDE for the workshop" | Malik · Catherine |
+| Apr 29 | Script 2 · POV Every Job | TikTok + IG Reels | "POV: You're doing every job in your business by yourself 😮‍💨 Comment CLAUDE ↓" | Catherine |
+| Apr 30 | Script 3 · Two Kinds | IG Reels + TikTok | "In 18 months there will be two kinds of business owners 👀 Comment CLAUDE to be the second kind" | Catherine |
+| May 1 | Script 1 reshare + Script 3 boost | All platforms · final 24h push | "Last call. Comment CLAUDE before tonight ⏰" | Whole team |
 
 **Expected reach:** 3 reels × ~6,000 organic views (IG + TikTok + LinkedIn combined) = 18,000 impressions → 600 "CLAUDE" comments → 200 DMs → 25–35 registrations attributed to reels.
 
 ---
 
-# 🎯 The 3 Ava Hook Formulas (reusable)
+# 🎯 The 3 Ava Formulas (reusable for Workshop 02+)
 
-Every script maps to a proven Ava structure. Reuse for Workshop 02 and beyond:
-
-| # | Ava Formula | Workshop Use |
+| # | Formula | Workshop Use |
 |---|---|---|
-| 1 | **"3 Things I Stopped / Started Doing When..."** | Educational framework + soft event promo at point 3 |
-| 2 | **"POV: You're [specific painful situation]..."** | Emotional story + personal reveal + event + CTA |
-| 3 | **"OK I'm going to be real with you..."** | Vulnerability opener + fork-in-the-road identity + encouragement close |
+| 1 | **"3 [Things/Jobs] I Stopped Doing When I Built X"** | Educational framework · event promo woven into point 3 · runs on a universal pain |
+| 2 | **"POV: You're a [specific audience] doing [specific universal pain]..."** | Emotional scenario · reveals the system · ends with CTA |
+| 3 | **"OK I'm going to be real with you..."** | Vulnerability opener · identity fork · encouragement close |
 
-**Formula rotation:** run one of each per launch. Prevents fatigue. Hits different psychology.
+**Formula rotation rule:** one of each per launch. Prevents fatigue. Hits different audience psychology.
 
 ---
 
-# 📸 What Makes These "Ava Style" (the fingerprint)
+# 📸 What Makes These "Ava Style + Whole-Business Focus" (the fingerprint)
 
-If Sujal wants to verify the reels feel on-brand while editing:
+If Sujal wants to verify the reels are on-brand while editing:
 
-1. **Educational framing, not sales framing.** Viewer feels taught, not pitched.
-2. **Specific dollar amounts shared openly.** $99/mo Jasper. $49 workshop. $173/mo stack.
-3. **"Here's the thing" / "OK so" / "POV:"** natural speech openers.
-4. **Emoji close.** ✨ 💫 💪. Always. Never end cold.
-5. **Burned-in captions with keyword highlights.** Yellow or white-on-black.
-6. **Comment KEYWORD CTAs.** Every reel. Ava's signature.
-7. **Quick cuts every 3–5 seconds.** Never static for too long.
-8. **Warm face-to-camera moments.** Especially on the close.
+1. **Every script names at least 3 of the 5 jobs** (content, sales, inbox, invoices, CEO thinking) OR the 5 engines by name
+2. **Universal truth in the opener**, not a niche complaint
+3. **"Business that runs itself"** phrase appears at least once per script
+4. **Specific numbers** ($49, 40 seats, 5 AI executives, 18 months, 4 hours)
+5. **"Comment CLAUDE"** CTA in exact Ava format
+6. **Warm emoji close** — ✨ 💫 💪 — always
+7. **Burned-in captions, yellow-highlighted keywords**
+8. **Quick cuts (3–5 sec)** except Script 3 which holds eye contact
+9. **No niche AI-tool-comparison framing** (drop ChatGPT/Jasper/Taplio from the reels — that's in the VSL only)
 
-If a final cut is missing 3+ of these, it's not Ava style. Reshoot or re-edit.
+If a final cut is missing 3+ of these, it's not v3. Reshoot or re-edit.
 
 ---
 
 **Scripts owner:** Daniel Paul
 **Voice anchor:** Ava Yuergens (@personalbrandlaunch)
 **Research source:** Apify Instagram scrape · Apr 23, 2026
+**Content anchor:** Full workshop promise — "build a business that runs by itself"
 **Filming deadline:** Apr 25, 2026
 **First post:** Apr 27, 2026
