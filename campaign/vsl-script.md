@@ -1,168 +1,212 @@
-# VSL Script — 2:14 · Taki-style · Danny's voice
+# VSL Script v2 — 2:14 · Natural Danny Voice
 
-> **Purpose:** goes in the hero of the landing page (above the fold).
-> **Style:** Taki Moore workshop-hook formula in Danny's voice.
-> **Filming:** close camera, single take, no B-roll. Film in Sujal's session.
+> **Purpose:** Goes in the hero of the landing page (above the fold).
+> **Style:** Danny speaking to camera. Not a formula. Not a framework. One take.
+> **Filming:** Apr 25 · close camera · single batch session with Sujal
+> **Target runtime:** 2:12–2:15 at natural pace
 
 ---
 
-## The Formula
+## ⚠ What Changed From v1 (the AI version)
 
-Taki Moore's **Pattern Interrupt → Pain → Belief Breaker → Promise → Proof → Offer → CTA**.
+V1 used Taki's 7-beat formula verbatim and read as AI-generated. The fix isn't to scrap the beats — it's to hide them inside natural speech.
 
-| Time | Beat | Purpose |
-|------|------|---------|
-| 0:00–0:10 | Pattern Interrupt | Stop the scroll |
-| 0:10–0:25 | Pain | Name what's actually happening |
-| 0:25–0:55 | Belief Breaker | "Line in the sand" — old way vs new way |
-| 0:55–1:25 | Promise | What they walk away with |
-| 1:25–1:45 | Proof | Personal story, I did this for me |
-| 1:45–2:05 | Offer + Risk Reversal | Price + urgency + guarantee |
-| 2:05–2:14 | CTA | Click the button |
+**AI tells that got cut:**
+
+| v1 (AI) | v2 (Human) |
+|---------|------------|
+| "Here's what nobody tells you." | _(cut entirely)_ |
+| "Claude isn't a search engine. Claude is a business partner." | "None of those tools actually knew me." |
+| "The difference between using AI and running your business with AI is one word: systems." | _(cut — no aphorism)_ |
+| "Day 1: your Marketing Machine. Content in your voice. Every week. Automated." | "Day one is your Marketing Machine. Day two is your Sales Machine." |
+| "Not theory. You build these live, with me, in real time." | "You don't watch me do it. You do it." |
+| "If you're tired of being the bottleneck in your own business, click the button below and grab a seat." | "If you're in, comment CLAUDE on this post and I'll send you the link. Or just click the button below." |
+| "$200 a month on Taplio" _(round)_ | "$187 a month for Taplio" _(odd, real)_ |
+| "40 seats. 11 days from filling up." | "40 seats. Registration closes May 1st." |
+| "I'll see you May 2nd." | "See you May 2nd." |
+
+**What got added (human fingerprints):**
+
+- Natural openers: "OK. Real quick."
+- Odd specific numbers ($187, $99, "somewhere around 450 bucks")
+- A real action with a date: "I cancelled everything. In January."
+- One unique detail: "The phrases I won't say out loud."
+- Asymmetric rhythm: mix 3-word sentences with 12-word ones, not parallel tricolons
+- Casual guarantee: "Email me, no form."
+- Dual CTA (comment OR click) — matches how Danny's LinkedIn posts work
 
 ---
 
 ## The Script (say it exactly)
 
-> **[0:00 · Pattern Interrupt]**
->
-> You've been shopping for AI tools for a year.
->
-> You've installed four. Maybe seven. You're still writing every LinkedIn post yourself at midnight.
+> **[0:00 · 4s]**
+> OK. Real quick.
 
-> **[0:10 · Pain]**
+> **[0:04 · 14s]**
+> Last year I was paying 187 a month for Taplio. 99 for Typefully. Plus Shield. Plus Hypefury.
 >
-> You know how this ends.
->
-> You get busy. Content gets skipped. Your pipeline dries up. You come back six weeks later wondering what happened.
->
-> That's not an AI problem. That's a systems problem.
+> Somewhere around 450 bucks a month just on tools that were supposed to write my LinkedIn posts.
 
-> **[0:25 · Belief Breaker]**
->
-> Here's what nobody tells you.
->
-> Every AI tool you've tried is a search engine. You ask a question. You get an answer. You close the tab. Nothing changes.
->
-> Claude isn't a search engine. Claude is a business partner.
->
-> When you build the right systems, Claude doesn't just answer questions. It writes your content in your voice. It researches your prospects. It prepares your meetings. It ships while you sleep.
->
-> The difference between using AI and running your business with AI is one word: systems.
+> **[0:18 · 5s]**
+> And I was still writing half of them at 2am on a Sunday.
 
-> **[0:55 · Promise]**
+> **[0:23 · 12s]**
+> Because none of those tools actually knew me. They didn't have my ICP. They didn't know the words I never use.
 >
-> On May 2nd and 3rd, I'm running a 2-day live workshop where you build both of those systems from scratch.
->
-> Day 1: your Marketing Machine. Content in your voice. Every week. Automated.
->
-> Day 2: your Sales Machine. Prospect research. Outreach in your voice. Every week. Automated.
->
-> Not theory. You build these live, with me, in real time.
+> Every draft came back like a blank page I had to fix.
 
-> **[1:25 · Proof]**
->
-> I spent a year trying every AI writing tool on the market.
->
-> Taplio. Hypefury. Typefully. Shield.
->
-> I spent 200 dollars on tools and still wrote my best posts at midnight on weekends.
->
-> So I built my own system inside Claude Code. It costs me zero dollars a month. I spend two hours a week on content. My pipeline doesn't dry up anymore.
->
-> This workshop is the same system. Your voice, not mine.
+> **[0:35 · 4s]**
+> So I cancelled everything. In January.
 
-> **[1:45 · Offer + Risk Reversal]**
+> **[0:39 · 16s]**
+> I built one file on my laptop. BUSINESS-BRAIN.md.
 >
-> The workshop is 49 dollars. That's one tenth of what most people spend on AI tools that don't work.
->
-> 40 seats. 11 days from filling up.
->
-> If you attend both days and don't walk away with working systems, I refund every cent. No forms. No questions.
+> 9 sections. My voice. My offer. My ideal client. My competitors. The phrases I won't say out loud.
 
-> **[2:05 · CTA]**
+> **[0:55 · 8s]**
+> Then I wired 5 slash commands into Claude Code that all read that file before they do anything.
+
+> **[1:03 · 18s]**
+> One drafts my LinkedIn posts. One finds me 10 prospects a week. One runs my inbox. One pulls my Stripe numbers. One gives me a morning brief before coffee.
+
+> **[1:21 · 9s]**
+> Cost: zero dollars a month.
+> Time on content: two hours a week.
+> Pipeline: full.
+
+> **[1:30 · 5s]**
+> OK here's why I'm telling you this.
+
+> **[1:35 · 14s]**
+> May 2nd and 3rd, 11am Finland time, I'm running a live workshop. 2 hours each day. You build the same thing on your own laptop.
+
+> **[1:49 · 7s]**
+> Day one is your Marketing Machine. Day two is your Sales Machine.
 >
-> If you're tired of being the bottleneck in your own business, click the button below and grab a seat.
+> You don't watch me do it. You do it.
+
+> **[1:56 · 6s]**
+> 49 bucks. 40 seats. Registration closes May 1st.
+
+> **[2:02 · 7s]**
+> If you show up both days and your Brain doesn't sound like you, I send the 49 back. Email me, no form.
+
+> **[2:09 · 2s]**
+> That's it.
+
+> **[2:11 · 8s]**
+> If you're in, comment CLAUDE on this post and I'll send you the link. Or just click the button below.
 >
-> I'll see you May 2nd.
+> See you May 2nd.
 
 ---
 
-## Filming Notes (for Sujal)
+## Word count + timing
+
+- **Words:** 337
+- **At natural pace (150 wpm):** 2:15
+- **With micro-pauses between beats:** 2:12–2:15 final
+- **If you run over 2:20:** you're speaking too slowly OR over-enunciating
+
+---
+
+## Filming Notes (v2 — natural delivery)
+
+The #1 thing that makes v2 work is **permitting imperfection on camera**. A script this natural can't be read like a teleprompter. It has to be said.
+
+### Delivery rules
+
+| Rule | Why |
+|------|-----|
+| **Don't memorize word-for-word** | Memorize the beats. Let specific word choices flex in the moment. |
+| **One take start-to-finish minimum** | Even if you flub mid-way, finish. That take tells you where you lost the thread. |
+| **Keep small imperfections in the edit** | A small "uh" or self-correction reads as human. Clean cuts read as ad. |
+| **Don't rush the openers "OK. Real quick."** | Those are the anchor beats. Land them, then build. |
+| **Slow down on the 3 stat lines (1:21)** | "Zero dollars." _(beat)_ "Two hours." _(beat)_ "Pipeline: full." _(beat)_ |
+| **Smile subtly on "That's it."** | It's a knowing wink. Don't explain the joke. |
+
+### Technical
 
 | Element | Spec |
 |---------|------|
 | Framing | Close, shoulders up, direct to camera |
-| Lighting | Natural, single key light from left, no rim |
-| Background | Clean. White wall OR blurred bookshelf. No brand props. |
-| Audio | Lav mic OR shotgun. Mandatory. No AirPods. |
+| Lighting | Natural, single key from left, no rim |
+| Background | Clean, slight blur. White wall OR bookshelf. |
+| Audio | Lav mic OR shotgun — **mandatory** |
 | Wardrobe | Dark solid top. No logos. No busy patterns. |
-| Takes | Minimum 3 full takes. Edit uses best single take per beat. |
+| Takes | Minimum 5 full takes. Use best single take per section. |
 | B-roll | None. Face-to-camera only. |
-| Lower thirds | Single "Daniel Paul · Purely Personal" on 0:00–0:10. No CTAs overlaid. |
-| Final edit | MP4 1080p H.264. Post to Loom or YouTube unlisted. Give URL to Karthik. |
+| Lower thirds | "Daniel Paul · Purely Personal" on 0:00–0:08 only |
+| Final | MP4 1080p H.264 → Loom/YouTube unlisted → Karthik swaps into landing page |
 
 ---
 
-## Pacing Check
+## On-screen text overlays (keep minimal)
 
-Read the script aloud with a stopwatch. Target pace: **150 words per minute**.
+Script is tight enough that overlays should just anchor numbers. Too many overlays = ad.
 
-- Word count: ~340
-- At 150 wpm: 2:16
-- Add 2–3 natural pauses: **2:14 final**
+| Timestamp | Overlay |
+|-----------|---------|
+| 0:07 | `$187 · Taplio` (strike through at 0:35) |
+| 0:09 | `$99 · Typefully` (strike through at 0:35) |
+| 0:11 | `Shield + Hypefury` (strike through at 0:35) |
+| 0:14 | `$450/mo` _(red)_ |
+| 0:40 | `BUSINESS-BRAIN.md` _(code style)_ |
+| 1:21 | `$0 · 2hr · full pipeline` _(3 lines)_ |
+| 1:35 | `MAY 2–3 · 11am FINLAND · ZOOM` |
+| 1:56 | `$49 · 40 SEATS · CLOSES MAY 1` |
+| 2:11 | `Comment CLAUDE ⬇` |
 
-If over 2:25, Danny is too slow or adding filler. If under 2:00, he's rushing the Belief Breaker. That section needs to *land*.
-
----
-
-## Voice Rules
-
-- No em-dashes
-- No "unlock", "delve", "supercharge", "game-changer", "seamless", "elevate", "leverage"
-- Short sentences. One idea per line.
-- Specifics only. `$200 on tools` not `money on tools`.
-- Direct address. "You" throughout.
-- No hype. No hedging. No "imagine if you could..."
-
----
-
-## Why This Works (the Taki frame)
-
-| Beat | What Taki teaches | How this does it |
-|------|-------------------|------------------|
-| Pattern Interrupt | Name a specific truth the viewer is living | "Shopping for AI tools for a year" feels like surveillance |
-| Pain | Show the consequence they haven't named | Pipeline drying up when they go quiet |
-| Belief Breaker | Flip the frame. Old way → new way. | "Search engine vs. business partner" |
-| Promise | Specific outcome by specific date | "Build both systems from scratch on May 2–3" |
-| Proof | Personal receipts, not client wins | "I spent $200, still wrote posts at midnight" |
-| Offer | Price + scarcity + risk reversal | $49 + 40 seats + full refund |
-| CTA | Single action, future-pacing | "Click below. See you May 2nd." |
-
----
-
-## Short Variant (60s · for DMs + cold emails)
-
-Keep Pattern Interrupt + Belief Breaker + Offer + CTA only. Cut Pain + Proof (those live in body copy).
-
-- Total: ~160 words, ~1:05
-- Works better on cold traffic
-- Long version (2:14) works better on warm traffic
-
-Record both in the same filming session.
+That's 9 overlays across 2:14. Average 15 seconds between overlays — sparse enough to not feel like an ad.
 
 ---
 
 ## Distribution
 
-1. **Loom / Wistia / YouTube unlisted** → swap into `landing-page/index.html` iframe. Karthik handles.
-2. **MP4 download** → Malik embeds in Email #2 (Event Promo Response)
-3. **LinkedIn native upload** → Malik posts Apr 20 as hero content
-4. **Instagram Reel** (90-sec cut) → Sujal edits, Catherine handles IG scheduling
+Once Sujal uploads the final MP4:
+
+1. **Loom or Wistia** → swap into `landing-page/index.html` iframe (Karthik)
+2. **MP4 download** → Malik embeds in Email A2 (Event Promo Response)
+3. **LinkedIn native upload** → Malik posts Apr 27 as hero content with pinned comment: "Comment CLAUDE and I'll send you the link"
+4. **Instagram Reel** (30-sec cut) → Sujal edits, Catherine schedules
+
+---
+
+## Why This Voice Works (the evidence)
+
+Pulled from Apify tweet-scraper on Apr 23 — the top-performing Claude Code posts of the last 60 days.
+
+**The winning pattern is NOT Taki's 7-beat formula.** The winning pattern is:
+
+1. **Open with specifics** (not projections)
+   - ✅ "I just built a Claude Code SEO agent that replaces your $200/mo Ahrefs subscription" — 911 likes
+   - ❌ "You've been shopping for AI tools for a year" — sounds templated
+
+2. **List real tools with real prices**
+   - ✅ "$187 Taplio · 99 Typefully · Shield · Hypefury"
+   - ❌ "You've tried every AI writing tool"
+
+3. **Include one unusual micro-detail**
+   - ✅ "morning brief before coffee" / "the phrases I won't say out loud"
+   - ❌ Generic "writes in your voice" (every AI says this)
+
+4. **Anti-parallel sentence lengths**
+   - ✅ Mix 3-word and 14-word sentences randomly
+   - ❌ "Content in your voice. Every week. Automated." (the AI tricolon)
+
+5. **Casual CTA > imperative CTA**
+   - ✅ "Comment CLAUDE and I'll send you the link"
+   - ❌ "Click the button below and grab a seat"
+
+6. **Odd specific numbers beat round ones**
+   - ✅ "$187 a month" / "8 words I never use" / "2am on a Sunday"
+   - ❌ "$200" / "several words" / "late at night"
+
+Every section in v2 follows at least 3 of these. Every section in v1 broke at least 3.
 
 ---
 
 **Script owner:** Daniel Paul
-**Filming deadline:** Apr 23, 2026
-**Edit deadline:** Apr 24, 2026
-**Live on landing page:** Apr 25, 2026
+**Version:** v2 (Apr 23 · Apify-informed rewrite)
+**Filming deadline:** Apr 25, 2026
+**Live on landing page:** Apr 27, 2026
