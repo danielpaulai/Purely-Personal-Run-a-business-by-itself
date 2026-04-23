@@ -34,9 +34,9 @@ Each script is **30 seconds · ~75 words · 150 wpm delivery · 2–3 cuts**.
 ### The Script (say it exactly)
 
 > **[0:00 · Hook · 6s]**
-> $200 a month on Taplio.
-> $150 on Hypefury.
-> $99 on Typefully.
+> $99 a month on Jasper.
+> $39 on Taplio.
+> $20 on ChatGPT Plus.
 > Until I built my own marketing and sales stack inside Claude.
 
 > **[0:07 · Pivot · 5s]**
@@ -58,9 +58,9 @@ Each script is **30 seconds · ~75 words · 150 wpm delivery · 2–3 cuts**.
 
 | Time | Overlay |
 |------|---------|
-| 0:00 | $200/mo Taplio ❌ |
-| 0:02 | $150/mo Hypefury ❌ |
-| 0:04 | $99/mo Typefully ❌ |
+| 0:00 | $99/mo Jasper ❌ |
+| 0:02 | $39/mo Taplio ❌ |
+| 0:04 | $20/mo ChatGPT Plus ❌ |
 | 0:07 | $0/mo Claude ✅ |
 | 0:12 | MAY 2–3 · LIVE WORKSHOP |
 | 0:21 | $49 · 40 SEATS |

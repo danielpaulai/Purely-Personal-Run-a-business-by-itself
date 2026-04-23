@@ -43,9 +43,9 @@ V1 used Taki's 7-beat formula verbatim and read as AI-generated. The fix isn't t
 > OK. Real quick.
 
 > **[0:04 · 14s]**
-> Last year I was paying 187 a month for Taplio. 99 for Typefully. Plus Shield. Plus Hypefury.
+> Last year I was paying 39 a month for Taplio. 99 for Jasper. Plus ChatGPT. Plus Canva Pro.
 >
-> Somewhere around 450 bucks a month just on tools that were supposed to write my LinkedIn posts.
+> Around 175 bucks a month just on tools that were supposed to write my content.
 
 > **[0:18 · 5s]**
 > And I was still writing half of them at 2am on a Sunday.
@@ -147,10 +147,10 @@ Script is tight enough that overlays should just anchor numbers. Too many overla
 
 | Timestamp | Overlay |
 |-----------|---------|
-| 0:07 | `$187 · Taplio` (strike through at 0:35) |
-| 0:09 | `$99 · Typefully` (strike through at 0:35) |
-| 0:11 | `Shield + Hypefury` (strike through at 0:35) |
-| 0:14 | `$450/mo` _(red)_ |
+| 0:07 | `$39 · Taplio` (strike through at 0:35) |
+| 0:09 | `$99 · Jasper` (strike through at 0:35) |
+| 0:11 | `ChatGPT + Canva Pro` (strike through at 0:35) |
+| 0:14 | `$175/mo` _(red)_ |
 | 0:40 | `BUSINESS-BRAIN.md` _(code style)_ |
 | 1:21 | `$0 · 2hr · full pipeline` _(3 lines)_ |
 | 1:35 | `MAY 2–3 · 11am FINLAND · ZOOM` |
@@ -183,7 +183,7 @@ Pulled from Apify tweet-scraper on Apr 23 — the top-performing Claude Code pos
    - ❌ "You've been shopping for AI tools for a year" — sounds templated
 
 2. **List real tools with real prices**
-   - ✅ "$187 Taplio · 99 Typefully · Shield · Hypefury"
+   - ✅ "$39 Taplio · $99 Jasper · ChatGPT · Canva Pro"
    - ❌ "You've tried every AI writing tool"
 
 3. **Include one unusual micro-detail**

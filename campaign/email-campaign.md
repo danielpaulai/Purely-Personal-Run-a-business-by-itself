@@ -456,7 +456,7 @@ P.S. Which recipe are you running first? Reply and tell me. I read every reply.
 
 Last year I spent $200/month on AI writing tools.
 
-Taplio. Hypefury. Typefully. Shield.
+Taplio. Jasper. ChatGPT Plus. Canva Pro.
 
 I still wrote my best LinkedIn posts at midnight on Sundays.
 
