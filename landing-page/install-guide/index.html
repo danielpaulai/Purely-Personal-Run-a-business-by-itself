@@ -217,6 +217,96 @@ footer{padding:40px 0;background:var(--dark);color:rgba(255,255,255,0.6);margin-
 .foot-inner a{color:var(--pp-red)}
 .foot-legal{margin-top:24px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.1);font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.04em;line-height:1.55}
 .lg-gmail{color:var(--brand-gmail)} .lg-notion{color:var(--brand-notion)} .lg-github{color:var(--brand-github)} .lg-git{color:var(--brand-git)} .lg-google{color:var(--brand-google)} .lg-stripe{color:var(--brand-stripe)} .lg-apify{color:var(--brand-apify)} .lg-anthropic{color:var(--brand-anthropic)} .lg-linkedin{color:var(--brand-linkedin)}
+
+/* ===== 3 CLAUDES PRIMER ===== */
+.claudes-primer{background:var(--card-bg);border:1px solid var(--divider);border-radius:10px;padding:22px 24px;margin:24px 0 28px;box-shadow:0 4px 14px rgba(0,0,0,0.03)}
+.claudes-primer h3{font-family:var(--display);font-size:17px;font-weight:800;margin:0 0 4px;letter-spacing:-0.01em}
+.claudes-primer .lead{font-size:13.5px;color:var(--text-secondary);margin:0 0 16px;line-height:1.5}
+.claudes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.claudes-grid{grid-template-columns:1fr}}
+.claude-card{padding:14px 16px;background:var(--sub-card-bg);border:1px solid var(--divider);border-radius:8px;position:relative}
+.claude-card .cc-lg{width:36px;height:36px;border-radius:8px;background:#fff;border:1px solid var(--divider);display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.claude-card .cc-lg svg{width:22px;height:22px}
+.claude-card h4{font-family:var(--display);font-size:14px;font-weight:800;margin:0 0 4px;letter-spacing:-0.01em}
+.claude-card h4 .tag{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--pp-red);letter-spacing:0.14em;display:block;margin-bottom:3px;text-transform:uppercase}
+.claude-card p{font-size:12.5px;color:var(--text-secondary);margin:0 0 6px;line-height:1.5}
+.claude-card .where{font-family:var(--mono);font-size:10.5px;color:var(--pp-red);font-weight:700;letter-spacing:0.04em;margin-top:8px;display:block}
+
+/* ===== PRE-FLIGHT CHECKLIST ===== */
+.preflight{background:var(--pp-red-whisper);border:1.5px solid var(--pp-red-soft);border-radius:10px;padding:22px 24px;margin:20px 0 28px}
+.preflight h3{font-family:var(--display);font-size:17px;font-weight:800;margin:0 0 4px;letter-spacing:-0.01em;color:var(--pp-red-deep)}
+.preflight .lead{font-size:13.5px;color:var(--text-secondary);margin:0 0 16px;line-height:1.5}
+.preflight-list{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
+@media (max-width:760px){.preflight-list{grid-template-columns:1fr}}
+.preflight-list li{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:var(--card-bg);border:1px solid var(--divider);border-radius:6px;font-size:14px;cursor:pointer;user-select:none;transition:all 150ms}
+.preflight-list li:hover{border-color:var(--pp-red-soft)}
+.preflight-list li.checked{background:#f0fdf4;border-color:var(--success)}
+.preflight-list li.checked .pf-check{background:var(--success);border-color:var(--success);color:#fff}
+.preflight-list li.checked .pf-label{text-decoration:line-through;color:var(--text-muted)}
+.pf-check{flex-shrink:0;width:20px;height:20px;border-radius:5px;border:2px solid var(--divider-strong);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;margin-top:1px;transition:all 150ms}
+.pf-label{flex:1;line-height:1.45}
+.pf-label strong{font-weight:700}
+.preflight-done{margin-top:14px;padding:10px 14px;background:#f0fdf4;border:1px solid var(--success);border-radius:6px;font-size:13px;display:none;color:#166534;font-weight:500}
+.preflight-done.show{display:block}
+
+/* ===== TERMINAL 101 BOX ===== */
+.terminal-101{background:var(--sub-card-bg);border:1px solid var(--divider);border-radius:8px;padding:14px 18px;margin:16px 0 20px;font-size:13.5px;line-height:1.55}
+.terminal-101 strong{color:var(--pp-red);font-weight:700}
+.terminal-101 code{font-family:var(--mono);font-size:12px;background:var(--dark);color:#fff;padding:1px 6px;border-radius:3px}
+.terminal-101 .t101-head{font-family:var(--display);font-size:13px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.terminal-101 .t101-head::before{content:'💡';font-size:15px}
+
+/* ===== COPY BUTTON ON COMMANDS ===== */
+.cmd{padding-right:48px}
+.cmd-copy{position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:5px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.7);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 120ms;font-size:13px;padding:0}
+.cmd-copy:hover{background:rgba(255,255,255,0.15);color:#fff}
+.cmd-copy.ok{background:var(--success);border-color:var(--success);color:#fff}
+.cmd-copy svg{width:13px;height:13px;display:block}
+
+/* ===== STEP COMPLETE CHECKBOX ===== */
+.step-check{flex-shrink:0;width:24px;height:24px;border-radius:6px;border:2px solid var(--divider-strong);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 150ms;background:#fff;margin-right:4px}
+.step-check:hover{border-color:var(--pp-red)}
+.step-check svg{width:14px;height:14px;opacity:0}
+details.step.done>summary .step-check{background:var(--success);border-color:var(--success)}
+details.step.done>summary .step-check svg{opacity:1;color:#fff}
+details.step.done>summary .step-num{opacity:0.55}
+details.step.done>summary .step-title h2{text-decoration:line-through;color:var(--text-muted)}
+
+/* ===== PROGRESS PILL (enhanced) ===== */
+.progress-pill .count{font-family:var(--display);font-weight:800;font-size:14px;color:#fff;letter-spacing:-0.01em;display:block;margin-bottom:4px}
+.progress-pill .count strong{color:var(--pp-red)}
+
+/* ===== END-STATE SUCCESS MOCKUP ===== */
+.success-mockup{margin:32px 0;padding:0;border:1px solid var(--divider);border-radius:12px;overflow:hidden;background:var(--card-bg);box-shadow:0 12px 36px rgba(0,0,0,0.06)}
+.success-mockup-header{padding:20px 24px;background:linear-gradient(135deg,var(--pp-red) 0%,var(--pp-red-deep) 100%);color:#fff}
+.success-mockup-header .tag{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;opacity:0.85;display:block;margin-bottom:4px}
+.success-mockup-header h3{font-family:var(--display);font-size:22px;font-weight:800;margin:0 0 4px;letter-spacing:-0.02em}
+.success-mockup-header p{font-size:13px;opacity:0.85;margin:0;line-height:1.5}
+.success-mockup-body{padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:760px){.success-mockup-body{grid-template-columns:1fr}}
+.sm-card{border:1px solid var(--divider);border-radius:8px;background:var(--sub-card-bg);padding:14px 16px}
+.sm-card .sm-time{font-family:var(--mono);font-size:10px;color:var(--pp-red);letter-spacing:0.15em;font-weight:700;margin-bottom:8px;display:block;text-transform:uppercase}
+.sm-card h4{font-family:var(--display);font-size:14px;font-weight:800;margin:0 0 8px;display:flex;align-items:center;gap:8px}
+.sm-card h4 svg{width:16px;height:16px;flex-shrink:0}
+.sm-card .sm-body{font-size:12.5px;line-height:1.55;color:var(--text-secondary);margin:0 0 8px}
+.sm-card .sm-meta{font-family:var(--mono);font-size:10.5px;color:var(--text-muted);letter-spacing:0.04em;padding-top:8px;border-top:1px dashed var(--divider)}
+.sm-notif{background:#fff;border:1px solid var(--divider);border-radius:6px;padding:10px 12px;font-size:12px;margin:6px 0 2px;display:flex;gap:10px;align-items:flex-start}
+.sm-notif .sm-logo{width:26px;height:26px;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sm-notif .sm-logo svg{width:14px;height:14px}
+.sm-notif-text .sm-sub{font-weight:700;font-size:12.5px;color:var(--text-primary)}
+.sm-notif-text .sm-snippet{font-size:11.5px;color:var(--text-secondary);margin-top:2px;line-height:1.45}
+
+/* ===== EMPTY-VS-EXISTING CONFIG TABS ===== */
+.config-scenario{margin:14px 0 18px;border:1px solid var(--divider);border-radius:8px;overflow:hidden;background:var(--card-bg)}
+.config-scenario-tabs{display:flex;background:var(--sub-card-bg);border-bottom:1px solid var(--divider)}
+.config-scenario-tab{flex:1;padding:11px 16px;font-family:var(--display);font-weight:700;font-size:13px;color:var(--text-secondary);cursor:pointer;border-right:1px solid var(--divider);text-align:center;background:transparent;border-top:0;border-left:0;border-bottom:0;transition:all 150ms}
+.config-scenario-tab:last-child{border-right:0}
+.config-scenario-tab.active{background:var(--card-bg);color:var(--pp-red);box-shadow:inset 0 -3px 0 var(--pp-red)}
+.config-scenario-tab:hover:not(.active){color:var(--text-primary);background:rgba(233,13,65,0.03)}
+.config-scenario-panel{padding:18px 20px;display:none}
+.config-scenario-panel.active{display:block}
+.config-scenario-panel p:first-child{margin-top:0}
+.config-scenario-panel h5{font-family:var(--display);font-size:13px;font-weight:800;color:var(--text-primary);margin:12px 0 6px;letter-spacing:-0.01em}
 </style>
 </head>
 <body>
@@ -281,15 +371,62 @@ footer{padding:40px 0;background:var(--dark);color:rgba(255,255,255,0.6);margin-
 <section class="intro" id="top">
   <div class="intro-eyebrow">◆ Pre-workshop · Complete before Day 1</div>
   <h1>Install the toolkit <em>once.</em><br>Never touch it again.</h1>
-  <p class="lead">17 steps. Roughly 60 to 75 minutes. Click any step to expand. When you're done, Claude Code is wired, 5 connectors are live, Apify is scraping, and your project folder is ready.</p>
+  <p class="lead">17 steps. Roughly 60 to 75 minutes. Click any step to expand, check it off, come back later if you need to. Your progress saves automatically.</p>
   <div class="intro-meta">
     <div class="meta-pill">⏱ <strong>60–75 min</strong></div>
     <div class="meta-pill">💻 Mac <strong>+</strong> Windows</div>
     <div class="meta-pill">💳 Claude Pro <strong>$20/mo</strong></div>
     <div class="meta-pill">🆓 Everything else free</div>
   </div>
+
+  <!-- ===== 3 CLAUDES PRIMER ===== -->
+  <div class="claudes-primer">
+    <h3>⚠ First, the 3 Claudes (they are NOT the same thing)</h3>
+    <p class="lead">You'll touch all three during this setup. Non-technical folks confuse them. Read this before Step 1.</p>
+    <div class="claudes-grid">
+      <div class="claude-card">
+        <div class="cc-lg lg-anthropic"><svg><use href="#icon-anthropic"/></svg></div>
+        <h4><span class="tag">Steps 1, 4–6, 14, 16</span>Claude Code</h4>
+        <p>The command-line tool that runs inside your Terminal. This is where you type <code>/marketing-engine</code> and watch posts appear.</p>
+        <span class="where">Where: Your Terminal</span>
+      </div>
+      <div class="claude-card">
+        <div class="cc-lg lg-anthropic"><svg><use href="#icon-anthropic"/></svg></div>
+        <h4><span class="tag">Step 13</span>Claude Desktop</h4>
+        <p>The Mac or Windows app where routines actually run in the background. Holds the config file that connects Apify to Claude.</p>
+        <span class="where">Where: Your Mac/Windows app</span>
+      </div>
+      <div class="claude-card">
+        <div class="cc-lg lg-anthropic"><svg><use href="#icon-anthropic"/></svg></div>
+        <h4><span class="tag">Steps 1, 7–11</span>claude.ai</h4>
+        <p>The website in your browser. Where you sign up, pay for Pro, and connect Gmail / Notion / Drive / Calendar / Stripe.</p>
+        <span class="where">Where: Your browser</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PRE-FLIGHT CHECKLIST ===== -->
+  <div class="preflight">
+    <h3>Before you start · 6 things to have ready</h3>
+    <p class="lead">Tap each item to check it off. State saves on your device. Don't start Step 1 until all 6 are green.</p>
+    <ul class="preflight-list" id="preflight-list">
+      <li data-pf="computer"><span class="pf-check"></span><span class="pf-label"><strong>Mac or Windows computer</strong> (not iPad or phone)</span></li>
+      <li data-pf="email"><span class="pf-check"></span><span class="pf-label"><strong>An email address</strong> you can log into right now</span></li>
+      <li data-pf="card"><span class="pf-check"></span><span class="pf-label"><strong>Credit card</strong> ($20 for Claude Pro, only one-time)</span></li>
+      <li data-pf="time"><span class="pf-check"></span><span class="pf-label"><strong>60–75 min uninterrupted</strong> (or plan to pause mid-way)</span></li>
+      <li data-pf="notes"><span class="pf-check"></span><span class="pf-label"><strong>Notes app or password manager open</strong> (for the Apify token)</span></li>
+      <li data-pf="email-open"><span class="pf-check"></span><span class="pf-label"><strong>Your registration email open</strong> (for Step 15)</span></li>
+    </ul>
+    <div class="preflight-done" id="preflight-done">✓ You're ready. Click Step 1 below to start.</div>
+  </div>
+
+  <!-- ===== TERMINAL 101 ===== -->
+  <div class="terminal-101">
+    <div class="t101-head">How to read Terminal commands (if this is new)</div>
+    Lines inside the dark boxes below are commands. <strong>Copy the whole line, paste into your terminal, press Enter.</strong> Click the <code>📋</code> icon on any command to copy it with one click. You're safe. Every command here has been run by hundreds of people. Typos don't break your computer; just re-run the command.
+  </div>
+
   <div class="callout warn"><strong>Stuck at any step?</strong> Post in the workshop Slack channel (link in your registration email). Danny or a teammate will unblock you within 30 minutes during Finland business hours.</div>
-  <div class="callout info"><strong>Click a step to expand.</strong> Each one has a short description, Mac + Windows commands, a UI illustration of what you'll see, a verify box, and troubleshooting.</div>
 </section>
 
 <details class="step" id="s1" open>
@@ -684,8 +821,18 @@ cd Purely-Personal-Run-a-business-by-itself</div>
       </div>
     </div>
     <h3>13b · Paste this config</h3>
-    <p>Replace <code>YOUR_TOKEN_HERE</code> with the token from Step 12.</p>
-    <div class="cmd"><span class="cmd-label">claude_desktop_config.json</span>{
+    <p>First, check if the file is already empty or already has content. Pick the right tab:</p>
+
+    <div class="config-scenario">
+      <div class="config-scenario-tabs" role="tablist">
+        <button class="config-scenario-tab active" data-scenario="empty" role="tab">📄 My file is empty</button>
+        <button class="config-scenario-tab" data-scenario="existing" role="tab">📝 My file already has content</button>
+      </div>
+
+      <!-- SCENARIO A: EMPTY FILE -->
+      <div class="config-scenario-panel active" data-scenario="empty">
+        <p><strong>Easy case.</strong> Paste this whole block into the file. Replace <code>YOUR_TOKEN_HERE</code> with your Apify token. Save.</p>
+        <div class="cmd"><span class="cmd-label">claude_desktop_config.json · full contents</span>{
   "mcpServers": {
     "apify": {
       "command": "npx",
@@ -699,18 +846,82 @@ cd Purely-Personal-Run-a-business-by-itself</div>
     }
   }
 }</div>
-    <div class="mockup">
-      <div class="mockup-caption"><span class="dot-r"></span><span class="title">TextEdit · claude_desktop_config.json</span><span class="badge">Mac</span></div>
-      <div class="texteditor">
-        <span class="line">{</span>
-        <span class="line">  <span class="k">"mcpServers"</span>: {</span>
-        <span class="line">    <span class="k">"apify"</span>: {</span>
-        <span class="line">      <span class="k">"command"</span>: <span class="s">"npx"</span>,</span>
-        <span class="line">      <span class="k">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"@apify/actors-mcp-server"</span>, ...],</span>
-        <span class="line">      <span class="k">"env"</span>: { <span class="k">"APIFY_TOKEN"</span>: <span class="s"><span class="h">"apify_api_Xxx...YOUR_TOKEN"</span></span> }</span>
-        <span class="line">    }</span>
-        <span class="line">  }</span>
-        <span class="line">}</span>
+        <div class="mockup">
+          <div class="mockup-caption"><span class="dot-r"></span><span class="title">TextEdit · claude_desktop_config.json (empty file)</span><span class="badge">Before: blank</span></div>
+          <div class="texteditor">
+            <span class="line" style="color:var(--text-muted);font-style:italic">(empty file)</span>
+          </div>
+        </div>
+        <div class="mockup">
+          <div class="mockup-caption"><span class="dot-r"></span><span class="title">TextEdit · claude_desktop_config.json</span><span class="badge">After: pasted</span></div>
+          <div class="texteditor">
+            <span class="line">{</span>
+            <span class="line">  <span class="k">"mcpServers"</span>: {</span>
+            <span class="line">    <span class="k">"apify"</span>: {</span>
+            <span class="line">      <span class="k">"command"</span>: <span class="s">"npx"</span>,</span>
+            <span class="line">      <span class="k">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"@apify/actors-mcp-server"</span>, ...],</span>
+            <span class="line">      <span class="k">"env"</span>: { <span class="k">"APIFY_TOKEN"</span>: <span class="s"><span class="h">"apify_api_Xxx..."</span></span> }</span>
+            <span class="line">    }</span>
+            <span class="line">  }</span>
+            <span class="line">}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCENARIO B: EXISTING FILE -->
+      <div class="config-scenario-panel" data-scenario="existing">
+        <p><strong>You already have other MCP servers configured.</strong> Don't replace the file. Instead, add <code>"apify"</code> as a new entry inside the existing <code>"mcpServers"</code> block.</p>
+
+        <h5>Before (your current file)</h5>
+        <div class="mockup">
+          <div class="mockup-caption"><span class="dot-r"></span><span class="title">Existing file (e.g. with Linear already configured)</span><span class="badge">Before</span></div>
+          <div class="texteditor">
+            <span class="line">{</span>
+            <span class="line">  <span class="k">"mcpServers"</span>: {</span>
+            <span class="line">    <span class="k">"linear"</span>: {</span>
+            <span class="line">      <span class="k">"command"</span>: <span class="s">"npx"</span>,</span>
+            <span class="line">      <span class="k">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"@linear/mcp-server"</span>],</span>
+            <span class="line">      <span class="k">"env"</span>: { <span class="k">"LINEAR_API_KEY"</span>: <span class="s">"lin_api_..."</span> }</span>
+            <span class="line">    }</span>
+            <span class="line">  }</span>
+            <span class="line">}</span>
+          </div>
+        </div>
+
+        <h5>After · add Apify as a sibling entry (note the comma after the <code>}</code> that closes linear)</h5>
+        <div class="mockup">
+          <div class="mockup-caption"><span class="dot-r"></span><span class="title">Merged file with Apify added</span><span class="badge">After</span></div>
+          <div class="texteditor">
+            <span class="line">{</span>
+            <span class="line">  <span class="k">"mcpServers"</span>: {</span>
+            <span class="line">    <span class="k">"linear"</span>: {</span>
+            <span class="line">      <span class="k">"command"</span>: <span class="s">"npx"</span>,</span>
+            <span class="line">      <span class="k">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"@linear/mcp-server"</span>],</span>
+            <span class="line">      <span class="k">"env"</span>: { <span class="k">"LINEAR_API_KEY"</span>: <span class="s">"lin_api_..."</span> }</span>
+            <span class="line">    }<span class="h">,</span></span>
+            <span class="line">    <span class="h"><span class="k">"apify"</span>: {</span></span>
+            <span class="line">      <span class="h"><span class="k">"command"</span>: <span class="s">"npx"</span>,</span></span>
+            <span class="line">      <span class="h"><span class="k">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"@apify/actors-mcp-server"</span>, ...],</span></span>
+            <span class="line">      <span class="h"><span class="k">"env"</span>: { <span class="k">"APIFY_TOKEN"</span>: <span class="s">"YOUR_TOKEN_HERE"</span> }</span></span>
+            <span class="line">    <span class="h">}</span></span>
+            <span class="line">  }</span>
+            <span class="line">}</span>
+          </div>
+        </div>
+
+        <p>Paste this block as your new <code>"apify"</code> entry (highlighted yellow in the "after" mockup):</p>
+        <div class="cmd"><span class="cmd-label">Add inside existing mcpServers</span>"apify": {
+  "command": "npx",
+  "args": [
+    "-y",
+    "@apify/actors-mcp-server",
+    "--actors",
+    "apify/linkedin-profile-scraper,apify/linkedin-company-scraper,apify/google-search-scraper,apify/website-content-crawler,trudax/reddit-scraper-lite"
+  ],
+  "env": { "APIFY_TOKEN": <span class="h">"YOUR_TOKEN_HERE"</span> }
+}</div>
+
+        <div class="callout warn"><strong>Two things that break this step:</strong> (1) forgetting the comma after the <code>}</code> that closes the previous server, (2) not paying attention to JSON brackets. If Claude Desktop won't load after restart, you have a JSON error. Paste your file into <a href="https://jsonlint.com" target="_blank">jsonlint.com</a> to find it.</div>
       </div>
     </div>
     <h3>13c · Save + fully quit Claude Desktop</h3>
@@ -835,7 +1046,79 @@ touch BUSINESS-BRAIN.md</div></div>
 </details>
 
 <div class="callout ok" style="margin-top:32px">
-  <strong>✓ You're ready for Day 1.</strong> Claude Pro + CLI. Plugin installed. 8 slash commands verified. 4 OAuth connectors (+ Stripe if you use it). Apify MCP wired. LinkedIn URL submitted. Empty BUSINESS-BRAIN.md ready. See you Saturday May 2 at 11am Finland. Camera on. Water nearby. Phone on silent.
+  <strong>✓ You're ready for Day 1.</strong> Claude Pro + CLI. Plugin installed. 8 slash commands verified. 4 OAuth connectors (+ Stripe if you use it). Apify MCP wired. LinkedIn URL submitted. Empty BUSINESS-BRAIN.md ready.
+</div>
+
+<!-- ===== END-STATE SUCCESS MOCKUP ===== -->
+<div class="success-mockup">
+  <div class="success-mockup-header">
+    <span class="tag">◆ The Monday after Day 1</span>
+    <h3>This is what your toolkit does for you, every week, automatically</h3>
+    <p>Sunday night you went to bed. Monday at 7am your routines fire. By the time you sit down with coffee, this is already on your screen.</p>
+  </div>
+  <div class="success-mockup-body">
+
+    <div class="sm-card">
+      <span class="sm-time">Monday · 7:00am</span>
+      <h4><svg class="lg-gmail"><use href="#icon-gmail"/></svg>Gmail · new draft</h4>
+      <div class="sm-body">Monday Content Drop ran. Read your inbox for audience questions. Drafted 3 LinkedIn posts in your voice.</div>
+      <div class="sm-notif">
+        <div class="sm-logo lg-gmail"><svg><use href="#icon-gmail"/></svg></div>
+        <div class="sm-notif-text">
+          <div class="sm-sub">3 LinkedIn posts ready for Monday</div>
+          <div class="sm-snippet">"Last week I stopped writing cold DMs. Here's what I did instead..."</div>
+        </div>
+      </div>
+      <div class="sm-meta">Fired by Monday Content Drop · 00:04 runtime</div>
+    </div>
+
+    <div class="sm-card">
+      <span class="sm-time">Monday · 7:02am</span>
+      <h4><svg style="color:#000"><use href="#icon-notion"/></svg>Notion · Content Calendar</h4>
+      <div class="sm-body">Same 3 posts saved to your content calendar. Newsletter idea queued for Wednesday's drop.</div>
+      <div class="sm-notif">
+        <div class="sm-logo" style="background:#000;color:#fff"><svg><use href="#icon-notion"/></svg></div>
+        <div class="sm-notif-text">
+          <div class="sm-sub">Content Calendar · May 4 week</div>
+          <div class="sm-snippet">3 posts queued · 1 newsletter · voice: matches ✓</div>
+        </div>
+      </div>
+      <div class="sm-meta">Monday Content Drop · scheduled weekly</div>
+    </div>
+
+    <div class="sm-card">
+      <span class="sm-time">Tuesday · 8:00am</span>
+      <h4><svg class="lg-apify"><use href="#icon-apify"/></svg>Notion · CRM · 10 new leads</h4>
+      <div class="sm-body">Tuesday Lead Research ran. Apify scraped 10 prospects matching your ICP. BANT-scored. Top 3 got 3-step outreach drafts.</div>
+      <div class="sm-notif">
+        <div class="sm-logo" style="background:#000;color:#fff"><svg><use href="#icon-notion"/></svg></div>
+        <div class="sm-notif-text">
+          <div class="sm-sub">10 new CRM entries · 3 outreach drafted</div>
+          <div class="sm-snippet">Sarah Chen · Founder, TechFlow · BANT 87 · sequence ready</div>
+        </div>
+      </div>
+      <div class="sm-meta">Tuesday Lead Research · runs weekly</div>
+    </div>
+
+    <div class="sm-card">
+      <span class="sm-time">Thursday · 7:00am</span>
+      <h4><svg class="lg-google"><use href="#icon-gcalendar"/></svg>Gmail · meeting briefs</h4>
+      <div class="sm-body">Calendar showed 2 external meetings today. Apify scraped each attendee on LinkedIn. 3-min brief + 2 sharp questions per person, saved to Gmail drafts.</div>
+      <div class="sm-notif">
+        <div class="sm-logo lg-gmail"><svg><use href="#icon-gmail"/></svg></div>
+        <div class="sm-notif-text">
+          <div class="sm-sub">2 meeting briefs saved to Drafts</div>
+          <div class="sm-snippet">10am: Alex at Ramp · prep brief ready · 2 questions</div>
+        </div>
+      </div>
+      <div class="sm-meta">Thursday Meeting Prep · fires weekdays</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="callout ok" style="margin-top:24px">
+  <strong>See you Saturday May 2 at 11am Finland.</strong> Camera on. Water nearby. Phone on silent. If anything above is unclear, reply to the registration email. Danny reads every one.
 </div>
 
 </main>
@@ -851,28 +1134,155 @@ touch BUSINESS-BRAIN.md</div></div>
 </footer>
 
 <script>
-const steps = document.querySelectorAll('details.step');
-const fill = document.getElementById('progress-fill');
-function updateProgress(){
-  const opened = Array.from(steps).filter(s => s.open).length;
-  const pct = Math.round(opened / steps.length * 100);
-  if(fill) fill.style.width = pct + '%';
-}
-steps.forEach(s => s.addEventListener('toggle', updateProgress));
-updateProgress();
+(function(){
+  const STORAGE_KEY = 'pp-install-guide-v2';
+  const state = Object.assign({preflight:{}, steps:{}}, JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'));
+  const save = () => localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 
-function openFromHash(){
-  const hash = location.hash;
-  if(!hash) return;
-  const el = document.querySelector(hash);
-  if(el && el.tagName === 'DETAILS'){
-    el.open = true;
-    el.scrollIntoView({behavior:'smooth', block:'start'});
-    updateProgress();
+  /* ===== PRE-FLIGHT CHECKLIST ===== */
+  const pfList = document.getElementById('preflight-list');
+  const pfDone = document.getElementById('preflight-done');
+  function renderPreflight(){
+    if(!pfList) return;
+    let doneCount = 0;
+    pfList.querySelectorAll('li[data-pf]').forEach(li => {
+      const key = li.dataset.pf;
+      if(state.preflight[key]){
+        li.classList.add('checked');
+        li.querySelector('.pf-check').innerHTML = '✓';
+        doneCount++;
+      } else {
+        li.classList.remove('checked');
+        li.querySelector('.pf-check').innerHTML = '';
+      }
+    });
+    if(pfDone) pfDone.classList.toggle('show', doneCount === pfList.querySelectorAll('li').length);
   }
-}
-window.addEventListener('hashchange', openFromHash);
-openFromHash();
+  if(pfList){
+    pfList.addEventListener('click', e => {
+      const li = e.target.closest('li[data-pf]');
+      if(!li) return;
+      state.preflight[li.dataset.pf] = !state.preflight[li.dataset.pf];
+      save();
+      renderPreflight();
+    });
+    renderPreflight();
+  }
+
+  /* ===== COPY BUTTONS ON ALL .cmd BLOCKS ===== */
+  const copySvg = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>';
+  const okSvg = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+  document.querySelectorAll('.cmd').forEach(cmd => {
+    if(cmd.querySelector('.cmd-copy')) return;
+    const btn = document.createElement('button');
+    btn.className = 'cmd-copy';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', 'Copy command');
+    btn.innerHTML = copySvg;
+    btn.addEventListener('click', async e => {
+      e.preventDefault();
+      e.stopPropagation();
+      /* Extract plain text (strip the label + any highlight spans) */
+      const clone = cmd.cloneNode(true);
+      clone.querySelectorAll('.cmd-label, .cmd-copy').forEach(el => el.remove());
+      const text = clone.innerText.trim();
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.innerHTML = okSvg;
+        btn.classList.add('ok');
+        setTimeout(() => { btn.innerHTML = copySvg; btn.classList.remove('ok'); }, 1800);
+      } catch(err){
+        console.error('Clipboard copy failed', err);
+      }
+    });
+    cmd.appendChild(btn);
+  });
+
+  /* ===== STEP CHECKBOXES + PROGRESS (persistent) ===== */
+  const steps = document.querySelectorAll('details.step');
+  const fill = document.getElementById('progress-fill');
+  const progressPill = document.querySelector('.progress-pill');
+
+  /* Inject a checkbox at the start of every summary */
+  const checkSvg = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+  steps.forEach(det => {
+    const id = det.id;
+    if(!id) return;
+    const summary = det.querySelector('summary');
+    if(!summary || summary.querySelector('.step-check')) return;
+    const chk = document.createElement('span');
+    chk.className = 'step-check';
+    chk.setAttribute('role', 'checkbox');
+    chk.setAttribute('tabindex', '0');
+    chk.setAttribute('aria-label', 'Mark step complete');
+    chk.innerHTML = checkSvg;
+    chk.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      state.steps[id] = !state.steps[id];
+      save();
+      applyStepState();
+    });
+    chk.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        chk.click();
+      }
+    });
+    summary.insertBefore(chk, summary.firstChild);
+  });
+
+  function applyStepState(){
+    let doneCount = 0;
+    steps.forEach(det => {
+      const done = !!state.steps[det.id];
+      det.classList.toggle('done', done);
+      if(done) doneCount++;
+    });
+    const pct = Math.round(doneCount / steps.length * 100);
+    if(fill) fill.style.width = pct + '%';
+    if(progressPill){
+      /* Replace the first line of progress pill text */
+      let countEl = progressPill.querySelector('.count');
+      if(!countEl){
+        countEl = document.createElement('span');
+        countEl.className = 'count';
+        progressPill.insertBefore(countEl, progressPill.firstChild);
+      }
+      countEl.innerHTML = '<strong>' + doneCount + '</strong> of 17 done · ' + pct + '%';
+    }
+  }
+  applyStepState();
+
+  /* ===== AUTO-OPEN STEP FROM HASH ===== */
+  function openFromHash(){
+    const hash = location.hash;
+    if(!hash) return;
+    const el = document.querySelector(hash);
+    if(el && el.tagName === 'DETAILS'){
+      el.open = true;
+      el.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  }
+  window.addEventListener('hashchange', openFromHash);
+  openFromHash();
+
+  /* ===== EMPTY-VS-EXISTING CONFIG TABS ===== */
+  document.querySelectorAll('.config-scenario').forEach(scope => {
+    const tabs = scope.querySelectorAll('.config-scenario-tab');
+    const panels = scope.querySelectorAll('.config-scenario-panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.scenario;
+        tabs.forEach(t => t.classList.toggle('active', t === tab));
+        panels.forEach(p => p.classList.toggle('active', p.dataset.scenario === target));
+      });
+    });
+  });
+
+  /* ===== CHECKLIST RESET CONTROL (dev/debug) ===== */
+  window.ppResetGuide = () => { localStorage.removeItem(STORAGE_KEY); location.reload(); };
+})();
 </script>
 </body>
 </html>
