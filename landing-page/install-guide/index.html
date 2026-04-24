@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Purely Personal · Installation Guide · 17 Steps · Mac + Windows</title>
+<meta name="description" content="Step-by-step installation guide with UI illustrations for Mac and Windows. Complete all 17 steps before Day 1 of the Purely Personal workshop. 60-75 minutes.">
+<meta property="og:title" content="Purely Personal · Installation Guide">
+<meta property="og:description" content="Install Claude Code, 5 connectors, and Apify MCP in 60-75 minutes. Mac and Windows. Collapsible steps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Rethink+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page-bg:#faf8f4; --card-bg:#ffffff; --sub-card-bg:#fbf9f6;
+  --divider:#e8e2d8; --divider-strong:#d0cdc8;
+  --text-primary:#1a1a1a; --text-secondary:#6b6b6b; --text-muted:#a8a39b;
+  --pp-red:#e90d41; --pp-red-deep:#c70a38; --pp-red-soft:#fce8ed; --pp-red-whisper:#fdf2f5;
+  --dark:#0f0f10; --dark-card:#1a1a1d;
+  --mac-blue:#007aff; --win-blue:#0078d4;
+  --success:#22c55e; --warn:#eab308;
+  --brand-gmail:#ea4335; --brand-google:#4285f4;
+  --brand-notion:#000; --brand-github:#171515; --brand-git:#f05033;
+  --brand-stripe:#635bff; --brand-apify:#97D700; --brand-linkedin:#0A66C2;
+  --brand-anthropic:#D4A27F;
+  --display:'Rethink Sans','Inter',-apple-system,sans-serif;
+  --body:'Inter',-apple-system,sans-serif;
+  --mono:'JetBrains Mono','SF Mono',Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;scroll-behavior:smooth}
+body{background:var(--page-bg);color:var(--text-primary);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--pp-red);text-decoration:none;border-bottom:1px solid transparent;transition:border-color 120ms}
+a:hover{border-color:var(--pp-red)}
+.layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+@media (max-width:960px){.layout{grid-template-columns:1fr}}
+.sidebar{background:var(--dark);color:#fff;padding:28px 22px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.sidebar-brand{display:flex;align-items:center;gap:10px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.sidebar-brand .dot{width:28px;height:28px;background:var(--pp-red);border-radius:5px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:12px;font-family:var(--display)}
+.sidebar-brand .name{font-family:var(--display);font-weight:800;font-size:15px}
+.sidebar-brand .sub{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:0.08em}
+.progress-pill{margin:0 0 18px;padding:10px 12px;background:rgba(255,255,255,0.06);border-radius:6px;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;color:rgba(255,255,255,0.7)}
+.progress-pill strong{color:var(--pp-red);font-weight:700}
+.progress-bar{margin-top:6px;height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden}
+.progress-bar .fill{display:block;height:100%;width:0%;background:var(--pp-red);transition:width 220ms}
+.sidebar-title{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--pp-red);letter-spacing:0.2em;text-transform:uppercase;margin:16px 0 8px}
+.sidebar-title:first-of-type{margin-top:0}
+.step-list{list-style:none;margin:0 0 16px;padding:0}
+.step-list li{margin-bottom:1px}
+.step-list a{display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:4px;color:rgba(255,255,255,0.7);font-size:13px;font-weight:500;border:0;line-height:1.35}
+.step-list a:hover{background:rgba(255,255,255,0.06);color:#fff}
+.step-list .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:999px;background:rgba(255,255,255,0.1);font-family:var(--mono);font-size:10px;font-weight:700;flex-shrink:0}
+.sidebar-cta{display:block;margin-top:20px;padding:12px 16px;background:var(--pp-red);color:#fff!important;border-radius:5px;font-family:var(--display);font-weight:800;font-size:13px;text-align:center;border:0}
+.sidebar-cta:hover{background:var(--pp-red-deep)}
+@media (max-width:960px){.sidebar{position:static;height:auto;padding:22px}}
+main{padding:48px 56px 80px;max-width:940px}
+@media (max-width:960px){main{padding:28px 22px 56px}}
+.intro-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--pp-red);background:var(--pp-red-soft);padding:6px 14px;border-radius:3px;margin-bottom:18px}
+.intro h1{font-family:var(--display);font-size:44px;font-weight:800;line-height:1.05;letter-spacing:-0.025em;margin:0 0 14px}
+.intro h1 em{font-style:normal;color:var(--pp-red)}
+.intro p.lead{font-size:18px;line-height:1.55;color:var(--text-secondary);margin:0 0 20px;max-width:720px}
+.intro-meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 28px}
+.meta-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:var(--card-bg);border:1px solid var(--divider);border-radius:5px;font-size:13px;font-weight:500}
+.meta-pill strong{color:var(--pp-red);font-weight:700}
+.callout{padding:16px 20px;border-radius:6px;margin:20px 0;font-size:14.5px;line-height:1.55}
+.callout.warn{background:#fef3c7;border-left:4px solid var(--warn)}
+.callout.danger{background:var(--pp-red-whisper);border-left:4px solid var(--pp-red)}
+.callout.info{background:#eff6ff;border-left:4px solid var(--mac-blue)}
+.callout.ok{background:#f0fdf4;border-left:4px solid var(--success)}
+.callout strong{font-weight:700}
+.callout code{font-family:var(--mono);font-size:13px;background:rgba(0,0,0,0.05);padding:1px 5px;border-radius:3px}
+details.step{margin:14px 0;border:1px solid var(--divider);border-radius:10px;background:var(--card-bg);overflow:hidden;scroll-margin-top:20px;transition:box-shadow 180ms}
+details.step[open]{box-shadow:0 8px 28px rgba(0,0,0,0.06),0 2px 6px rgba(233,13,65,0.06)}
+details.step summary{padding:18px 22px;cursor:pointer;display:flex;align-items:center;gap:16px;list-style:none;user-select:none}
+details.step summary::-webkit-details-marker{display:none}
+details.step summary:hover{background:var(--sub-card-bg)}
+.step-num{flex-shrink:0;width:42px;height:42px;border-radius:10px;background:var(--pp-red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:18px;box-shadow:0 3px 10px rgba(233,13,65,0.25)}
+.step-logo{flex-shrink:0;width:38px;height:38px;border-radius:8px;background:var(--card-bg);border:1px solid var(--divider);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.step-logo svg{width:22px;height:22px;display:block}
+.step-title{flex:1;min-width:0}
+.step-title .tag{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--pp-red);letter-spacing:0.18em;text-transform:uppercase;display:block;margin-bottom:2px}
+.step-title h2{font-family:var(--display);font-size:19px;font-weight:800;margin:0 0 2px;letter-spacing:-0.015em;line-height:1.2}
+.step-title .hint{font-size:13px;color:var(--text-muted);font-family:var(--mono);letter-spacing:0.02em}
+.step-chevron{flex-shrink:0;width:28px;height:28px;border-radius:5px;background:var(--sub-card-bg);display:flex;align-items:center;justify-content:center;color:var(--pp-red);font-family:var(--display);font-weight:800;font-size:18px;transition:transform 200ms}
+details.step[open] .step-chevron{transform:rotate(45deg)}
+.step-body{padding:4px 22px 24px;border-top:1px solid var(--divider);margin-top:2px;font-size:15px;line-height:1.65}
+.step-body p{margin:12px 0}
+.step-body p:first-child{margin-top:16px}
+.step-body ol,.step-body ul{margin:12px 0;padding-left:20px}
+.step-body li{margin-bottom:6px}
+.step-body strong{font-weight:700}
+.step-body h3{font-family:var(--display);font-size:15px;font-weight:800;margin:20px 0 8px;letter-spacing:-0.01em}
+.cmd{position:relative;background:var(--dark);color:#fff;padding:16px 18px;border-radius:6px;font-family:var(--mono);font-size:13px;line-height:1.55;margin:12px 0;white-space:pre-wrap;word-break:break-all}
+.cmd-label{position:absolute;top:-9px;left:12px;padding:2px 9px;background:var(--pp-red);color:#fff;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.15em;border-radius:3px;text-transform:uppercase}
+.cmd .h{background:rgba(233,13,65,0.3);padding:1px 4px;border-radius:2px}
+.os-tabs{border:1px solid var(--divider);border-radius:8px;overflow:hidden;margin:14px 0 18px;background:var(--card-bg)}
+.os-tab-header{display:flex;background:var(--sub-card-bg);border-bottom:1px solid var(--divider)}
+.os-tab-label{flex:1;padding:11px 16px;font-family:var(--display);font-weight:700;font-size:13px;display:flex;align-items:center;gap:8px;border-right:1px solid var(--divider)}
+.os-tab-label:last-child{border-right:0}
+.os-tab-label.mac{color:var(--mac-blue)}
+.os-tab-label.win{color:var(--win-blue)}
+.os-tab-label::before{content:'';width:10px;height:10px;border-radius:999px;background:currentColor}
+.os-tab-body{display:grid;grid-template-columns:1fr 1fr}
+.os-tab-body>div{padding:16px 18px;border-right:1px solid var(--divider)}
+.os-tab-body>div:last-child{border-right:0}
+@media (max-width:720px){.os-tab-header{flex-direction:column}.os-tab-body{grid-template-columns:1fr}.os-tab-body>div{border-right:0;border-bottom:1px solid var(--divider)}.os-tab-body>div:last-child{border-bottom:0}}
+.mockup{margin:16px 0;border-radius:10px;overflow:hidden;border:1px solid var(--divider);background:#fff;box-shadow:0 8px 24px rgba(0,0,0,0.06)}
+.mockup-caption{padding:10px 14px;background:var(--sub-card-bg);border-bottom:1px solid var(--divider);font-family:var(--mono);font-size:11px;color:var(--text-secondary);letter-spacing:0.04em;display:flex;align-items:center;gap:10px}
+.mockup-caption .dot-r{width:10px;height:10px;border-radius:999px;background:#ff5f57;display:inline-block;box-shadow:16px 0 #febc2e,32px 0 #28c840}
+.mockup-caption .title{flex:1;text-align:center;color:var(--text-primary);font-weight:500}
+.mockup-caption .badge{font-weight:700;color:var(--pp-red)}
+.mockup-dark{background:var(--dark);color:#fff}
+.mockup-dark .mockup-caption{background:#1a1a1d;border-bottom-color:#2a2a2d;color:rgba(255,255,255,0.6)}
+.mockup-dark .mockup-caption .title{color:rgba(255,255,255,0.9)}
+.terminal{font-family:var(--mono);font-size:12.5px;line-height:1.55;padding:14px 16px;color:#d4d4d4}
+.terminal .prompt{color:#6ee7b7}
+.terminal .path{color:#60a5fa}
+.terminal .out{color:#a8a39b;display:block}
+.terminal .hl{color:var(--pp-red);font-weight:700}
+.terminal .success{color:#22c55e}
+.terminal .cursor::after{content:'_';animation:blink 1s infinite;color:#fff}
+@keyframes blink{50%{opacity:0}}
+.claude-connectors{background:#1a1a1d;color:#fff;min-height:340px;padding:18px 20px;font-size:13px}
+.claude-connectors .sidebar-mini{float:left;width:120px;margin-right:20px}
+.claude-connectors .sidebar-mini a{display:block;padding:6px 10px;color:rgba(255,255,255,0.7);border-radius:4px;font-size:12px;font-weight:500;margin-bottom:2px;border:0}
+.claude-connectors .sidebar-mini a.active{background:rgba(255,255,255,0.08);color:#fff}
+.claude-connectors .cc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-left:140px}
+.claude-connectors h3{font-family:var(--display);font-size:18px;margin:0;color:#fff}
+.claude-connectors .plus-btn{width:28px;height:28px;background:rgba(255,255,255,0.08);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px;border:1px solid rgba(255,255,255,0.1)}
+.claude-connectors .plus-btn.highlight{outline:2px solid var(--pp-red);outline-offset:2px;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{outline-color:var(--pp-red)}50%{outline-color:rgba(233,13,65,0.4)}}
+.claude-connectors .conn-group{padding-left:140px;font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:0.1em;margin:10px 0 6px;text-transform:uppercase}
+.claude-connectors .conn-row{padding-left:140px;display:flex;align-items:center;gap:10px;padding-top:8px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px}
+.claude-connectors .conn-row:last-child{border-bottom:0}
+.claude-connectors .conn-logo{width:22px;height:22px;border-radius:4px;background:rgba(255,255,255,0.06);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.claude-connectors .conn-row.highlight{background:rgba(233,13,65,0.1);border-radius:4px;outline:1px dashed var(--pp-red)}
+.directory-modal{background:#1a1a1d;padding:20px;min-height:300px}
+.directory-modal .dm-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.directory-modal h4{font-family:var(--display);color:#fff;font-size:18px;margin:0;flex:1}
+.directory-modal .dm-search{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:8px 12px;border-radius:6px;color:rgba(255,255,255,0.5);font-size:12px;flex:2}
+.directory-modal .dm-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding-left:0;margin-top:10px}
+.directory-modal .dm-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px;display:flex;align-items:flex-start;gap:10px}
+.directory-modal .dm-card.highlight{border-color:var(--pp-red);background:rgba(233,13,65,0.08)}
+.directory-modal .dm-card .lg{width:28px;height:28px;border-radius:6px;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.directory-modal .dm-card .cn{font-size:12px;font-weight:700;color:#fff;line-height:1.2}
+.directory-modal .dm-card .cs{font-size:10px;color:rgba(255,255,255,0.4);margin-top:2px;font-family:var(--mono);letter-spacing:0.04em}
+.apify-modal{background:#1a1a1d;padding:20px;min-height:280px}
+.apify-modal h4{font-family:var(--display);color:#fff;font-size:16px;margin:0 0 12px}
+.apify-modal .am-input-label{color:rgba(255,255,255,0.7);font-size:12px;margin-bottom:6px;font-weight:500}
+.apify-modal .am-input{background:rgba(255,255,255,0.05);border:1px solid var(--pp-red);border-radius:6px;padding:10px 14px;color:#fff;font-size:13px;margin-bottom:14px;min-height:36px}
+.apify-modal .am-warn{background:rgba(234,179,8,0.1);border:1px solid rgba(234,179,8,0.3);padding:10px 12px;border-radius:6px;font-size:11px;color:rgba(255,255,255,0.7);line-height:1.5;margin-bottom:14px}
+.apify-modal .am-buttons{display:flex;gap:10px;justify-content:flex-end}
+.apify-modal .am-btn{padding:7px 14px;border-radius:6px;font-size:12px;font-weight:700;border:0}
+.apify-modal .am-btn.cancel{background:transparent;color:rgba(255,255,255,0.6)}
+.apify-modal .am-btn.primary{background:var(--pp-red);color:#fff}
+.texteditor{background:#fff;padding:18px 22px;font-family:var(--mono);font-size:12px;line-height:1.55;color:var(--text-primary);min-height:220px}
+.texteditor .line{display:block;white-space:pre-wrap}
+.texteditor .s{color:#0f9d58}
+.texteditor .k{color:var(--pp-red);font-weight:700}
+.texteditor .v{color:var(--mac-blue)}
+.texteditor .h{background:#fef3c7;padding:0 4px;border-radius:2px}
+.finder{background:#fff;padding:20px;min-height:200px;font-size:13px}
+.finder-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:5px}
+.finder-item.selected{background:#d4e5ff}
+.finder-item svg{width:24px;height:24px;flex-shrink:0}
+.finder-item .fname{font-weight:500}
+.finder-item .fmeta{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--text-muted)}
+.github-signup{background:#0d1117;color:#e6edf3;padding:20px;min-height:260px;font-family:var(--body)}
+.github-signup h3{font-family:var(--display);color:#fff;font-size:18px;margin:0 0 8px}
+.github-signup p{font-size:12px;color:#8b949e;margin:0 0 14px}
+.github-signup .input-row{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+.github-signup label{font-size:11px;color:#e6edf3}
+.github-signup .input{background:#0d1117;border:1px solid #30363d;padding:6px 10px;border-radius:6px;color:#8b949e;font-size:12px}
+.github-signup .cta{background:#238636;color:#fff;padding:8px 14px;border:0;border-radius:6px;font-weight:700;font-size:13px;margin-top:6px;display:inline-block}
+.gitscm{background:#f0efe7;padding:20px;min-height:200px;font-family:var(--body)}
+.gitscm .top{display:flex;align-items:center;gap:14px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #d4cfc0}
+.gitscm .logo{width:36px;height:36px;color:#f05033}
+.gitscm h3{font-family:var(--display);font-size:18px;color:#333;margin:0}
+.gitscm .download-box{padding:14px 18px;background:#fff;border:1px solid #d4cfc0;border-radius:4px;margin-bottom:10px}
+.gitscm .download-box a{color:#f05033;font-weight:700;font-size:13px}
+.gitscm .version{font-family:var(--mono);font-size:11px;color:#8b8075;margin-top:4px}
+.apify-home{background:#fff;padding:24px;min-height:200px;text-align:center}
+.apify-home h3{font-family:var(--display);font-size:22px;margin:0 0 10px;color:#000;letter-spacing:-0.02em}
+.apify-home p{font-size:12px;color:var(--text-secondary);margin:0 0 16px}
+.apify-home .search{display:inline-flex;align-items:center;gap:0;border:1px solid var(--divider);border-radius:6px;overflow:hidden}
+.apify-home .search input{padding:8px 14px;border:0;font-size:13px;font-family:var(--mono);outline:0;color:var(--text-primary)}
+.apify-home .search button{padding:8px 16px;background:#111;color:#fff;border:0;font-size:12px;font-weight:700}
+.apify-home .cta-signup{margin-top:16px;padding:8px 16px;background:#111;color:#fff;border-radius:6px;font-weight:700;font-size:13px;display:inline-block}
+.apify-home .cta-signup.highlight{outline:2px solid var(--pp-red);outline-offset:2px}
+.claudecode{background:#1a1612;color:#e8dfd4;padding:40px 20px;min-height:240px;text-align:center}
+.claudecode .flag{display:inline-block;padding:3px 10px;background:rgba(212,162,127,0.15);color:#d4a27f;border-radius:12px;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;margin-bottom:14px}
+.claudecode h3{font-family:var(--display);font-size:26px;margin:0 0 10px;color:#e8dfd4;letter-spacing:-0.02em}
+.claudecode p{font-size:12px;color:rgba(232,223,212,0.6);margin:0 0 18px;max-width:460px;margin-left:auto;margin-right:auto;line-height:1.5}
+.claudecode .install-cmd{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;background:rgba(232,223,212,0.08);border:1px solid rgba(232,223,212,0.15);border-radius:6px;font-family:var(--mono);font-size:11px;color:#e8dfd4}
+.claudecode .install-cmd .cmd-text{color:#d4a27f}
+.slash-menu{background:#1a1a1d;color:#fff;padding:14px;min-height:260px;font-family:var(--mono);font-size:12px}
+.slash-menu .search-input{padding:8px 12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:6px;margin-bottom:10px;color:#d4d4d4}
+.slash-menu .search-input span{color:var(--pp-red);font-weight:700}
+.slash-menu .cmd-item{display:flex;align-items:center;gap:10px;padding:7px 12px;border-radius:4px}
+.slash-menu .cmd-item.active{background:rgba(233,13,65,0.15);outline:1px dashed var(--pp-red)}
+.slash-menu .cmd-name{color:var(--pp-red);font-weight:700;flex-shrink:0;width:200px}
+.slash-menu .cmd-desc{color:rgba(255,255,255,0.5);font-size:11px}
+.verify{margin:18px 0;padding:14px 18px;background:#f0fdf4;border-left:4px solid var(--success);border-radius:6px;font-size:14px;line-height:1.55}
+.verify::before{content:'✓ Verify it worked:';display:block;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--success);letter-spacing:0.15em;margin-bottom:4px;text-transform:uppercase}
+.verify code{font-family:var(--mono);font-size:13px;background:#fff;padding:2px 6px;border-radius:3px;border:1px solid var(--divider)}
+details.trouble{margin:14px 0;border:1px solid var(--divider);border-radius:6px;background:var(--sub-card-bg);overflow:hidden}
+details.trouble summary{padding:10px 14px;font-family:var(--display);font-size:13px;font-weight:700;cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;color:var(--text-primary)}
+details.trouble summary::-webkit-details-marker{display:none}
+details.trouble summary::before{content:'?';display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:999px;background:var(--pp-red-soft);color:var(--pp-red);font-family:var(--display);font-weight:800;font-size:11px}
+details.trouble summary::after{content:'+';margin-left:auto;color:var(--pp-red);font-weight:800;font-size:16px;transition:transform 180ms}
+details.trouble[open] summary::after{transform:rotate(45deg)}
+details.trouble .t-body{padding:0 14px 14px;font-size:13.5px;line-height:1.55;color:var(--text-secondary)}
+footer{padding:40px 0;background:var(--dark);color:rgba(255,255,255,0.6);margin-top:60px}
+.foot-inner{max-width:900px;margin:0 auto;padding:0 28px}
+.foot-inner h3{font-family:var(--display);color:#fff;font-size:18px;font-weight:800;margin:0 0 10px}
+.foot-inner p{font-size:13px;line-height:1.55;margin:0 0 8px}
+.foot-inner a{color:var(--pp-red)}
+.foot-legal{margin-top:24px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.1);font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.04em;line-height:1.55}
+.lg-gmail{color:var(--brand-gmail)} .lg-notion{color:var(--brand-notion)} .lg-github{color:var(--brand-github)} .lg-git{color:var(--brand-git)} .lg-google{color:var(--brand-google)} .lg-stripe{color:var(--brand-stripe)} .lg-apify{color:var(--brand-apify)} .lg-anthropic{color:var(--brand-anthropic)} .lg-linkedin{color:var(--brand-linkedin)}
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <symbol id="icon-anthropic" viewBox="0 0 24 24"><path fill="currentColor" d="M13.827 3.52h3.603L24 20h-3.603zm-7.8 0h3.758L16.63 20h-3.686l-1.494-3.839H4.157L2.663 20H-.022zm1.888 4.93l-2.337 6.025h4.674z"/></symbol>
+  <symbol id="icon-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+  <symbol id="icon-git" viewBox="0 0 24 24"><path fill="currentColor" d="M23.546 10.93L13.067.452a1.55 1.55 0 0 0-2.188 0l-2.17 2.177 2.76 2.76a1.84 1.84 0 0 1 1.889.441c.516.515.658 1.258.438 1.9l2.658 2.66c.645-.223 1.387-.078 1.9.435.721.72.721 1.884 0 2.604-.719.719-1.881.719-2.6 0-.539-.541-.674-1.337-.404-1.996L12.56 8.939v6.945a1.84 1.84 0 0 1 .488.348c.713.721.713 1.883 0 2.6-.719.721-1.889.721-2.609 0-.719-.719-.719-1.879 0-2.598.182-.18.387-.316.605-.406V8.812c-.217-.091-.424-.222-.6-.401-.545-.545-.676-1.342-.396-2.009L7.636 3.7.45 10.881a1.55 1.55 0 0 0 0 2.189l10.48 10.477c.604.604 1.582.604 2.186 0l10.43-10.43a1.55 1.55 0 0 0 0-2.187"/></symbol>
+  <symbol id="icon-notion" viewBox="0 0 24 24"><path fill="currentColor" d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.98-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933m14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952l1.448.327s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933M1.936 1.035l13.31-.98c1.635-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.447-1.632"/></symbol>
+  <symbol id="icon-gmail" viewBox="0 0 24 24"><path fill="currentColor" d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></symbol>
+  <symbol id="icon-gcalendar" viewBox="0 0 24 24"><path fill="currentColor" d="M19.5 22h-15A2.5 2.5 0 0 1 2 19.5v-15A2.5 2.5 0 0 1 4.5 2h15A2.5 2.5 0 0 1 22 4.5v15a2.5 2.5 0 0 1-2.5 2.5zM4.5 4a.5.5 0 0 0-.5.5v15a.5.5 0 0 0 .5.5h15a.5.5 0 0 0 .5-.5v-15a.5.5 0 0 0-.5-.5zM8 1h2v4H8zm6 0h2v4h-2zM3 8h18v2H3zm5 4h3v3H8zm0 5h3v3H8zm5-5h3v3h-3zm0 5h3v3h-3z"/></symbol>
+  <symbol id="icon-gdrive" viewBox="0 0 24 24"><path fill="#1e88e5" d="M1.65 13.35l3.9-6.75 4.2 7.2-3.75 6.6z"/><path fill="#0f9d58" d="M22.5 13.35l-4.2 7.05h-8.4L6 13.2l7.5.15z"/><path fill="#f4b400" d="M14.25 2.25h-4.5L3.6 12.6l3.75 6.6L14.1 9l1.05-1.65z"/></symbol>
+  <symbol id="icon-stripe" viewBox="0 0 24 24"><path fill="currentColor" d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.32 2.525-3.273 2.525-5.809 0-4.134-2.524-5.84-6.591-7.227z"/></symbol>
+  <symbol id="icon-apify" viewBox="0 0 24 24"><path fill="currentColor" d="M5.006 14.77L.044 18.03l4.744-14.12.218 11.862zm17.95 3.26l-4.963-3.26 2.03-9.34 2.933 12.6zm-18.89 2.16l2.27-5.4 3.65 7.21-5.92-1.8zM19.54 4.21L6.56 8.74 11.7.94l7.83 3.27zm-8.76 7.25l4.51 9.63L7.93 19.7l2.86-8.24z"/></symbol>
+  <symbol id="icon-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></symbol>
+  <symbol id="icon-folder" viewBox="0 0 24 24"><path fill="currentColor" d="M20 6h-8l-2-2H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2z"/></symbol>
+  <symbol id="icon-file" viewBox="0 0 24 24"><path fill="currentColor" d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></symbol>
+</svg>
+
+<div class="layout">
+
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="dot">pp</div>
+    <div><div class="name">Purely Personal</div><div class="sub">Install Guide · v2</div></div>
+  </div>
+  <div class="progress-pill"><strong>17 steps</strong> · 60–75 min<div class="progress-bar"><span class="fill" id="progress-fill"></span></div></div>
+  <div class="sidebar-title">Accounts + Install</div>
+  <ul class="step-list">
+    <li><a href="#s1"><span class="num">1</span>Claude Pro + CLI</a></li>
+    <li><a href="#s2"><span class="num">2</span>GitHub account</a></li>
+    <li><a href="#s3"><span class="num">3</span>Install Git</a></li>
+    <li><a href="#s4"><span class="num">4</span>Clone the repo</a></li>
+    <li><a href="#s5"><span class="num">5</span>Install plugin</a></li>
+    <li><a href="#s6"><span class="num">6</span>Verify 8 commands</a></li>
+  </ul>
+  <div class="sidebar-title">Connectors</div>
+  <ul class="step-list">
+    <li><a href="#s7"><span class="num">7</span>Gmail</a></li>
+    <li><a href="#s8"><span class="num">8</span>Notion</a></li>
+    <li><a href="#s9"><span class="num">9</span>Calendar</a></li>
+    <li><a href="#s10"><span class="num">10</span>Drive</a></li>
+    <li><a href="#s11"><span class="num">11</span>Stripe</a></li>
+  </ul>
+  <div class="sidebar-title">Apify MCP</div>
+  <ul class="step-list">
+    <li><a href="#s12"><span class="num">12</span>Account + token</a></li>
+    <li><a href="#s13"><span class="num">13</span>Wire the MCP</a></li>
+    <li><a href="#s14"><span class="num">14</span>Verify Apify</a></li>
+  </ul>
+  <div class="sidebar-title">Final Prep</div>
+  <ul class="step-list">
+    <li><a href="#s15"><span class="num">15</span>Submit LinkedIn</a></li>
+    <li><a href="#s16"><span class="num">16</span>Business folder</a></li>
+    <li><a href="#s17"><span class="num">17</span>Empty BRAIN.md</a></li>
+  </ul>
+  <a class="sidebar-cta" href="#s1">Start Step 1 →</a>
+</aside>
+
+<main>
+
+<section class="intro" id="top">
+  <div class="intro-eyebrow">◆ Pre-workshop · Complete before Day 1</div>
+  <h1>Install the toolkit <em>once.</em><br>Never touch it again.</h1>
+  <p class="lead">17 steps. Roughly 60 to 75 minutes. Click any step to expand. When you're done, Claude Code is wired, 5 connectors are live, Apify is scraping, and your project folder is ready.</p>
+  <div class="intro-meta">
+    <div class="meta-pill">⏱ <strong>60–75 min</strong></div>
+    <div class="meta-pill">💻 Mac <strong>+</strong> Windows</div>
+    <div class="meta-pill">💳 Claude Pro <strong>$20/mo</strong></div>
+    <div class="meta-pill">🆓 Everything else free</div>
+  </div>
+  <div class="callout warn"><strong>Stuck at any step?</strong> Post in the workshop Slack channel (link in your registration email). Danny or a teammate will unblock you within 30 minutes during Finland business hours.</div>
+  <div class="callout info"><strong>Click a step to expand.</strong> Each one has a short description, Mac + Windows commands, a UI illustration of what you'll see, a verify box, and troubleshooting.</div>
+</section>
+
+<details class="step" id="s1" open>
+  <summary>
+    <div class="step-num">1</div>
+    <div class="step-logo lg-anthropic"><svg><use href="#icon-anthropic"/></svg></div>
+    <div class="step-title"><span class="tag">Accounts + Install</span><h2>Create Claude account + upgrade to Pro + install CLI</h2><div class="hint">⏱ 8 min · Everyone</div></div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <p>Claude Pro is required. You'll also install Claude Code (the terminal app that runs your engines).</p>
+    <h3>1a · Sign up + upgrade</h3>
+    <ol>
+      <li>Open <a href="https://claude.ai" target="_blank">claude.ai</a> → <strong>Sign up</strong></li>
+      <li>Profile (top right) → <strong>Upgrade to Pro</strong></li>
+      <li>Pay $20/mo</li>
+    </ol>
+    <h3>1b · Install Claude Code</h3>
+    <p>Go to <a href="https://claude.com/claude-code" target="_blank">claude.com/claude-code</a>:</p>
+    <div class="mockup">
+      <div class="mockup-caption"><span class="dot-r"></span><span class="title">claude.com/claude-code</span><span class="badge">Preview</span></div>
+      <div class="claudecode">
+        <div class="flag">◆ Debugging...</div>
+        <h3>Built for &gt; developers</h3>
+        <p>Work with Claude directly in your codebase. Build, debug, and ship from your terminal, IDE, Slack, or the web.</p>
+        <div class="install-cmd"><span>Get Claude Code</span><span style="opacity:0.3">·</span><span class="cmd-text">curl -fsSL https://claude.ai/install.sh | bash</span></div>
+      </div>
+    </div>
+    <div class="os-tabs">
+      <div class="os-tab-header"><div class="os-tab-label mac">macOS</div><div class="os-tab-label win">Windows</div></div>
+      <div class="os-tab-body">
+        <div>
+          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">Open <strong>Terminal</strong> and paste:</p>
+          <div class="cmd"><span class="cmd-label">Mac Terminal</span>curl -fsSL https://claude.ai/install.sh | sh</div>
+        </div>
+        <div>
+          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">Open <strong>PowerShell</strong> and paste:</p>
+          <div class="cmd"><span class="cmd-label">PowerShell</span>iwr https://claude.ai/install.ps1 -UseBasicParsing | iex</div>
+        </div>
+      </div>
+    </div>
+    <div class="mockup mockup-dark">
+      <div class="mockup-caption"><span class="dot-r"></span><span class="title">Terminal · installing Claude Code</span></div>
+      <div class="terminal">
+        <span class="out"><span class="prompt">~</span> <span class="path">danny@Mac</span> $ curl -fsSL https://claude.ai/install.sh | sh</span>
+        <span class="out">Downloading Claude Code <span class="hl">1.0.12</span>...</span>
+        <span class="out">Installing to ~/.claude/bin/claude</span>
+        <span class="out">Adding ~/.claude/bin to PATH</span>
+        <span class="out"><span class="success">✓ Installation complete.</span></span>
+        <span class="out">Restart your terminal, then run: claude --version</span>
+        <span class="out"><span class="prompt">~</span> <span class="path">danny@Mac</span> $ <span class="cursor"></span></span>
+      </div>
+    </div>
+    <div class="verify">Type <code>claude --version</code>. Should see <code>1.0.x</code> or higher. If "command not found", close and re-open the terminal.</div>
+    <details class="trouble">
+      <summary>Still says "command not found"</summary>
+      <div class="t-body"><strong>Mac:</strong> <code>source ~/.zshrc</code> and try again.<br><strong>Windows:</strong> fully close PowerShell and re-open. Check "Environment Variables" → user PATH includes <code>%USERPROFILE%\.claude\bin</code>.</div>
+    </details>
+  </div>
+</details>
+
+<details class="step" id="s2">
+  <summary>
+    <div class="step-num">2</div>
+    <div class="step-logo lg-github"><svg><use href="#icon-github"/></svg></div>
+    <div class="step-title"><span class="tag">Accounts + Install</span><h2>Create a GitHub account</h2><div class="hint">⏱ 3 min · Skip if you already have one</div></div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <p>GitHub is where the Purely Personal plugin repo lives. Free plan is fine.</p>
+    <ol>
+      <li>Open <a href="https://github.com/signup" target="_blank">github.com/signup</a></li>
+      <li>Email + password + username → verify email</li>
+      <li>Pick the Free plan</li>
+    </ol>
+    <div class="mockup">
+      <div class="mockup-caption"><span class="dot-r"></span><span class="title">github.com/signup</span></div>
+      <div class="github-signup">
+        <h3>Create your account</h3>
+        <p>Or sign in with your existing account</p>
+        <div class="input-row"><label>Email</label><div class="input">you@example.com</div></div>
+        <div class="input-row"><label>Password</label><div class="input">••••••••••••</div></div>
+        <div class="input-row"><label>Username</label><div class="input">your-handle</div></div>
+        <span class="cta">Create account</span>
+      </div>
+    </div>
+    <div class="verify">Log in to github.com. Your avatar appears top right.</div>
+  </div>
+</details>
+
+<details class="step" id="s3">
+  <summary>
+    <div class="step-num">3</div>
+    <div class="step-logo lg-git"><svg><use href="#icon-git"/></svg></div>
+    <div class="step-title"><span class="tag">Accounts + Install</span><h2>Install Git on your machine</h2><div class="hint">⏱ 5 min · Platform-specific</div></div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <p>Git is the tool used to clone ("download") the Purely Personal plugin repo.</p>
+    <div class="os-tabs">
+      <div class="os-tab-header"><div class="os-tab-label mac">macOS</div><div class="os-tab-label win">Windows</div></div>
+      <div class="os-tab-body">
+        <div>
+          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">Open Terminal, paste:</p>
+          <div class="cmd"><span class="cmd-label">Mac</span>xcode-select --install</div>
+          <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">Dialog appears. Click <strong>Install</strong>. ~3 min.</p>
+        </div>
+        <div>
+          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">Download 64-bit installer:</p>
+          <p style="margin:0"><a href="https://git-scm.com/download/win" target="_blank">git-scm.com/download/win</a></p>
+          <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">Run it. Click <strong>Next</strong> on every screen.</p>
+        </div>
+      </div>
+    </div>
+    <div class="mockup">
+      <div class="mockup-caption"><span class="dot-r"></span><span class="title">git-scm.com/download/win</span></div>
+      <div class="gitscm">
+        <div class="top"><svg class="logo"><use href="#icon-git"/></svg><h3>Git for Windows</h3></div>
+        <div class="download-box"><a>Click here to download the latest (2.54.0) x64 version of Git for Windows</a><div class="version">Latest version · 2.54.0 · Released 4 days ago</div></div>
+      </div>
+    </div>
+    <div class="verify">Type <code>git --version</code>. You should see <code>git version 2.x</code>.</div>
+  </div>
+</details>
+
+<details class="step" id="s4">
+  <summary>
+    <div class="step-num">4</div>
+    <div class="step-logo lg-github"><svg><use href="#icon-github"/></svg></div>
+    <div class="step-title"><span class="tag">Accounts + Install</span><h2>Clone the Purely Personal plugin repo</h2><div class="hint">⏱ 2 min · Copy paste only</div></div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <p>Works identically on Mac and Windows. Open <strong>Terminal (Mac)</strong> or <strong>Git Bash (Windows)</strong> and paste:</p>
+    <div class="cmd"><span class="cmd-label">Terminal / Git Bash</span>git clone https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself.git
+cd Purely-Personal-Run-a-business-by-itself</div>
+    <div class="mockup mockup-dark">
+      <div class="mockup-caption"><span class="dot-r"></span><span class="title">Terminal · cloning the repo</span></div>
+      <div class="terminal">
+        <span class="out"><span class="prompt">~</span> <span class="path">danny@Mac</span> $ git clone https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself.git</span>
+        <span class="out">Cloning into 'Purely-Personal-Run-a-business-by-itself'...</span>
+        <span class="out">remote: Enumerating objects: 2847, done.</span>
+        <span class="out">remote: Counting objects: 100% (2847/2847), done.</span>
+        <span class="out">Receiving objects: 100% (2847/2847), 4.2 MiB | 8.6 MiB/s, done.</span>
+        <span class="out"><span class="success">✓ Done.</span></span>
+        <span class="out"><span class="prompt">~</span> <span class="path">danny@Mac</span> $ cd Purely-Personal-Run-a-business-by-itself<span class="cursor"></span></span>
+      </div>
+    </div>
+    <div class="verify">Type <code>ls</code> (Mac) or <code>dir</code> (Windows). You should see <code>skills/</code>, <code>commands/</code>, <code>workshop/</code>.</div>
+  </div>
+</details>
+
+<details class="step" id="s5">
+  <summary>
+    <div class="step-num">5</div>
+    <div class="step-logo lg-anthropic"><svg><use href="#icon-anthropic"/></svg></div>
+    <div class="step-title"><span class="tag">Accounts + Install</span><h2>Install the plugin into Claude Code</h2><div class="hint">⏱ 1 min · One command</div></div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <p>From <strong>inside</strong> the cloned folder:</p>
+    <div class="cmd"><span class="cmd-label">From inside the repo</span>claude plugin install .</div>
+    <p>The dot at the end is important. It means "install the plugin from this folder."</p>
+    <div class="callout info"><strong>Alternative:</strong> if <code>plugin install</code> isn't available, symlink:
+      <div class="cmd" style="margin-top:10px"><span class="cmd-label">Alternative</span>ln -s $(pwd) ~/.claude/plugins/purely-personal</div>
+    </div>
+    <div class="mockup mockup-dark">
+      <div class="mockup-caption"><span class="dot-r"></span><span class="title">Terminal · installing plugin</span></div>
+      <div class="terminal">
+        <span class="out"><span class="prompt">~/Purely-Personal...</span> $ claude plugin install .</span>
+        <span class="out">Reading plugin manifest...</span>
+        <span class="out">Found: <span class="hl">purely-personal</span> v1.0.0</span>
+        <span class="out">  Skills: 7  Commands: 8  Templates: 5</span>
+        <span class="out">Installing to ~/.claude/plugins/purely-personal</span>
+        <span class="out"><span class="success">✓ Plugin 'purely-personal' installed successfully.</span></span>
+      </div>
+    </div>
+  </div>
+</details>
+
+<details class="step" id="s6">
+  <summary>
+    <div class="step-num">6</div>
+    <div class="step-logo lg-anthropic"><svg><use href="#icon-anthropic"/></svg></div>
+    <div class="step-title"><span class="tag">Accounts + Install</span><h2>Verify all 8 slash commands appear</h2><div class="hint">⏱ 2 min · Critical check</div></div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <ol>
+      <li>Type <code>claude</code> in terminal</li>
+      <li>Inside Claude Code, type a single <strong><code>/</code></strong></li>
+      <li>Confirm all 8 appear:</li>
+    </ol>
+    <div class="mockup mockup-dark">
+      <div class="mockup-caption"><span class="dot-r"></span><span class="title">Claude Code · slash command menu</span></div>
+      <div class="slash-menu">
+        <div class="search-input"><span>/</span></div>
+        <div class="cmd-item active"><span class="cmd-name">/build-my-brain</span><span class="cmd-desc">3-act guided BUSINESS-BRAIN.md creation</span></div>
+        <div class="cmd-item"><span class="cmd-name">/marketing-engine</span><span class="cmd-desc">Draft content in your voice from BRAIN.md</span></div>
+        <div class="cmd-item"><span class="cmd-name">/sales-engine</span><span class="cmd-desc">Research prospects + draft outreach</span></div>
+        <div class="cmd-item"><span class="cmd-name">/operations-engine</span><span class="cmd-desc">Inbox triage + SOP generation</span></div>
+        <div class="cmd-item"><span class="cmd-name">/cash-engine</span><span class="cmd-desc">Stripe pull + 90-day forecast</span></div>
+        <div class="cmd-item"><span class="cmd-name">/leadership-engine</span><span class="cmd-desc">Morning brief across all engines</span></div>
+        <div class="cmd-item"><span class="cmd-name">/prep-workshop-slides</span><span class="cmd-desc">Attendee slide generator</span></div>
+        <div class="cmd-item"><span class="cmd-name">/ship-it-live</span><span class="cmd-desc">Countdown + publish to LinkedIn</span></div>
+      </div>
+    </div>
+    <details class="trouble"><summary>I only see 5 or 6 commands</summary><div class="t-body">Plugin install didn't complete. Close Claude Code. Run <code>claude plugin list</code>. If "purely-personal" isn't listed, re-run <code>claude plugin install .</code> from inside the repo folder.</div></details>
+  </div>
+</details>
+
+<details class="step" id="s7">
+  <summary>
+    <div class="step-num">7</div>
+    <div class="step-logo lg-gmail"><svg><use href="#icon-gmail"/></svg></div>
+    <div class="step-title"><span class="tag">Connectors</span><h2>Connect Gmail</h2><div class="hint">⏱ 2 min · OAuth · no API key</div></div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <p>Gmail powers Monday Content Drop, Thursday Meeting Prep, and Friday Weekly Wrap.</p>
+    <ol>
+      <li>Open <a href="https://claude.ai/customize/connectors" target="_blank">claude.ai/customize/connectors</a></li>
+      <li>Click the <strong>+</strong> button (top of the Connectors panel)</li>
+      <li>Choose <strong>Browse connectors</strong> → find <strong>Gmail</strong> → click <strong>+</strong></li>
+      <li>Sign in with Google → <strong>allow ALL permissions</strong></li>
+    </ol>
+    <div class="callout danger"><strong>Allow ALL permissions.</strong> If you skip "send drafts", routines fail silently. Allow everything.</div>
+    <div class="mockup">
+      <div class="mockup-caption"><span class="dot-r"></span><span class="title">claude.ai/customize/connectors</span><span class="badge">Logged-in view</span></div>
+      <div class="claude-connectors">
+        <div class="sidebar-mini"><a>Skills</a><a class="active">Connectors</a></div>
+        <div class="cc-header"><h3>Connectors</h3><div class="plus-btn highlight">+</div></div>
+        <div class="conn-group">Connected</div>
+        <div class="conn-row"><span class="conn-logo lg-github"><svg width="12" height="12"><use href="#icon-github"/></svg></span><span>GitHub</span><span style="margin-left:auto;color:var(--success);font-size:11px">● Connected</span></div>
+        <div class="conn-row highlight"><span class="conn-logo lg-gmail"><svg width="12" height="12"><use href="#icon-gmail"/></svg></span><span>Gmail</span><span style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.5)">Configure</span></div>
+        <div class="conn-row"><span class="conn-logo lg-google"><svg width="12" height="12"><use href="#icon-gcalendar"/></svg></span><span>Google Calendar</span><span style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.5)">Configure</span></div>
+        <div class="conn-row"><span class="conn-logo"><svg width="12" height="12"><use href="#icon-gdrive"/></svg></span><span>Google Drive</span><span style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.5)">Configure</span></div>
+        <div class="conn-row"><span class="conn-logo" style="background:#fff;color:#000"><svg width="12" height="12"><use href="#icon-notion"/></svg></span><span>Notion</span><span style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.5)">Configure</span></div>
+      </div>
+    </div>
+    <div class="verify">Gmail shows a green "● Connected" status.</div>
+  </div>
+</details>
+
+<details class="step" id="s8">
+  <summary>
+    <div class="step-num">8</div>
+    <div class="step-logo lg-notion"><svg><use href="#icon-notion"/></svg></div>
+    <div class="step-title"><span class="tag">Connectors</span><h2>Connect Notion</h2><div class="hint">⏱ 2 min · OAuth</div></div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <p>Notion holds your content calendar, CRM, and pipeline reports.</p>
+    <ol>
+      <li>Same Connectors page → <strong>+</strong> → <strong>Browse connectors</strong></li>
+      <li>Find <strong>Notion</strong> → click <strong>+</strong></li>
+      <li>Sign in → pick your main workspace → allow all</li>
+    </ol>
+    <div class="mockup">
+      <div class="mockup-caption"><span class="dot-r"></span><span class="title">Directory · Browse connectors</span></div>
+      <div class="directory-modal">
+        <div class="dm-header"><h4>Directory</h4><div class="dm-search">Search connectors…</div></div>
+        <div class="dm-grid">
+          <div class="dm-card"><div class="lg"><svg width="18" height="18"><use href="#icon-gdrive"/></svg></div><div><div class="cn">Google Drive</div><div class="cs">Most popular</div></div></div>
+          <div class="dm-card"><div class="lg"><svg width="18" height="18" class="lg-google"><use href="#icon-gcalendar"/></svg></div><div><div class="cn">Google Calendar</div><div class="cs">#2 popular</div></div></div>
+          <div class="dm-card"><div class="lg"><svg width="18" height="18" class="lg-gmail"><use href="#icon-gmail"/></svg></div><div><div class="cn">Gmail</div><div class="cs">#3 popular</div></div></div>
+          <div class="dm-card highlight"><div class="lg" style="background:#000"><svg width="18" height="18" style="color:#fff"><use href="#icon-notion"/></svg></div><div><div class="cn">Notion</div><div class="cs">Add</div></div></div>
+          <div class="dm-card"><div class="lg"><svg width="18" height="18" class="lg-stripe"><use href="#icon-stripe"/></svg></div><div><div class="cn">Stripe</div><div class="cs">Add</div></div></div>
+          <div class="dm-card"><div class="lg"><svg width="18" height="18" class="lg-linkedin"><use href="#icon-linkedin"/></svg></div><div><div class="cn">LinkedIn</div><div class="cs">Add</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="verify">Notion appears in your Connectors list as "● Connected".</div>
+  </div>
+</details>
+
+<details class="step" id="s9">
+  <summary>
+    <div class="step-num">9</div>
+    <div class="step-logo lg-google"><svg><use href="#icon-gcalendar"/></svg></div>
+    <div class="step-title"><span class="tag">Connectors</span><h2>Connect Google Calendar</h2><div class="hint">⏱ 1 min · OAuth</div></div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <p>Calendar powers Thursday Meeting Prep.</p>
+    <ol>
+      <li>Connectors → <strong>+</strong> → <strong>Browse connectors</strong></li>
+      <li>Find <strong>Google Calendar</strong> → add → sign in → allow</li>
+    </ol>
+  </div>
+</details>
+
+<details class="step" id="s10">
+  <summary>
+    <div class="step-num">10</div>
+    <div class="step-logo"><svg><use href="#icon-gdrive"/></svg></div>
+    <div class="step-title"><span class="tag">Connectors</span><h2>Connect Google Drive</h2><div class="hint">⏱ 1 min · OAuth · allow file creation</div></div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <p>Drive is where newsletter drafts and weekly reports save.</p>
+    <ol>
+      <li>Connectors → <strong>+</strong> → <strong>Google Drive</strong></li>
+      <li>Sign in → <strong>allow including file creation</strong></li>
+    </ol>
+    <div class="callout danger"><strong>File creation must be allowed.</strong> Without it, routines can read Drive but cannot write your newsletter drafts.</div>
+  </div>
+</details>
+
+<details class="step" id="s11">
+  <summary>
+    <div class="step-num">11</div>
+    <div class="step-logo lg-stripe"><svg><use href="#icon-stripe"/></svg></div>
+    <div class="step-title"><span class="tag">Connectors</span><h2>Connect Stripe</h2><div class="hint">⏱ 1 min · Optional</div></div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <p>Optional. If connected, <code>/cash-engine</code> pulls real revenue. If skipped, Claude prompts you to paste numbers.</p>
+    <ol>
+      <li>Connectors → <strong>+</strong> → <strong>Stripe</strong></li>
+      <li>Sign in with your Stripe account</li>
+    </ol>
+  </div>
+</details>
+
+<details class="step" id="s12">
+  <summary>
+    <div class="step-num">12</div>
+    <div class="step-logo lg-apify"><svg><use href="#icon-apify"/></svg></div>
+    <div class="step-title"><span class="tag">Apify MCP</span><h2>Create Apify account + API token</h2><div class="hint">⏱ 5 min · Free plan covers workshop</div></div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <p>Apify is the one non-OAuth piece. It powers LinkedIn scraping, website crawling, Reddit pain mining, and Google search for the Sales Machine.</p>
+    <div class="callout info"><strong>Free plan is enough.</strong> Free tier includes ~$5 of compute per month. The whole workshop uses about 5 compute units.</div>
+    <h3>12a · Sign up</h3>
+    <ol><li>Open <a href="https://apify.com" target="_blank">apify.com</a> → <strong>Sign up</strong> → Free plan → verify email</li></ol>
+    <div class="mockup">
+      <div class="mockup-caption"><span class="dot-r"></span><span class="title">apify.com</span></div>
+      <div class="apify-home">
+        <h3>Get real-time web data for your AI</h3>
+        <p>Apify Actors scrape web data from any website.</p>
+        <div class="search"><input value="Scrape TikTok..."><button>Try it now</button></div>
+        <div style="margin-top:10px"><span class="cta-signup highlight">Sign up free →</span></div>
+      </div>
+    </div>
+    <h3>12b · Create your token</h3>
+    <ol>
+      <li>Log in to <a href="https://console.apify.com" target="_blank">console.apify.com</a></li>
+      <li><strong>Settings</strong> → <strong>API &amp; Integrations</strong></li>
+      <li>Click <strong>+ Create a new token</strong></li>
+      <li>Name it: <code>Claude Workshop</code></li>
+      <li>Click <strong>Create</strong></li>
+      <li><strong>Copy immediately.</strong> Starts with <code>apify_api_...</code></li>
+    </ol>
+    <div class="callout danger"><strong>Save the token RIGHT NOW.</strong> Paste into Notes or password manager. Apify will never show it again.</div>
+    <div class="mockup">
+      <div class="mockup-caption"><span class="dot-r"></span><span class="title">console.apify.com · Create a new token</span></div>
+      <div class="apify-modal">
+        <h4>Create a new personal API token</h4>
+        <div class="am-input-label">Description (optional)</div>
+        <div class="am-input"><span class="h">Claude Workshop</span></div>
+        <div class="am-warn">Your account is configured to allow all storages, runs, and builds to be accessed anonymously. This token might expose more data than intended.</div>
+        <div class="am-buttons"><span class="am-btn cancel">Cancel</span><span class="am-btn primary">Create</span></div>
+      </div>
+    </div>
+  </div>
+</details>
+
+<details class="step" id="s13">
+  <summary>
+    <div class="step-num">13</div>
+    <div class="step-logo lg-apify"><svg><use href="#icon-apify"/></svg></div>
+    <div class="step-title"><span class="tag">Apify MCP</span><h2>Wire Apify MCP into Claude Desktop</h2><div class="hint">⏱ 6 min · Config file edit</div></div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <p>MCP = Model Context Protocol. Tells Claude "these external tools are available."</p>
+    <h3>13a · Open the config file</h3>
+    <div class="os-tabs">
+      <div class="os-tab-header"><div class="os-tab-label mac">macOS</div><div class="os-tab-label win">Windows</div></div>
+      <div class="os-tab-body">
+        <div>
+          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">In Terminal:</p>
+          <div class="cmd"><span class="cmd-label">Mac</span>open ~/Library/Application\ Support/Claude/claude_desktop_config.json</div>
+        </div>
+        <div>
+          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">In File Explorer address bar:</p>
+          <div class="cmd"><span class="cmd-label">Windows</span>%APPDATA%\Claude</div>
+          <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">Open <code>claude_desktop_config.json</code> in Notepad.</p>
+        </div>
+      </div>
+    </div>
+    <h3>13b · Paste this config</h3>
+    <p>Replace <code>YOUR_TOKEN_HERE</code> with the token from Step 12.</p>
+    <div class="cmd"><span class="cmd-label">claude_desktop_config.json</span>{
+  "mcpServers": {
+    "apify": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@apify/actors-mcp-server",
+        "--actors",
+        "apify/linkedin-profile-scraper,apify/linkedin-company-scraper,apify/google-search-scraper,apify/website-content-crawler,trudax/reddit-scraper-lite"
+      ],
+      "env": { "APIFY_TOKEN": <span class="h">"YOUR_TOKEN_HERE"</span> }
+    }
+  }
+}</div>
+    <div class="mockup">
+      <div class="mockup-caption"><span class="dot-r"></span><span class="title">TextEdit · claude_desktop_config.json</span><span class="badge">Mac</span></div>
+      <div class="texteditor">
+        <span class="line">{</span>
+        <span class="line">  <span class="k">"mcpServers"</span>: {</span>
+        <span class="line">    <span class="k">"apify"</span>: {</span>
+        <span class="line">      <span class="k">"command"</span>: <span class="s">"npx"</span>,</span>
+        <span class="line">      <span class="k">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"@apify/actors-mcp-server"</span>, ...],</span>
+        <span class="line">      <span class="k">"env"</span>: { <span class="k">"APIFY_TOKEN"</span>: <span class="s"><span class="h">"apify_api_Xxx...YOUR_TOKEN"</span></span> }</span>
+        <span class="line">    }</span>
+        <span class="line">  }</span>
+        <span class="line">}</span>
+      </div>
+    </div>
+    <h3>13c · Save + fully quit Claude Desktop</h3>
+    <div class="callout danger"><strong>Fully quit, don't just close the window.</strong><br><strong>Mac:</strong> Cmd+Q or Claude menu → Quit.<br><strong>Windows:</strong> Right-click tray icon → Quit.<br>Re-open Claude Desktop. MCP loads on startup.</div>
+  </div>
+</details>
+
+<details class="step" id="s14">
+  <summary>
+    <div class="step-num">14</div>
+    <div class="step-logo lg-apify"><svg><use href="#icon-apify"/></svg></div>
+    <div class="step-title"><span class="tag">Apify MCP</span><h2>Verify Apify is wired</h2><div class="hint">⏱ 2 min · Critical check</div></div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <p>Open Claude Code in any folder. Paste:</p>
+    <div class="cmd"><span class="cmd-label">Test prompt</span>Use Apify to search Google for "solopreneur AI 2026". Give me the top 3 results only.</div>
+    <p>If real results appear, Apify is wired.</p>
+    <div class="mockup mockup-dark">
+      <div class="mockup-caption"><span class="dot-r"></span><span class="title">Claude Code · testing Apify MCP</span></div>
+      <div class="terminal">
+        <span class="out"><span class="prompt">&gt;</span> Use Apify to search Google for "solopreneur AI 2026". Top 3 only.</span>
+        <span class="out"></span>
+        <span class="out">🔍 Calling <span class="hl">apify:google-search-scraper</span>...</span>
+        <span class="out">  query: "solopreneur AI 2026"</span>
+        <span class="out">  maxResults: 3</span>
+        <span class="out"></span>
+        <span class="out"><span class="success">✓ 3 results returned in 4.2s</span></span>
+        <span class="out">1. Forbes · The solopreneur AI boom in 2026</span>
+        <span class="out">2. HubSpot · 7 AI tools every solopreneur needs</span>
+        <span class="out">3. Ness Labs · The rise of the one-person AI business</span>
+      </div>
+    </div>
+    <details class="trouble"><summary>Claude says "I don't have access to Apify"</summary><div class="t-body">MCP didn't load. Check: (1) JSON valid, no trailing commas, (2) token starts with <code>apify_api_</code>, (3) Claude Desktop was fully quit and reopened.</div></details>
+  </div>
+</details>
+
+<details class="step" id="s15">
+  <summary>
+    <div class="step-num">15</div>
+    <div class="step-logo lg-linkedin"><svg><use href="#icon-linkedin"/></svg></div>
+    <div class="step-title"><span class="tag">Final Prep</span><h2>Reply with your LinkedIn URL</h2><div class="hint">⏱ 1 min · Load-bearing · do not skip</div></div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <div class="callout danger"><strong>This step IS the mind-blown moment.</strong> Danny uses your LinkedIn to generate a personalized opening slide for Day 1. Every attendee sees their own. Don't skip.</div>
+    <ol>
+      <li>Open your registration confirmation email (from <code>danny@danielpaul.ai</code>)</li>
+      <li>Reply with one line: your public LinkedIn URL</li>
+      <li>Example: <code>https://linkedin.com/in/yourhandle</code></li>
+    </ol>
+  </div>
+</details>
+
+<details class="step" id="s16">
+  <summary>
+    <div class="step-num">16</div>
+    <div class="step-logo"><svg style="color:#f4b400"><use href="#icon-folder"/></svg></div>
+    <div class="step-title"><span class="tag">Final Prep</span><h2>Create your business folder + test launch</h2><div class="hint">⏱ 3 min · Mac or Windows</div></div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <p>This is where your <code>BUSINESS-BRAIN.md</code> will live.</p>
+    <div class="os-tabs">
+      <div class="os-tab-header"><div class="os-tab-label mac">macOS</div><div class="os-tab-label win">Windows</div></div>
+      <div class="os-tab-body">
+        <div><div class="cmd"><span class="cmd-label">Mac Terminal</span>mkdir ~/Desktop/my-business
+cd ~/Desktop/my-business
+claude</div></div>
+        <div>
+          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">Right-click Desktop → New → Folder → <code>my-business</code>. In Git Bash:</p>
+          <div class="cmd"><span class="cmd-label">Git Bash</span>cd ~/Desktop/my-business
+claude</div>
+        </div>
+      </div>
+    </div>
+    <p>Inside Claude Code, type:</p>
+    <div class="cmd"><span class="cmd-label">Inside Claude Code</span>/plugins</div>
+    <div class="mockup mockup-dark">
+      <div class="mockup-caption"><span class="dot-r"></span><span class="title">Claude Code · /plugins</span></div>
+      <div class="terminal">
+        <span class="out"><span class="prompt">&gt;</span> /plugins</span>
+        <span class="out"></span>
+        <span class="out">Loaded plugins (1):</span>
+        <span class="out">  <span class="success">●</span> <span class="hl">purely-personal</span> v1.0.0</span>
+        <span class="out">    7 skills · 8 commands · 5 templates</span>
+      </div>
+    </div>
+  </div>
+</details>
+
+<details class="step" id="s17">
+  <summary>
+    <div class="step-num">17</div>
+    <div class="step-logo"><svg style="color:var(--pp-red)"><use href="#icon-file"/></svg></div>
+    <div class="step-title"><span class="tag">Final Prep</span><h2>Initialize an empty BUSINESS-BRAIN.md</h2><div class="hint">⏱ 1 min · Last step</div></div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <p>Create an empty file. Day 1 walks you through filling every section live.</p>
+    <div class="os-tabs">
+      <div class="os-tab-header"><div class="os-tab-label mac">macOS</div><div class="os-tab-label win">Windows</div></div>
+      <div class="os-tab-body">
+        <div><div class="cmd"><span class="cmd-label">Mac Terminal</span>cd ~/Desktop/my-business
+touch BUSINESS-BRAIN.md</div></div>
+        <div>
+          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">Right-click → New → Text Document. Rename to:</p>
+          <div class="cmd"><span class="cmd-label">Filename</span>BUSINESS-BRAIN.md</div>
+          <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">Confirm Windows isn't saving as <code>BUSINESS-BRAIN.md.txt</code>. Enable "Show file extensions".</p>
+        </div>
+      </div>
+    </div>
+    <div class="callout warn"><strong>Don't fill the file yet.</strong> Day 1 walks you through every section via <code>/build-my-brain</code>.</div>
+    <div class="mockup">
+      <div class="mockup-caption"><span class="dot-r"></span><span class="title">Finder · my-business folder</span></div>
+      <div class="finder">
+        <div class="finder-item"><svg style="color:#f4b400"><use href="#icon-folder"/></svg><span class="fname">..</span></div>
+        <div class="finder-item selected"><svg style="color:var(--pp-red)"><use href="#icon-file"/></svg><span class="fname">BUSINESS-BRAIN.md</span><span class="fmeta">0 KB · just now</span></div>
+      </div>
+    </div>
+  </div>
+</details>
+
+<div class="callout ok" style="margin-top:32px">
+  <strong>✓ You're ready for Day 1.</strong> Claude Pro + CLI. Plugin installed. 8 slash commands verified. 4 OAuth connectors (+ Stripe if you use it). Apify MCP wired. LinkedIn URL submitted. Empty BUSINESS-BRAIN.md ready. See you Saturday May 2 at 11am Finland. Camera on. Water nearby. Phone on silent.
+</div>
+
+</main>
+</div>
+
+<footer>
+  <div class="foot-inner">
+    <h3>Purely Personal · Installation Guide</h3>
+    <p>For the "Build a Business That Runs By Itself" 2-day workshop. May 2–3, 2026.</p>
+    <p>Questions? <a href="mailto:danny@danielpaul.ai">danny@danielpaul.ai</a> · <a href="https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself">GitHub repo</a> · <a href="/">Back to landing page</a></p>
+    <div class="foot-legal">© 2026 Purely Personal · Install guide v2 · Last updated April 24, 2026 · Free to share with attendees.</div>
+  </div>
+</footer>
+
+<script>
+const steps = document.querySelectorAll('details.step');
+const fill = document.getElementById('progress-fill');
+function updateProgress(){
+  const opened = Array.from(steps).filter(s => s.open).length;
+  const pct = Math.round(opened / steps.length * 100);
+  if(fill) fill.style.width = pct + '%';
+}
+steps.forEach(s => s.addEventListener('toggle', updateProgress));
+updateProgress();
+
+function openFromHash(){
+  const hash = location.hash;
+  if(!hash) return;
+  const el = document.querySelector(hash);
+  if(el && el.tagName === 'DETAILS'){
+    el.open = true;
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+    updateProgress();
+  }
+}
+window.addEventListener('hashchange', openFromHash);
+openFromHash();
+</script>
+</body>
+</html>
