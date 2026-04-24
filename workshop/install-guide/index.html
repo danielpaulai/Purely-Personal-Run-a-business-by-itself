@@ -1,0 +1,1190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Purely Personal · Installation Guide · Pre-Workshop Setup (60–75 min)</title>
+<meta name="description" content="Step-by-step installation guide with screenshots for Mac and Windows. Complete all 17 steps before Day 1 of the Purely Personal workshop.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Rethink+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page-bg:#faf8f4; --card-bg:#ffffff; --sub-card-bg:#fbf9f6;
+  --divider:#e8e2d8; --divider-strong:#d0cdc8;
+  --text-primary:#1a1a1a; --text-secondary:#6b6b6b; --text-muted:#a8a39b;
+  --pp-red:#e90d41; --pp-red-deep:#c70a38; --pp-red-soft:#fce8ed; --pp-red-whisper:#fdf2f5;
+  --dark:#0f0f10; --dark-card:#1a1a1d;
+  --mac-blue:#007aff; --win-blue:#0078d4;
+  --success:#22c55e; --warn:#eab308;
+  --display:'Rethink Sans','Inter',-apple-system,sans-serif;
+  --body:'Inter',-apple-system,sans-serif;
+  --mono:'JetBrains Mono','SF Mono',Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;scroll-behavior:smooth}
+body{background:var(--page-bg);color:var(--text-primary);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--pp-red);text-decoration:none;border-bottom:1px solid transparent;transition:border-color 120ms}
+a:hover{border-color:var(--pp-red)}
+
+/* Layout */
+.layout{display:grid;grid-template-columns:280px 1fr;min-height:100vh}
+@media (max-width:900px){.layout{grid-template-columns:1fr}}
+
+/* Sidebar */
+.sidebar{background:var(--dark);color:#fff;padding:32px 24px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.sidebar-brand{display:flex;align-items:center;gap:10px;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.sidebar-brand .dot{width:28px;height:28px;background:var(--pp-red);border-radius:5px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:12px;font-family:var(--display)}
+.sidebar-brand .name{font-family:var(--display);font-weight:800;font-size:15px}
+.sidebar-brand .sub{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:0.08em}
+.sidebar-title{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--pp-red);letter-spacing:0.2em;text-transform:uppercase;margin:20px 0 10px}
+.sidebar-title:first-of-type{margin-top:0}
+.step-list{list-style:none;margin:0 0 24px;padding:0}
+.step-list li{margin-bottom:2px}
+.step-list a{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:4px;color:rgba(255,255,255,0.7);font-size:13px;font-weight:500;border:0;line-height:1.35}
+.step-list a:hover{background:rgba(255,255,255,0.06);color:#fff}
+.step-list .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:999px;background:rgba(255,255,255,0.1);font-family:var(--mono);font-size:10px;font-weight:700;flex-shrink:0}
+.sidebar-cta{display:block;margin-top:24px;padding:12px 16px;background:var(--pp-red);color:#fff!important;border-radius:5px;font-family:var(--display);font-weight:800;font-size:13px;text-align:center;border:0}
+.sidebar-cta:hover{background:var(--pp-red-deep)}
+@media (max-width:900px){.sidebar{position:static;height:auto;padding:24px}}
+
+/* Main */
+main{padding:56px 60px 80px;max-width:900px}
+@media (max-width:900px){main{padding:32px 24px 60px}}
+
+/* Intro */
+.intro-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--pp-red);background:var(--pp-red-soft);padding:6px 14px;border-radius:3px;margin-bottom:18px}
+.intro h1{font-family:var(--display);font-size:44px;font-weight:800;line-height:1.05;letter-spacing:-0.025em;margin:0 0 14px}
+.intro h1 em{font-style:normal;color:var(--pp-red)}
+.intro p.lead{font-size:18px;line-height:1.55;color:var(--text-secondary);margin:0 0 24px;max-width:720px}
+.intro-meta{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0 36px}
+.meta-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:var(--card-bg);border:1px solid var(--divider);border-radius:5px;font-size:13px;font-weight:500}
+.meta-pill strong{color:var(--pp-red);font-weight:700}
+
+.callout{padding:18px 22px;border-radius:6px;margin:24px 0;font-size:15px;line-height:1.55}
+.callout.warn{background:#fef3c7;border-left:4px solid var(--warn)}
+.callout.danger{background:var(--pp-red-whisper);border-left:4px solid var(--pp-red)}
+.callout.info{background:#eff6ff;border-left:4px solid var(--mac-blue)}
+.callout strong{font-weight:700}
+.callout code{font-family:var(--mono);font-size:13px;background:rgba(0,0,0,0.05);padding:1px 5px;border-radius:3px}
+
+/* Step */
+.step{margin:56px 0;scroll-margin-top:24px}
+.step-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:18px;padding-bottom:18px;border-bottom:2px solid var(--pp-red)}
+.step-number{flex-shrink:0;width:52px;height:52px;border-radius:10px;background:var(--pp-red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:22px;box-shadow:0 4px 12px rgba(233,13,65,0.25)}
+.step-head-text{flex:1}
+.step-head-text .tag{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--pp-red);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:3px;display:block}
+.step-head-text h2{font-family:var(--display);font-size:28px;font-weight:800;margin:0 0 4px;letter-spacing:-0.02em;line-height:1.15}
+.step-meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:12px;font-family:var(--mono);color:var(--text-muted);letter-spacing:0.04em}
+.step-meta .time::before{content:'⏱';margin-right:4px}
+.step-meta .diff::before{content:'◆';margin-right:4px;color:var(--pp-red)}
+
+.step-body{font-size:15px;line-height:1.65;color:var(--text-primary)}
+.step-body p{margin:0 0 14px}
+.step-body ol,.step-body ul{margin:0 0 14px;padding-left:22px}
+.step-body li{margin-bottom:6px}
+.step-body strong{font-weight:700}
+
+/* Command block */
+.cmd{position:relative;background:var(--dark);color:#fff;padding:16px 20px;border-radius:6px;font-family:var(--mono);font-size:13px;line-height:1.55;margin:14px 0;white-space:pre-wrap;word-break:break-all}
+.cmd-label{position:absolute;top:-10px;left:14px;padding:2px 10px;background:var(--pp-red);color:#fff;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.15em;border-radius:3px;text-transform:uppercase}
+.cmd .comment{color:#6ee7b7}
+.cmd .highlight{background:rgba(233,13,65,0.3);padding:1px 4px;border-radius:2px}
+
+/* OS Tabs */
+.os-tabs{border:1px solid var(--divider);border-radius:8px;overflow:hidden;margin:16px 0 20px;background:var(--card-bg)}
+.os-tab-header{display:flex;background:var(--sub-card-bg);border-bottom:1px solid var(--divider)}
+.os-tab-label{flex:1;padding:12px 18px;font-family:var(--display);font-weight:700;font-size:13px;display:flex;align-items:center;gap:8px;border-right:1px solid var(--divider)}
+.os-tab-label:last-child{border-right:0}
+.os-tab-label.mac{color:var(--mac-blue)}
+.os-tab-label.win{color:var(--win-blue)}
+.os-tab-label::before{content:'';width:10px;height:10px;border-radius:999px;background:currentColor}
+.os-tab-body{display:grid;grid-template-columns:1fr 1fr}
+.os-tab-body>div{padding:16px 20px;border-right:1px solid var(--divider)}
+.os-tab-body>div:last-child{border-right:0}
+@media (max-width:700px){.os-tab-header{flex-direction:column}.os-tab-body{grid-template-columns:1fr}.os-tab-body>div{border-right:0;border-bottom:1px solid var(--divider)}.os-tab-body>div:last-child{border-bottom:0}}
+
+/* Screenshot frame */
+.screenshot{margin:20px 0;border-radius:8px;overflow:hidden;border:1px solid var(--divider);background:var(--card-bg);box-shadow:0 4px 16px rgba(0,0,0,0.04)}
+.screenshot-caption{padding:10px 16px;background:var(--sub-card-bg);border-bottom:1px solid var(--divider);font-family:var(--mono);font-size:11px;color:var(--text-secondary);letter-spacing:0.04em;display:flex;align-items:center;gap:10px}
+.screenshot-caption .file{font-weight:700;color:var(--pp-red)}
+.screenshot-caption .what{color:var(--text-secondary)}
+.screenshot img{display:block;width:100%;height:auto}
+.screenshot-placeholder{min-height:240px;background:repeating-linear-gradient(45deg,var(--sub-card-bg),var(--sub-card-bg) 8px,var(--page-bg) 8px,var(--page-bg) 16px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;color:var(--text-muted);font-size:13px;line-height:1.55}
+.screenshot-placeholder::before{content:'◆ Screenshot coming';display:block;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--pp-red);letter-spacing:0.2em;margin-bottom:12px}
+.screenshot-placeholder strong{color:var(--text-primary);font-weight:700;display:block;margin-bottom:6px;font-family:var(--display);font-size:15px}
+.screenshot-placeholder em{font-style:normal;font-family:var(--mono);color:var(--pp-red);font-weight:700;font-size:11px;letter-spacing:0.06em;margin-top:8px;display:block}
+
+/* Success check */
+.verify{margin:22px 0;padding:16px 20px;background:#f0fdf4;border-left:4px solid var(--success);border-radius:6px;font-size:14px;line-height:1.55}
+.verify::before{content:'✓ Verify it worked:';display:block;font-family:var(--mono);font-size:10px;font-weight:700;color:var(--success);letter-spacing:0.15em;margin-bottom:6px;text-transform:uppercase}
+.verify code{font-family:var(--mono);font-size:13px;background:#fff;padding:2px 6px;border-radius:3px;border:1px solid var(--divider)}
+
+/* Troubleshooting */
+details.trouble{margin:18px 0;border:1px solid var(--divider);border-radius:6px;background:var(--card-bg);overflow:hidden}
+details.trouble summary{padding:12px 16px;font-family:var(--display);font-size:14px;font-weight:700;cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;color:var(--text-primary)}
+details.trouble summary::-webkit-details-marker{display:none}
+details.trouble summary::before{content:'?';display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:999px;background:var(--pp-red-soft);color:var(--pp-red);font-family:var(--display);font-weight:800;font-size:12px}
+details.trouble summary::after{content:'+';margin-left:auto;color:var(--pp-red);font-weight:800;font-size:18px;transition:transform 180ms}
+details.trouble[open] summary::after{transform:rotate(45deg)}
+details.trouble .t-body{padding:0 16px 16px;font-size:14px;line-height:1.55;color:var(--text-secondary)}
+
+/* Step nav (next) */
+.step-nav{margin-top:32px;padding-top:24px;border-top:1px solid var(--divider);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.step-nav a{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:var(--card-bg);border:1px solid var(--divider);border-radius:6px;font-family:var(--display);font-weight:700;font-size:14px;color:var(--text-primary);border-bottom:1px solid var(--divider)}
+.step-nav a:hover{border-color:var(--pp-red);color:var(--pp-red)}
+.step-nav a.next{background:var(--pp-red);color:#fff!important;border-color:var(--pp-red)}
+.step-nav a.next:hover{background:var(--pp-red-deep);color:#fff!important}
+
+/* Footer */
+footer{padding:48px 0;background:var(--dark);color:rgba(255,255,255,0.6);margin-top:80px}
+.foot-inner{max-width:900px;margin:0 auto;padding:0 28px}
+.foot-inner h3{font-family:var(--display);color:#fff;font-size:20px;font-weight:800;margin:0 0 10px}
+.foot-inner p{font-size:14px;line-height:1.6;margin:0 0 10px}
+.foot-inner a{color:var(--pp-red)}
+.foot-legal{margin-top:32px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.1);font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.04em}
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="dot">pp</div>
+      <div>
+        <div class="name">Purely Personal</div>
+        <div class="sub">Install Guide · v1</div>
+      </div>
+    </div>
+
+    <div class="sidebar-title">Start Here</div>
+    <ul class="step-list">
+      <li><a href="#before-you-start"><span class="num">·</span>Before you start</a></li>
+    </ul>
+
+    <div class="sidebar-title">Accounts + Install (6)</div>
+    <ul class="step-list">
+      <li><a href="#step-1"><span class="num">1</span>Claude Pro</a></li>
+      <li><a href="#step-2"><span class="num">2</span>GitHub account</a></li>
+      <li><a href="#step-3"><span class="num">3</span>Install Git</a></li>
+      <li><a href="#step-4"><span class="num">4</span>Clone the repo</a></li>
+      <li><a href="#step-5"><span class="num">5</span>Install the plugin</a></li>
+      <li><a href="#step-6"><span class="num">6</span>Verify 8 commands</a></li>
+    </ul>
+
+    <div class="sidebar-title">Connectors (5)</div>
+    <ul class="step-list">
+      <li><a href="#step-7"><span class="num">7</span>Gmail</a></li>
+      <li><a href="#step-8"><span class="num">8</span>Notion</a></li>
+      <li><a href="#step-9"><span class="num">9</span>Google Calendar</a></li>
+      <li><a href="#step-10"><span class="num">10</span>Google Drive</a></li>
+      <li><a href="#step-11"><span class="num">11</span>Stripe (optional)</a></li>
+    </ul>
+
+    <div class="sidebar-title">Apify MCP (3)</div>
+    <ul class="step-list">
+      <li><a href="#step-12"><span class="num">12</span>Apify account + token</a></li>
+      <li><a href="#step-13"><span class="num">13</span>Wire MCP</a></li>
+      <li><a href="#step-14"><span class="num">14</span>Verify Apify</a></li>
+    </ul>
+
+    <div class="sidebar-title">Final Prep (3)</div>
+    <ul class="step-list">
+      <li><a href="#step-15"><span class="num">15</span>Submit LinkedIn</a></li>
+      <li><a href="#step-16"><span class="num">16</span>Business folder</a></li>
+      <li><a href="#step-17"><span class="num">17</span>Empty BRAIN.md</a></li>
+    </ul>
+
+    <a class="sidebar-cta" href="#step-1">Start Step 1 →</a>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- INTRO -->
+    <section class="intro" id="before-you-start">
+      <div class="intro-eyebrow">◆ Pre-Workshop · Complete before Day 1</div>
+      <h1>Install the toolkit <em>once.</em><br>Never touch it again.</h1>
+      <p class="lead">17 steps. Roughly 60–75 minutes. When you're done, Claude Code is wired, 5 connectors are live, Apify is scraping, and your project folder is ready. Day 1 minute zero is building, not troubleshooting.</p>
+
+      <div class="intro-meta">
+        <div class="meta-pill">⏱ <strong>60–75 min</strong></div>
+        <div class="meta-pill">💻 Mac <strong>or</strong> Windows</div>
+        <div class="meta-pill">💳 Claude Pro <strong>$20/mo</strong></div>
+        <div class="meta-pill">🆓 Everything else free</div>
+      </div>
+
+      <div class="callout warn">
+        <strong>Stuck at any step?</strong> Post in the workshop Slack channel (link in your registration email). Danny or a teammate will unblock you within 30 minutes during Finland business hours. Do not show up to Day 1 with things broken. Minute zero on Day 1 is building, not fixing.
+      </div>
+
+      <div class="callout info">
+        <strong>Cost check before you start:</strong> Claude Pro is $20/mo (required). Apify free plan covers the workshop (~$5 compute/month cap, workshop uses ~5 CUs). Every other connector (Gmail, Notion, Calendar, Drive, Stripe) is OAuth sign-in only, no API keys. Total out-of-pocket: $20 for Pro. Workshop seat: $49.
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- STEP 1 · CLAUDE PRO -->
+    <!-- ============================================================ -->
+    <section class="step" id="step-1">
+      <div class="step-header">
+        <div class="step-number">1</div>
+        <div class="step-head-text">
+          <span class="tag">Accounts + Install</span>
+          <h2>Create a Claude account + upgrade to Pro</h2>
+          <div class="step-meta">
+            <span class="time">8 min</span>
+            <span class="diff">Everyone</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <p>Claude Pro is required for this workshop. You'll also install the Claude Code CLI (the terminal app that runs your engines).</p>
+
+        <ol>
+          <li>Open <a href="https://claude.ai" target="_blank">claude.ai</a> in your browser</li>
+          <li>Click <strong>Sign up</strong> (top right). Use your main email address.</li>
+          <li>Once logged in, click your profile (top right) → <strong>Upgrade to Pro</strong></li>
+          <li>Pay the $20/month and you're in</li>
+        </ol>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">01a-claude-signup.png</span><span class="what">· claude.ai homepage with "Sign up" button circled (top right)</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Claude.ai homepage</strong>
+            Show the "Sign up" button in the top right corner circled in red.
+            <em>screenshots/01a-claude-signup.png</em>
+          </div>
+        </div>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">01b-claude-pro-upgrade.png</span><span class="what">· Pricing page with "Upgrade to Pro" highlighted · $20/mo</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Pricing page</strong>
+            Show the Pro tier card with "Upgrade" CTA highlighted. Make sure the $20/mo price is visible.
+            <em>screenshots/01b-claude-pro-upgrade.png</em>
+          </div>
+        </div>
+
+        <h3 style="font-family:var(--display);font-size:17px;font-weight:800;margin:20px 0 10px">Now install Claude Code (the CLI)</h3>
+        <p>Go to <a href="https://claude.com/claude-code" target="_blank">claude.com/claude-code</a> and follow the install instructions for your OS.</p>
+
+        <div class="os-tabs">
+          <div class="os-tab-header">
+            <div class="os-tab-label mac">macOS</div>
+            <div class="os-tab-label win">Windows</div>
+          </div>
+          <div class="os-tab-body">
+            <div>
+              <p style="margin:0 0 10px;font-size:13px;color:var(--text-secondary)">Open <strong>Terminal</strong> (Applications → Utilities → Terminal) and paste:</p>
+              <div class="cmd"><span class="cmd-label">Mac Terminal</span>curl -fsSL https://claude.ai/install.sh | sh</div>
+              <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">If asked for your password, type it. You won't see characters appear. That's normal.</p>
+            </div>
+            <div>
+              <p style="margin:0 0 10px;font-size:13px;color:var(--text-secondary)">Open <strong>PowerShell</strong> (Start → type "PowerShell") and paste:</p>
+              <div class="cmd"><span class="cmd-label">Windows PowerShell</span>iwr https://claude.ai/install.ps1 -UseBasicParsing | iex</div>
+              <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">If Windows shows a security warning, click "Run anyway" or re-open PowerShell as Administrator.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">01c-claude-code-install-mac.png</span><span class="what">· Terminal on Mac with install output visible (4 lines of progress)</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Terminal with install output</strong>
+            Mac: Terminal window showing the install script running, ending with "Installation complete" or similar.
+            <em>screenshots/01c-claude-code-install-mac.png</em>
+          </div>
+        </div>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">01d-claude-code-install-win.png</span><span class="what">· PowerShell on Windows with install output</span></div>
+          <div class="screenshot-placeholder">
+            <strong>PowerShell with install output</strong>
+            Windows: PowerShell window showing the same successful install. Blue background, white text.
+            <em>screenshots/01d-claude-code-install-win.png</em>
+          </div>
+        </div>
+
+        <div class="verify">
+          Type <code>claude --version</code> in your terminal. You should see <code>1.0.x</code> or higher. If you see "command not found", close and re-open your terminal, then try again.
+        </div>
+
+        <details class="trouble">
+          <summary>What if <code>claude --version</code> still says "command not found"?</summary>
+          <div class="t-body">
+            <strong>Mac:</strong> Run <code>source ~/.zshrc</code> (or <code>source ~/.bash_profile</code> if you're on older macOS). Try <code>claude --version</code> again.<br><br>
+            <strong>Windows:</strong> Fully close PowerShell and re-open it. The PATH needs to refresh. If still not working, search "Environment Variables" in Start menu → check that your user PATH includes <code>%USERPROFILE%\.claude\bin</code>.
+          </div>
+        </details>
+
+        <div class="step-nav">
+          <span></span>
+          <a class="next" href="#step-2">Next · Step 2: GitHub account →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- STEP 2 · GITHUB -->
+    <!-- ============================================================ -->
+    <section class="step" id="step-2">
+      <div class="step-header">
+        <div class="step-number">2</div>
+        <div class="step-head-text">
+          <span class="tag">Accounts + Install</span>
+          <h2>Create a GitHub account</h2>
+          <div class="step-meta">
+            <span class="time">3 min</span>
+            <span class="diff">Skip if you already have one</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <p>GitHub is where the Purely Personal plugin repo lives. Free plan is fine. If you already have a GitHub account, skip this step.</p>
+
+        <ol>
+          <li>Open <a href="https://github.com" target="_blank">github.com</a></li>
+          <li>Click <strong>Sign up</strong></li>
+          <li>Pick the Free plan</li>
+          <li>Verify your email</li>
+        </ol>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">02-github-signup.png</span><span class="what">· github.com homepage with "Sign up" button circled</span></div>
+          <div class="screenshot-placeholder">
+            <strong>GitHub homepage</strong>
+            Show github.com with the green "Sign up" button circled in red.
+            <em>screenshots/02-github-signup.png</em>
+          </div>
+        </div>
+
+        <div class="verify">
+          Log in to github.com. You should see your profile avatar in the top right.
+        </div>
+
+        <div class="step-nav">
+          <a href="#step-1">← Back · Step 1</a>
+          <a class="next" href="#step-3">Next · Step 3: Install Git →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- STEP 3 · INSTALL GIT -->
+    <!-- ============================================================ -->
+    <section class="step" id="step-3">
+      <div class="step-header">
+        <div class="step-number">3</div>
+        <div class="step-head-text">
+          <span class="tag">Accounts + Install</span>
+          <h2>Install Git on your machine</h2>
+          <div class="step-meta">
+            <span class="time">5 min</span>
+            <span class="diff">Platform-specific</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <p>Git is the version-control tool used to download ("clone") the Purely Personal plugin repo. You only install it once.</p>
+
+        <div class="os-tabs">
+          <div class="os-tab-header">
+            <div class="os-tab-label mac">macOS</div>
+            <div class="os-tab-label win">Windows</div>
+          </div>
+          <div class="os-tab-body">
+            <div>
+              <p style="margin:0 0 10px;font-size:13px;color:var(--text-secondary)">Open <strong>Terminal</strong> and paste:</p>
+              <div class="cmd"><span class="cmd-label">Mac Terminal</span>xcode-select --install</div>
+              <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">A dialog appears. Click <strong>Install</strong>. Takes ~3 minutes. Installs git + Xcode command line tools.</p>
+            </div>
+            <div>
+              <p style="margin:0 0 10px;font-size:13px;color:var(--text-secondary)">Download the installer:</p>
+              <p style="margin:0 0 10px;font-size:13px"><a href="https://git-scm.com/download/win" target="_blank">git-scm.com/download/win</a> → 64-bit installer</p>
+              <p style="font-size:12px;color:var(--text-muted);margin:0">Run it. <strong>Click Next on every screen</strong> (all defaults are correct). Takes ~2 minutes.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">03a-git-install-mac.png</span><span class="what">· Mac dialog asking to install Xcode Command Line Tools</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Mac Xcode Tools dialog</strong>
+            System dialog with "Install", "Not Now", "Get Xcode" buttons. Circle "Install" in red.
+            <em>screenshots/03a-git-install-mac.png</em>
+          </div>
+        </div>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">03b-git-install-win.png</span><span class="what">· Windows Git Setup wizard on the "Select Components" screen with all defaults</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Windows Git Setup wizard</strong>
+            Show the installer wizard. Highlight the "Next >" button. Caption emphasizes "Accept all defaults".
+            <em>screenshots/03b-git-install-win.png</em>
+          </div>
+        </div>
+
+        <div class="verify">
+          Type <code>git --version</code> in your terminal. You should see <code>git version 2.x</code>. If not, close and re-open the terminal.
+        </div>
+
+        <div class="step-nav">
+          <a href="#step-2">← Back · Step 2</a>
+          <a class="next" href="#step-4">Next · Step 4: Clone the repo →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- STEP 4 · CLONE REPO -->
+    <!-- ============================================================ -->
+    <section class="step" id="step-4">
+      <div class="step-header">
+        <div class="step-number">4</div>
+        <div class="step-head-text">
+          <span class="tag">Accounts + Install</span>
+          <h2>Clone the Purely Personal plugin repo</h2>
+          <div class="step-meta">
+            <span class="time">2 min</span>
+            <span class="diff">Copy-paste · no typing</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <p>Download the entire plugin onto your machine. Works identically on Mac and Windows.</p>
+
+        <p><strong>Open Terminal (Mac) or Git Bash (Windows)</strong> and paste:</p>
+
+        <div class="cmd"><span class="cmd-label">Mac Terminal / Windows Git Bash</span>git clone https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself.git
+cd Purely-Personal-Run-a-business-by-itself</div>
+
+        <p>You'll see download progress. When it finishes, you're inside the repo folder.</p>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">04-git-clone-output.png</span><span class="what">· Terminal showing "Cloning into..." + successful clone + cd into folder</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Terminal clone output</strong>
+            Show the full paste + 4–5 lines of "Cloning into..." / "Receiving objects..." / "Resolving deltas..." output. End with the prompt showing the new cwd.
+            <em>screenshots/04-git-clone-output.png</em>
+          </div>
+        </div>
+
+        <div class="verify">
+          Type <code>ls</code> (Mac) or <code>dir</code> (Windows). You should see folders like <code>skills/</code>, <code>commands/</code>, <code>workshop/</code>, and files like <code>README.md</code>.
+        </div>
+
+        <div class="step-nav">
+          <a href="#step-3">← Back · Step 3</a>
+          <a class="next" href="#step-5">Next · Step 5: Install the plugin →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- STEP 5 · INSTALL PLUGIN -->
+    <!-- ============================================================ -->
+    <section class="step" id="step-5">
+      <div class="step-header">
+        <div class="step-number">5</div>
+        <div class="step-head-text">
+          <span class="tag">Accounts + Install</span>
+          <h2>Install the plugin into Claude Code</h2>
+          <div class="step-meta">
+            <span class="time">1 min</span>
+            <span class="diff">One command</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <p>Make sure you're still inside the cloned folder, then run:</p>
+
+        <div class="cmd"><span class="cmd-label">From inside the repo</span>claude plugin install .</div>
+
+        <p>The dot at the end is important. It means "install the plugin from the current folder."</p>
+
+        <div class="callout info">
+          <strong>Alternative:</strong> If <code>plugin install</code> isn't available in your Claude Code version, symlink it manually:
+          <div class="cmd" style="margin-top:10px"><span class="cmd-label">Alternative install</span>ln -s $(pwd) ~/.claude/plugins/purely-personal</div>
+        </div>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">05-plugin-install-output.png</span><span class="what">· Terminal showing successful plugin install confirmation</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Plugin install output</strong>
+            Terminal showing "Plugin 'purely-personal' installed" or similar success message.
+            <em>screenshots/05-plugin-install-output.png</em>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <a href="#step-4">← Back · Step 4</a>
+          <a class="next" href="#step-6">Next · Step 6: Verify 8 commands →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- STEP 6 · VERIFY COMMANDS -->
+    <!-- ============================================================ -->
+    <section class="step" id="step-6">
+      <div class="step-header">
+        <div class="step-number">6</div>
+        <div class="step-head-text">
+          <span class="tag">Accounts + Install</span>
+          <h2>Verify all 8 slash commands appear</h2>
+          <div class="step-meta">
+            <span class="time">2 min</span>
+            <span class="diff">Critical check</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <p>This is the check that proves the plugin is wired correctly. If you see all 8 commands, you're ready for Day 1.</p>
+
+        <ol>
+          <li>Open Claude Code in any folder: type <code>claude</code> in your terminal</li>
+          <li>Inside Claude Code, type a single <strong><code>/</code></strong></li>
+          <li>A list of commands appears. Scroll and confirm all 8 are there:</li>
+        </ol>
+
+        <div class="callout info">
+          <strong>The 8 commands:</strong><br>
+          <code>/build-my-brain</code> · <code>/marketing-engine</code> · <code>/sales-engine</code> · <code>/operations-engine</code> · <code>/cash-engine</code> · <code>/leadership-engine</code> · <code>/prep-workshop-slides</code> · <code>/ship-it-live</code>
+        </div>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">06-slash-commands-menu.png</span><span class="what">· Claude Code showing the slash command dropdown with all 8 purely-personal commands visible</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Slash command menu</strong>
+            Claude Code window with the <code>/</code> dropdown expanded. All 8 purely-personal commands visible in the list. Red-circle the 8 commands.
+            <em>screenshots/06-slash-commands-menu.png</em>
+          </div>
+        </div>
+
+        <details class="trouble">
+          <summary>I only see 5 or 6 commands</summary>
+          <div class="t-body">
+            Your plugin install didn't complete fully. Close Claude Code, run <code>claude plugin list</code> in your terminal. If "purely-personal" isn't listed, re-run <code>claude plugin install .</code> from inside the repo folder.
+          </div>
+        </details>
+
+        <div class="step-nav">
+          <a href="#step-5">← Back · Step 5</a>
+          <a class="next" href="#step-7">Next · Step 7: Connect Gmail →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- STEP 7 · GMAIL -->
+    <!-- ============================================================ -->
+    <section class="step" id="step-7">
+      <div class="step-header">
+        <div class="step-number">7</div>
+        <div class="step-head-text">
+          <span class="tag">Connectors</span>
+          <h2>Connect Gmail</h2>
+          <div class="step-meta">
+            <span class="time">2 min</span>
+            <span class="diff">OAuth · no API key</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <p>Gmail powers Monday Content Drop, Thursday Meeting Prep, and Friday Weekly Wrap. Claude reads your inbox for audience questions and writes drafts to Gmail Drafts.</p>
+
+        <ol>
+          <li>Open <a href="https://claude.ai" target="_blank">claude.ai</a></li>
+          <li>Click your profile (top right) → <strong>Settings</strong></li>
+          <li>Click <strong>Connectors</strong> in the left sidebar</li>
+          <li>Click <strong>+ Add</strong> → pick <strong>Gmail</strong></li>
+          <li>Sign in with Google → <strong>allow ALL permissions</strong></li>
+        </ol>
+
+        <div class="callout danger">
+          <strong>Must allow ALL permissions.</strong> If you only grant "read" and skip "send drafts", routines will fail silently. Allow everything. Claude only does what the routines tell it to do.
+        </div>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">07a-connectors-page.png</span><span class="what">· claude.ai Settings → Connectors page with "+ Add" button circled</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Connectors page</strong>
+            Full view of Settings → Connectors. Show the list of available connectors. Red-circle the "+ Add" button.
+            <em>screenshots/07a-connectors-page.png</em>
+          </div>
+        </div>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">07b-gmail-oauth-permissions.png</span><span class="what">· Google OAuth consent screen with all permission checkboxes ticked</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Google consent screen</strong>
+            The Google OAuth "Claude wants access to" screen. All permission boxes checked. Highlight "Allow" button.
+            <em>screenshots/07b-gmail-oauth-permissions.png</em>
+          </div>
+        </div>
+
+        <div class="verify">
+          Back on the Connectors page, "Gmail" now appears with a green "Connected" badge.
+        </div>
+
+        <div class="step-nav">
+          <a href="#step-6">← Back · Step 6</a>
+          <a class="next" href="#step-8">Next · Step 8: Connect Notion →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- STEPS 8–11 · SAME FLOW -->
+    <!-- ============================================================ -->
+    <section class="step" id="step-8">
+      <div class="step-header">
+        <div class="step-number">8</div>
+        <div class="step-head-text">
+          <span class="tag">Connectors</span>
+          <h2>Connect Notion</h2>
+          <div class="step-meta"><span class="time">2 min</span><span class="diff">OAuth</span></div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>Notion holds your content calendar, CRM, and pipeline reports. Monday Content Drop, Tuesday Lead Research, and Sunday Pipeline Report all write here.</p>
+        <ol>
+          <li>Same Connectors page → <strong>+ Add</strong> → <strong>Notion</strong></li>
+          <li>Sign in → pick your main workspace → allow all</li>
+        </ol>
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">08-notion-connector.png</span><span class="what">· Connectors page showing Notion now "Connected"</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Notion connected</strong>
+            Connectors page with Notion in the connected list, green checkmark.
+            <em>screenshots/08-notion-connector.png</em>
+          </div>
+        </div>
+        <div class="verify">Notion shows "Connected" with a green badge.</div>
+        <div class="step-nav">
+          <a href="#step-7">← Back · Step 7</a>
+          <a class="next" href="#step-9">Next · Step 9: Google Calendar →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="step" id="step-9">
+      <div class="step-header">
+        <div class="step-number">9</div>
+        <div class="step-head-text">
+          <span class="tag">Connectors</span>
+          <h2>Connect Google Calendar</h2>
+          <div class="step-meta"><span class="time">1 min</span><span class="diff">OAuth</span></div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>Google Calendar powers Thursday Meeting Prep. Claude reads today's external meetings and scrapes attendees on LinkedIn.</p>
+        <ol>
+          <li>Connectors → <strong>+ Add</strong> → <strong>Google Calendar</strong></li>
+          <li>Sign in → allow</li>
+        </ol>
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">09-calendar-connector.png</span><span class="what">· Connectors page showing Google Calendar now "Connected"</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Calendar connected</strong>
+            Connectors page with Google Calendar in the connected list.
+            <em>screenshots/09-calendar-connector.png</em>
+          </div>
+        </div>
+        <div class="step-nav">
+          <a href="#step-8">← Back · Step 8</a>
+          <a class="next" href="#step-10">Next · Step 10: Google Drive →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="step" id="step-10">
+      <div class="step-header">
+        <div class="step-number">10</div>
+        <div class="step-head-text">
+          <span class="tag">Connectors</span>
+          <h2>Connect Google Drive</h2>
+          <div class="step-meta"><span class="time">1 min</span><span class="diff">OAuth</span></div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>Google Drive is where newsletter drafts and weekly reports save. Wednesday Newsletter, Friday Weekly Wrap, and Sunday Pipeline Report write here.</p>
+        <ol>
+          <li>Connectors → <strong>+ Add</strong> → <strong>Google Drive</strong></li>
+          <li>Sign in → <strong>allow including file creation</strong></li>
+        </ol>
+        <div class="callout danger">
+          <strong>File creation must be allowed.</strong> Without it, routines can read Drive but cannot write your newsletter drafts.
+        </div>
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">10-drive-connector.png</span><span class="what">· Google Drive OAuth consent screen with "create files" permission visible</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Drive OAuth</strong>
+            Google consent screen for Drive. Highlight the "Create and access its own configuration data" and "Create new files" permissions. Click Allow.
+            <em>screenshots/10-drive-connector.png</em>
+          </div>
+        </div>
+        <div class="step-nav">
+          <a href="#step-9">← Back · Step 9</a>
+          <a class="next" href="#step-11">Next · Step 11: Stripe (optional) →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="step" id="step-11">
+      <div class="step-header">
+        <div class="step-number">11</div>
+        <div class="step-head-text">
+          <span class="tag">Connectors</span>
+          <h2>Connect Stripe (optional)</h2>
+          <div class="step-meta"><span class="time">1 min</span><span class="diff">Only if you use Stripe</span></div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>Stripe connection is optional. If connected, <code>/cash-engine</code> pulls real revenue numbers. If skipped, Claude prompts you to paste numbers manually.</p>
+        <ol>
+          <li>Connectors → <strong>+ Add</strong> → <strong>Stripe</strong></li>
+          <li>Sign in with your Stripe account → allow</li>
+        </ol>
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">11-stripe-connector.png</span><span class="what">· Connectors page showing Stripe now connected (optional)</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Stripe connected (optional)</strong>
+            Connectors page with Stripe connected. Caption emphasizes this one is optional.
+            <em>screenshots/11-stripe-connector.png</em>
+          </div>
+        </div>
+        <div class="step-nav">
+          <a href="#step-10">← Back · Step 10</a>
+          <a class="next" href="#step-12">Next · Step 12: Apify account →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- STEP 12 · APIFY -->
+    <!-- ============================================================ -->
+    <section class="step" id="step-12">
+      <div class="step-header">
+        <div class="step-number">12</div>
+        <div class="step-head-text">
+          <span class="tag">Apify MCP</span>
+          <h2>Create Apify account + API token</h2>
+          <div class="step-meta"><span class="time">5 min</span><span class="diff">Free plan fits workshop</span></div>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <p>Apify is the one non-OAuth piece. It powers LinkedIn scraping, website crawling, Reddit pain mining, and Google search for the Sales Machine.</p>
+
+        <div class="callout info">
+          <strong>Free plan is enough.</strong> Apify free tier includes ~$5 of compute per month. The whole workshop uses about 5 compute units. You will not hit the cap.
+        </div>
+
+        <ol>
+          <li>Open <a href="https://apify.com" target="_blank">apify.com</a> → <strong>Sign up</strong> → Free plan → verify email</li>
+          <li>Log in to <a href="https://console.apify.com" target="_blank">console.apify.com</a></li>
+          <li>Click <strong>Settings</strong> (left sidebar) → <strong>Integrations</strong></li>
+          <li>Click <strong>+ Create new token</strong></li>
+          <li>Name it: <code>Claude Workshop</code> → click <strong>Create</strong></li>
+          <li><strong>Copy the token immediately.</strong> Starts with <code>apify_api_...</code></li>
+        </ol>
+
+        <div class="callout danger">
+          <strong>Save the token in Notes or your password manager RIGHT NOW.</strong> Apify will never show this token again. If you close the page without copying it, you have to create a new one.
+        </div>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">12a-apify-signup.png</span><span class="what">· apify.com homepage with "Sign up" button highlighted</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Apify homepage</strong>
+            Show apify.com with the "Sign up free" CTA circled.
+            <em>screenshots/12a-apify-signup.png</em>
+          </div>
+        </div>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">12b-apify-integrations-page.png</span><span class="what">· Apify Console → Settings → Integrations page</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Apify Integrations page</strong>
+            console.apify.com → Settings → Integrations. Red-circle the "+ Create new token" button.
+            <em>screenshots/12b-apify-integrations-page.png</em>
+          </div>
+        </div>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">12c-apify-token-created.png</span><span class="what">· Created token dialog showing "apify_api_..." with Copy button circled</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Token created dialog</strong>
+            The "Token created" modal. Token string visible but blurred. Red-circle the Copy button. Caption emphasizes "Copy immediately".
+            <em>screenshots/12c-apify-token-created.png</em>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <a href="#step-11">← Back · Step 11</a>
+          <a class="next" href="#step-13">Next · Step 13: Wire the MCP →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- STEP 13 · WIRE MCP -->
+    <!-- ============================================================ -->
+    <section class="step" id="step-13">
+      <div class="step-header">
+        <div class="step-number">13</div>
+        <div class="step-head-text">
+          <span class="tag">Apify MCP</span>
+          <h2>Wire Apify MCP into Claude Desktop</h2>
+          <div class="step-meta"><span class="time">6 min</span><span class="diff">Config file edit</span></div>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <p>MCP = Model Context Protocol. It tells Claude Desktop "these external tools are available." Once wired, you can say "use Apify to scrape X" in any Claude Code conversation.</p>
+
+        <h3 style="font-family:var(--display);font-size:17px;font-weight:800;margin:20px 0 10px">Step 13a · Open the config file</h3>
+
+        <div class="os-tabs">
+          <div class="os-tab-header">
+            <div class="os-tab-label mac">macOS</div>
+            <div class="os-tab-label win">Windows</div>
+          </div>
+          <div class="os-tab-body">
+            <div>
+              <p style="margin:0 0 10px;font-size:13px;color:var(--text-secondary)">In Terminal, paste:</p>
+              <div class="cmd"><span class="cmd-label">Mac Terminal</span>open ~/Library/Application\ Support/Claude/claude_desktop_config.json</div>
+              <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">Opens in TextEdit. If the file doesn't exist yet, create it: <code>touch ~/Library/Application\ Support/Claude/claude_desktop_config.json</code> then open it.</p>
+            </div>
+            <div>
+              <p style="margin:0 0 10px;font-size:13px;color:var(--text-secondary)">In File Explorer address bar, paste:</p>
+              <div class="cmd"><span class="cmd-label">Windows File Explorer</span>%APPDATA%\Claude</div>
+              <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">Find <code>claude_desktop_config.json</code>. Open in Notepad. If it doesn't exist, create a new empty file with that exact name.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-family:var(--display);font-size:17px;font-weight:800;margin:20px 0 10px">Step 13b · Paste this config</h3>
+
+        <p><strong>Replace <code>YOUR_TOKEN_HERE</code> with the Apify token from Step 12.</strong> Paste the whole block as-is. If the file already has content, merge the <code>mcpServers</code> section carefully.</p>
+
+        <div class="cmd"><span class="cmd-label">claude_desktop_config.json</span>{
+  "mcpServers": {
+    "apify": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@apify/actors-mcp-server",
+        "--actors",
+        "apify/linkedin-profile-scraper,apify/linkedin-company-scraper,apify/google-search-scraper,apify/website-content-crawler,trudax/reddit-scraper-lite"
+      ],
+      "env": { "APIFY_TOKEN": <span class="highlight">"YOUR_TOKEN_HERE"</span> }
+    }
+  }
+}</div>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">13a-config-file-mac.png</span><span class="what">· TextEdit on Mac showing the pasted config with token area highlighted</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Mac TextEdit with config pasted</strong>
+            TextEdit window with the full JSON pasted. Blur the real token. Red-underline the "APIFY_TOKEN" line.
+            <em>screenshots/13a-config-file-mac.png</em>
+          </div>
+        </div>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">13b-config-file-win.png</span><span class="what">· Notepad on Windows showing the same config pasted</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Windows Notepad with config pasted</strong>
+            Notepad with identical content. Red-underline the APIFY_TOKEN line. File title shows claude_desktop_config.json.
+            <em>screenshots/13b-config-file-win.png</em>
+          </div>
+        </div>
+
+        <h3 style="font-family:var(--display);font-size:17px;font-weight:800;margin:20px 0 10px">Step 13c · Save + fully quit Claude Desktop</h3>
+
+        <div class="callout danger">
+          <strong>Fully quit, do not just close the window.</strong><br>
+          <strong>Mac:</strong> Cmd+Q or click Claude menu → Quit Claude.<br>
+          <strong>Windows:</strong> Right-click the Claude icon in system tray → Quit. Or open Task Manager → End Task on Claude.
+        </div>
+
+        <p>Now re-open Claude Desktop. The MCP server loads on startup.</p>
+
+        <div class="step-nav">
+          <a href="#step-12">← Back · Step 12</a>
+          <a class="next" href="#step-14">Next · Step 14: Verify Apify →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- STEP 14 · VERIFY APIFY -->
+    <!-- ============================================================ -->
+    <section class="step" id="step-14">
+      <div class="step-header">
+        <div class="step-number">14</div>
+        <div class="step-head-text">
+          <span class="tag">Apify MCP</span>
+          <h2>Verify Apify is wired</h2>
+          <div class="step-meta"><span class="time">2 min</span><span class="diff">Critical check</span></div>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <p>This is the check that proves MCP loaded correctly. If Apify responds, you're done with the hard part.</p>
+
+        <ol>
+          <li>Open Claude Code in any folder</li>
+          <li>Paste this exact sentence:</li>
+        </ol>
+
+        <div class="cmd"><span class="cmd-label">Test prompt</span>Use Apify to search Google for "solopreneur AI 2026". Give me the top 3 results only.</div>
+
+        <p>If real search results appear (not a canned answer), Apify is wired.</p>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">14-apify-test-output.png</span><span class="what">· Claude Code showing the test prompt + real Google results via Apify</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Apify test output</strong>
+            Claude Code conversation showing the test prompt and 3 real Google result cards below. Tool call to <code>apify:google-search-scraper</code> visible in the trace.
+            <em>screenshots/14-apify-test-output.png</em>
+          </div>
+        </div>
+
+        <details class="trouble">
+          <summary>Claude says "I don't have access to Apify"</summary>
+          <div class="t-body">
+            MCP didn't load. Re-open the config file and check: (1) the JSON is valid (no trailing commas), (2) the token is pasted correctly (starts with <code>apify_api_</code>), (3) Claude Desktop was fully quit and reopened, not just minimized.
+          </div>
+        </details>
+
+        <div class="step-nav">
+          <a href="#step-13">← Back · Step 13</a>
+          <a class="next" href="#step-15">Next · Step 15: Submit LinkedIn →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- STEP 15 · SUBMIT LINKEDIN -->
+    <!-- ============================================================ -->
+    <section class="step" id="step-15">
+      <div class="step-header">
+        <div class="step-number">15</div>
+        <div class="step-head-text">
+          <span class="tag">Final Prep</span>
+          <h2>Reply with your LinkedIn URL</h2>
+          <div class="step-meta"><span class="time">1 min</span><span class="diff">Load-bearing · do not skip</span></div>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <div class="callout danger">
+          <strong>This step IS the mind-blown moment.</strong> Do not skip it. Danny uses your LinkedIn URL to generate a personalized opening slide for Day 1. Every attendee sees their own slide. It is the single most powerful 10 minutes of the workshop.
+        </div>
+
+        <ol>
+          <li>Open your registration confirmation email (from <code>danny@danielpaul.ai</code>)</li>
+          <li>Reply with a single line: your public LinkedIn URL</li>
+          <li>Example: <code>https://linkedin.com/in/yourhandle</code></li>
+        </ol>
+
+        <p>Danny runs <code>/prep-workshop-slides</code> the night before Day 1. Your LinkedIn is scraped, analyzed, and turned into a slide with your voice signature and AI-slop score.</p>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">15-linkedin-reply-example.png</span><span class="what">· Example of the reply email format (just the URL, nothing else)</span></div>
+          <div class="screenshot-placeholder">
+            <strong>LinkedIn URL reply format</strong>
+            Gmail compose window showing reply to confirmation email. Body is just the LinkedIn URL. No other text needed.
+            <em>screenshots/15-linkedin-reply-example.png</em>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <a href="#step-14">← Back · Step 14</a>
+          <a class="next" href="#step-16">Next · Step 16: Business folder →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- STEP 16 · BUSINESS FOLDER -->
+    <!-- ============================================================ -->
+    <section class="step" id="step-16">
+      <div class="step-header">
+        <div class="step-number">16</div>
+        <div class="step-head-text">
+          <span class="tag">Final Prep</span>
+          <h2>Create your business folder + test launch</h2>
+          <div class="step-meta"><span class="time">3 min</span><span class="diff">Mac or Windows</span></div>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <p>Every attendee builds inside a dedicated folder. This is where your <code>BUSINESS-BRAIN.md</code> will live.</p>
+
+        <div class="os-tabs">
+          <div class="os-tab-header">
+            <div class="os-tab-label mac">macOS</div>
+            <div class="os-tab-label win">Windows</div>
+          </div>
+          <div class="os-tab-body">
+            <div>
+              <div class="cmd"><span class="cmd-label">Mac Terminal</span>mkdir ~/Desktop/my-business
+cd ~/Desktop/my-business
+claude</div>
+            </div>
+            <div>
+              <p style="margin:0 0 10px;font-size:13px;color:var(--text-secondary)">Right-click Desktop → <strong>New</strong> → <strong>Folder</strong> → name it <code>my-business</code>. Then in Git Bash:</p>
+              <div class="cmd"><span class="cmd-label">Windows Git Bash</span>cd ~/Desktop/my-business
+claude</div>
+            </div>
+          </div>
+        </div>
+
+        <p>Claude Code opens. Inside, type:</p>
+
+        <div class="cmd"><span class="cmd-label">Inside Claude Code</span>/plugins</div>
+
+        <p>You should see <code>purely-personal</code> listed as a loaded plugin.</p>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">16-claude-plugins-output.png</span><span class="what">· Claude Code /plugins output showing purely-personal loaded</span></div>
+          <div class="screenshot-placeholder">
+            <strong>/plugins output</strong>
+            Claude Code showing /plugins command output with "purely-personal" in the list of loaded plugins.
+            <em>screenshots/16-claude-plugins-output.png</em>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <a href="#step-15">← Back · Step 15</a>
+          <a class="next" href="#step-17">Next · Step 17: Empty BRAIN.md →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- STEP 17 · EMPTY BRAIN -->
+    <!-- ============================================================ -->
+    <section class="step" id="step-17">
+      <div class="step-header">
+        <div class="step-number">17</div>
+        <div class="step-head-text">
+          <span class="tag">Final Prep</span>
+          <h2>Initialize an empty BUSINESS-BRAIN.md</h2>
+          <div class="step-meta"><span class="time">1 min</span><span class="diff">Last step</span></div>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <p>Create an empty file. Day 1 walks you through filling every section live.</p>
+
+        <div class="os-tabs">
+          <div class="os-tab-header">
+            <div class="os-tab-label mac">macOS</div>
+            <div class="os-tab-label win">Windows</div>
+          </div>
+          <div class="os-tab-body">
+            <div>
+              <div class="cmd"><span class="cmd-label">Mac Terminal</span>cd ~/Desktop/my-business
+touch BUSINESS-BRAIN.md</div>
+            </div>
+            <div>
+              <p style="margin:0 0 10px;font-size:13px;color:var(--text-secondary)">In <code>my-business</code> folder, right-click → New → Text Document. Rename to:</p>
+              <div class="cmd"><span class="cmd-label">Filename</span>BUSINESS-BRAIN.md</div>
+              <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">Make sure Windows isn't saving it as <code>BUSINESS-BRAIN.md.txt</code>. Enable "Show file extensions" in File Explorer if you're unsure.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout warn">
+          <strong>Do not fill the file yet.</strong> Day 1 walks you through filling every section live using <code>/build-my-brain</code>. If you fill it now, you'll have to start over.
+        </div>
+
+        <p>Reference template (to look at, not copy): <a href="https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself/blob/main/examples/BUSINESS-BRAIN.sample.md" target="_blank">examples/BUSINESS-BRAIN.sample.md</a></p>
+
+        <div class="screenshot">
+          <div class="screenshot-caption"><span class="file">17-empty-brain-file.png</span><span class="what">· Finder (Mac) or Explorer (Windows) showing empty BUSINESS-BRAIN.md inside my-business folder</span></div>
+          <div class="screenshot-placeholder">
+            <strong>Empty BUSINESS-BRAIN.md</strong>
+            File browser showing the my-business folder containing BUSINESS-BRAIN.md as an empty file (0 KB).
+            <em>screenshots/17-empty-brain-file.png</em>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <a href="#step-16">← Back · Step 16</a>
+          <a class="next" href="#done">You're done →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- DONE -->
+    <!-- ============================================================ -->
+    <section class="step" id="done">
+      <div class="step-header" style="border-color:var(--success)">
+        <div class="step-number" style="background:var(--success);box-shadow:0 4px 12px rgba(34,197,94,0.3)">✓</div>
+        <div class="step-head-text">
+          <span class="tag" style="color:var(--success)">◆ Complete</span>
+          <h2>You're ready for Day 1</h2>
+          <div class="step-meta"><span class="diff" style="color:var(--success)">17 of 17 steps done</span></div>
+        </div>
+      </div>
+      <div class="step-body">
+
+        <div class="callout" style="background:#f0fdf4;border-left:4px solid var(--success)">
+          <strong>What you've got now:</strong><br>
+          ✓ Claude Pro + Claude Code CLI installed<br>
+          ✓ Plugin cloned + installed + 8 slash commands verified<br>
+          ✓ 4 OAuth connectors live (Gmail, Notion, Calendar, Drive) + Stripe if you use it<br>
+          ✓ Apify MCP wired + tested<br>
+          ✓ LinkedIn URL submitted to Danny<br>
+          ✓ <code>my-business/</code> folder with empty <code>BUSINESS-BRAIN.md</code> ready to fill
+        </div>
+
+        <h3 style="font-family:var(--display);font-size:22px;font-weight:800;margin:28px 0 12px">Before Day 1</h3>
+        <ul>
+          <li>Confirm your Zoom link is saved (check your registration email)</li>
+          <li>Set a calendar block for Saturday May 2, 11:00am–1:00pm Finland time (and Sunday May 3)</li>
+          <li>Clear 2 hours. Camera on. Second monitor helps but isn't required.</li>
+          <li>Water on the desk. Phone on silent.</li>
+        </ul>
+
+        <div class="callout info">
+          <strong>See you May 2.</strong> If anything in this guide was unclear or broke, reply to the registration email. Danny reads every message. We fix it before Day 1.
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <h3>Purely Personal · Installation Guide</h3>
+    <p>Built for the "Build a Business That Runs By Itself" 2-day workshop. May 2–3, 2026.</p>
+    <p>Questions? <a href="mailto:danny@danielpaul.ai">danny@danielpaul.ai</a> · <a href="https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself">GitHub repo</a></p>
+    <div class="foot-legal">
+      © 2026 Purely Personal · Install guide v1 · Last updated April 24, 2026 · This guide is part of the Purely Personal workshop repo and is free to share with attendees.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
