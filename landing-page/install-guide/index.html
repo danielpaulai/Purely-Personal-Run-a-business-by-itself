@@ -296,6 +296,56 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
 .sm-notif-text .sm-sub{font-weight:700;font-size:12.5px;color:var(--text-primary)}
 .sm-notif-text .sm-snippet{font-size:11.5px;color:var(--text-secondary);margin-top:2px;line-height:1.45}
 
+/* ===== PHASE MARKER BANNERS ===== */
+.phase-marker{margin:36px 0 18px;padding:22px 24px;background:linear-gradient(135deg,var(--dark) 0%,var(--dark-card) 100%);border-radius:12px;color:#fff;position:relative;overflow:hidden;border:1px solid var(--divider)}
+.phase-marker::before{content:'';position:absolute;top:0;left:0;bottom:0;width:5px;background:var(--pp-red)}
+.phase-marker::after{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:999px;background:radial-gradient(circle,rgba(233,13,65,0.12) 0%,transparent 60%);pointer-events:none}
+.phase-marker-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
+@media (max-width:640px){.phase-marker-inner{grid-template-columns:1fr}}
+.phase-marker .pm-label{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--pp-red);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:4px;display:block}
+.phase-marker h3{font-family:var(--display);font-size:22px;font-weight:800;margin:0 0 4px;letter-spacing:-0.02em;color:#fff;line-height:1.15}
+.phase-marker p{font-size:13.5px;color:rgba(255,255,255,0.7);margin:0;line-height:1.5;max-width:520px}
+.phase-progress{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 16px;text-align:center;min-width:140px}
+.phase-progress .num{font-family:var(--display);font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1}
+.phase-progress .num strong{color:var(--pp-red)}
+.phase-progress .label{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.5);letter-spacing:0.15em;margin-top:4px;display:block;text-transform:uppercase}
+.phase-progress-bar{margin-top:8px;height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden}
+.phase-progress-bar .pf-fill{display:block;height:100%;width:0%;background:var(--pp-red);transition:width 260ms}
+
+/* ===== SKIP-THIS-STEP BUTTON ===== */
+.skip-row{margin:18px 0 4px;padding:12px 16px;background:var(--sub-card-bg);border:1px dashed var(--divider-strong);border-radius:6px;display:flex;align-items:center;gap:12px;font-size:13px}
+.skip-row .sr-text{flex:1;color:var(--text-secondary)}
+.skip-row .sr-text strong{color:var(--text-primary);font-weight:700}
+.skip-btn{padding:7px 14px;background:#fff;border:1px solid var(--divider-strong);border-radius:5px;font-family:var(--display);font-weight:700;font-size:12.5px;color:var(--text-primary);cursor:pointer;transition:all 140ms;display:inline-flex;align-items:center;gap:6px}
+.skip-btn:hover{border-color:var(--success);color:var(--success);background:#f0fdf4}
+.skip-btn::after{content:'→';transition:transform 160ms}
+.skip-btn:hover::after{transform:translateX(3px)}
+
+/* ===== TROUBLESHOOTING SECTION ===== */
+.trouble-section{margin:40px 0 0;padding:32px;background:var(--card-bg);border:1px solid var(--divider);border-radius:12px}
+.trouble-section .ts-head{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.trouble-section .ts-icon{width:44px;height:44px;border-radius:10px;background:var(--pp-red-soft);color:var(--pp-red);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px;font-family:var(--display);flex-shrink:0}
+.trouble-section h2{font-family:var(--display);font-size:26px;font-weight:800;letter-spacing:-0.02em;margin:0;line-height:1.1}
+.trouble-section .ts-sub{color:var(--text-secondary);margin:0 0 20px;font-size:14.5px;line-height:1.55}
+.trouble-groups{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+@media (max-width:760px){.trouble-groups{grid-template-columns:1fr}}
+.trouble-group{border:1px solid var(--divider);border-radius:8px;background:var(--sub-card-bg);overflow:hidden}
+.trouble-group .tg-title{padding:10px 16px;background:var(--card-bg);border-bottom:1px solid var(--divider);font-family:var(--mono);font-size:10px;color:var(--pp-red);letter-spacing:0.18em;font-weight:700;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.trouble-group .tg-title::before{content:'';width:8px;height:8px;background:var(--pp-red);border-radius:2px}
+.trouble-group details{border-top:1px solid var(--divider);background:var(--card-bg)}
+.trouble-group details:first-of-type{border-top:0}
+.trouble-group summary{padding:12px 16px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600;line-height:1.4}
+.trouble-group summary::-webkit-details-marker{display:none}
+.trouble-group summary::before{content:'!';display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:999px;background:var(--pp-red-soft);color:var(--pp-red);font-weight:800;font-size:11px;font-family:var(--display);flex-shrink:0}
+.trouble-group summary::after{content:'+';margin-left:auto;color:var(--pp-red);font-weight:800;font-size:16px;transition:transform 180ms}
+.trouble-group details[open] summary::after{transform:rotate(45deg)}
+.trouble-group .tg-body{padding:0 16px 14px;font-size:13.5px;line-height:1.55;color:var(--text-secondary)}
+.trouble-group .tg-body code{font-family:var(--mono);font-size:12px;background:var(--dark);color:#fff;padding:1px 6px;border-radius:3px}
+.trouble-group .tg-body strong{color:var(--text-primary);font-weight:700}
+.trouble-contact{margin-top:22px;padding:18px 22px;background:var(--pp-red-whisper);border-left:4px solid var(--pp-red);border-radius:6px;font-size:14px;line-height:1.55}
+.trouble-contact strong{font-weight:700;color:var(--pp-red-deep)}
+.trouble-contact a{font-weight:700}
+
 /* ===== EMPTY-VS-EXISTING CONFIG TABS ===== */
 .config-scenario{margin:14px 0 18px;border:1px solid var(--divider);border-radius:8px;overflow:hidden;background:var(--card-bg)}
 .config-scenario-tabs{display:flex;background:var(--sub-card-bg);border-bottom:1px solid var(--divider)}
@@ -428,6 +478,22 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
 
   <div class="callout warn"><strong>Stuck at any step?</strong> Post in the workshop Slack channel (link in your registration email). Danny or a teammate will unblock you within 30 minutes during Finland business hours.</div>
 </section>
+
+<!-- ===== PHASE 1 ===== -->
+<div class="phase-marker" data-phase="1" data-steps="s1,s2,s3,s4,s5,s6">
+  <div class="phase-marker-inner">
+    <div>
+      <span class="pm-label">◆ Phase 1 of 4</span>
+      <h3>Install the software</h3>
+      <p>Get Claude Code on your machine, clone the plugin, verify 8 slash commands work. Steps 1 through 6.</p>
+    </div>
+    <div class="phase-progress">
+      <span class="num"><strong class="pf-done">0</strong>/6</span>
+      <span class="label">steps done</span>
+      <div class="phase-progress-bar"><span class="pf-fill"></span></div>
+    </div>
+  </div>
+</div>
 
 <details class="step" id="s1" open>
   <summary>
@@ -638,6 +704,22 @@ cd Purely-Personal-Run-a-business-by-itself</div>
   </div>
 </details>
 
+<!-- ===== PHASE 2 ===== -->
+<div class="phase-marker" data-phase="2" data-steps="s7,s8,s9,s10,s11">
+  <div class="phase-marker-inner">
+    <div>
+      <span class="pm-label">◆ Phase 2 of 4</span>
+      <h3>Connect your apps</h3>
+      <p>Let Claude read your inbox, calendar, and workspace. All OAuth sign-ins, no API keys. Steps 7 through 11.</p>
+    </div>
+    <div class="phase-progress">
+      <span class="num"><strong class="pf-done">0</strong>/5</span>
+      <span class="label">steps done</span>
+      <div class="phase-progress-bar"><span class="pf-fill"></span></div>
+    </div>
+  </div>
+</div>
+
 <details class="step" id="s7">
   <summary>
     <div class="step-num">7</div>
@@ -751,6 +833,22 @@ cd Purely-Personal-Run-a-business-by-itself</div>
     </ol>
   </div>
 </details>
+
+<!-- ===== PHASE 3 ===== -->
+<div class="phase-marker" data-phase="3" data-steps="s12,s13,s14">
+  <div class="phase-marker-inner">
+    <div>
+      <span class="pm-label">◆ Phase 3 of 4</span>
+      <h3>Wire the scraper</h3>
+      <p>Add Apify MCP so the Sales Machine can research LinkedIn, scrape websites, pull Reddit pain themes. Steps 12 through 14.</p>
+    </div>
+    <div class="phase-progress">
+      <span class="num"><strong class="pf-done">0</strong>/3</span>
+      <span class="label">steps done</span>
+      <div class="phase-progress-bar"><span class="pf-fill"></span></div>
+    </div>
+  </div>
+</div>
 
 <details class="step" id="s12">
   <summary>
@@ -959,6 +1057,22 @@ cd Purely-Personal-Run-a-business-by-itself</div>
   </div>
 </details>
 
+<!-- ===== PHASE 4 ===== -->
+<div class="phase-marker" data-phase="4" data-steps="s15,s16,s17">
+  <div class="phase-marker-inner">
+    <div>
+      <span class="pm-label">◆ Phase 4 of 4</span>
+      <h3>Prepare your folder</h3>
+      <p>Submit your LinkedIn to Danny, create the business folder, initialize an empty Brain file. Steps 15 through 17.</p>
+    </div>
+    <div class="phase-progress">
+      <span class="num"><strong class="pf-done">0</strong>/3</span>
+      <span class="label">steps done</span>
+      <div class="phase-progress-bar"><span class="pf-fill"></span></div>
+    </div>
+  </div>
+</div>
+
 <details class="step" id="s15">
   <summary>
     <div class="step-num">15</div>
@@ -1121,6 +1235,107 @@ touch BUSINESS-BRAIN.md</div></div>
   <strong>See you Saturday May 2 at 11am Finland.</strong> Camera on. Water nearby. Phone on silent. If anything above is unclear, reply to the registration email. Danny reads every one.
 </div>
 
+<!-- ===== TROUBLESHOOTING ===== -->
+<section class="trouble-section" id="help">
+  <div class="ts-head">
+    <div class="ts-icon">?</div>
+    <h2>If you're stuck</h2>
+  </div>
+  <p class="ts-sub">The 14 most common problems, grouped by phase. Click the one matching what you're seeing. If nothing here helps, scroll to the bottom.</p>
+
+  <div class="trouble-groups">
+
+    <!-- PHASE 1 · Install -->
+    <div class="trouble-group">
+      <div class="tg-title">Phase 1 · Install</div>
+      <details>
+        <summary>Terminal says <code>command not found: claude</code></summary>
+        <div class="tg-body"><strong>Fix:</strong> close and re-open the terminal so PATH refreshes. <strong>Mac:</strong> run <code>source ~/.zshrc</code> and try again. <strong>Windows:</strong> open "Environment Variables" in Start menu, check user PATH includes <code>%USERPROFILE%\.claude\bin</code>, re-open PowerShell.</div>
+      </details>
+      <details>
+        <summary>Terminal says <code>command not found: git</code></summary>
+        <div class="tg-body"><strong>Mac:</strong> the <code>xcode-select --install</code> dialog never appeared, or you clicked Cancel. Re-run the command. <strong>Windows:</strong> the git installer didn't finish or you're not using Git Bash. Open Git Bash from Start menu.</div>
+      </details>
+      <details>
+        <summary><code>claude plugin install .</code> fails or says "not recognized"</summary>
+        <div class="tg-body"><strong>Check 1:</strong> you're <em>inside</em> the cloned repo folder. Type <code>pwd</code> (Mac) or <code>cd</code> (Win). The path should end in <code>Purely-Personal-Run-a-business-by-itself</code>. <strong>Check 2:</strong> your Claude Code is 1.0 or newer. Run <code>claude --version</code>. <strong>Fallback:</strong> symlink manually with <code>ln -s $(pwd) ~/.claude/plugins/purely-personal</code>.</div>
+      </details>
+      <details>
+        <summary>Only 5 or 6 slash commands appear, not 8</summary>
+        <div class="tg-body">Plugin didn't fully install. Close Claude Code. Run <code>claude plugin list</code> and confirm <code>purely-personal</code> appears. If not, re-run <code>claude plugin install .</code> from inside the repo.</div>
+      </details>
+    </div>
+
+    <!-- PHASE 2 · Connectors -->
+    <div class="trouble-group">
+      <div class="tg-title">Phase 2 · Connectors</div>
+      <details>
+        <summary>I don't see a "+ Add" button on the Connectors page</summary>
+        <div class="tg-body">Claude.ai moved Connectors into Customize. Go to <code>claude.ai/customize/connectors</code> directly. The <strong>+</strong> button is at the top of the left panel.</div>
+      </details>
+      <details>
+        <summary>Gmail / Notion / Calendar OAuth fails mid-flow</summary>
+        <div class="tg-body"><strong>Most common cause:</strong> your Google account has "Less secure apps" disabled or you're on a corporate Workspace that blocks third-party OAuth. Ask your IT admin to allowlist Claude, or use a personal Google account for the workshop.</div>
+      </details>
+      <details>
+        <summary>Connector connected but routines fail silently</summary>
+        <div class="tg-body">You didn't grant all permissions during the OAuth flow. Revoke access at <code>myaccount.google.com/permissions</code>, then re-connect and tick <strong>all</strong> boxes on the consent screen.</div>
+      </details>
+      <details>
+        <summary>Stripe connector won't load</summary>
+        <div class="tg-body">Stripe is optional. Skip Step 11 and move on. <code>/cash-engine</code> will prompt you to paste numbers manually on Day 1.</div>
+      </details>
+    </div>
+
+    <!-- PHASE 3 · Apify MCP -->
+    <div class="trouble-group">
+      <div class="tg-title">Phase 3 · Apify MCP</div>
+      <details>
+        <summary>Claude says "I don't have access to Apify" on the test</summary>
+        <div class="tg-body"><strong>Three things to check:</strong> (1) your JSON is valid. Paste the config into <a href="https://jsonlint.com" target="_blank">jsonlint.com</a>. Common error: missing comma between servers. (2) Token starts with <code>apify_api_</code> and is inside quotes. (3) You <strong>fully quit</strong> Claude Desktop (Cmd+Q on Mac, Task Manager → End Task on Windows), not just closed the window.</div>
+      </details>
+      <details>
+        <summary>Config file doesn't exist at the path</summary>
+        <div class="tg-body">That's fine for a fresh Claude Desktop install. <strong>Mac:</strong> <code>mkdir -p ~/Library/Application\ Support/Claude && touch ~/Library/Application\ Support/Claude/claude_desktop_config.json</code>. <strong>Windows:</strong> navigate to <code>%APPDATA%\Claude</code> in File Explorer, right-click → New → Text Document, rename to <code>claude_desktop_config.json</code> (make sure extension isn't <code>.txt</code>).</div>
+      </details>
+      <details>
+        <summary>Apify test command hangs for 30+ seconds</summary>
+        <div class="tg-body">First run is slow because <code>npx</code> downloads the MCP server package. Wait up to 60 seconds. Subsequent calls are instant. If it still hangs: check your internet, then restart Claude Desktop.</div>
+      </details>
+      <details>
+        <summary>Apify returns empty results</summary>
+        <div class="tg-body">Your free tier might be rate-limited if you've run other scrapes today. Check <code>console.apify.com</code> → Billing for your usage. You get $5 free/month. Workshop total use is ~$0.50.</div>
+      </details>
+    </div>
+
+    <!-- PHASE 4 · Final Prep -->
+    <div class="trouble-group">
+      <div class="tg-title">Phase 4 · Final Prep</div>
+      <details>
+        <summary>I can't find my registration confirmation email</summary>
+        <div class="tg-body">Search your inbox (and Promotions tab) for <code>danny@danielpaul.ai</code>. Not there? Reply to any email from that address with your LinkedIn URL, or DM @danielpaulai on LinkedIn.</div>
+      </details>
+      <details>
+        <summary>My file saved as <code>BUSINESS-BRAIN.md.txt</code> on Windows</summary>
+        <div class="tg-body">Windows is hiding the <code>.txt</code> extension. In File Explorer: View tab → tick "File name extensions". Rename the file, removing <code>.txt</code>.</div>
+      </details>
+      <details>
+        <summary><code>/plugins</code> inside Claude Code says "no plugins"</summary>
+        <div class="tg-body">You're inside Claude Code but the plugin wasn't installed globally. Go back to the repo folder, run <code>claude plugin install .</code> once more, then <code>cd ~/Desktop/my-business</code> and re-launch <code>claude</code>.</div>
+      </details>
+      <details>
+        <summary>Claude Code won't launch at all</summary>
+        <div class="tg-body">Run <code>claude --version</code>. If that fails, re-install: <code>curl -fsSL https://claude.ai/install.sh | sh</code> (Mac) or <code>iwr https://claude.ai/install.ps1 -UseBasicParsing | iex</code> (Windows). Restart terminal.</div>
+      </details>
+    </div>
+
+  </div>
+
+  <div class="trouble-contact">
+    <strong>Still stuck?</strong> Post in the workshop Slack channel (link in your registration email) and someone will unblock you within 30 minutes during Finland business hours. Or reply to <a href="mailto:danny@danielpaul.ai">danny@danielpaul.ai</a>. Danny reads every message.
+  </div>
+</section>
+
 </main>
 </div>
 
@@ -1242,7 +1457,6 @@ touch BUSINESS-BRAIN.md</div></div>
     const pct = Math.round(doneCount / steps.length * 100);
     if(fill) fill.style.width = pct + '%';
     if(progressPill){
-      /* Replace the first line of progress pill text */
       let countEl = progressPill.querySelector('.count');
       if(!countEl){
         countEl = document.createElement('span');
@@ -1251,8 +1465,71 @@ touch BUSINESS-BRAIN.md</div></div>
       }
       countEl.innerHTML = '<strong>' + doneCount + '</strong> of 17 done · ' + pct + '%';
     }
+    /* Update each phase marker's progress */
+    document.querySelectorAll('.phase-marker[data-steps]').forEach(pm => {
+      const stepIds = pm.dataset.steps.split(',');
+      const total = stepIds.length;
+      const done = stepIds.filter(sid => state.steps[sid]).length;
+      const doneEl = pm.querySelector('.pf-done');
+      const fillEl = pm.querySelector('.pf-fill');
+      if(doneEl) doneEl.textContent = done;
+      if(fillEl) fillEl.style.width = Math.round(done / total * 100) + '%';
+    });
   }
   applyStepState();
+
+  /* ===== SKIP-THIS-STEP BUTTONS (auto-injected on every step body) ===== */
+  const skipCopy = {
+    s1: "Already have Claude Pro + Claude Code installed?",
+    s2: "Already have a GitHub account?",
+    s3: "Already have Git installed? (try <code>git --version</code>)",
+    s4: "Already cloned this repo?",
+    s5: "Already installed the plugin?",
+    s6: "Already verified all 8 slash commands appear?",
+    s7: "Gmail already connected in Claude?",
+    s8: "Notion already connected in Claude?",
+    s9: "Calendar already connected in Claude?",
+    s10: "Drive already connected in Claude?",
+    s11: "Stripe already connected (or you don't use Stripe)?",
+    s12: "Already have an Apify account + token saved?",
+    s13: "Already wired Apify MCP in your Claude Desktop config?",
+    s14: "Already verified Apify works inside Claude Code?",
+    s15: "Already replied to Danny with your LinkedIn URL?",
+    s16: "Already created <code>~/Desktop/my-business</code> and launched Claude there?",
+    s17: "Already created empty <code>BUSINESS-BRAIN.md</code>?"
+  };
+  steps.forEach(det => {
+    const id = det.id;
+    const body = det.querySelector('.step-body');
+    if(!body || body.querySelector('.skip-row')) return;
+    if(!skipCopy[id]) return;
+    const row = document.createElement('div');
+    row.className = 'skip-row';
+    row.innerHTML =
+      '<div class="sr-text"><strong>Skip if done:</strong> ' + skipCopy[id] + '</div>' +
+      '<button class="skip-btn" type="button" data-skip="' + id + '">I already have this</button>';
+    body.appendChild(row);
+  });
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.skip-btn');
+    if(!btn) return;
+    e.preventDefault();
+    const id = btn.dataset.skip;
+    state.steps[id] = true;
+    save();
+    applyStepState();
+    /* Collapse current step + open next + scroll */
+    const current = document.getElementById(id);
+    if(current) current.open = false;
+    const nextNum = parseInt(id.replace('s','')) + 1;
+    const next = document.getElementById('s' + nextNum);
+    if(next){
+      next.open = true;
+      next.scrollIntoView({behavior:'smooth', block:'start'});
+    } else {
+      document.getElementById('help')?.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  });
 
   /* ===== AUTO-OPEN STEP FROM HASH ===== */
   function openFromHash(){
