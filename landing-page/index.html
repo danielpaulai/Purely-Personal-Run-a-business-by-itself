@@ -4,10 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Purely Personal · Build Your Marketing & Sales Machine in 2 Days · May 2–3, 2026</title>
-<meta name="description" content="Your marketing and sales running on autopilot. Without hiring anyone or writing a single line of code. 2-day live workshop. May 2–3, 2026. $49.">
-<meta property="og:title" content="Purely Personal · Build Your Marketing & Sales Machine in 2 Days">
-<meta property="og:description" content="2-day live Zoom workshop. Build a Marketing Machine Day 1, a Sales Machine Day 2. Automations run on Claude for you, every week, in your voice.">
+<meta name="description" content="2-day live workshop. Build a Marketing Machine Day 1 and a Sales Machine Day 2 using Claude. Your voice. Your clients. $49. May 2–3, 2026.">
+<meta property="og:title" content="Build Your Marketing & Sales Machine in 2 Days · $49">
+<meta property="og:description" content="2-day live Zoom workshop. You build a Marketing Machine Day 1 and a Sales Machine Day 2. Runs every week in your voice. Save your seat for $49.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Rethink+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -16,9 +18,7 @@
   --text-primary:#1a1a1a; --text-secondary:#6b6b6b; --text-muted:#a8a39b;
   --pp-red:#e90d41; --pp-red-deep:#c70a38; --pp-red-soft:#fce8ed; --pp-red-whisper:#fdf2f5;
   --dark:#0f0f10; --dark-card:#1a1a1d;
-  --engine-marketing:#3B82F6; --engine-sales:#22C55E;
-  --engine-operations:#8B5CF6; --engine-cash:#EAB308; --engine-leadership:#DC2626;
-  --engine-sales-soft:#E8FAEE;
+  --linkedin-blue:#0A66C2;
   --display:'Rethink Sans','Inter',-apple-system,sans-serif;
   --body:'Inter',-apple-system,sans-serif;
   --mono:'JetBrains Mono','SF Mono',Menlo,monospace;
@@ -29,12 +29,11 @@ body{background:var(--page-bg);color:var(--text-primary);font-family:var(--body)
 a{color:var(--pp-red);text-decoration:none;border-bottom:1px solid transparent;transition:border-color 120ms}
 a:hover{border-color:var(--pp-red)}
 
-.container{max-width:1100px;margin:0 auto;padding:0 28px}
-.container-narrow{max-width:860px;margin:0 auto;padding:0 28px}
+.container{max-width:1180px;margin:0 auto;padding:0 28px}
 
 /* ============= NAV ============= */
 .nav{position:sticky;top:0;z-index:100;background:rgba(250,248,244,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--divider)}
-.nav-inner{max-width:1100px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:24px}
+.nav-inner{max-width:1180px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:24px}
 .nav-brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:15px;color:var(--text-primary)}
 .nav-brand .dot{width:22px;height:22px;background:var(--pp-red);border-radius:4px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:11px}
 .nav-links{display:flex;gap:22px;margin-left:auto;align-items:center}
@@ -45,256 +44,153 @@ a:hover{border-color:var(--pp-red)}
 @media (max-width:720px){.nav-links a:not(.nav-cta){display:none}}
 
 /* ============= HERO ============= */
-.hero{padding:72px 0 56px;background:linear-gradient(180deg,#ffffff 0%,var(--page-bg) 100%);position:relative;overflow:hidden}
+.hero{padding:56px 0 48px;background:linear-gradient(180deg,#ffffff 0%,var(--page-bg) 100%);position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-200px;left:-200px;width:600px;height:600px;border-radius:999px;background:radial-gradient(circle,rgba(233,13,65,0.05) 0%,transparent 60%);pointer-events:none}
 .hero::after{content:'';position:absolute;bottom:-160px;right:-160px;width:500px;height:500px;border-radius:999px;background:radial-gradient(circle,rgba(233,13,65,0.04) 0%,transparent 60%);pointer-events:none}
-.hero-inner{position:relative;z-index:2;text-align:center}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--pp-red);background:var(--pp-red-soft);padding:6px 14px;border-radius:3px;margin-bottom:28px}
-.hero h1{font-family:var(--display);font-size:48px;font-weight:800;line-height:1.05;letter-spacing:-0.025em;margin:0 auto 18px;max-width:820px}
+.hero-inner{position:relative;z-index:2}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--pp-red);background:var(--pp-red-soft);padding:6px 14px;border-radius:3px;margin-bottom:22px}
+.hero h1{font-family:var(--display);font-size:46px;font-weight:800;line-height:1.05;letter-spacing:-0.025em;margin:0 0 16px;max-width:760px}
 .hero h1 em{font-style:normal;color:var(--pp-red)}
-.hero-sub{font-size:18px;color:var(--text-secondary);line-height:1.5;max-width:700px;margin:0 auto 28px}
+.hero-sub{font-size:18px;color:var(--text-secondary);line-height:1.5;max-width:640px;margin:0 0 28px}
 .hero-sub strong{color:var(--text-primary);font-weight:700}
-.hero-dates{display:flex;gap:16px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
-.hero-date{padding:14px 18px;background:var(--card-bg);border:1px solid var(--divider);border-radius:6px;min-width:200px}
-.hero-date .day{font-family:var(--mono);font-size:10px;color:var(--pp-red);font-weight:700;letter-spacing:0.2em;margin-bottom:4px}
-.hero-date .date{font-family:var(--display);font-size:18px;font-weight:800;line-height:1.1;margin-bottom:4px}
-.hero-date .time{font-size:13px;color:var(--text-secondary)}
-.hero-tz{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:0.06em;margin-bottom:28px}
-.hero-ctas{display:flex;gap:12px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
-.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:16px 30px;background:var(--pp-red);color:#fff!important;border-radius:6px;font-family:var(--display);font-weight:800;font-size:16px;border:0;cursor:pointer;box-shadow:0 4px 16px rgba(233,13,65,0.3);transition:transform 120ms,box-shadow 120ms}
+
+.hero-split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin:20px 0 28px}
+@media (max-width:900px){.hero-split{grid-template-columns:1fr;gap:28px}}
+
+.hero-left{max-width:580px}
+.hero-left .hero-eyebrow,.hero-left h1,.hero-left .hero-sub{text-align:left}
+
+/* CTA */
+.cta-block{margin:0 0 14px}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;padding:16px 28px;background:var(--pp-red);color:#fff!important;border-radius:6px;font-family:var(--display);font-weight:800;font-size:16px;border:0;cursor:pointer;box-shadow:0 4px 16px rgba(233,13,65,0.3);transition:transform 120ms,box-shadow 120ms}
 .btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(233,13,65,0.35);background:var(--pp-red-deep)}
 .btn-primary .price{opacity:0.85;font-weight:500;font-size:13px;font-family:var(--mono)}
-.btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:16px 26px;background:transparent;color:var(--text-primary)!important;border:1.5px solid var(--divider-strong);border-radius:6px;font-family:var(--display);font-weight:700;font-size:15px}
-.btn-secondary:hover{border-color:var(--text-primary)}
-.hero-meta{font-family:var(--mono);font-size:12px;color:var(--text-muted);letter-spacing:0.08em}
-.hero-meta strong{color:var(--pp-red);font-weight:700}
+.cta-how{display:block;font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:0.08em;margin-top:10px}
+.cta-how strong{color:var(--pp-red);font-weight:700}
 
-@media (max-width:800px){.hero h1{font-size:34px}.hero-sub{font-size:16px}.hero{padding:48px 0 40px}}
+/* Objection bullets */
+.objections{margin:22px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;max-width:540px}
+.objections li{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:var(--card-bg);border:1px solid var(--divider);border-radius:6px;font-size:14px;line-height:1.5;color:var(--text-primary)}
+.objections li::before{content:'✓';flex-shrink:0;width:22px;height:22px;border-radius:4px;background:var(--pp-red-soft);color:var(--pp-red);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;margin-top:1px}
+.objections strong{font-weight:700;margin-right:4px}
 
-/* ============= VSL (Video Sales Letter) ============= */
-.hero-vsl{
-  position:relative;max-width:780px;margin:32px auto 36px;
-  aspect-ratio:16/9;
-  background:linear-gradient(135deg,var(--dark) 0%,var(--dark-card) 100%);
-  border-radius:12px;overflow:hidden;
-  box-shadow:0 24px 60px rgba(20,14,8,0.15),0 4px 12px rgba(233,13,65,0.12);
-  cursor:pointer;
-  transition:transform 200ms ease,box-shadow 200ms ease;
-}
-.hero-vsl:hover{transform:translateY(-2px);box-shadow:0 32px 80px rgba(20,14,8,0.2),0 6px 16px rgba(233,13,65,0.18)}
+/* Hero right column (post card) */
+.hero-right{position:relative}
+.hero-post-label{font-family:var(--mono);font-size:10px;color:var(--pp-red);letter-spacing:0.2em;font-weight:700;text-transform:uppercase;margin:0 0 12px;display:block;text-align:center}
+
+/* LinkedIn post card (from content-visual-builder) */
+.post-card{max-width:520px;margin:0 auto;background:#ffffff;border:1px solid var(--divider);border-radius:8px;overflow:hidden;font-family:var(--body);box-shadow:0 8px 32px rgba(20,14,8,0.08),0 2px 8px rgba(233,13,65,0.06);position:relative}
+.post-card::before{content:'SHIPPED BY /marketing-engine';position:absolute;top:12px;right:12px;font-family:var(--mono);font-size:9px;font-weight:700;color:var(--pp-red);background:var(--pp-red-soft);padding:3px 8px;border-radius:3px;letter-spacing:0.12em;z-index:2}
+.post-header{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--divider)}
+.post-avatar{width:48px;height:48px;border-radius:999px;background:var(--pp-red-soft);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;color:var(--pp-red);font-size:18px}
+.post-user{flex:1;min-width:0}
+.post-user .name{font-family:var(--display);font-weight:700;font-size:15px;color:var(--text-primary);line-height:1.2}
+.post-user .tagline{font-size:12px;color:var(--text-secondary);margin-top:2px;line-height:1.3}
+.post-user .meta{font-size:11px;color:var(--text-muted);margin-top:1px}
+.post-linkedin-icon{width:18px;height:18px;color:var(--linkedin-blue);flex-shrink:0}
+.post-body{padding:16px;font-size:14px;line-height:1.6;white-space:pre-wrap;color:var(--text-primary)}
+.post-body .hook{font-weight:700}
+.post-footer{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-top:1px solid var(--divider);font-size:12px;color:var(--text-secondary)}
+.post-reactions{display:flex;align-items:center;gap:4px}
+.post-reactions .emoji{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:999px;font-size:10px;margin-left:-4px;border:1px solid #fff}
+.post-reactions .e1{background:var(--linkedin-blue);color:#fff}
+.post-reactions .e2{background:#f5c518;color:#fff}
+.post-reactions .e3{background:var(--pp-red);color:#fff}
+
+.hero-caption{display:block;text-align:center;margin:12px auto 0;font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:0.06em;max-width:460px;line-height:1.5}
+.hero-caption strong{color:var(--pp-red)}
+
+/* VSL (optional, swapped for video when ready) */
+.hero-vsl{position:relative;max-width:520px;margin:20px auto 0;aspect-ratio:16/9;background:linear-gradient(135deg,var(--dark) 0%,var(--dark-card) 100%);border-radius:10px;overflow:hidden;box-shadow:0 16px 40px rgba(20,14,8,0.12),0 2px 8px rgba(233,13,65,0.08);cursor:pointer}
 .hero-vsl iframe{width:100%;height:100%;border:0;display:block}
-/* Placeholder shown until iframe src is filled in */
-.vsl-placeholder{
-  position:absolute;inset:0;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  color:#fff;text-align:center;padding:24px;
-}
+.vsl-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:20px}
 .vsl-placeholder::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at center,rgba(233,13,65,0.2) 0%,transparent 60%);pointer-events:none}
-.vsl-eyebrow{font-family:var(--mono);font-size:11px;color:var(--pp-red);letter-spacing:0.2em;font-weight:700;text-transform:uppercase;margin-bottom:16px;position:relative;z-index:2}
-.vsl-play{
-  width:88px;height:88px;border-radius:999px;
-  background:var(--pp-red);color:#fff;
-  border:0;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 8px 32px rgba(233,13,65,0.5),0 0 0 8px rgba(255,255,255,0.1);
-  transition:transform 160ms ease;
-  position:relative;z-index:2;margin-bottom:20px;
-}
-.vsl-play::before{content:'';border-left:26px solid #fff;border-top:16px solid transparent;border-bottom:16px solid transparent;margin-left:6px}
-.vsl-play:hover{transform:scale(1.08);box-shadow:0 10px 40px rgba(233,13,65,0.6),0 0 0 10px rgba(255,255,255,0.15)}
-.vsl-title{font-family:var(--display);font-size:22px;font-weight:700;margin:0 0 6px;color:#fff;letter-spacing:-0.01em;position:relative;z-index:2}
-.vsl-sub{font-size:14px;color:rgba(255,255,255,0.7);max-width:420px;margin:0;line-height:1.45;position:relative;z-index:2}
-.vsl-duration{
-  position:absolute;top:16px;right:16px;
-  padding:4px 10px;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);
-  color:#fff;font-family:var(--mono);font-size:11px;font-weight:700;
-  border-radius:3px;letter-spacing:0.08em;z-index:3;
-}
-.vsl-host{
-  position:absolute;bottom:16px;left:16px;
-  display:flex;align-items:center;gap:8px;
-  padding:6px 12px 6px 6px;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);
-  border-radius:999px;z-index:3;
-}
-.vsl-host .avatar{width:22px;height:22px;border-radius:999px;overflow:hidden;background:#fce8ed;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;color:var(--pp-red);font-size:10px}
-.vsl-host .name{font-family:var(--mono);font-size:11px;color:#fff;letter-spacing:0.04em;font-weight:500}
-.vsl-caption{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:0.08em;text-align:center;margin:-16px auto 24px;max-width:580px}
-.vsl-caption strong{color:var(--pp-red);font-weight:700}
-@media (max-width:600px){.hero-vsl{margin:24px auto 28px}.vsl-play{width:64px;height:64px}.vsl-play::before{border-left-width:18px;border-top-width:11px;border-bottom-width:11px}.vsl-title{font-size:17px}.vsl-sub{font-size:13px}}
+.vsl-play{width:70px;height:70px;border-radius:999px;background:var(--pp-red);color:#fff;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(233,13,65,0.5),0 0 0 6px rgba(255,255,255,0.1);margin-bottom:14px;position:relative;z-index:2}
+.vsl-play::before{content:'';border-left:20px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:4px}
+.vsl-title{font-family:var(--display);font-size:15px;font-weight:700;margin:0;color:#fff;position:relative;z-index:2}
+.vsl-duration{position:absolute;top:12px;right:12px;padding:3px 8px;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);color:#fff;font-family:var(--mono);font-size:10px;font-weight:700;border-radius:3px;letter-spacing:0.08em;z-index:3}
+
+@media (max-width:800px){.hero h1{font-size:34px}.hero-sub{font-size:16px}.hero{padding:40px 0 32px}}
 
 /* ============= PROOF BAND ============= */
-.proof-band{background:var(--dark);color:#fff;padding:56px 0;position:relative;overflow:hidden;border-top:3px solid var(--pp-red);border-bottom:3px solid var(--pp-red)}
-.proof-top-label{font-family:var(--mono);font-size:10px;color:var(--pp-red);letter-spacing:0.2em;font-weight:700;text-transform:uppercase;text-align:center;margin-bottom:36px}
+.proof-band{background:var(--dark);color:#fff;padding:48px 0;position:relative;overflow:hidden;border-top:3px solid var(--pp-red);border-bottom:3px solid var(--pp-red)}
+.proof-top-label{font-family:var(--mono);font-size:10px;color:var(--pp-red);letter-spacing:0.2em;font-weight:700;text-transform:uppercase;text-align:center;margin-bottom:28px}
 .proof-grid{max-width:960px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
 .proof-cell{text-align:center;padding:0 12px;position:relative}
 .proof-cell+.proof-cell::before{content:'';position:absolute;left:-10px;top:15%;bottom:15%;width:1px;background:rgba(255,255,255,0.12)}
 .proof-cell .label{font-family:var(--mono);font-size:10px;color:var(--pp-red);letter-spacing:0.15em;font-weight:700;margin-bottom:12px;display:block;text-transform:uppercase}
-.proof-cell .value{font-family:var(--display);font-weight:800;font-size:88px;line-height:0.95;letter-spacing:-0.03em;margin-bottom:8px;font-feature-settings:'tnum'}
-.proof-cell .value .unit{font-size:56px;opacity:0.6}
+.proof-cell .value{font-family:var(--display);font-weight:800;font-size:76px;line-height:0.95;letter-spacing:-0.03em;margin-bottom:8px;font-feature-settings:'tnum'}
+.proof-cell .value .unit{font-size:40px;opacity:0.6}
 .proof-cell .sub{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.4}
-.proof-close{text-align:center;margin-top:36px;font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.1em}
+.proof-close{text-align:center;margin-top:28px;font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.1em}
 .proof-close strong{color:var(--pp-red);font-weight:700}
-@media (max-width:720px){.proof-grid{grid-template-columns:1fr;gap:32px}.proof-cell+.proof-cell::before{display:none}.proof-cell .value{font-size:68px}}
+@media (max-width:720px){.proof-grid{grid-template-columns:1fr;gap:24px}.proof-cell+.proof-cell::before{display:none}.proof-cell .value{font-size:60px}}
 
 /* ============= SECTIONS ============= */
-section{padding:72px 0}
+section{padding:64px 0}
 .section-eyebrow{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.2em;color:var(--pp-red);text-transform:uppercase;margin-bottom:14px;display:block}
-.section-title{font-family:var(--display);font-size:44px;font-weight:800;line-height:1.1;letter-spacing:-0.02em;margin:0 0 18px;max-width:820px}
+.section-title{font-family:var(--display);font-size:38px;font-weight:800;line-height:1.1;letter-spacing:-0.02em;margin:0 0 18px;max-width:820px}
 .section-title em{font-style:normal;color:var(--pp-red)}
-.section-sub{font-size:19px;color:var(--text-secondary);line-height:1.5;margin:0 0 36px;max-width:760px}
-
-/* ============= PROBLEM ============= */
-.problem p{font-size:18px;line-height:1.65;color:var(--text-primary);margin:0 0 16px;max-width:720px}
-.problem p.lead{font-size:20px;font-weight:500}
-.problem .not-because{margin-top:36px;padding:20px 26px;background:var(--pp-red-whisper);border-left:4px solid var(--pp-red);border-radius:4px;max-width:720px}
-.problem .not-because p{font-size:17px;margin:0 0 6px}
-.problem .not-because p:last-child{margin-bottom:0;font-weight:700}
-
-/* ============= PROMISE ============= */
-.promise{background:var(--sub-card-bg);border-top:1px solid var(--divider);border-bottom:1px solid var(--divider)}
-.promise p{font-size:19px;line-height:1.65;color:var(--text-primary);margin:0 0 18px;max-width:760px}
-.promise .nots{list-style:none;margin:24px 0 36px;padding:0;max-width:720px}
-.promise .nots li{padding:10px 0;padding-left:28px;position:relative;font-size:16px;color:var(--text-secondary)}
-.promise .nots li::before{content:'✗';position:absolute;left:0;top:10px;color:var(--pp-red);font-weight:800;font-size:14px}
-.promise-outcomes{margin-top:32px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:980px}
-.outcome{padding:22px 24px;background:var(--card-bg);border:1px solid var(--divider);border-radius:8px}
-.outcome .num{font-family:var(--mono);font-size:11px;color:var(--pp-red);font-weight:800;letter-spacing:0.2em;margin-bottom:10px;display:block}
-.outcome h4{font-family:var(--display);font-size:17px;font-weight:800;margin:0 0 4px;line-height:1.25;letter-spacing:-0.01em}
-.outcome .when{font-size:13px;color:var(--text-muted);font-family:var(--mono);letter-spacing:0.04em}
-@media (max-width:720px){.promise-outcomes{grid-template-columns:1fr}}
-
-/* ============= VALUE STACK ============= */
-.stack{background:var(--page-bg)}
-.stack-list{margin:36px 0 0;display:flex;flex-direction:column;gap:0;border:1px solid var(--divider);border-radius:8px;overflow:hidden}
-.stack-row{display:grid;grid-template-columns:40px 1fr 100px;gap:20px;align-items:center;padding:20px 24px;background:var(--card-bg);border-bottom:1px solid var(--divider)}
-.stack-row:last-child{border-bottom:0}
-.stack-row:hover{background:var(--sub-card-bg)}
-.stack-arrow{font-family:var(--display);font-weight:800;color:var(--pp-red);font-size:20px}
-.stack-content h4{font-family:var(--display);font-size:17px;font-weight:800;margin:0 0 4px;letter-spacing:-0.01em}
-.stack-content p{font-size:14px;line-height:1.5;color:var(--text-secondary);margin:0}
-.stack-content code{font-family:var(--mono);font-size:12px;background:var(--sub-card-bg);padding:2px 6px;border-radius:3px;border:1px solid var(--divider);color:var(--text-primary)}
-.stack-value{text-align:right;font-family:var(--mono);font-size:13px;color:var(--text-muted);font-weight:700}
-.stack-total{background:var(--dark);color:#fff;padding:24px 28px;border-radius:8px;margin-top:20px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
-.stack-total .left .label{font-family:var(--mono);font-size:10px;color:var(--pp-red);font-weight:700;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:6px;display:block}
-.stack-total .left h3{font-family:var(--display);font-size:28px;font-weight:800;margin:0 0 6px;color:#fff;letter-spacing:-0.02em}
-.stack-total .left .strike-total{font-family:var(--mono);font-size:14px;color:var(--text-muted);text-decoration:line-through}
-.stack-total .right{text-align:right}
-.stack-total .you-pay{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.6);letter-spacing:0.15em;font-weight:700;margin-bottom:6px}
-.stack-total .amount{font-family:var(--display);font-size:56px;font-weight:800;letter-spacing:-0.02em;line-height:1;color:var(--pp-red)}
-.stack-total .amount .currency{font-size:24px;vertical-align:top;margin-right:4px;color:#fff}
-.stack-cta{margin-top:28px;text-align:center}
-@media (max-width:720px){.stack-row{grid-template-columns:32px 1fr;grid-template-areas:"a c" "a v"}.stack-value{text-align:left;grid-column:2}.stack-row .stack-arrow{grid-area:a}.stack-row .stack-content{grid-area:c}.stack-total{grid-template-columns:1fr;text-align:left}}
 
 /* ============= DAY BREAKDOWN ============= */
 .days{background:var(--sub-card-bg);border-top:1px solid var(--divider);border-bottom:1px solid var(--divider)}
-.day-card{background:var(--card-bg);border:1px solid var(--divider);border-radius:10px;padding:32px 36px;margin-bottom:20px}
-.day-card .day-header{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+.day-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:32px 0}
+@media (max-width:800px){.day-cards{grid-template-columns:1fr}}
+.day-card{background:var(--card-bg);border:1px solid var(--divider);border-radius:10px;padding:28px 30px}
+.day-card .day-header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
 .day-card .day-label{font-family:var(--mono);font-size:11px;font-weight:800;color:var(--pp-red);letter-spacing:0.2em;text-transform:uppercase}
-.day-card h3{font-family:var(--display);font-size:28px;font-weight:800;margin:0;letter-spacing:-0.02em;line-height:1.15}
-.day-card .day-when{font-family:var(--mono);font-size:12px;color:var(--text-muted);letter-spacing:0.04em;margin-bottom:16px}
-.day-card .outcome-line{font-size:17px;line-height:1.5;color:var(--text-primary);margin:0 0 22px;font-weight:500}
-.day-card .outcome-line strong{font-weight:700}
+.day-card h3{font-family:var(--display);font-size:22px;font-weight:800;margin:0;letter-spacing:-0.02em;line-height:1.15}
+.day-card .day-when{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:0.04em;margin-bottom:14px}
+.day-card .outcome-line{font-size:15px;line-height:1.5;color:var(--text-primary);margin:0 0 18px;font-weight:500}
 .day-card ul{margin:0;padding:0;list-style:none}
-.day-card li{font-size:15px;line-height:1.55;padding:12px 0;border-top:1px solid var(--divider);display:flex;align-items:flex-start;gap:12px}
+.day-card li{font-size:14px;line-height:1.5;padding:10px 0;border-top:1px solid var(--divider);display:flex;align-items:flex-start;gap:10px}
 .day-card li:first-child{border-top:0;padding-top:0}
-.day-card li::before{content:'→';color:var(--pp-red);font-weight:800;flex-shrink:0;font-size:16px}
-.day-card li code{font-family:var(--mono);font-size:13px;background:var(--pp-red-soft);color:var(--pp-red-deep);padding:2px 7px;border-radius:3px;font-weight:500}
+.day-card li::before{content:'→';color:var(--pp-red);font-weight:800;flex-shrink:0;font-size:14px}
+.day-card li code{font-family:var(--mono);font-size:12px;background:var(--pp-red-soft);color:var(--pp-red-deep);padding:2px 6px;border-radius:3px;font-weight:500}
 
 /* ============= SCHEDULE TABLE ============= */
-.schedule{margin-top:40px;border:1px solid var(--divider);border-radius:8px;overflow:hidden;background:var(--card-bg)}
+.schedule{margin-top:36px;border:1px solid var(--divider);border-radius:8px;overflow:hidden;background:var(--card-bg)}
 .schedule-header{background:var(--dark);color:#fff;padding:18px 24px}
-.schedule-header .when-you-leave{font-family:var(--mono);font-size:10px;color:var(--pp-red);letter-spacing:0.2em;font-weight:800;margin-bottom:4px;text-transform:uppercase}
+.schedule-header .label-top{font-family:var(--mono);font-size:10px;color:var(--pp-red);letter-spacing:0.2em;font-weight:800;margin-bottom:4px;text-transform:uppercase}
 .schedule-header h4{font-family:var(--display);font-size:20px;font-weight:800;margin:0;letter-spacing:-0.01em}
 .schedule table{width:100%;border-collapse:collapse}
-.schedule th{text-align:left;padding:14px 24px;background:var(--sub-card-bg);font-family:var(--mono);font-size:10px;font-weight:700;color:var(--text-secondary);letter-spacing:0.1em;text-transform:uppercase;border-bottom:1px solid var(--divider)}
-.schedule td{padding:14px 24px;border-bottom:1px solid var(--divider);font-size:14px;line-height:1.4}
+.schedule th{text-align:left;padding:12px 24px;background:var(--sub-card-bg);font-family:var(--mono);font-size:10px;font-weight:700;color:var(--text-secondary);letter-spacing:0.1em;text-transform:uppercase;border-bottom:1px solid var(--divider)}
+.schedule td{padding:13px 24px;border-bottom:1px solid var(--divider);font-size:14px;line-height:1.4}
 .schedule td:first-child{font-family:var(--mono);font-weight:700;color:var(--pp-red);width:180px;font-size:13px;letter-spacing:0.04em}
 .schedule tr:last-child td{border-bottom:0}
-.schedule-footer{padding:20px 24px;background:var(--sub-card-bg);border-top:1px solid var(--divider);text-align:center;font-family:var(--mono);font-size:12px;color:var(--text-secondary);letter-spacing:0.06em}
+.schedule-footer{padding:18px 24px;background:var(--sub-card-bg);border-top:1px solid var(--divider);text-align:center;font-family:var(--mono);font-size:12px;color:var(--text-secondary);letter-spacing:0.06em}
 .schedule-footer strong{color:var(--pp-red);font-weight:800}
 @media (max-width:700px){.schedule{font-size:13px}.schedule th,.schedule td{padding:10px 14px}.schedule td:first-child{width:120px}}
 
-/* ============= TESTIMONIALS ============= */
-.testimonials{background:var(--page-bg)}
-.tm-placeholder{padding:40px;background:var(--pp-red-whisper);border:2px dashed var(--pp-red-soft);border-radius:10px;text-align:center;margin-top:32px}
-.tm-placeholder h4{font-family:var(--display);font-size:18px;font-weight:800;margin:0 0 8px;color:var(--text-primary)}
-.tm-placeholder p{font-size:14px;color:var(--text-secondary);margin:0}
-
-/* ============= TRAINER ============= */
-.trainer{background:var(--sub-card-bg);border-top:1px solid var(--divider);border-bottom:1px solid var(--divider)}
-.trainer-grid{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:flex-start;margin-top:20px}
-.trainer-avatar{width:200px;height:200px;border-radius:12px;overflow:hidden;background:var(--pp-red-soft);box-shadow:0 8px 32px rgba(233,13,65,0.15)}
-.trainer-avatar svg{width:100%;height:100%;display:block}
-.trainer-content h3{font-family:var(--display);font-size:32px;font-weight:800;margin:0 0 6px;letter-spacing:-0.02em}
-.trainer-content .handle{font-family:var(--mono);font-size:13px;color:var(--text-muted);margin-bottom:20px;display:block;letter-spacing:0.04em}
-.trainer-content p{font-size:16px;line-height:1.65;color:var(--text-primary);margin:0 0 14px}
-.trainer-quals{margin-top:24px;padding-top:24px;border-top:1px solid var(--divider);display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.trainer-quals li{font-size:14px;line-height:1.5;padding-left:22px;position:relative;list-style:none;color:var(--text-secondary)}
-.trainer-quals li::before{content:'◆';position:absolute;left:0;top:1px;color:var(--pp-red);font-weight:800;font-size:11px}
-@media (max-width:720px){.trainer-grid{grid-template-columns:1fr}.trainer-avatar{width:140px;height:140px}.trainer-quals{grid-template-columns:1fr}}
-
-/* ============= INVESTMENT ============= */
-.investment{background:var(--page-bg);text-align:center}
-.investment p{font-size:17px;line-height:1.65;max-width:680px;margin:0 auto 16px;color:var(--text-primary)}
-.investment .rows{max-width:520px;margin:32px auto 24px;display:flex;flex-direction:column;gap:10px}
-.inv-row{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:var(--card-bg);border:1px solid var(--divider);border-radius:6px;font-size:15px}
-.inv-row.dim{color:var(--text-secondary)}
-.inv-row.total{background:var(--dark);color:#fff;border-color:var(--dark);font-family:var(--display);font-weight:800;font-size:18px}
-.inv-row .label{color:var(--text-secondary);font-size:13px;text-transform:uppercase;letter-spacing:0.1em;font-family:var(--mono);font-weight:700}
-.inv-row.total .label{color:var(--pp-red)}
-.inv-row .amount{font-family:var(--display);font-weight:700}
-.inv-row.total .amount{font-size:24px;color:var(--pp-red)}
-.guarantee-box{max-width:680px;margin:40px auto 0;padding:28px 32px;background:var(--engine-sales-soft);border:1.5px solid var(--engine-sales);border-radius:10px;text-align:left}
-.guarantee-box .badge{display:inline-block;padding:4px 10px;background:var(--engine-sales);color:#fff;border-radius:3px;font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:0.2em;margin-bottom:10px}
-.guarantee-box h4{font-family:var(--display);font-size:20px;font-weight:800;margin:0 0 8px;letter-spacing:-0.01em}
-.guarantee-box p{font-size:14px;line-height:1.55;color:var(--text-primary);margin:0;text-align:left}
-
-/* ============= URGENCY ============= */
-.urgency{background:var(--dark);color:#fff;padding:48px 0;text-align:center;border-top:3px solid var(--pp-red);border-bottom:3px solid var(--pp-red)}
-.urgency .bolt{font-family:var(--mono);font-size:11px;color:var(--pp-red);font-weight:800;letter-spacing:0.2em;margin-bottom:14px;display:block}
-.urgency h3{font-family:var(--display);font-size:32px;font-weight:800;margin:0 auto 16px;max-width:720px;color:#fff;letter-spacing:-0.02em}
-.urgency p{font-size:16px;color:rgba(255,255,255,0.7);margin:0 auto 8px;max-width:580px;line-height:1.55}
+.days-cta{margin-top:32px;text-align:center}
 
 /* ============= FAQ ============= */
-.faq{background:var(--sub-card-bg);border-top:1px solid var(--divider);border-bottom:1px solid var(--divider)}
-.faq-list{max-width:820px;margin:40px auto 0}
+.faq{background:var(--page-bg)}
+.faq-intro{text-align:center;max-width:720px;margin:0 auto 32px}
+.faq-list{max-width:780px;margin:0 auto}
 .faq-item{border-bottom:1px solid var(--divider);padding:22px 0}
 .faq-item:first-child{border-top:1px solid var(--divider)}
-.faq-item summary{font-family:var(--display);font-size:18px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;list-style:none;line-height:1.35}
+.faq-item summary{font-family:var(--display);font-size:17px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;list-style:none;line-height:1.35}
 .faq-item summary::-webkit-details-marker{display:none}
 .faq-item summary::after{content:'+';color:var(--pp-red);font-weight:800;font-size:24px;transition:transform 180ms}
 .faq-item[open] summary::after{transform:rotate(45deg)}
 .faq-item .answer{font-size:15px;line-height:1.65;color:var(--text-secondary);padding-top:14px;max-width:720px}
-.faq-item .answer code{font-family:var(--mono);font-size:13px;background:var(--page-bg);padding:2px 6px;border-radius:3px;border:1px solid var(--divider)}
-
-/* ============= FINAL CTA ============= */
-.final-cta{background:linear-gradient(135deg,var(--pp-red) 0%,var(--pp-red-deep) 100%);color:#fff;padding:88px 0;text-align:center;position:relative;overflow:hidden}
-.final-cta::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:999px;background:rgba(255,255,255,0.05);pointer-events:none}
-.final-cta::after{content:'';position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;border-radius:999px;background:rgba(255,255,255,0.04);pointer-events:none}
-.final-cta-inner{position:relative;z-index:2}
-.final-cta .ecta-label{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:18px;display:block}
-.final-cta h2{font-family:var(--display);font-size:56px;font-weight:800;line-height:1;letter-spacing:-0.03em;margin:0 auto 18px;max-width:820px;color:#fff}
-.final-cta ul{list-style:none;padding:0;margin:0 auto 32px;max-width:560px;text-align:left}
-.final-cta li{padding:10px 0;font-size:16px;line-height:1.5;padding-left:28px;position:relative;color:rgba(255,255,255,0.92)}
-.final-cta li::before{content:'✓';position:absolute;left:0;top:10px;color:#fff;font-weight:800;font-size:14px;background:rgba(255,255,255,0.15);width:18px;height:18px;border-radius:3px;display:flex;align-items:center;justify-content:center}
-.final-cta .ecta-sub{font-size:17px;color:rgba(255,255,255,0.85);margin:0 auto 32px;max-width:560px;line-height:1.45}
-.final-cta .btn-white{display:inline-flex;align-items:center;gap:8px;padding:18px 32px;background:#fff;color:var(--pp-red)!important;border-radius:6px;font-family:var(--display);font-weight:800;font-size:16px;box-shadow:0 8px 24px rgba(0,0,0,0.2)}
-.final-cta .btn-white .price{color:var(--text-secondary);font-weight:500;font-family:var(--mono);font-size:13px}
-.final-cta .seats{margin-top:22px;font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.7);letter-spacing:0.1em}
-.final-cta .seats strong{color:#fff;font-weight:700}
-@media (max-width:720px){.final-cta h2{font-size:40px}.final-cta{padding:56px 0}}
+.faq-item .answer code{font-family:var(--mono);font-size:13px;background:var(--sub-card-bg);padding:2px 6px;border-radius:3px;border:1px solid var(--divider)}
 
 /* ============= FOOTER ============= */
-footer{padding:48px 0 32px;background:var(--page-bg)}
-.foot-inner{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-top:32px;border-top:2px solid var(--pp-red)}
+footer{padding:48px 0 32px;background:var(--page-bg);border-top:1px solid var(--divider)}
+.foot-inner{display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap;padding-top:32px}
 .foot-brand{display:flex;align-items:center;gap:10px}
 .foot-brand .dot{width:32px;height:32px;background:var(--pp-red);border-radius:5px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--display);font-weight:800;font-size:14px;box-shadow:0 4px 12px rgba(233,13,65,0.25)}
 .foot-brand .text .name{font-family:var(--display);font-weight:800;font-size:18px}
 .foot-brand .text .url{font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:0.04em}
-.foot-links{margin-left:auto;display:flex;gap:20px;font-size:13px}
+.foot-links{margin-left:auto;display:flex;gap:20px;font-size:13px;flex-wrap:wrap}
 .foot-links a{color:var(--text-secondary);border:0}
 .foot-links a:hover{color:var(--pp-red)}
-.foot-meta{width:100%;padding-top:20px;margin-top:20px;border-top:1px solid var(--divider);font-size:12px;color:var(--text-muted);font-family:var(--mono);letter-spacing:0.04em}
+.foot-legal{width:100%;padding-top:20px;margin-top:20px;border-top:1px solid var(--divider);font-size:12px;color:var(--text-muted);font-family:var(--mono);letter-spacing:0.03em;line-height:1.6}
+.foot-legal a{color:var(--text-muted);border:0}
+.foot-legal a:hover{color:var(--pp-red)}
+.foot-legal .copyright{display:block;margin-bottom:8px}
 </style>
 </head>
 <body>
@@ -304,10 +200,9 @@ footer{padding:48px 0 32px;background:var(--page-bg)}
   <div class="nav-inner">
     <a class="nav-brand" href="#top"><div class="dot">pp</div><span>Purely Personal</span></a>
     <div class="nav-links">
-      <a href="#days">What You Get</a>
-      <a href="#schedule">The Autopilot</a>
+      <a href="#days">The Workshop</a>
       <a href="#faq">FAQ</a>
-      <a class="nav-cta" href="#reserve">Reserve Seat · $49</a>
+      <a class="nav-cta" href="#reserve">Save Seat · $49</a>
     </div>
   </div>
 </nav>
@@ -315,53 +210,83 @@ footer{padding:48px 0 32px;background:var(--page-bg)}
 <!-- ============= HERO ============= -->
 <section class="hero" id="top">
   <div class="container hero-inner">
-    <div class="hero-eyebrow">◆ Live Online Workshop · May 2–3, 2026 · Only $49</div>
-    <h1>Your Marketing and Sales running on <em>autopilot.</em><br>Without hiring anyone or writing code.</h1>
-    <p class="hero-sub">A 2-day live workshop where you build a <strong>Marketing Machine</strong> and a <strong>Sales Machine</strong> in real time using Claude.</p>
+    <div class="hero-split">
 
-    <!-- ============= VSL (replace iframe src with Loom / Wistia / YouTube link) ============= -->
-    <div class="hero-vsl" id="vsl">
-      <!-- Placeholder until video is ready. Replace this div with <iframe src="YOUR_VIDEO_URL" allowfullscreen></iframe> -->
-      <div class="vsl-placeholder">
-        <div class="vsl-eyebrow">◆ Watch before reading</div>
-        <button class="vsl-play" type="button" aria-label="Play video"></button>
-        <div class="vsl-title">The 2-minute walkthrough</div>
-        <p class="vsl-sub">See the Marketing Machine and Sales Machine run live on my own Brain. Then decide.</p>
+      <!-- LEFT: headline + CTA + objections -->
+      <div class="hero-left">
+        <div class="hero-eyebrow">◆ Live · May 2–3, 2026 · $49</div>
+        <h1>Your marketing and sales running on <em>autopilot.</em></h1>
+        <p class="hero-sub">2-day live workshop. You build a <strong>Marketing Machine</strong> Day 1 and a <strong>Sales Machine</strong> Day 2 using Claude. In your voice. Not ChatGPT's.</p>
+
+        <div class="cta-block">
+          <a href="#reserve" class="btn-primary">Save my seat <span class="price">· $49</span></a>
+          <span class="cta-how"><strong>1 click</strong> → Stripe → Zoom link sent within 60 seconds</span>
+        </div>
+
+        <ul class="objections">
+          <li><span><strong>Not technical?</strong> Zero code. One install. 8 minutes.</span></li>
+          <li><span><strong>No time?</strong> 2 hours Saturday. 2 hours Sunday. Replay if life happens.</span></li>
+          <li><span><strong>AI tools never worked?</strong> Every output reads a file of your voice first. Nothing sounds generic.</span></li>
+        </ul>
       </div>
-      <div class="vsl-duration">2:14</div>
-      <div class="vsl-host">
-        <div class="avatar">DP</div>
-        <div class="name">Daniel Paul</div>
+
+      <!-- RIGHT: LinkedIn post card (proof of outcome · what the Marketing Machine ships) -->
+      <div class="hero-right">
+        <span class="hero-post-label">◆ What the Marketing Machine ships on Monday</span>
+        <article class="post-card" aria-label="Sample LinkedIn post shipped by the Marketing Machine">
+          <header class="post-header">
+            <div class="post-avatar">DP</div>
+            <div class="post-user">
+              <div class="name">Daniel Paul</div>
+              <div class="tagline">Founder, Purely Personal · building businesses that run themselves</div>
+              <div class="meta">2h · 🌎</div>
+            </div>
+            <svg class="post-linkedin-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.59 0 4.25 2.37 4.25 5.45v6.29zM5.34 7.43a2.07 2.07 0 01-2.07-2.07c0-1.14.92-2.07 2.07-2.07a2.07 2.07 0 110 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.44c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          </header>
+          <div class="post-body"><span class="hook">Last year I was doing 5 full-time jobs alone.</span>
+
+Marketing. Sales. Ops. Cash. CEO of all of it.
+
+Content slipped when I closed a deal. Prospecting slipped when I put out a fire. Every time something slipped, pipeline dried up 6 weeks later.
+
+I wasn't lazy. I was 1 person doing 5 jobs.
+
+So I built 1 file. BUSINESS-BRAIN.md.
+Then wired 5 slash commands that read it before doing anything.
+
+5 AI executives. Running every week. While I sleep.
+
+Cost? $0/mo. My stack before was $175.
+
+P.S. That's all gone now.</div>
+          <footer class="post-footer">
+            <span class="post-reactions">
+              <span class="emoji e1">👍</span><span class="emoji e2">💡</span><span class="emoji e3">❤️</span>
+              <span style="margin-left:6px">412</span>
+            </span>
+            <span>47 comments · 28 reposts</span>
+          </footer>
+        </article>
+        <span class="hero-caption">This post was written by <strong>/marketing-engine</strong> reading Danny's <strong>BUSINESS-BRAIN.md</strong>. Yours ships the same way, in your voice, every Monday at 7am.</span>
+
+        <!-- Optional VSL below post card. Swap the placeholder for a video iframe when ready. -->
+        <div class="hero-vsl" id="vsl">
+          <!-- Replace this div with <iframe src="YOUR_VIDEO_URL" allowfullscreen></iframe> when filmed -->
+          <div class="vsl-placeholder">
+            <button class="vsl-play" type="button" aria-label="Play the 2-minute walkthrough"></button>
+            <div class="vsl-title">Watch the 2-minute walkthrough</div>
+          </div>
+          <div class="vsl-duration">2:14</div>
+        </div>
       </div>
+
     </div>
-    <div class="vsl-caption">▶ 2-minute watch · decides whether the rest of this page matters to you</div>
-
-    <div class="hero-dates">
-      <div class="hero-date">
-        <div class="day">Day 1 · Saturday</div>
-        <div class="date">May 2, 2026</div>
-        <div class="time">11:00am – 1:00pm <span style="color:var(--text-muted)">Finland</span></div>
-      </div>
-      <div class="hero-date">
-        <div class="day">Day 2 · Sunday</div>
-        <div class="date">May 3, 2026</div>
-        <div class="time">11:00am – 1:00pm <span style="color:var(--text-muted)">Finland</span></div>
-      </div>
-    </div>
-    <div class="hero-tz">4:00am NY/EST · 5:00pm Singapore/SGT · Live on Zoom · Max 40 seats</div>
-
-    <div class="hero-ctas">
-      <a href="#reserve" class="btn-primary">Reserve my seat <span class="price">· $49</span></a>
-      <a href="#days" class="btn-secondary">See what you build →</a>
-    </div>
-
-    <div class="hero-meta">14-day refund · <strong>32</strong> seats remaining · registration closes May 1</div>
   </div>
 </section>
 
 <!-- ============= PROOF BAND ============= -->
 <section class="proof-band">
-  <div class="proof-top-label">◆ Receipts · My last 90 days</div>
+  <div class="proof-top-label">◆ My last 90 days running on this system</div>
   <div class="proof-grid">
     <div class="proof-cell">
       <span class="label">Content team cost</span>
@@ -374,416 +299,113 @@ footer{padding:48px 0 32px;background:var(--page-bg)}
       <div class="sub">down from 12 hours before</div>
     </div>
     <div class="proof-cell">
-      <span class="label">Running right now</span>
-      <div class="value">5</div>
+      <span class="label">Routines running</span>
+      <div class="value">6</div>
       <div class="sub">AI executives · always on</div>
     </div>
   </div>
   <div class="proof-close">Same numbers, same engines, same voice. <strong>Yours</strong>, two days from now.</div>
 </section>
 
-<!-- ============= PROBLEM ============= -->
-<section class="problem">
-  <div class="container-narrow">
-    <span class="section-eyebrow">◆ Be honest</span>
-    <h2 class="section-title">Most founders use AI like a <em>search engine.</em></h2>
-    <p class="lead">They ask a question. Get an answer. Close the tab. Nothing changes in their business.</p>
-    <p>But every growing business needs someone to run its marketing. Someone to write content, stay consistent, attract the right clients. Someone to research prospects, write outreach, follow up on every lead. Someone to prep for every meeting and keep the pipeline moving.</p>
-    <p style="font-family:var(--display);font-size:24px;font-weight:700;margin-top:28px;margin-bottom:28px">But you're doing all of it yourself.</p>
-    <p>So content gets skipped when you're busy. Follow-ups fall through the cracks. Good leads go cold because there was no system to move them forward.</p>
-
-    <div class="not-because">
-      <p>Not because you're not good enough.</p>
-      <p>Because one person cannot do five jobs consistently, every single week.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============= PROMISE ============= -->
-<section class="promise">
-  <div class="container-narrow">
-    <span class="section-eyebrow">◆ What if</span>
-    <h2 class="section-title">What if a <em>machine</em> did all of it for you?</h2>
-    <ul class="nots">
-      <li>Not hiring a VA.</li>
-      <li>Not paying an agency $3,000 a month.</li>
-      <li>Not building something so complicated it breaks the moment you need it.</li>
-    </ul>
-    <p><strong>Four hours from now</strong>, your marketing and sales run on a weekly schedule. Automatically. Every piece of content generated in your voice. Every prospect researched and outreach written before you even open your laptop.</p>
-    <p style="margin-bottom:28px">Every week. Without you.</p>
-
-    <div class="promise-outcomes">
-      <div class="outcome">
-        <span class="num">01</span>
-        <h4>LinkedIn rewritten to attract your ideal client</h4>
-        <div class="when">BY END OF DAY 1</div>
-      </div>
-      <div class="outcome">
-        <span class="num">02</span>
-        <h4>5 AI engines running on a weekly cadence</h4>
-        <div class="when">BY END OF DAY 2</div>
-      </div>
-      <div class="outcome">
-        <span class="num">03</span>
-        <h4>A real prospect researched and outreach written. From real data, live.</h4>
-        <div class="when">DURING DAY 2</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============= VALUE STACK ============= -->
-<section class="stack">
-  <div class="container">
-    <span class="section-eyebrow">◆ What's in the box</span>
-    <h2 class="section-title">Here's <em>everything you get</em> when you join.</h2>
-    <p class="section-sub">Every asset below lives in your plugin repo. Permanent. Offline-capable. Yours.</p>
-
-    <div class="stack-list">
-      <div class="stack-row">
-        <div class="stack-arrow">▶</div>
-        <div class="stack-content">
-          <h4>The BUSINESS-BRAIN.md template</h4>
-          <p>A 9-section markdown file: voice rules, offer, ICP, competitors, brand, audience pain, goals. Every engine reads this before it acts. One file powers everything, forever.</p>
-        </div>
-        <div class="stack-value">$500</div>
-      </div>
-
-      <div class="stack-row">
-        <div class="stack-arrow">▶</div>
-        <div class="stack-content">
-          <h4>LinkedIn voice extraction</h4>
-          <p>Apify scrapes your real profile + last 30 posts. <code>voice-extractor</code> pulls your signature hook pattern, banned phrases, and tone. Your writing DNA in 5 minutes.</p>
-        </div>
-        <div class="stack-value">$400</div>
-      </div>
-
-      <div class="stack-row">
-        <div class="stack-arrow">▶</div>
-        <div class="stack-content">
-          <h4>The Marketing Machine</h4>
-          <p>One command <code>/marketing-engine</code> drafts 3 LinkedIn posts, 1 X thread, 1 newsletter. All in your voice, all against your positioning. Plus the <code>content-visual-builder</code> skill renders them as 4-platform post cards.</p>
-        </div>
-        <div class="stack-value">$400</div>
-      </div>
-
-      <div class="stack-row">
-        <div class="stack-arrow">▶</div>
-        <div class="stack-content">
-          <h4>The Sales Machine</h4>
-          <p>Pick a real company. <code>/sales-engine</code> finds 10 prospects matched to your ICP, scores each, and drafts a personalised 3-step outreach sequence for the top 3. Every sequence references the prospect's recent LinkedIn content.</p>
-        </div>
-        <div class="stack-value">$600</div>
-      </div>
-
-      <div class="stack-row">
-        <div class="stack-arrow">▶</div>
-        <div class="stack-content">
-          <h4>5 AI Executive Engines (slash commands)</h4>
-          <p><code>/marketing-engine</code> · <code>/sales-engine</code> · <code>/operations-engine</code> · <code>/cash-engine</code> · <code>/leadership-engine</code>. Each one a complete workflow. All read your BUSINESS-BRAIN.md for context.</p>
-        </div>
-        <div class="stack-value">$1,000</div>
-      </div>
-
-      <div class="stack-row">
-        <div class="stack-arrow">▶</div>
-        <div class="stack-content">
-          <h4>3 visual-output skills</h4>
-          <p><code>business-brain-renderer</code> renders your Brain as a $5k-looking one-page HTML artifact with PDF export. <code>content-visual-builder</code> produces 4-platform post cards. <code>engine-output-builder</code> makes any section shareable on LinkedIn.</p>
-        </div>
-        <div class="stack-value">$400</div>
-      </div>
-
-      <div class="stack-row">
-        <div class="stack-arrow">▶</div>
-        <div class="stack-content">
-          <h4>5 Taki-style fillable worksheets</h4>
-          <p>YOU™ · The Offer™ · Your One Client™ · The Gaps™ · Your Engines™. Interactive HTML you fill live. Guidelines at the bottom. One click copies your answers straight into your Brain.</p>
-        </div>
-        <div class="stack-value">$300</div>
-      </div>
-
-      <div class="stack-row">
-        <div class="stack-arrow">▶</div>
-        <div class="stack-content">
-          <h4>Weekly & daily automation recipes</h4>
-          <p>Schedule any engine to run on a weekly or daily cadence. Monday content drop, Tuesday prospect research, Thursday meeting prep, Friday follow-ups, Sunday pipeline report, daily morning brief.</p>
-        </div>
-        <div class="stack-value">$500</div>
-      </div>
-
-      <div class="stack-row">
-        <div class="stack-arrow">▶</div>
-        <div class="stack-content">
-          <h4>Pre-session setup guide</h4>
-          <p>30-minute async video + install checklist. No technical knowledge needed. Zero API keys beyond one paste. Everything connected and working before Day 1.</p>
-        </div>
-        <div class="stack-value">$100</div>
-      </div>
-    </div>
-
-    <div class="stack-total">
-      <div class="left">
-        <span class="label">◆ What this stacks up to</span>
-        <h3>Total Value</h3>
-        <div class="strike-total">Normally: $4,200 if you bought it piece by piece</div>
-      </div>
-      <div class="right">
-        <div class="you-pay">You pay</div>
-        <div class="amount"><span class="currency">$</span>49</div>
-      </div>
-    </div>
-
-    <div class="stack-cta">
-      <a href="#reserve" class="btn-primary">Yes. I want all of this for $49</a>
-    </div>
-  </div>
-</section>
-
 <!-- ============= DAY BREAKDOWN ============= -->
 <section class="days" id="days">
   <div class="container">
-    <span class="section-eyebrow">◆ What happens each day</span>
+    <span class="section-eyebrow">◆ The 2 days</span>
     <h2 class="section-title">Two days. Two machines. <em>One business</em> running itself.</h2>
 
-    <div class="day-card">
-      <div class="day-header">
-        <span class="day-label">Day 1</span>
-        <h3>Automate Your Marketing</h3>
+    <div class="day-cards">
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-label">Day 1</span>
+          <h3>Automate Your Marketing</h3>
+        </div>
+        <div class="day-when">Saturday May 2 · 11:00am–1:00pm · Zoom</div>
+        <p class="outcome-line"><strong>You leave with:</strong> your Marketing Machine running + a LinkedIn profile rewritten in your voice + a real post shipped live.</p>
+        <ul>
+          <li>Generate your <code>BUSINESS-BRAIN.md</code> live (voice, ICP, positioning, brand, objections)</li>
+          <li>LinkedIn headline + About rewritten from your real profile data</li>
+          <li>One week of content drafted in your voice: 3 posts + X thread + newsletter</li>
+          <li>Publish a real LinkedIn post before the Zoom closes (countdown from 30)</li>
+          <li>3 weekly routines go live: Monday content · Wednesday newsletter · Friday wrap</li>
+        </ul>
       </div>
-      <div class="day-when">Saturday, May 2 · 11:00am – 1:00pm · Live on Zoom</div>
-      <p class="outcome-line"><strong>By the end of Day 1</strong>, you have your Marketing Machine running. Plus a LinkedIn profile that speaks directly to your ideal client.</p>
-      <ul>
-        <li><strong>BUSINESS-BRAIN.md generated in your first 30 minutes</strong>: your complete positioning, ICP, voice rules, and objection vault in one file</li>
-        <li><strong>LinkedIn rewritten using real data from your profile</strong>: headline, About section, and banner rewritten in your voice against your ICP</li>
-        <li><strong>A full week of content generated in your own voice</strong>: 3 LinkedIn posts, 1 X thread, 1 newsletter, all from one command</li>
-        <li><strong>Ship a real LinkedIn post before the Zoom closes</strong>: not a demo, an actual post on your actual LinkedIn (the cohort watches you count down from 30)</li>
-        <li><strong>Marketing cadence activated</strong>: weekly content drop, weekly newsletter, weekly trends wrap, daily morning brief</li>
-      </ul>
-    </div>
 
-    <div class="day-card">
-      <div class="day-header">
-        <span class="day-label">Day 2</span>
-        <h3>Automate Your Sales</h3>
+      <div class="day-card">
+        <div class="day-header">
+          <span class="day-label">Day 2</span>
+          <h3>Automate Your Sales</h3>
+        </div>
+        <div class="day-when">Sunday May 3 · 11:00am–1:00pm · Zoom</div>
+        <p class="outcome-line"><strong>You leave with:</strong> a real prospect researched + personalised outreach written + a rendered Brain one-pager + 3 more routines live.</p>
+        <ul>
+          <li>Watch yesterday's Marketing routine fire live before the session</li>
+          <li>Pick a real prospect. Apify scrapes their LinkedIn and their company</li>
+          <li>Outreach drafted referencing their actual recent posts</li>
+          <li>Render your full <code>BUSINESS-BRAIN.md</code> as a one-page HTML + PDF</li>
+          <li>3 weekly routines go live: Tuesday leads · Thursday meeting prep · Sunday pipeline</li>
+        </ul>
       </div>
-      <div class="day-when">Sunday, May 3 · 11:00am – 1:00pm · Live on Zoom</div>
-      <p class="outcome-line"><strong>By the end of Day 2</strong>, you have a real prospect researched, personalised outreach written, a proposal saved to your desktop, and your Sales Machine running on a weekly cadence.</p>
-      <ul>
-        <li><strong>Watch yesterday's Marketing routine fire live</strong>: 5 content ideas already drafted before the session starts, in your voice</li>
-        <li><strong>Pick a real company you want to approach</strong>: watch it get researched in real time. Outreach references their actual recent posts.</li>
-        <li><strong>Full proposal generated using the prospect's own website language</strong>: saved to your files</li>
-        <li><strong>Render your complete BUSINESS-BRAIN.md as a one-pager</strong>: cinematic HTML + PDF, ready to print or share</li>
-        <li><strong>Sales cadence activated</strong>: weekly lead research, weekly meeting prep, weekly follow-ups, weekly pipeline report</li>
-      </ul>
     </div>
 
     <!-- Schedule table -->
     <div class="schedule" id="schedule">
       <div class="schedule-header">
-        <div class="when-you-leave">◆ The weekly schedule you leave with</div>
+        <div class="label-top">◆ The weekly schedule you leave with</div>
         <h4>Your autopilot calendar</h4>
       </div>
       <table>
         <thead>
           <tr>
-            <th>Day / Time</th>
+            <th>Day · Time</th>
             <th>What runs automatically</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>Weekdays · 7:30am</td><td>Morning brief across all 5 engines → Gmail / Notion</td></tr>
-          <tr><td>Monday · 7:00am</td><td>5 content ideas drawn from niche conversations → Notion</td></tr>
+          <tr><td>Monday · 7:00am</td><td>3 LinkedIn posts + newsletter idea drafted in your voice → Notion</td></tr>
           <tr><td>Tuesday · 8:00am</td><td>10 new prospects researched against your ICP → Notion CRM</td></tr>
           <tr><td>Wednesday · 8:00am</td><td>Newsletter drafted from the week's research → Google Drive</td></tr>
           <tr><td>Thursday · 7:00am</td><td>Today's meeting attendees researched → Gmail drafts</td></tr>
-          <tr><td>Friday · 9:00am</td><td>Niche trends + weekly wrap → Drive + Notion</td></tr>
-          <tr><td>Friday · 2:00pm</td><td>Follow-ups personalised from LinkedIn intel → Gmail drafts</td></tr>
+          <tr><td>Friday · 9:00am</td><td>Weekly content + trends wrap → Drive + Notion</td></tr>
           <tr><td>Sunday · 6:00pm</td><td>Full pipeline report across Marketing + Sales → Drive + Notion</td></tr>
         </tbody>
       </table>
-      <div class="schedule-footer"><strong>8 automations.</strong> Every week. Powered by the 5 engines. Your laptop can be off.</div>
+      <div class="schedule-footer"><strong>6 routines.</strong> Every week. Powered by 5 engines. Your laptop can be off.</div>
+    </div>
+
+    <div class="days-cta">
+      <a href="#reserve" class="btn-primary">Save my seat <span class="price">· $49</span></a>
     </div>
   </div>
 </section>
 
-<!-- ============= TESTIMONIALS ============= -->
-<section class="testimonials">
-  <div class="container">
-    <span class="section-eyebrow">◆ What participants say</span>
-    <h2 class="section-title">Proof from the <em>last cohort.</em></h2>
-    <p class="section-sub">Real quotes from founders who built their Marketing and Sales Machines in Workshop 00.</p>
-
-    <div class="tm-placeholder">
-      <h4>Testimonials go here before publishing</h4>
-      <p>Replace this block with 3 real quotes from Workshop 00 attendees. Include name, role, and company. Photo optional.</p>
-    </div>
-
-    <div style="text-align:center;margin-top:28px">
-      <a href="#reserve" class="btn-primary">Claim my spot. Only 40 seats. <span class="price">· $49</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ============= TRAINER ============= -->
-<section class="trainer">
-  <div class="container">
-    <span class="section-eyebrow">◆ Who's teaching this</span>
-    <div class="trainer-grid">
-      <div class="trainer-avatar">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <rect width="200" height="200" fill="#fce8ed"/>
-          <text x="100" y="128" text-anchor="middle" font-family="Rethink Sans" font-size="100" font-weight="800" fill="#e90d41">DP</text>
-        </svg>
-      </div>
-      <div class="trainer-content">
-        <h3>Daniel Paul</h3>
-        <span class="handle">@danielpaulai · linkedin.com/in/danielpaulai · Founder, Purely Personal</span>
-        <p>Danny builds AI systems for founders, consultants, and executives who want their marketing and sales to run without them.</p>
-        <p>He spent years watching talented founders stay stuck in content creation and prospecting loops. Not because they lacked ideas. Because they lacked systems. After building and testing dozens of automated workflows, he developed the two-machine framework taught in this workshop.</p>
-        <p>Every prompt, skill, and engine in this workshop has been battle-tested on real businesses, in real industries, by non-technical people.</p>
-
-        <ul class="trainer-quals">
-          <li>Founder and facilitator at Purely Personal</li>
-          <li>Specialises in AI systems for non-technical founders</li>
-          <li>Built and deployed 8-automation stacks across multiple industries</li>
-          <li>Every participant leaves with working systems, not notes</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============= INVESTMENT ============= -->
-<section class="investment" id="reserve">
-  <div class="container-narrow">
-    <span class="section-eyebrow">◆ Your investment</span>
-    <h2 class="section-title" style="margin-left:auto;margin-right:auto">A system that costs less than <em>one hour</em> of a freelancer.</h2>
-    <p>Getting this same result by hiring a freelancer or VA would cost you $1,500–$3,000 a month and take weeks to get right. Building it yourself would take 40+ hours and still not run automatically.</p>
-
-    <div class="rows">
-      <div class="inv-row">
-        <span class="label">Total value stacked</span>
-        <span class="amount" style="text-decoration:line-through;color:var(--text-muted)">$4,200</span>
-      </div>
-      <div class="inv-row">
-        <span class="label">Workshop price today</span>
-        <span class="amount">$49</span>
-      </div>
-      <div class="inv-row dim">
-        <span class="label">Claude Pro (required)</span>
-        <span class="amount">$20/mo</span>
-      </div>
-      <div class="inv-row dim">
-        <span class="label">Apify (optional, free tier fits workshop)</span>
-        <span class="amount">$0</span>
-      </div>
-      <div class="inv-row total">
-        <span class="label">Your all-in cost today</span>
-        <span class="amount">$69</span>
-      </div>
-    </div>
-
-    <div class="guarantee-box">
-      <span class="badge">◆ The Guarantee</span>
-      <h4>Attend both days. Build working systems. Or get your $49 back.</h4>
-      <p>If you attend Day 1 and Day 2 live and don't walk away with at least 4 working automations, email us within 7 days and we refund every cent. No forms. No waiting. No questions asked.</p>
-    </div>
-
-    <div style="margin-top:32px;text-align:center">
-      <a href="#cta" class="btn-primary">Reserve my seat <span class="price">· $49</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ============= URGENCY ============= -->
-<section class="urgency">
-  <div class="container">
-    <span class="bolt">⚡  Registration closes Friday, May 1, 2026</span>
-    <h3>Only 40 seats available.</h3>
-    <p>The last Purely Personal workshop sold out before the registration deadline.</p>
-    <p>Once it's full, this page comes down.</p>
-  </div>
-</section>
-
-<!-- ============= FAQ ============= -->
+<!-- ============= FAQ (3 biggest objections, expanded) ============= -->
 <section class="faq" id="faq">
   <div class="container">
-    <span class="section-eyebrow" style="text-align:center;display:block">◆ Honest answers</span>
-    <h2 class="section-title" style="text-align:center;margin:0 auto 0">Questions you're <em>already asking.</em></h2>
+    <div class="faq-intro">
+      <span class="section-eyebrow" style="text-align:center">◆ The 3 questions</span>
+      <h2 class="section-title" style="text-align:center;margin:0 auto">The 3 reasons people almost <em>don't join.</em></h2>
+    </div>
 
     <div class="faq-list">
       <details class="faq-item">
-        <summary>Do I need to know how to code?</summary>
-        <div class="answer">No. Zero coding required. Every action in the workshop is pasting a prompt or clicking a button. If you can use Gmail, you can do this workshop. The only install is Claude Code. 5 minutes, guided.</div>
+        <summary>I'm not technical. Can I actually do this?</summary>
+        <div class="answer">Yes. Zero code. Every action in the workshop is pasting a prompt or clicking a button. If you can use Gmail, you can do this. The only install is Claude Code and it takes 5 minutes with a guided video. Every participant from the last cohort was non-technical.</div>
+      </details>
+
+      <details class="faq-item">
+        <summary>I'm already overwhelmed. How do I add 4 more hours?</summary>
+        <div class="answer">The workshop is 4 hours of focused building that saves you 5 to 10 hours <em>every week after</em>. Net gain in week one. If life happens, the replay is yours for 7 days. If you attend both days and don't walk away with working systems, you get your $49 back. No forms, no waiting.</div>
       </details>
 
       <details class="faq-item">
         <summary>I've tried AI tools before and got generic output. Why is this different?</summary>
-        <div class="answer">Most AI tools hand you a blank page. This is different because on Day 1 you create a <code>BUSINESS-BRAIN.md</code> file with 9 sections: your voice rules, ICP, offer, competitors, and objections. Every engine reads that file before it writes a single word. Nothing generic comes out. You'll see the difference in a blind A/B test on Day 2.</div>
-      </details>
-
-      <details class="faq-item">
-        <summary>I'm not technical at all. Will I be able to keep up?</summary>
-        <div class="answer">Every participant who has gone through this started by saying the same thing. No coding. No API keys beyond one paste. No technical setup beyond a 30-minute guided install. If you can type a sentence, you can do this workshop.</div>
-      </details>
-
-      <details class="faq-item">
-        <summary>My business is different. Will this work for me?</summary>
-        <div class="answer">This workshop has been built with founders, consultants, fractional executives, and agency owners across multiple industries. On Day 1 you customise the entire system to your specific business, clients, and offers. Nothing in this workshop is one-size-fits-all.</div>
-      </details>
-
-      <details class="faq-item">
-        <summary>I'm already overwhelmed. How do I add another 4 hours?</summary>
-        <div class="answer">This workshop is 4 total hours of focused building that saves you 5–10 hours every single week after. That is not a commitment. That is a recovery.</div>
-      </details>
-
-      <details class="faq-item">
-        <summary>What happens after the workshop ends?</summary>
-        <div class="answer">Everything you build is permanent. The plugin lives in your GitHub repo. The engines run locally. The Brain is a markdown file on your computer. No subscription to the workshop. You own every prompt, every skill, every automation. Forever.</div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Will there be a replay?</summary>
-        <div class="answer">Not for Workshop 01. The personalized opening slides, live voice autopsy, and ship-a-post activities only work live. If you can't attend live, wait for Workshop 02 (dates announced after 01 ships).</div>
-      </details>
-
-      <details class="faq-item">
-        <summary>What if something doesn't work during the live session?</summary>
-        <div class="answer">Every prompt in the workshop has a built-in fallback. If a live data source like Apify is rate-limited, Claude uses an alternative source and still produces output. Nothing in this workshop ends with a blank screen.</div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Is $49 worth it?</summary>
-        <div class="answer">Think about what staying stuck costs you. The hours spent manually writing content. The leads that go cold with no follow-up system. The meeting prep you skip because there was no time. $49 is not an expense. It's the cost of not doing this alone anymore.</div>
+        <div class="answer">Most AI tools hand you a blank page. On Day 1 you build a <code>BUSINESS-BRAIN.md</code> file with 9 sections: your voice rules, ICP, offer, competitors, banned phrases. Every engine reads that file <em>before</em> it writes a word. Nothing generic comes out. The post card at the top of this page was written by <code>/marketing-engine</code> reading Danny's Brain. Yours sounds like you, not like ChatGPT.</div>
       </details>
     </div>
   </div>
 </section>
 
-<!-- ============= FINAL CTA ============= -->
-<section class="final-cta" id="cta">
-  <div class="container final-cta-inner">
-    <span class="ecta-label">◆ A few days from now</span>
-    <h2>Your business <em style="font-style:normal;color:#fff;background:linear-gradient(180deg,transparent 60%,rgba(255,255,255,0.2) 60%);padding:0 6px">runs differently.</em></h2>
-
-    <ul>
-      <li>A LinkedIn profile rewritten to attract your ideal client</li>
-      <li>A full week of content generated in your own voice</li>
-      <li>A real prospect researched live, proposal saved to your desktop</li>
-      <li>5 engines running on a weekly schedule, even when your laptop is off</li>
-      <li>A rendered BUSINESS-BRAIN.md you can screenshot or print</li>
-    </ul>
-
-    <p class="ecta-sub">All for just $49. No risk. If you attend both days and don't have working systems, you get a full refund.</p>
-
-    <a href="https://purelypersonal.ai/checkout" class="btn-white">Build my AI machine. Reserve my seat. <span class="price">· $49</span></a>
-
-    <div class="seats"><strong>32</strong> seats remaining · 14-day refund · registration closes May 1</div>
-  </div>
-</section>
-
-<!-- ============= FOOTER ============= -->
+<!-- ============= FOOTER (with legal) ============= -->
 <footer>
   <div class="container">
     <div class="foot-inner">
@@ -795,13 +417,15 @@ footer{padding:48px 0 32px;background:var(--page-bg)}
         </div>
       </div>
       <div class="foot-links">
-        <a href="https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself">GitHub</a>
-        <a href="https://linkedin.com/in/danielpaulai">LinkedIn</a>
         <a href="#faq">FAQ</a>
-        <a href="#reserve">Reserve</a>
+        <a href="#reserve">Save Seat</a>
+        <a href="mailto:danny@danielpaul.ai">Contact</a>
+        <a href="https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself">GitHub</a>
       </div>
-      <div class="foot-meta">
-        Built with the purely-personal plugin for Claude Code. 49 files. 7,845 lines. One markdown file per business. No SaaS. Forever yours.
+      <div class="foot-legal">
+        <span class="copyright">© 2026 Purely Personal. All rights reserved.</span>
+        <a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a> · <a href="/refund">Refund Policy</a> · <a href="mailto:danny@danielpaul.ai">danny@danielpaul.ai</a><br>
+        Workshop registrations processed by Stripe. 14-day refund if you attend both days and don't leave with working systems. No recurring charges. No subscription. Your data is never sold or shared.
       </div>
     </div>
   </div>
