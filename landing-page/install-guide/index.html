@@ -346,6 +346,41 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
 .trouble-contact strong{font-weight:700;color:var(--pp-red-deep)}
 .trouble-contact a{font-weight:700}
 
+/* ===== EXPAND/COLLAPSE ALL ===== */
+.guide-controls{display:flex;align-items:center;gap:8px;justify-content:flex-end;margin:0 0 16px;flex-wrap:wrap}
+.gc-btn{padding:7px 14px;background:var(--card-bg);border:1px solid var(--divider-strong);border-radius:6px;font-family:var(--display);font-weight:700;font-size:12.5px;color:var(--text-primary);cursor:pointer;transition:all 140ms;display:inline-flex;align-items:center;gap:6px}
+.gc-btn:hover{border-color:var(--pp-red);color:var(--pp-red)}
+.gc-btn.primary{background:var(--pp-red);color:#fff;border-color:var(--pp-red)}
+.gc-btn.primary:hover{background:var(--pp-red-deep);color:#fff}
+
+/* ===== MOBILE HAMBURGER SIDEBAR ===== */
+.mobile-topbar{display:none;position:sticky;top:0;z-index:50;background:var(--dark);color:#fff;padding:14px 18px;align-items:center;gap:14px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.mobile-topbar .mt-dot{width:24px;height:24px;background:var(--pp-red);border-radius:4px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:10px;font-family:var(--display);flex-shrink:0}
+.mobile-topbar .mt-title{font-family:var(--display);font-weight:800;font-size:14px;flex:1}
+.hamburger{width:38px;height:38px;border:0;background:rgba(255,255,255,0.08);border-radius:6px;color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0}
+.hamburger span{display:block;width:18px;height:2px;background:#fff;border-radius:1px;transition:transform 200ms, opacity 150ms}
+.hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(15,15,16,0.6);z-index:90;backdrop-filter:blur(4px);opacity:0;transition:opacity 220ms}
+.sidebar-overlay.show{display:block;opacity:1}
+@media (max-width:960px){
+  .mobile-topbar{display:flex}
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;top:0;left:0;bottom:0;width:280px;transform:translateX(-100%);transition:transform 260ms ease;z-index:100;padding-top:20px;height:100vh;overflow-y:auto;box-shadow:6px 0 24px rgba(0,0,0,0.25)}
+  .sidebar.open{transform:translateX(0)}
+  main{padding-top:20px}
+}
+
+/* ===== PHASE VIDEO SLOT ===== */
+.phase-video{margin:14px 0 0;display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;cursor:pointer;transition:all 160ms;text-decoration:none;color:#fff!important;border-bottom:1px solid rgba(255,255,255,0.08)}
+.phase-video:hover{background:rgba(233,13,65,0.12);border-color:var(--pp-red)}
+.phase-video .pv-play{width:36px;height:36px;border-radius:999px;background:var(--pp-red);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.phase-video .pv-play::before{content:'';border-left:10px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:3px}
+.phase-video .pv-text{flex:1;font-family:var(--display);font-weight:700;font-size:13px;line-height:1.35}
+.phase-video .pv-text .pv-meta{display:block;font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:0.08em;font-weight:500;margin-top:2px}
+.phase-video .pv-badge{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--pp-red);background:rgba(233,13,65,0.15);padding:3px 8px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase}
+
 /* ===== EMPTY-VS-EXISTING CONFIG TABS ===== */
 .config-scenario{margin:14px 0 18px;border:1px solid var(--divider);border-radius:8px;overflow:hidden;background:var(--card-bg)}
 .config-scenario-tabs{display:flex;background:var(--sub-card-bg);border-bottom:1px solid var(--divider)}
@@ -375,6 +410,14 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
   <symbol id="icon-folder" viewBox="0 0 24 24"><path fill="currentColor" d="M20 6h-8l-2-2H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2z"/></symbol>
   <symbol id="icon-file" viewBox="0 0 24 24"><path fill="currentColor" d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></symbol>
 </svg>
+
+<!-- MOBILE TOPBAR -->
+<div class="mobile-topbar">
+  <div class="mt-dot">pp</div>
+  <div class="mt-title">Install Guide · 17 steps</div>
+  <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</div>
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
 
 <div class="layout">
 
@@ -477,6 +520,13 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
   </div>
 
   <div class="callout warn"><strong>Stuck at any step?</strong> Post in the workshop Slack channel (link in your registration email). Danny or a teammate will unblock you within 30 minutes during Finland business hours.</div>
+
+  <!-- Expand/Collapse All controls -->
+  <div class="guide-controls">
+    <button class="gc-btn" id="expand-all" type="button">Expand all ↓</button>
+    <button class="gc-btn" id="collapse-all" type="button">Collapse all ↑</button>
+    <a class="gc-btn" href="#help">Trouble? Jump to help →</a>
+  </div>
 </section>
 
 <!-- ===== PHASE 1 ===== -->
@@ -493,6 +543,11 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
       <div class="phase-progress-bar"><span class="pf-fill"></span></div>
     </div>
   </div>
+  <a class="phase-video" data-video="phase-1" href="#p1-video">
+    <div class="pv-play"></div>
+    <div class="pv-text">Watch the 3-min Phase 1 walkthrough<span class="pv-meta">Danny on screen · install demo · Mac + Windows</span></div>
+    <span class="pv-badge">Coming soon</span>
+  </a>
 </div>
 
 <details class="step" id="s1" open>
@@ -718,6 +773,11 @@ cd Purely-Personal-Run-a-business-by-itself</div>
       <div class="phase-progress-bar"><span class="pf-fill"></span></div>
     </div>
   </div>
+  <a class="phase-video" data-video="phase-2" href="#p2-video">
+    <div class="pv-play"></div>
+    <div class="pv-text">Watch the 3-min Phase 2 walkthrough<span class="pv-meta">Danny connects Gmail + Notion + Drive live</span></div>
+    <span class="pv-badge">Coming soon</span>
+  </a>
 </div>
 
 <details class="step" id="s7">
@@ -848,6 +908,11 @@ cd Purely-Personal-Run-a-business-by-itself</div>
       <div class="phase-progress-bar"><span class="pf-fill"></span></div>
     </div>
   </div>
+  <a class="phase-video" data-video="phase-3" href="#p3-video">
+    <div class="pv-play"></div>
+    <div class="pv-text">Watch the 3-min Phase 3 walkthrough<span class="pv-meta">The JSON config edit + Apify verification live</span></div>
+    <span class="pv-badge">Coming soon</span>
+  </a>
 </div>
 
 <details class="step" id="s12">
@@ -1071,6 +1136,11 @@ cd Purely-Personal-Run-a-business-by-itself</div>
       <div class="phase-progress-bar"><span class="pf-fill"></span></div>
     </div>
   </div>
+  <a class="phase-video" data-video="phase-4" href="#p4-video">
+    <div class="pv-play"></div>
+    <div class="pv-text">Watch the 3-min Phase 4 walkthrough<span class="pv-meta">Final prep + what Day 1 actually looks like</span></div>
+    <span class="pv-badge">Coming soon</span>
+  </a>
 </div>
 
 <details class="step" id="s15">
@@ -1554,6 +1624,49 @@ touch BUSINESS-BRAIN.md</div></div>
         tabs.forEach(t => t.classList.toggle('active', t === tab));
         panels.forEach(p => p.classList.toggle('active', p.dataset.scenario === target));
       });
+    });
+  });
+
+  /* ===== EXPAND / COLLAPSE ALL ===== */
+  const expandAll = document.getElementById('expand-all');
+  const collapseAll = document.getElementById('collapse-all');
+  if(expandAll) expandAll.addEventListener('click', () => {
+    steps.forEach(d => d.open = true);
+  });
+  if(collapseAll) collapseAll.addEventListener('click', () => {
+    steps.forEach(d => d.open = false);
+  });
+
+  /* ===== MOBILE HAMBURGER SIDEBAR ===== */
+  const hamburger = document.getElementById('hamburger');
+  const overlay = document.getElementById('sidebar-overlay');
+  const sidebarEl = document.querySelector('.sidebar');
+  function closeSidebar(){
+    if(sidebarEl) sidebarEl.classList.remove('open');
+    if(overlay) overlay.classList.remove('show');
+    if(hamburger) hamburger.classList.remove('open');
+  }
+  if(hamburger && sidebarEl && overlay){
+    hamburger.addEventListener('click', () => {
+      const isOpen = sidebarEl.classList.toggle('open');
+      overlay.classList.toggle('show', isOpen);
+      hamburger.classList.toggle('open', isOpen);
+    });
+    overlay.addEventListener('click', closeSidebar);
+    sidebarEl.addEventListener('click', e => {
+      if(e.target.tagName === 'A') closeSidebar();
+    });
+  }
+
+  /* ===== PHASE VIDEO PLACEHOLDER (gentle prompt until Loom URL is live) ===== */
+  document.querySelectorAll('.phase-video').forEach(v => {
+    v.addEventListener('click', e => {
+      const href = v.getAttribute('href') || '';
+      /* If href is a real Loom/Wistia URL, let it through */
+      if(href.startsWith('http')) return;
+      e.preventDefault();
+      const phase = v.dataset.video;
+      alert('Video walkthrough for ' + phase + ' is being filmed. Use the written guide below for now. Videos land by Apr 29.');
     });
   });
 
