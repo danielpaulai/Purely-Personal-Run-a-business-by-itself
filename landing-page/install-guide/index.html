@@ -375,11 +375,28 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
 /* ===== PHASE VIDEO SLOT ===== */
 .phase-video{margin:14px 0 0;display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;cursor:pointer;transition:all 160ms;text-decoration:none;color:#fff!important;border-bottom:1px solid rgba(255,255,255,0.08)}
 .phase-video:hover{background:rgba(233,13,65,0.12);border-color:var(--pp-red)}
+.phase-video.ready{background:rgba(233,13,65,0.06);border-color:rgba(233,13,65,0.3)}
+.phase-video.ready:hover{background:rgba(233,13,65,0.16);border-color:var(--pp-red)}
 .phase-video .pv-play{width:36px;height:36px;border-radius:999px;background:var(--pp-red);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .phase-video .pv-play::before{content:'';border-left:10px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:3px}
 .phase-video .pv-text{flex:1;font-family:var(--display);font-weight:700;font-size:13px;line-height:1.35}
 .phase-video .pv-text .pv-meta{display:block;font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:0.08em;font-weight:500;margin-top:2px}
 .phase-video .pv-badge{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--pp-red);background:rgba(233,13,65,0.15);padding:3px 8px;border-radius:3px;letter-spacing:0.1em;text-transform:uppercase}
+.phase-video.ready .pv-badge{color:#fff;background:var(--pp-red)}
+
+/* ===== VIDEO MODAL PLAYER ===== */
+.video-modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center;padding:40px;opacity:0;transition:opacity 220ms}
+.video-modal.show{display:flex;opacity:1}
+.video-modal .vm-frame{width:100%;max-width:1280px;background:#000;border-radius:14px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,0.8),0 0 80px rgba(233,13,65,0.2);border:1px solid rgba(255,255,255,0.1);position:relative}
+.video-modal .vm-header{padding:14px 20px;background:linear-gradient(180deg,rgba(15,15,16,0.95) 0%,rgba(15,15,16,0.7) 100%);border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:14px}
+.video-modal .vm-tag{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--pp-red);letter-spacing:0.22em;text-transform:uppercase}
+.video-modal .vm-title{flex:1;font-family:var(--display);font-size:15px;font-weight:700;color:#fff}
+.video-modal .vm-close{width:34px;height:34px;border:0;background:rgba(255,255,255,0.08);color:#fff;border-radius:7px;cursor:pointer;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all 140ms}
+.video-modal .vm-close:hover{background:var(--pp-red)}
+.video-modal video{width:100%;display:block;background:#000;aspect-ratio:16/9}
+.video-modal .vm-meta{padding:14px 20px;background:rgba(15,15,16,0.95);font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:0.08em;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.video-modal .vm-meta strong{color:#fff;font-weight:700}
+.video-modal .vm-meta .vm-pill{padding:3px 10px;background:rgba(233,13,65,0.18);color:var(--pp-red);border-radius:4px;font-weight:700}
 
 /* ===== EMPTY-VS-EXISTING CONFIG TABS ===== */
 .config-scenario{margin:14px 0 18px;border:1px solid var(--divider);border-radius:8px;overflow:hidden;background:var(--card-bg)}
@@ -410,6 +427,23 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
   <symbol id="icon-folder" viewBox="0 0 24 24"><path fill="currentColor" d="M20 6h-8l-2-2H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2z"/></symbol>
   <symbol id="icon-file" viewBox="0 0 24 24"><path fill="currentColor" d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></symbol>
 </svg>
+
+<!-- VIDEO MODAL PLAYER -->
+<div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="vm-frame">
+    <div class="vm-header">
+      <span class="vm-tag" id="vm-tag">◆ Phase 1 of 4</span>
+      <span class="vm-title" id="vm-title">Install the software</span>
+      <button class="vm-close" id="vm-close" aria-label="Close">×</button>
+    </div>
+    <video id="vm-player" controls preload="auto" playsinline></video>
+    <div class="vm-meta">
+      <span class="vm-pill" id="vm-duration">1:45</span>
+      <span><strong>Animated walkthrough</strong> · narrated by AI · subtitles burned in</span>
+      <span style="margin-left:auto;color:rgba(255,255,255,0.4)">Press <strong>Esc</strong> to close · <strong>Space</strong> to play/pause</span>
+    </div>
+  </div>
+</div>
 
 <!-- MOBILE TOPBAR -->
 <div class="mobile-topbar">
@@ -543,10 +577,10 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
       <div class="phase-progress-bar"><span class="pf-fill"></span></div>
     </div>
   </div>
-  <a class="phase-video" data-video="phase-1" href="#p1-video">
+  <a class="phase-video ready" data-video="phase-1" data-src="videos/phase-1.mp4" data-duration="1:45" href="#p1-video">
     <div class="pv-play"></div>
-    <div class="pv-text">Watch the 3-min Phase 1 walkthrough<span class="pv-meta">Danny on screen · install demo · Mac + Windows</span></div>
-    <span class="pv-badge">Coming soon</span>
+    <div class="pv-text">Watch the 1:45 Phase 1 walkthrough<span class="pv-meta">Animated · narrated · subtitled · install + verify</span></div>
+    <span class="pv-badge">▶ Watch now</span>
   </a>
 </div>
 
@@ -773,10 +807,10 @@ cd Purely-Personal-Run-a-business-by-itself</div>
       <div class="phase-progress-bar"><span class="pf-fill"></span></div>
     </div>
   </div>
-  <a class="phase-video" data-video="phase-2" href="#p2-video">
+  <a class="phase-video" data-video="phase-2" data-src="videos/phase-2.mp4" data-duration="1:35" href="#p2-video">
     <div class="pv-play"></div>
-    <div class="pv-text">Watch the 3-min Phase 2 walkthrough<span class="pv-meta">Danny connects Gmail + Notion + Drive live</span></div>
-    <span class="pv-badge">Coming soon</span>
+    <div class="pv-text">Watch the 1:35 Phase 2 walkthrough<span class="pv-meta">Animated · 5 connectors live + permissions</span></div>
+    <span class="pv-badge">Rendering · ready in 10 min</span>
   </a>
 </div>
 
@@ -908,10 +942,10 @@ cd Purely-Personal-Run-a-business-by-itself</div>
       <div class="phase-progress-bar"><span class="pf-fill"></span></div>
     </div>
   </div>
-  <a class="phase-video" data-video="phase-3" href="#p3-video">
+  <a class="phase-video" data-video="phase-3" data-src="videos/phase-3.mp4" data-duration="1:58" href="#p3-video">
     <div class="pv-play"></div>
-    <div class="pv-text">Watch the 3-min Phase 3 walkthrough<span class="pv-meta">The JSON config edit + Apify verification live</span></div>
-    <span class="pv-badge">Coming soon</span>
+    <div class="pv-text">Watch the 1:58 Phase 3 walkthrough<span class="pv-meta">Animated · token + JSON edit + Apify verify</span></div>
+    <span class="pv-badge">Rendering · ready in 20 min</span>
   </a>
 </div>
 
@@ -1136,10 +1170,10 @@ cd Purely-Personal-Run-a-business-by-itself</div>
       <div class="phase-progress-bar"><span class="pf-fill"></span></div>
     </div>
   </div>
-  <a class="phase-video" data-video="phase-4" href="#p4-video">
+  <a class="phase-video" data-video="phase-4" data-src="videos/phase-4.mp4" data-duration="1:35" href="#p4-video">
     <div class="pv-play"></div>
-    <div class="pv-text">Watch the 3-min Phase 4 walkthrough<span class="pv-meta">Final prep + what Day 1 actually looks like</span></div>
-    <span class="pv-badge">Coming soon</span>
+    <div class="pv-text">Watch the 1:35 Phase 4 walkthrough<span class="pv-meta">Animated · LinkedIn + folder + ready for Day 1</span></div>
+    <span class="pv-badge">Rendering · ready in 30 min</span>
   </a>
 </div>
 
@@ -1658,15 +1692,62 @@ touch BUSINESS-BRAIN.md</div></div>
     });
   }
 
-  /* ===== PHASE VIDEO PLACEHOLDER (gentle prompt until Loom URL is live) ===== */
+  /* ===== PHASE VIDEO MODAL PLAYER ===== */
+  const PHASE_TITLES = {
+    'phase-1': { tag: '◆ Phase 1 of 4', title: 'Install the software' },
+    'phase-2': { tag: '◆ Phase 2 of 4', title: 'Connect your apps' },
+    'phase-3': { tag: '◆ Phase 3 of 4', title: 'Wire the scraper' },
+    'phase-4': { tag: '◆ Phase 4 of 4', title: 'Final prep · Ready for Day 1' }
+  };
+  const modal = document.getElementById('video-modal');
+  const player = document.getElementById('vm-player');
+  const modalTag = document.getElementById('vm-tag');
+  const modalTitle = document.getElementById('vm-title');
+  const modalDuration = document.getElementById('vm-duration');
+  const modalClose = document.getElementById('vm-close');
+
+  function openVideo(src, phase, duration){
+    if(!modal || !player) return;
+    const meta = PHASE_TITLES[phase] || {};
+    if(modalTag) modalTag.textContent = meta.tag || '';
+    if(modalTitle) modalTitle.textContent = meta.title || '';
+    if(modalDuration && duration) modalDuration.textContent = duration;
+    player.src = src;
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    player.play().catch(() => {});
+  }
+  function closeVideo(){
+    if(!modal || !player) return;
+    player.pause();
+    player.currentTime = 0;
+    player.removeAttribute('src');
+    player.load();
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  if(modalClose) modalClose.addEventListener('click', closeVideo);
+  if(modal) modal.addEventListener('click', e => {
+    if(e.target === modal) closeVideo();
+  });
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && modal && modal.classList.contains('show')) closeVideo();
+  });
+
   document.querySelectorAll('.phase-video').forEach(v => {
     v.addEventListener('click', e => {
-      const href = v.getAttribute('href') || '';
-      /* If href is a real Loom/Wistia URL, let it through */
-      if(href.startsWith('http')) return;
       e.preventDefault();
       const phase = v.dataset.video;
-      alert('Video walkthrough for ' + phase + ' is being filmed. Use the written guide below for now. Videos land by Apr 29.');
+      const src = v.dataset.src;
+      const duration = v.dataset.duration;
+      const isReady = v.classList.contains('ready');
+      if(isReady && src){
+        openVideo(src, phase, duration);
+      } else {
+        alert('Video walkthrough for ' + phase + ' is still rendering. The written guide below covers everything. Refresh in a few minutes.');
+      }
     });
   });
 
