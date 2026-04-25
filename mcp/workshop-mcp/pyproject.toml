@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "purely-personal-workshop-mcp"
+version = "0.1.0"
+description = "MCP server for the Purely Personal workshop · scaffolds new workshops, validates voice, wraps the 5 engines for use in Claude Desktop"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [
+    { name = "Daniel Paul", email = "danny@danielpaul.ai" }
+]
+keywords = ["mcp", "workshop", "purely-personal", "claude", "voice", "scaffolder"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business",
+]
+dependencies = [
+    "mcp>=1.27.0",
+]
+
+[project.scripts]
+purely-personal-workshop-mcp = "server:main"
+
+[project.urls]
+Homepage = "https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself"
+Repository = "https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself"
+Issues = "https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+include = ["server.py", "README.md"]
+
+[tool.hatch.build.targets.sdist]
+include = ["server.py", "README.md", "pyproject.toml"]

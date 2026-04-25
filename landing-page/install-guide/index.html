@@ -1274,6 +1274,91 @@ touch BUSINESS-BRAIN.md</div></div>
   <strong>✓ You're ready for Day 1.</strong> Claude Pro + CLI. Plugin installed. 8 slash commands verified. 4 OAuth connectors (+ Stripe if you use it). Apify MCP wired. LinkedIn URL submitted. Empty BUSINESS-BRAIN.md ready.
 </div>
 
+<!-- ===== PHASE 5 · OPTIONAL POWER-UP · MCP IN CLAUDE DESKTOP ===== -->
+<div class="phase-marker" style="margin-top:40px">
+  <div class="phase-marker-inner">
+    <div>
+      <span class="pm-label" style="color:#22c55e">◆ Optional power-up · skip if short on time</span>
+      <h3>Use the engines from Claude Desktop too</h3>
+      <p>One extra command and the 10 workshop tools (validate voice, draft a post in your voice, prep a meeting brief, score AI slop, scaffold a future workshop) become available in your Claude Desktop chat · not just inside Claude Code.</p>
+    </div>
+    <div class="phase-progress">
+      <span class="num"><strong>+10</strong></span>
+      <span class="label">tools added</span>
+    </div>
+  </div>
+</div>
+
+<details class="step" id="s18">
+  <summary>
+    <div class="step-num" style="background:#22c55e">★</div>
+    <div class="step-logo lg-anthropic"><svg><use href="#icon-anthropic"/></svg></div>
+    <div class="step-title">
+      <span class="tag" style="color:#22c55e">Optional · Bonus</span>
+      <h2>Install the <em>Workshop MCP</em></h2>
+      <div class="hint">⏱ 90 seconds · One bash command · Works in Claude Desktop chat</div>
+    </div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <p>The 5 engines (Marketing, Sales, Operations, Cash, Leadership) live as slash commands inside Claude Code. The Workshop MCP gives you the SAME engines plus 5 more tools as MCP tools usable from Claude Desktop chat · which is where most of your day-to-day questions actually happen.</p>
+
+    <p>Why bother:</p>
+    <ul>
+      <li><strong>Score posts before publishing.</strong> Paste any LinkedIn draft into Claude Desktop. Type "score this against my brain". Get a 0-100 AI-slop score with violation list.</li>
+      <li><strong>Draft posts in your voice from anywhere.</strong> "Draft a post about why I stopped using X." Claude reads your Brain and writes in your voice.</li>
+      <li><strong>Prep meetings on the fly.</strong> Paste any LinkedIn URL. Get a 3-min meeting brief.</li>
+      <li><strong>Run morning briefs.</strong> "Give me my morning brief." Claude pulls Gmail + Notion CRM + Calendar into a 60-second snapshot.</li>
+      <li><strong>Spin up future workshops.</strong> When you're ready for Workshop 02, tell Claude to scaffold it. 5 minutes, fully branded.</li>
+    </ul>
+
+    <h3>Install (90 seconds)</h3>
+
+    <p>From the cloned plugin folder (the one you set up in Phase 1):</p>
+
+    <div class="cmd"><span class="cmd-label">From inside the repo</span>bash mcp/workshop-mcp/install.sh</div>
+
+    <p>The installer:</p>
+    <ol>
+      <li>Verifies you have Python 3.10+</li>
+      <li>Installs the <code>mcp</code> package</li>
+      <li>Auto-detects your Claude Desktop config location (Mac/Linux/Windows)</li>
+      <li>Adds the <code>purely-personal-workshop</code> entry to your Claude Desktop config (preserving Apify and any other servers)</li>
+      <li>Verifies the server imports cleanly</li>
+    </ol>
+
+    <p>Then <strong>fully quit Claude Desktop</strong> (Cmd+Q on Mac, right-click tray on Windows) and reopen. The 10 new tools are now available in any new conversation.</p>
+
+    <div class="callout info">
+      <strong>Test it works.</strong> Open a new Claude Desktop chat and paste:<br>
+      <em>"Use score_post_against_brain on this draft: Last year I was doing 5 full-time jobs by myself."</em><br>
+      If Claude calls the tool and returns a score, you're wired.
+    </div>
+
+    <h3>The 10 tools you just got</h3>
+
+    <div class="mockup mockup-dark">
+      <div class="mockup-caption"><span class="dot-r"></span><span class="title">Workshop MCP · 10 tools available in Claude Desktop</span></div>
+      <div class="terminal" style="font-size:13px">
+        <span class="out"><span class="hl">scaffold_workshop</span>             Spin up Workshop 02, 03, 04 from chat</span>
+        <span class="out"><span class="hl">validate_voice</span>                Em-dash + banned phrase check on any text</span>
+        <span class="out"><span class="hl">score_post_against_brain</span>      AI-slop score 0-100 with violation list</span>
+        <span class="out"><span class="hl">prep_post_in_voice</span>            Voice-aware draft context for LinkedIn/X/newsletter</span>
+        <span class="out"><span class="hl">prep_meeting_brief</span>            3-min meeting brief from any LinkedIn URL</span>
+        <span class="out"><span class="hl">prep_prospect_research</span>        BANT score + 3-step outreach for any prospect</span>
+        <span class="out"><span class="hl">prep_marketing_drop</span>           Weekly content drop framework</span>
+        <span class="out"><span class="hl">prep_morning_brief</span>            Daily 60-second brief across all 5 engines</span>
+        <span class="out"><span class="hl">prep_pipeline_report</span>          Sunday pipeline report (Mkt + Sales + Cash)</span>
+        <span class="out"><span class="hl">list_workshops</span>                Scan a directory for existing workshops</span>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <strong>This is optional.</strong> Day 1 + Day 2 of the workshop work fine without the MCP. But once you have it installed, you don't have to be in Claude Code to use the engines · you can ask Claude on your phone, in a meeting, anywhere. The engines come with you.
+    </div>
+  </div>
+</details>
+
 <!-- ===== END-STATE SUCCESS MOCKUP ===== -->
 <div class="success-mockup">
   <div class="success-mockup-header">
