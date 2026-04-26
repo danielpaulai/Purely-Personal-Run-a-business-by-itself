@@ -536,6 +536,8 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
     Lines inside the dark boxes below are commands. <strong>Copy the whole line, paste into your terminal, press Enter.</strong> Click the <code>📋</code> icon on any command to copy it with one click. You're safe. Every command here has been run by hundreds of people. Typos don't break your computer; just re-run the command.
   </div>
 
+  <div class="callout danger"><strong>⚠ Windows users · use Git Bash, not PowerShell or Command Prompt.</strong><br>Every command in this guide uses Unix-style syntax (<code>~/</code>, <code>$(pwd)</code>, <code>ln&nbsp;-s</code>, <code>claude</code>). PowerShell <strong>does not understand these</strong> and will return "command not recognized". Git Bash was installed alongside Git in Step 3 · find it in your Start menu and use it for every step. If you're seeing red errors in PowerShell, switch to Git Bash and re-run.</div>
+
   <div class="callout warn"><strong>Stuck at any step?</strong> Post in the workshop Slack channel (link in your registration email). Danny or a teammate will unblock you within 30 minutes during Finland business hours.</div>
 
   <!-- Expand/Collapse All controls -->
@@ -607,8 +609,9 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
           <div class="cmd"><span class="cmd-label">Mac Terminal</span>curl -fsSL https://claude.ai/install.sh | sh</div>
         </div>
         <div>
-          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">Open <strong>PowerShell</strong> and paste:</p>
-          <div class="cmd"><span class="cmd-label">PowerShell</span>iwr https://claude.ai/install.ps1 -UseBasicParsing | iex</div>
+          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">Open <strong>PowerShell</strong> (this is the ONE command that needs PowerShell · everything else uses Git Bash):</p>
+          <div class="cmd"><span class="cmd-label">PowerShell · Step 1 only</span>iwr https://claude.ai/install.ps1 -UseBasicParsing | iex</div>
+          <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">After this install completes, <strong>close PowerShell</strong>. Use <strong>Git Bash</strong> for every step after this one (it speaks Unix syntax · PowerShell does not).</p>
         </div>
       </div>
     </div>
@@ -1211,14 +1214,14 @@ cd Purely-Personal-Run-a-business-by-itself</div>
   <div class="step-body">
     <p>This is where your <code>BUSINESS-BRAIN.md</code> will live.</p>
     <div class="os-tabs">
-      <div class="os-tab-header"><div class="os-tab-label mac">macOS</div><div class="os-tab-label win">Windows</div></div>
+      <div class="os-tab-header"><div class="os-tab-label mac">macOS</div><div class="os-tab-label win">Windows · Git Bash</div></div>
       <div class="os-tab-body">
         <div><div class="cmd"><span class="cmd-label">Mac Terminal</span>mkdir ~/Desktop/my-business
 cd ~/Desktop/my-business
 claude</div></div>
         <div>
-          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">Right-click Desktop → New → Folder → <code>my-business</code>. In Git Bash:</p>
-          <div class="cmd"><span class="cmd-label">Git Bash</span>cd ~/Desktop/my-business
+          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">Right-click Desktop → New → Folder → <code>my-business</code>. Then in <strong>Git Bash</strong> (NOT PowerShell):</p>
+          <div class="cmd"><span class="cmd-label">Windows · Git Bash</span>cd ~/Desktop/my-business
 claude</div>
         </div>
       </div>
@@ -1248,14 +1251,17 @@ claude</div>
   <div class="step-body">
     <p>Create an empty file. Day 1 walks you through filling every section live.</p>
     <div class="os-tabs">
-      <div class="os-tab-header"><div class="os-tab-label mac">macOS</div><div class="os-tab-label win">Windows</div></div>
+      <div class="os-tab-header"><div class="os-tab-label mac">macOS</div><div class="os-tab-label win">Windows · Git Bash or File Explorer</div></div>
       <div class="os-tab-body">
         <div><div class="cmd"><span class="cmd-label">Mac Terminal</span>cd ~/Desktop/my-business
 touch BUSINESS-BRAIN.md</div></div>
         <div>
-          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">Right-click → New → Text Document. Rename to:</p>
+          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">Easiest path · in <strong>Git Bash</strong>:</p>
+          <div class="cmd"><span class="cmd-label">Windows · Git Bash</span>cd ~/Desktop/my-business
+touch BUSINESS-BRAIN.md</div>
+          <p style="margin:14px 0 6px;font-size:13px;color:var(--text-secondary)">Or via File Explorer · right-click → New → Text Document, rename to:</p>
           <div class="cmd"><span class="cmd-label">Filename</span>BUSINESS-BRAIN.md</div>
-          <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">Confirm Windows isn't saving as <code>BUSINESS-BRAIN.md.txt</code>. Enable "Show file extensions".</p>
+          <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">Confirm Windows isn't saving as <code>BUSINESS-BRAIN.md.txt</code>. Enable "Show file extensions" in File Explorer's View menu.</p>
         </div>
       </div>
     </div>
@@ -1445,8 +1451,12 @@ touch BUSINESS-BRAIN.md</div></div>
     <div class="trouble-group">
       <div class="tg-title">Phase 1 · Install</div>
       <details>
+        <summary><strong>Windows:</strong> PowerShell says <code>'claude'</code>, <code>'ln'</code>, or <code>'$(pwd)'</code> is not recognized</summary>
+        <div class="tg-body"><strong>Cause:</strong> PowerShell does not understand Unix-style commands. <code>claude</code> may be installed but not on PowerShell's PATH. <code>ln -s</code>, <code>$(pwd)</code>, and <code>~/</code> paths simply do not exist in PowerShell. <strong>Fix:</strong> close PowerShell. Open <strong>Git Bash</strong> from the Start menu (it was installed alongside Git in Step 3). Re-run every command in Git Bash · they all work there. The ONLY command that uses PowerShell is the Step 1 install (<code>iwr ... | iex</code>); after that, switch to Git Bash for everything.</div>
+      </details>
+      <details>
         <summary>Terminal says <code>command not found: claude</code></summary>
-        <div class="tg-body"><strong>Fix:</strong> close and re-open the terminal so PATH refreshes. <strong>Mac:</strong> run <code>source ~/.zshrc</code> and try again. <strong>Windows:</strong> open "Environment Variables" in Start menu, check user PATH includes <code>%USERPROFILE%\.claude\bin</code>, re-open PowerShell.</div>
+        <div class="tg-body"><strong>Fix:</strong> close and re-open the terminal so PATH refreshes. <strong>Mac:</strong> run <code>source ~/.zshrc</code> and try again. <strong>Windows:</strong> open "Environment Variables" in Start menu, check user PATH includes <code>%USERPROFILE%\.claude\bin</code>, re-open Git Bash (not PowerShell).</div>
       </details>
       <details>
         <summary>Terminal says <code>command not found: git</code></summary>
