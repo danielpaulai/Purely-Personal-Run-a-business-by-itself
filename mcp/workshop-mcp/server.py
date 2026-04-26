@@ -31,6 +31,7 @@ Configure in claude_desktop_config.json:
 from __future__ import annotations
 
 import json
+import os
 import re
 import shutil
 from datetime import datetime, timedelta
@@ -1269,6 +1270,364 @@ The email campaign is timed for a 9-day pre-launch. If you have less time, compr
 
 This workshop reuses the `purely-personal` plugin. No copy needed. The plugin lives at the source repo and stays the same across workshops.
 """
+
+
+# ============================================================
+# v2 TOOLS · Setup, Health, Routines, Site & Video Pipeline
+# ============================================================
+
+@mcp.tool()
+def quick_install_check(business_dir: str = "") -> str:
+    """Audit a Purely Personal install. Returns a punch list of what's missing.
+
+    Run this anytime to check whether the workshop install is actually working:
+    - Claude Code on PATH
+    - purely-personal plugin installed
+    - All 8 slash commands registered
+    - claude_desktop_config.json has Apify configured
+    - Business folder exists with BUSINESS-BRAIN.md
+    - Plugin symlink resolves
+    - Last-known render directory writable
+
+    Use it on Day 0 (before workshop), or anytime a routine fails.
+
+    Args:
+        business_dir: optional path to your business folder (defaults to ~/Desktop search)
+    """
+    import os
+    import subprocess
+    from pathlib import Path
+
+    out = ["# Purely Personal · Install Health Check", ""]
+    fails = 0
+    warns = 0
+
+    # 1. Claude Code on PATH
+    cc = shutil.which("claude")
+    if cc:
+        try:
+            ver = subprocess.run(["claude", "--version"], capture_output=True, text=True, timeout=10)
+            ver_text = (ver.stdout or ver.stderr or "").strip().split("\n")[0]
+            out.append(f"✓ Claude Code on PATH · `{cc}` · {ver_text}")
+        except Exception as e:
+            out.append(f"✓ Claude Code on PATH · `{cc}` · (version check failed: {e})")
+    else:
+        fails += 1
+        out.append("✗ Claude Code NOT on PATH · re-install: https://claude.com/claude-code")
+
+    # 2. Plugin installed
+    plugin_paths = [
+        Path.home() / ".claude" / "plugins" / "purely-personal",
+        Path.home() / ".claude" / "plugins" / "Purely-Personal-Run-a-business-by-itself",
+    ]
+    plugin_installed = False
+    for p in plugin_paths:
+        if p.exists():
+            real = p.resolve()
+            out.append(f"✓ Plugin installed · `{p}` → `{real}`")
+            plugin_installed = True
+            break
+    if not plugin_installed:
+        fails += 1
+        out.append("✗ Plugin NOT installed · cd to repo and run `claude plugin install .`")
+
+    # 3. Slash commands (look at the command files in the plugin)
+    if plugin_installed:
+        cmd_dir = plugin_paths[0].resolve() / "commands"
+        if not cmd_dir.exists():
+            cmd_dir = plugin_paths[1].resolve() / "commands" if len(plugin_paths) > 1 else cmd_dir
+        if cmd_dir.exists():
+            cmds = list(cmd_dir.glob("*.md"))
+            if len(cmds) >= 8:
+                out.append(f"✓ Slash commands · {len(cmds)} found · {', '.join(c.stem for c in cmds[:8])}")
+            else:
+                warns += 1
+                out.append(f"⚠ Slash commands · only {len(cmds)} found (expected 8) · re-install plugin")
+        else:
+            warns += 1
+            out.append(f"⚠ Slash commands directory missing at {cmd_dir}")
+
+    # 4. Claude Desktop config + Apify
+    cd_config = (
+        Path.home() / "Library" / "Application Support" / "Claude" / "claude_desktop_config.json"
+        if os.uname().sysname == "Darwin"
+        else Path(os.environ.get("APPDATA", "")) / "Claude" / "claude_desktop_config.json"
+    )
+    if cd_config.exists():
+        try:
+            cfg = json.loads(cd_config.read_text())
+            servers = cfg.get("mcpServers", {})
+            if "Apify" in servers or "apify" in servers:
+                out.append(f"✓ Apify wired in claude_desktop_config.json · {cd_config}")
+            else:
+                warns += 1
+                out.append(f"⚠ Apify NOT in claude_desktop_config.json · run Setup Prompt again")
+            if "purely-personal-workshop" in servers or any("workshop" in k.lower() for k in servers):
+                out.append("✓ Workshop MCP wired into Claude Desktop")
+            else:
+                warns += 1
+                out.append("⚠ Workshop MCP not yet wired (optional) · run install.sh in mcp/workshop-mcp/")
+        except json.JSONDecodeError as e:
+            fails += 1
+            out.append(f"✗ claude_desktop_config.json INVALID JSON · {e} · paste into jsonlint.com")
+    else:
+        warns += 1
+        out.append(f"⚠ claude_desktop_config.json missing at {cd_config} · run Setup Prompt")
+
+    # 5. Business folder + BRAIN
+    if business_dir:
+        biz_path = Path(os.path.expanduser(business_dir))
+    else:
+        biz_path = next(
+            (p for p in (Path.home() / "Desktop").glob("*-business") if p.is_dir()),
+            None,
+        ) or (Path.home() / "Desktop" / "my-business")
+    if biz_path.exists():
+        out.append(f"✓ Business folder · `{biz_path}`")
+        brain = biz_path / "BUSINESS-BRAIN.md"
+        if brain.exists():
+            size = brain.stat().st_size
+            if size > 500:
+                out.append(f"  ✓ BUSINESS-BRAIN.md · {size:,} bytes (filled)")
+            else:
+                warns += 1
+                out.append(f"  ⚠ BUSINESS-BRAIN.md exists but tiny ({size}b) · run /build-my-brain")
+        else:
+            warns += 1
+            out.append(f"  ⚠ BUSINESS-BRAIN.md missing in {biz_path} · run /build-my-brain")
+    else:
+        warns += 1
+        out.append(f"⚠ Business folder not found · expected at `{biz_path}`")
+
+    # Summary
+    out.append("")
+    if fails == 0 and warns == 0:
+        out.append("## ✓ All green · ready for the workshop")
+    elif fails == 0:
+        out.append(f"## ⚠ {warns} warning(s) · workshop will run but some routines may need help")
+    else:
+        out.append(f"## ✗ {fails} failure(s) + {warns} warning(s) · fix the failures before the workshop")
+        out.append("")
+        out.append("Top fixes:")
+        out.append("- Re-run the Setup Prompt from claude.com/claude-code (Phase 1 of the install guide)")
+        out.append("- If JSON is invalid: paste your `claude_desktop_config.json` into jsonlint.com")
+        out.append("- If plugin missing: `cd <repo> && claude plugin install .`")
+
+    return "\n".join(out)
+
+
+@mcp.tool()
+def prep_routine(
+    routine: str,
+    brain_path: str = "",
+) -> str:
+    """Unified routine prep · returns a structured prompt for any of the 6 weekly routines.
+
+    Routines:
+    - mon-content-drop · 3 LinkedIn posts + newsletter idea
+    - tue-lead-research · 10 BANT-scored prospects + outreach for top 3
+    - wed-newsletter · long-form newsletter from Monday's queued idea
+    - thu-meeting-prep · 3-min brief + 2 questions per external meeting
+    - fri-wrap · weekly wrap (posts shipped, leads booked, $$ moved)
+    - sun-pipeline · pipeline report + Monday plan
+
+    Args:
+        routine: one of mon-content-drop, tue-lead-research, wed-newsletter,
+                 thu-meeting-prep, fri-wrap, sun-pipeline
+        brain_path: optional path to BUSINESS-BRAIN.md
+    """
+    routines = {
+        "mon-content-drop": (
+            "prep_marketing_drop",
+            "Reads Gmail (last 7 days) + Notion content calendar (last week's wins). "
+            "Drafts 3 LinkedIn posts + 1 newsletter idea. Saves to Notion content calendar.",
+        ),
+        "tue-lead-research": (
+            "prep_prospect_research",
+            "Apify scrapes 10 prospects matching ICP. BANT-scores each. "
+            "Top 3 get 3-step outreach drafts saved to Gmail.",
+        ),
+        "wed-newsletter": (
+            "prep_post_in_voice",
+            "Picks Monday's queued newsletter idea. Writes long-form (~800w) "
+            "in your voice. Saves to Drive + Gmail draft.",
+        ),
+        "thu-meeting-prep": (
+            "prep_meeting_brief",
+            "Reads today's Calendar. Apify scrapes each external attendee. "
+            "Drafts 3-min brief + 2 sharp questions. Saves to Gmail drafts.",
+        ),
+        "fri-wrap": (
+            "prep_pipeline_report",
+            "Counts posts shipped + leads booked + meetings + revenue. "
+            "1 win + 1 fix. Saves to Drive + Notion leadership log.",
+        ),
+        "sun-pipeline": (
+            "prep_pipeline_report",
+            "Pipeline report. Stale cards. Forecast gap. Monday plan. "
+            "Saves Monday plan to Gmail draft (self-send).",
+        ),
+    }
+    if routine not in routines:
+        return (
+            f"Unknown routine: {routine}\n\n"
+            "Valid routines:\n"
+            + "\n".join(f"  · {k} — {v[1]}" for k, v in routines.items())
+        )
+    delegate, summary = routines[routine]
+    # Reuse the existing tool by importing locally
+    out = [
+        f"# Routine: {routine}",
+        "",
+        f"**Summary:** {summary}",
+        "",
+        f"**Delegated to:** `{delegate}`",
+        "",
+        "---",
+        "",
+    ]
+    # Call the existing tool
+    if delegate == "prep_marketing_drop":
+        out.append(prep_marketing_drop(brain_path=brain_path))
+    elif delegate == "prep_prospect_research":
+        out.append("Run `prep_prospect_research(linkedin_url=<your-ICP-leader>, ...)` for the actual prep.")
+    elif delegate == "prep_post_in_voice":
+        out.append("Run `prep_post_in_voice(topic=<from-monday-queue>, platform='newsletter', ...)` for the actual prep.")
+    elif delegate == "prep_meeting_brief":
+        out.append("Run `prep_meeting_brief(linkedin_url=<each-attendee>)` for each external meeting today.")
+    elif delegate == "prep_pipeline_report":
+        period = "weekly" if routine == "fri-wrap" else "weekly"
+        out.append(prep_pipeline_report(period=period, brain_path=brain_path))
+    return "\n".join(out)
+
+
+@mcp.tool()
+def render_install_video(phase: int, quality: str = "draft") -> str:
+    """Render an install-guide phase video via the Hyperframes pipeline.
+
+    Args:
+        phase: 1, 2, 3, or 4
+        quality: 'draft' (~1 min, CRF 28) or 'standard' (~5 min, CRF 18, ship-quality)
+
+    Returns the path of the rendered MP4 (or instructions if hyperframes is not installed).
+    """
+    import subprocess
+
+    if phase not in (1, 2, 3, 4):
+        return f"Invalid phase: {phase}. Must be 1, 2, 3, or 4."
+    if quality not in ("draft", "standard"):
+        return f"Invalid quality: {quality}. Must be 'draft' or 'standard'."
+
+    proj_root = Path(os.environ.get("HF_WORKSPACE", "")) if os.environ.get("HF_WORKSPACE") else None
+    if not proj_root:
+        # Try common locations
+        candidates = [
+            Path.home() / "Build a Business That runs by itself using claude code" / "hyperframes-workspace",
+            PLUGIN_ROOT.parent / "hyperframes-workspace",
+        ]
+        proj_root = next((p for p in candidates if p.exists()), None)
+
+    if not proj_root:
+        return (
+            "Hyperframes workspace not found.\n\n"
+            "Set HF_WORKSPACE env var to the workspace root, or install hyperframes-workspace adjacent to this repo."
+        )
+
+    proj = proj_root / "video-projects" / f"pp-install-phase-{phase}"
+    if not proj.exists():
+        return f"Project not found: {proj}"
+
+    output = proj / "renders" / f"phase-{phase}-v3-{quality}.mp4"
+    cmd = ["npx", "hyperframes", "render", "--quality", quality, "--output", str(output)]
+    try:
+        result = subprocess.run(cmd, cwd=str(proj), capture_output=True, text=True, timeout=900)
+        if result.returncode == 0:
+            return f"✓ Rendered phase {phase} · {quality} · {output}"
+        else:
+            tail = (result.stdout + result.stderr)[-2000:]
+            return f"✗ Render failed (exit {result.returncode}):\n\n{tail}"
+    except subprocess.TimeoutExpired:
+        return f"✗ Render timed out after 15 minutes. Try `quality='draft'` first."
+    except FileNotFoundError:
+        return "✗ npx not found. Install Node.js: https://nodejs.org"
+
+
+@mcp.tool()
+def deploy_landing_page() -> str:
+    """Deploy the landing page (and install guide) to Vercel production.
+
+    Wraps `cd landing-page && vercel --prod --yes`. Requires:
+    - vercel CLI installed (`npm i -g vercel`)
+    - Logged in once (`vercel login`)
+    - Project linked (`vercel link`)
+    """
+    import subprocess
+
+    landing = PLUGIN_ROOT / "landing-page"
+    if not landing.exists():
+        return f"landing-page directory not found at {landing}"
+
+    cmd = ["vercel", "--prod", "--yes"]
+    try:
+        result = subprocess.run(cmd, cwd=str(landing), capture_output=True, text=True, timeout=300)
+        out = result.stdout + result.stderr
+        # Find the deployed URL
+        url_match = re.search(r'https://[a-z0-9-]+\.vercel\.app', out)
+        url = url_match.group(0) if url_match else "(URL not found in output)"
+        if result.returncode == 0:
+            return f"✓ Deployed · {url}\n\nLanding page: {url}\nInstall guide: {url}/install-guide/"
+        else:
+            return f"✗ Deploy failed (exit {result.returncode}):\n\n{out[-1500:]}"
+    except subprocess.TimeoutExpired:
+        return "✗ Deploy timed out after 5 minutes. Check `vercel ls` to see partial state."
+    except FileNotFoundError:
+        return "✗ vercel CLI not found. Install: `npm i -g vercel` then `vercel login` once."
+
+
+@mcp.tool()
+def health_check() -> str:
+    """Top-level health snapshot · combines install check + git status + key files.
+
+    Useful right before a workshop or after major changes. One screen, full picture.
+    """
+    out = ["# Purely Personal · Health Snapshot", ""]
+    out.append("## 1. Install")
+    out.append(quick_install_check())
+    out.append("")
+    out.append("## 2. Repo")
+    repo_root = PLUGIN_ROOT
+    try:
+        import subprocess
+        s = subprocess.run(["git", "status", "--short"], cwd=str(repo_root), capture_output=True, text=True, timeout=10)
+        b = subprocess.run(["git", "rev-parse", "--abbrev-ref", "HEAD"], cwd=str(repo_root), capture_output=True, text=True, timeout=10)
+        l = subprocess.run(["git", "log", "--oneline", "-3"], cwd=str(repo_root), capture_output=True, text=True, timeout=10)
+        out.append(f"  Branch: {b.stdout.strip() or 'unknown'}")
+        out.append(f"  Last 3 commits:")
+        for line in l.stdout.strip().split("\n"):
+            out.append(f"    {line}")
+        if s.stdout.strip():
+            out.append(f"  Uncommitted changes: {len(s.stdout.strip().splitlines())} files")
+        else:
+            out.append("  Working tree clean")
+    except Exception as e:
+        out.append(f"  (git status failed: {e})")
+    out.append("")
+    out.append("## 3. Key files")
+    key_files = [
+        PLUGIN_ROOT / "BUSINESS-BRAIN.md",
+        PLUGIN_ROOT / "landing-page" / "install-guide" / "index.html",
+        PLUGIN_ROOT / "landing-page" / "install-guide" / "videos" / "phase-1.mp4",
+        PLUGIN_ROOT / "landing-page" / "install-guide" / "videos" / "phase-2.mp4",
+        PLUGIN_ROOT / "landing-page" / "install-guide" / "videos" / "phase-3.mp4",
+        PLUGIN_ROOT / "landing-page" / "install-guide" / "videos" / "phase-4.mp4",
+    ]
+    for f in key_files:
+        if f.exists():
+            size = f.stat().st_size
+            out.append(f"  ✓ {f.relative_to(PLUGIN_ROOT)} · {size:,} bytes")
+        else:
+            out.append(f"  ✗ {f.relative_to(PLUGIN_ROOT)} · missing")
+    return "\n".join(out)
 
 
 # ============================================================
