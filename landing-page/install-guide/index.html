@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Purely Personal · Installation Guide · 17 Steps · Mac + Windows</title>
-<meta name="description" content="Step-by-step installation guide with UI illustrations for Mac and Windows. Complete all 17 steps before Day 1 of the Purely Personal workshop. 60-75 minutes.">
+<meta name="description" content="Step-by-step installation guide for the Purely Personal workshop. 3 terminal commands + Claude Code orchestrates the rest. 20–30 minutes total. Mac + Windows.">
 <meta property="og:title" content="Purely Personal · Installation Guide">
-<meta property="og:description" content="Install Claude Code, 5 connectors, and Apify MCP in 60-75 minutes. Mac and Windows. Collapsible steps.">
+<meta property="og:description" content="3 terminal commands. Then Claude Code does the rest. 20–30 minutes total. Mac + Windows. Collapsible steps.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Rethink+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -431,7 +431,7 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
 <!-- MOBILE TOPBAR -->
 <div class="mobile-topbar">
   <div class="mt-dot">pp</div>
-  <div class="mt-title">Install Guide · 17 steps</div>
+  <div class="mt-title">Install Guide · 10 steps</div>
   <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
 </div>
 <div class="sidebar-overlay" id="sidebar-overlay"></div>
@@ -443,35 +443,32 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
     <div class="dot">pp</div>
     <div><div class="name">Purely Personal</div><div class="sub">Install Guide · v2</div></div>
   </div>
-  <div class="progress-pill"><strong>17 steps</strong> · 60–75 min<div class="progress-bar"><span class="fill" id="progress-fill"></span></div></div>
-  <div class="sidebar-title">Accounts + Install</div>
+  <div class="progress-pill"><strong>10 steps</strong> · 20–30 min<div class="progress-bar"><span class="fill" id="progress-fill"></span></div></div>
+  <div class="sidebar-title">Phase 1 · Bootstrap (terminal)</div>
   <ul class="step-list">
     <li><a href="#s1"><span class="num">1</span>Claude Pro + CLI</a></li>
     <li><a href="#s2"><span class="num">2</span>GitHub account</a></li>
     <li><a href="#s3"><span class="num">3</span>Install Git</a></li>
-    <li><a href="#s4"><span class="num">4</span>Clone the repo</a></li>
-    <li><a href="#s5"><span class="num">5</span>Install plugin</a></li>
-    <li><a href="#s6"><span class="num">6</span>Verify 8 commands</a></li>
   </ul>
-  <div class="sidebar-title">Connectors</div>
+  <div class="sidebar-title">Phase 2 · Claude orchestrates</div>
   <ul class="step-list">
-    <li><a href="#s7"><span class="num">7</span>Gmail</a></li>
-    <li><a href="#s8"><span class="num">8</span>Notion</a></li>
-    <li><a href="#s9"><span class="num">9</span>Calendar</a></li>
-    <li><a href="#s10"><span class="num">10</span>Drive</a></li>
-    <li><a href="#s11"><span class="num">11</span>Stripe</a></li>
+    <li><a href="#s4"><span class="num">4</span>Open Claude Code · paste Setup Prompt</a></li>
   </ul>
-  <div class="sidebar-title">Apify MCP</div>
+  <div class="sidebar-title">Phase 3 · Connect apps</div>
   <ul class="step-list">
-    <li><a href="#s12"><span class="num">12</span>Account + token</a></li>
-    <li><a href="#s13"><span class="num">13</span>Wire the MCP</a></li>
-    <li><a href="#s14"><span class="num">14</span>Verify Apify</a></li>
+    <li><a href="#s7"><span class="num">5</span>Gmail</a></li>
+    <li><a href="#s8"><span class="num">6</span>Notion</a></li>
+    <li><a href="#s9"><span class="num">7</span>Calendar</a></li>
+    <li><a href="#s10"><span class="num">8</span>Drive</a></li>
+    <li><a href="#s11"><span class="num">9</span>Stripe</a></li>
   </ul>
-  <div class="sidebar-title">Final Prep</div>
+  <div class="sidebar-title">Phase 4 · Final prep</div>
   <ul class="step-list">
-    <li><a href="#s15"><span class="num">15</span>Submit LinkedIn</a></li>
-    <li><a href="#s16"><span class="num">16</span>Business folder</a></li>
-    <li><a href="#s17"><span class="num">17</span>Empty BRAIN.md</a></li>
+    <li><a href="#s15"><span class="num">10</span>Submit LinkedIn URL</a></li>
+  </ul>
+  <div class="sidebar-title">Bonus</div>
+  <ul class="step-list">
+    <li><a href="#s18"><span class="num">★</span>Install Workshop MCP</a></li>
   </ul>
   <a class="sidebar-cta" href="#s1">Start Step 1 →</a>
 </aside>
@@ -481,9 +478,9 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
 <section class="intro" id="top">
   <div class="intro-eyebrow">◆ Pre-workshop · Complete before Day 1</div>
   <h1>Install the toolkit <em>once.</em><br>Never touch it again.</h1>
-  <p class="lead">17 steps. Roughly 60 to 75 minutes. Click any step to expand, check it off, come back later if you need to. Your progress saves automatically.</p>
+  <p class="lead">3 terminal steps. Then 1 Claude Code conversation that handles everything else. 5 browser sign-ins. 1 email reply. Total: <strong>20 to 30 minutes</strong>. Click any step to expand. Your progress saves automatically.</p>
   <div class="intro-meta">
-    <div class="meta-pill">⏱ <strong>60–75 min</strong></div>
+    <div class="meta-pill">⏱ <strong>20–30 min</strong></div>
     <div class="meta-pill">💻 Mac <strong>+</strong> Windows</div>
     <div class="meta-pill">💳 Claude Pro <strong>$20/mo</strong></div>
     <div class="meta-pill">🆓 Everything else free</div>
@@ -523,7 +520,7 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
       <li data-pf="computer"><span class="pf-check"></span><span class="pf-label"><strong>Mac or Windows computer</strong> (not iPad or phone)</span></li>
       <li data-pf="email"><span class="pf-check"></span><span class="pf-label"><strong>An email address</strong> you can log into right now</span></li>
       <li data-pf="card"><span class="pf-check"></span><span class="pf-label"><strong>Credit card</strong> ($20 for Claude Pro, only one-time)</span></li>
-      <li data-pf="time"><span class="pf-check"></span><span class="pf-label"><strong>60–75 min uninterrupted</strong> (or plan to pause mid-way)</span></li>
+      <li data-pf="time"><span class="pf-check"></span><span class="pf-label"><strong>20–30 min uninterrupted</strong> (or plan to pause mid-way)</span></li>
       <li data-pf="notes"><span class="pf-check"></span><span class="pf-label"><strong>Notes app or password manager open</strong> (for the Apify token)</span></li>
       <li data-pf="email-open"><span class="pf-check"></span><span class="pf-label"><strong>Your registration email open</strong> (for Step 15)</span></li>
     </ul>
@@ -548,16 +545,16 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
   </div>
 </section>
 
-<!-- ===== PHASE 1 ===== -->
-<div class="phase-marker" data-phase="1" data-steps="s1,s2,s3,s4,s5,s6">
+<!-- ===== PHASE 1 · Bootstrap (terminal install) ===== -->
+<div class="phase-marker" data-phase="1" data-steps="s1,s2,s3">
   <div class="phase-marker-inner">
     <div>
-      <span class="pm-label">◆ Phase 1 of 4</span>
-      <h3>Install the software</h3>
-      <p>Get Claude Code on your machine, clone the plugin, verify 8 slash commands work. Steps 1 through 6.</p>
+      <span class="pm-label">◆ Phase 1 of 4 · Bootstrap (terminal · ~5 min)</span>
+      <h3>Install Claude Code + Git</h3>
+      <p>The only steps that need a real terminal. Once these 3 are done, the rest is one chat conversation in Claude Code · no more shell syntax.</p>
     </div>
     <div class="phase-progress">
-      <span class="num"><strong class="pf-done">0</strong>/6</span>
+      <span class="num"><strong class="pf-done">0</strong>/3</span>
       <span class="label">steps done</span>
       <div class="phase-progress-bar"><span class="pf-fill"></span></div>
     </div>
@@ -699,99 +696,146 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
   </div>
 </details>
 
-<details class="step" id="s4">
+<!-- ===== PHASE 2 · Open Claude Code · Setup Prompt orchestrates everything ===== -->
+<div class="phase-marker" data-phase="2" data-steps="s4">
+  <div class="phase-marker-inner">
+    <div>
+      <span class="pm-label">◆ Phase 2 of 4 · Claude Code orchestrates (~15 min · zero shell syntax)</span>
+      <h3>Open Claude Code, paste one prompt</h3>
+      <p>This is the magic. Open Claude Code (just type <code>claude</code> in your terminal). Paste the Setup Prompt below. Claude does the rest · clones the repo, installs the plugin, verifies the 8 commands, wires Apify, creates your business folder, initializes BUSINESS-BRAIN.md. You confirm each step. No PowerShell. No <code>ln -s</code>. No JSON editing by hand.</p>
+    </div>
+    <div class="phase-progress">
+      <span class="num"><strong class="pf-done">0</strong>/1</span>
+      <span class="label">step done</span>
+      <div class="phase-progress-bar"><span class="pf-fill"></span></div>
+    </div>
+  </div>
+</div>
+
+<details class="step" id="s4" open>
   <summary>
     <div class="step-num">4</div>
-    <div class="step-logo lg-github"><svg><use href="#icon-github"/></svg></div>
-    <div class="step-title"><span class="tag">Accounts + Install</span><h2>Clone the Purely Personal plugin repo</h2><div class="hint">⏱ 2 min · Copy paste only</div></div>
-    <div class="step-chevron">+</div>
-  </summary>
-  <div class="step-body">
-    <p>Works identically on Mac and Windows. Open <strong>Terminal (Mac)</strong> or <strong>Git Bash (Windows)</strong> and paste:</p>
-    <div class="cmd"><span class="cmd-label">Terminal / Git Bash</span>git clone https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself.git
-cd Purely-Personal-Run-a-business-by-itself</div>
-    <div class="mockup mockup-dark">
-      <div class="mockup-caption"><span class="dot-r"></span><span class="title">Terminal · cloning the repo</span></div>
-      <div class="terminal">
-        <span class="out"><span class="prompt">~</span> <span class="path">danny@Mac</span> $ git clone https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself.git</span>
-        <span class="out">Cloning into 'Purely-Personal-Run-a-business-by-itself'...</span>
-        <span class="out">remote: Enumerating objects: 2847, done.</span>
-        <span class="out">remote: Counting objects: 100% (2847/2847), done.</span>
-        <span class="out">Receiving objects: 100% (2847/2847), 4.2 MiB | 8.6 MiB/s, done.</span>
-        <span class="out"><span class="success">✓ Done.</span></span>
-        <span class="out"><span class="prompt">~</span> <span class="path">danny@Mac</span> $ cd Purely-Personal-Run-a-business-by-itself<span class="cursor"></span></span>
-      </div>
-    </div>
-    <div class="verify">Type <code>ls</code> (Mac) or <code>dir</code> (Windows). You should see <code>skills/</code>, <code>commands/</code>, <code>workshop/</code>.</div>
-  </div>
-</details>
-
-<details class="step" id="s5">
-  <summary>
-    <div class="step-num">5</div>
     <div class="step-logo lg-anthropic"><svg><use href="#icon-anthropic"/></svg></div>
-    <div class="step-title"><span class="tag">Accounts + Install</span><h2>Install the plugin into Claude Code</h2><div class="hint">⏱ 1 min · One command</div></div>
+    <div class="step-title"><span class="tag">★ The fast path</span><h2>Open Claude Code · paste the <em>Setup Prompt</em></h2><div class="hint">⏱ 15 min · Claude does the work · you confirm + paste tokens</div></div>
     <div class="step-chevron">+</div>
   </summary>
   <div class="step-body">
-    <p>From <strong>inside</strong> the cloned folder:</p>
-    <div class="cmd"><span class="cmd-label">From inside the repo</span>claude plugin install .</div>
-    <p>The dot at the end is important. It means "install the plugin from this folder."</p>
-    <div class="callout info"><strong>Alternative:</strong> if <code>plugin install</code> isn't available, symlink:
-      <div class="cmd" style="margin-top:10px"><span class="cmd-label">Alternative</span>ln -s $(pwd) ~/.claude/plugins/purely-personal</div>
-    </div>
-    <div class="mockup mockup-dark">
-      <div class="mockup-caption"><span class="dot-r"></span><span class="title">Terminal · installing plugin</span></div>
-      <div class="terminal">
-        <span class="out"><span class="prompt">~/Purely-Personal...</span> $ claude plugin install .</span>
-        <span class="out">Reading plugin manifest...</span>
-        <span class="out">Found: <span class="hl">purely-personal</span> v1.0.0</span>
-        <span class="out">  Skills: 7  Commands: 8  Templates: 5</span>
-        <span class="out">Installing to ~/.claude/plugins/purely-personal</span>
-        <span class="out"><span class="success">✓ Plugin 'purely-personal' installed successfully.</span></span>
-      </div>
-    </div>
-  </div>
-</details>
 
-<details class="step" id="s6">
-  <summary>
-    <div class="step-num">6</div>
-    <div class="step-logo lg-anthropic"><svg><use href="#icon-anthropic"/></svg></div>
-    <div class="step-title"><span class="tag">Accounts + Install</span><h2>Verify all 8 slash commands appear</h2><div class="hint">⏱ 2 min · Critical check</div></div>
-    <div class="step-chevron">+</div>
-  </summary>
-  <div class="step-body">
-    <ol>
-      <li>Type <code>claude</code> in terminal</li>
-      <li>Inside Claude Code, type a single <strong><code>/</code></strong></li>
-      <li>Confirm all 8 appear:</li>
-    </ol>
+    <p><strong>4a · Launch Claude Code.</strong> In your terminal (Mac Terminal or Git Bash on Windows), type:</p>
+    <div class="cmd"><span class="cmd-label">Terminal · Mac or Git Bash</span>claude</div>
+    <p>Claude Code opens. You'll see a prompt waiting for input.</p>
+
+    <p><strong>4b · Copy the Setup Prompt.</strong> Click the 📋 button on the dark box below to copy. Then paste into Claude Code and hit Enter.</p>
+
+    <div class="cmd"><span class="cmd-label">The Setup Prompt · copy + paste into Claude Code</span>I'm a Purely Personal workshop attendee. Walk me through setup.
+
+I have: you (Claude Code) running. Git installed. A GitHub account.
+
+Do these in order. Confirm each before running:
+
+1. Clone the repo to my home directory:
+   git clone https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself.git ~/Purely-Personal-Run-a-business-by-itself
+
+2. cd into the cloned folder.
+
+3. Install the plugin: claude plugin install .
+
+4. List the 8 slash commands and confirm they all loaded:
+   build-my-brain, marketing-engine, sales-engine, operations-engine,
+   cash-engine, leadership-engine, prep-workshop-slides, ship-it-live
+
+5. Wire Apify MCP into Claude Desktop:
+   - Tell me to go to apify.com, sign up free, then console.apify.com to create a token named "Claude Workshop"
+   - Wait for me to paste the token (starts with apify_api_)
+   - Open ~/Library/Application Support/Claude/claude_desktop_config.json (Mac)
+     or %APPDATA%/Claude/claude_desktop_config.json (Windows · use Git Bash path syntax)
+   - Add the apify entry with my token. Preserve any existing servers (Apify, etc.).
+   - Validate the JSON is well-formed.
+   - Tell me to fully quit + reopen Claude Desktop.
+
+6. Create the business folder:
+   mkdir -p ~/Desktop/my-business
+   touch ~/Desktop/my-business/BUSINESS-BRAIN.md
+
+7. After Claude Desktop restart, run a test from inside ~/Desktop/my-business:
+   "Use Apify to search Google for solopreneur AI 2026, top 3 results"
+
+8. Tell me what's left:
+   - Reply to the registration email with my LinkedIn URL
+   - Connect Gmail / Notion / Calendar / Drive at claude.ai/customize/connectors
+
+Use the Bash tool. Don't make me type commands myself unless I have to (browser actions, restart Claude Desktop). Pause and ask me when you need input from me.</div>
+
+    <p><strong>4c · Watch Claude work.</strong> A typical conversation looks like this:</p>
+
     <div class="mockup mockup-dark">
-      <div class="mockup-caption"><span class="dot-r"></span><span class="title">Claude Code · slash command menu</span></div>
-      <div class="slash-menu">
-        <div class="search-input"><span>/</span></div>
-        <div class="cmd-item active"><span class="cmd-name">/build-my-brain</span><span class="cmd-desc">3-act guided BUSINESS-BRAIN.md creation</span></div>
-        <div class="cmd-item"><span class="cmd-name">/marketing-engine</span><span class="cmd-desc">Draft content in your voice from BRAIN.md</span></div>
-        <div class="cmd-item"><span class="cmd-name">/sales-engine</span><span class="cmd-desc">Research prospects + draft outreach</span></div>
-        <div class="cmd-item"><span class="cmd-name">/operations-engine</span><span class="cmd-desc">Inbox triage + SOP generation</span></div>
-        <div class="cmd-item"><span class="cmd-name">/cash-engine</span><span class="cmd-desc">Stripe pull + 90-day forecast</span></div>
-        <div class="cmd-item"><span class="cmd-name">/leadership-engine</span><span class="cmd-desc">Morning brief across all engines</span></div>
-        <div class="cmd-item"><span class="cmd-name">/prep-workshop-slides</span><span class="cmd-desc">Attendee slide generator</span></div>
-        <div class="cmd-item"><span class="cmd-name">/ship-it-live</span><span class="cmd-desc">Countdown + publish to LinkedIn</span></div>
+      <div class="mockup-caption"><span class="dot-r"></span><span class="title">Claude Code · Setup Prompt in action</span><span class="badge">Live example</span></div>
+      <div class="terminal" style="font-size:14px;line-height:1.7">
+        <span class="out"><span class="prompt">&gt;</span> <span style="color:#fff">[You paste the Setup Prompt]</span></span>
+        <span class="out"></span>
+        <span class="out" style="color:#a8a39b">Got it. Cloning the repo first. This will land at ~/Purely-Personal-Run-a-business-by-itself. Run it?</span>
+        <span class="out"></span>
+        <span class="out"><span class="prompt">&gt;</span> yes</span>
+        <span class="out"></span>
+        <span class="out" style="color:#a8a39b">$ git clone https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself.git ...</span>
+        <span class="out" style="color:#22c55e">✓ Cloned (4.2 MiB, 2,847 objects).</span>
+        <span class="out" style="color:#a8a39b">Now installing the plugin from inside the repo. Confirm?</span>
+        <span class="out"></span>
+        <span class="out"><span class="prompt">&gt;</span> yes</span>
+        <span class="out"></span>
+        <span class="out" style="color:#a8a39b">$ claude plugin install .</span>
+        <span class="out" style="color:#22c55e">✓ Plugin 'purely-personal' installed. 8 slash commands loaded:</span>
+        <span class="out">  /build-my-brain · /marketing-engine · /sales-engine · /operations-engine</span>
+        <span class="out">  /cash-engine · /leadership-engine · /prep-workshop-slides · /ship-it-live</span>
+        <span class="out"></span>
+        <span class="out" style="color:#a8a39b">Now Apify. Open <span class="hl">apify.com</span> in your browser. Sign up (free). Then go to console.apify.com → Settings → Integrations → Create new token. Name it "Claude Workshop". Paste it here when you have it.</span>
+        <span class="out"></span>
+        <span class="out"><span class="prompt">&gt;</span> apify_api_x7Qn3kVm9fT2hY5wL4pR8sB1cZ6jW0eU•••</span>
+        <span class="out"></span>
+        <span class="out" style="color:#a8a39b">Got it. Editing your Claude Desktop config to add Apify. Preserving the existing entries.</span>
+        <span class="out" style="color:#22c55e">✓ claude_desktop_config.json updated. JSON validated.</span>
+        <span class="out" style="color:#a8a39b">Fully quit Claude Desktop now (Cmd+Q on Mac, right-click tray on Windows). Reopen. Tell me when you're back.</span>
       </div>
     </div>
-    <details class="trouble"><summary>I only see 5 or 6 commands</summary><div class="t-body">Plugin install didn't complete. Close Claude Code. Run <code>claude plugin list</code>. If "purely-personal" isn't listed, re-run <code>claude plugin install .</code> from inside the repo folder.</div></details>
+
+    <p>And so on, until everything is wired.</p>
+
+    <div class="callout info"><strong>What if Claude asks me to type a command myself?</strong> It shouldn't · the Setup Prompt explicitly says "use the Bash tool, don't make me type commands." If it does ask anyway, just tell it: <em>"Run it for me with the Bash tool."</em> Claude has Bash access in Claude Code · it can run any shell command directly.</div>
+
+    <div class="callout warn"><strong>The 4 things you'll have to do yourself</strong> (Claude can't do these for you):
+      <ol style="margin:8px 0 0;padding-left:20px">
+        <li>Open the apify.com signup page and create your account</li>
+        <li>Paste your Apify token back into the chat</li>
+        <li>Fully quit + reopen Claude Desktop after the config edit</li>
+        <li>Reply to the registration email with your LinkedIn URL</li>
+      </ol>
+    </div>
+
+    <div class="verify">When Claude says "you're ready for Day 1", you're done with Phase 2. The plugin is installed, all 8 slash commands work, Apify is wired, your business folder exists, and BUSINESS-BRAIN.md is empty and ready.</div>
+
+    <details class="trouble">
+      <summary>Claude says "I don't have Bash access" or refuses to run commands</summary>
+      <div class="t-body">You're probably in Claude Desktop chat, not Claude Code CLI. Claude Code (the terminal app) has Bash. Claude Desktop chat does not (yet · it has File and Web search, but not raw Bash). Open Claude Code via <code>claude</code> in your terminal and paste the Setup Prompt there.</div>
+    </details>
+    <details class="trouble">
+      <summary>Claude Code asks for permission to run each command</summary>
+      <div class="t-body">That's normal · Claude Code asks before running anything destructive. Just say "yes" or "approve" each time. If you want to skip the confirmation prompts for trusted commands, see Claude Code's <code>--dangerously-skip-permissions</code> docs (not recommended for first-time setup).</div>
+    </details>
+    <details class="trouble">
+      <summary>The Apify config edit broke something · Claude Desktop won't load</summary>
+      <div class="t-body">Open <code>~/Library/Application Support/Claude/claude_desktop_config.json</code> in any text editor. Paste the contents into <a href="https://jsonlint.com" target="_blank">jsonlint.com</a>. If invalid, ask Claude Code to re-validate and re-write the file. Keep a backup before editing.</div>
+    </details>
   </div>
 </details>
 
 <!-- ===== PHASE 2 ===== -->
-<div class="phase-marker" data-phase="2" data-steps="s7,s8,s9,s10,s11">
+<!-- ===== PHASE 3 · Connect your apps (browser OAuth) ===== -->
+<div class="phase-marker" data-phase="3" data-steps="s7,s8,s9,s10,s11">
   <div class="phase-marker-inner">
     <div>
-      <span class="pm-label">◆ Phase 2 of 4</span>
-      <h3>Connect your apps</h3>
-      <p>Let Claude read your inbox, calendar, and workspace. All OAuth sign-ins, no API keys. Steps 7 through 11.</p>
+      <span class="pm-label">◆ Phase 3 of 4 · Connect your apps (browser · ~10 min)</span>
+      <h3>5 OAuth connectors · sign in only</h3>
+      <p>Browser-based sign-ins for Gmail, Notion, Calendar, Drive, Stripe (optional). No API keys. <strong>You can also ask Claude Code to walk you through this</strong> · just type <em>"walk me through connecting Gmail"</em> in Claude Code and it'll give you the exact link + click sequence.</p>
     </div>
     <div class="phase-progress">
       <span class="num"><strong class="pf-done">0</strong>/5</span>
@@ -802,10 +846,10 @@ cd Purely-Personal-Run-a-business-by-itself</div>
   <div class="phase-video-inline">
     <video controls preload="metadata" playsinline poster="videos/phase-2-poster.jpg">
       <source src="videos/phase-2.mp4" type="video/mp4">
-      Your browser doesn't support video. <a href="videos/phase-2.mp4">Download Phase 2 walkthrough</a>.
+      Your browser doesn't support video. <a href="videos/phase-2.mp4">Download Phase 3 walkthrough</a>.
     </video>
     <div class="pv-caption">
-      <span class="pv-tag">◆ Phase 2 walkthrough</span>
+      <span class="pv-tag">◆ Phase 3 walkthrough</span>
       <span class="pv-meta">Animated · 5 connectors live + permissions</span>
       <span class="pv-duration">1:29</span>
     </div>
@@ -814,7 +858,7 @@ cd Purely-Personal-Run-a-business-by-itself</div>
 
 <details class="step" id="s7">
   <summary>
-    <div class="step-num">7</div>
+    <div class="step-num">5</div>
     <div class="step-logo lg-gmail"><svg><use href="#icon-gmail"/></svg></div>
     <div class="step-title"><span class="tag">Connectors</span><h2>Connect Gmail</h2><div class="hint">⏱ 2 min · OAuth · no API key</div></div>
     <div class="step-chevron">+</div>
@@ -847,7 +891,7 @@ cd Purely-Personal-Run-a-business-by-itself</div>
 
 <details class="step" id="s8">
   <summary>
-    <div class="step-num">8</div>
+    <div class="step-num">6</div>
     <div class="step-logo lg-notion"><svg><use href="#icon-notion"/></svg></div>
     <div class="step-title"><span class="tag">Connectors</span><h2>Connect Notion</h2><div class="hint">⏱ 2 min · OAuth</div></div>
     <div class="step-chevron">+</div>
@@ -879,7 +923,7 @@ cd Purely-Personal-Run-a-business-by-itself</div>
 
 <details class="step" id="s9">
   <summary>
-    <div class="step-num">9</div>
+    <div class="step-num">7</div>
     <div class="step-logo lg-google"><svg><use href="#icon-gcalendar"/></svg></div>
     <div class="step-title"><span class="tag">Connectors</span><h2>Connect Google Calendar</h2><div class="hint">⏱ 1 min · OAuth</div></div>
     <div class="step-chevron">+</div>
@@ -895,7 +939,7 @@ cd Purely-Personal-Run-a-business-by-itself</div>
 
 <details class="step" id="s10">
   <summary>
-    <div class="step-num">10</div>
+    <div class="step-num">8</div>
     <div class="step-logo"><svg><use href="#icon-gdrive"/></svg></div>
     <div class="step-title"><span class="tag">Connectors</span><h2>Connect Google Drive</h2><div class="hint">⏱ 1 min · OAuth · allow file creation</div></div>
     <div class="step-chevron">+</div>
@@ -912,7 +956,7 @@ cd Purely-Personal-Run-a-business-by-itself</div>
 
 <details class="step" id="s11">
   <summary>
-    <div class="step-num">11</div>
+    <div class="step-num">9</div>
     <div class="step-logo lg-stripe"><svg><use href="#icon-stripe"/></svg></div>
     <div class="step-title"><span class="tag">Connectors</span><h2>Connect Stripe</h2><div class="hint">⏱ 1 min · Optional</div></div>
     <div class="step-chevron">+</div>
@@ -926,251 +970,47 @@ cd Purely-Personal-Run-a-business-by-itself</div>
   </div>
 </details>
 
-<!-- ===== PHASE 3 ===== -->
-<div class="phase-marker" data-phase="3" data-steps="s12,s13,s14">
+<!-- (The old "Phase 3 · Wire the scraper" section that walked through Apify
+     manually has been replaced. Apify is now wired by Claude Code via the
+     Setup Prompt in Phase 2 above. The Phase 3 video below documents the
+     manual approach as a fallback for power users who want to inspect or
+     override what Claude wrote.) -->
+
+<details class="step" id="s-apify-fallback" style="margin-top:32px">
+  <summary>
+    <div class="step-num" style="background:#a8a39b">↩</div>
+    <div class="step-logo lg-apify"><svg><use href="#icon-apify"/></svg></div>
+    <div class="step-title"><span class="tag" style="color:#a8a39b">Fallback · do this yourself</span><h2>Wire Apify MCP <em>by hand</em> (only if Phase 2 didn't work)</h2><div class="hint">Skip if Claude already did this for you in Phase 2</div></div>
+    <div class="step-chevron">+</div>
+  </summary>
+  <div class="step-body">
+    <p>If for some reason Claude Code couldn't write your <code>claude_desktop_config.json</code> in Phase 2, you can do it manually. The video below walks through the full flow. The instructions are kept here as a reference.</p>
+
+    <div class="phase-video-inline" style="margin-top:18px">
+      <video controls preload="metadata" playsinline poster="videos/phase-3-poster.jpg">
+        <source src="videos/phase-3.mp4" type="video/mp4">
+        Your browser doesn't support video. <a href="videos/phase-3.mp4">Download Apify walkthrough</a>.
+      </video>
+      <div class="pv-caption">
+        <span class="pv-tag">◆ Apify manual walkthrough</span>
+        <span class="pv-meta">Animated · token + JSON config + verify</span>
+        <span class="pv-duration">1:58</span>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- ===== PHASE 4 · Final prep · LinkedIn URL only ===== -->
+<div class="phase-marker" data-phase="4" data-steps="s15">
   <div class="phase-marker-inner">
     <div>
-      <span class="pm-label">◆ Phase 3 of 4</span>
-      <h3>Wire the scraper</h3>
-      <p>Add Apify MCP so the Sales Machine can research LinkedIn, scrape websites, pull Reddit pain themes. Steps 12 through 14.</p>
+      <span class="pm-label">◆ Phase 4 of 4 · Final prep (~1 min · email reply)</span>
+      <h3>Submit your LinkedIn URL</h3>
+      <p>Your business folder + empty BUSINESS-BRAIN.md were already set up by Claude Code in Phase 2. The only thing left is replying to Danny with your LinkedIn URL · the load-bearing step that powers the personalized opening slide on Day 1.</p>
     </div>
     <div class="phase-progress">
-      <span class="num"><strong class="pf-done">0</strong>/3</span>
-      <span class="label">steps done</span>
-      <div class="phase-progress-bar"><span class="pf-fill"></span></div>
-    </div>
-  </div>
-  <div class="phase-video-inline">
-    <video controls preload="metadata" playsinline poster="videos/phase-3-poster.jpg">
-      <source src="videos/phase-3.mp4" type="video/mp4">
-      Your browser doesn't support video. <a href="videos/phase-3.mp4">Download Phase 3 walkthrough</a>.
-    </video>
-    <div class="pv-caption">
-      <span class="pv-tag">◆ Phase 3 walkthrough</span>
-      <span class="pv-meta">Animated · token + JSON config + Apify verify</span>
-      <span class="pv-duration">1:58</span>
-    </div>
-  </div>
-</div>
-
-<details class="step" id="s12">
-  <summary>
-    <div class="step-num">12</div>
-    <div class="step-logo lg-apify"><svg><use href="#icon-apify"/></svg></div>
-    <div class="step-title"><span class="tag">Apify MCP</span><h2>Create Apify account + API token</h2><div class="hint">⏱ 5 min · Free plan covers workshop</div></div>
-    <div class="step-chevron">+</div>
-  </summary>
-  <div class="step-body">
-    <p>Apify is the one non-OAuth piece. It powers LinkedIn scraping, website crawling, Reddit pain mining, and Google search for the Sales Machine.</p>
-    <div class="callout info"><strong>Free plan is enough.</strong> Free tier includes ~$5 of compute per month. The whole workshop uses about 5 compute units.</div>
-    <h3>12a · Sign up</h3>
-    <ol><li>Open <a href="https://apify.com" target="_blank">apify.com</a> → <strong>Sign up</strong> → Free plan → verify email</li></ol>
-    <div class="mockup">
-      <div class="mockup-caption"><span class="dot-r"></span><span class="title">apify.com</span></div>
-      <div class="apify-home">
-        <h3>Get real-time web data for your AI</h3>
-        <p>Apify Actors scrape web data from any website.</p>
-        <div class="search"><input value="Scrape TikTok..."><button>Try it now</button></div>
-        <div style="margin-top:10px"><span class="cta-signup highlight">Sign up free →</span></div>
-      </div>
-    </div>
-    <h3>12b · Create your token</h3>
-    <ol>
-      <li>Log in to <a href="https://console.apify.com" target="_blank">console.apify.com</a></li>
-      <li><strong>Settings</strong> → <strong>API &amp; Integrations</strong></li>
-      <li>Click <strong>+ Create a new token</strong></li>
-      <li>Name it: <code>Claude Workshop</code></li>
-      <li>Click <strong>Create</strong></li>
-      <li><strong>Copy immediately.</strong> Starts with <code>apify_api_...</code></li>
-    </ol>
-    <div class="callout danger"><strong>Save the token RIGHT NOW.</strong> Paste into Notes or password manager. Apify will never show it again.</div>
-    <div class="mockup">
-      <div class="mockup-caption"><span class="dot-r"></span><span class="title">console.apify.com · Create a new token</span></div>
-      <div class="apify-modal">
-        <h4>Create a new personal API token</h4>
-        <div class="am-input-label">Description (optional)</div>
-        <div class="am-input"><span class="h">Claude Workshop</span></div>
-        <div class="am-warn">Your account is configured to allow all storages, runs, and builds to be accessed anonymously. This token might expose more data than intended.</div>
-        <div class="am-buttons"><span class="am-btn cancel">Cancel</span><span class="am-btn primary">Create</span></div>
-      </div>
-    </div>
-  </div>
-</details>
-
-<details class="step" id="s13">
-  <summary>
-    <div class="step-num">13</div>
-    <div class="step-logo lg-apify"><svg><use href="#icon-apify"/></svg></div>
-    <div class="step-title"><span class="tag">Apify MCP</span><h2>Wire Apify MCP into Claude Desktop</h2><div class="hint">⏱ 6 min · Config file edit</div></div>
-    <div class="step-chevron">+</div>
-  </summary>
-  <div class="step-body">
-    <p>MCP = Model Context Protocol. Tells Claude "these external tools are available."</p>
-    <h3>13a · Open the config file</h3>
-    <div class="os-tabs">
-      <div class="os-tab-header"><div class="os-tab-label mac">macOS</div><div class="os-tab-label win">Windows</div></div>
-      <div class="os-tab-body">
-        <div>
-          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">In Terminal:</p>
-          <div class="cmd"><span class="cmd-label">Mac</span>open ~/Library/Application\ Support/Claude/claude_desktop_config.json</div>
-        </div>
-        <div>
-          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">In File Explorer address bar:</p>
-          <div class="cmd"><span class="cmd-label">Windows</span>%APPDATA%\Claude</div>
-          <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">Open <code>claude_desktop_config.json</code> in Notepad.</p>
-        </div>
-      </div>
-    </div>
-    <h3>13b · Paste this config</h3>
-    <p>First, check if the file is already empty or already has content. Pick the right tab:</p>
-
-    <div class="config-scenario">
-      <div class="config-scenario-tabs" role="tablist">
-        <button class="config-scenario-tab active" data-scenario="empty" role="tab">📄 My file is empty</button>
-        <button class="config-scenario-tab" data-scenario="existing" role="tab">📝 My file already has content</button>
-      </div>
-
-      <!-- SCENARIO A: EMPTY FILE -->
-      <div class="config-scenario-panel active" data-scenario="empty">
-        <p><strong>Easy case.</strong> Paste this whole block into the file. Replace <code>YOUR_TOKEN_HERE</code> with your Apify token. Save.</p>
-        <div class="cmd"><span class="cmd-label">claude_desktop_config.json · full contents</span>{
-  "mcpServers": {
-    "apify": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@apify/actors-mcp-server",
-        "--actors",
-        "apify/linkedin-profile-scraper,apify/linkedin-company-scraper,apify/google-search-scraper,apify/website-content-crawler,trudax/reddit-scraper-lite"
-      ],
-      "env": { "APIFY_TOKEN": <span class="h">"YOUR_TOKEN_HERE"</span> }
-    }
-  }
-}</div>
-        <div class="mockup">
-          <div class="mockup-caption"><span class="dot-r"></span><span class="title">TextEdit · claude_desktop_config.json (empty file)</span><span class="badge">Before: blank</span></div>
-          <div class="texteditor">
-            <span class="line" style="color:var(--text-muted);font-style:italic">(empty file)</span>
-          </div>
-        </div>
-        <div class="mockup">
-          <div class="mockup-caption"><span class="dot-r"></span><span class="title">TextEdit · claude_desktop_config.json</span><span class="badge">After: pasted</span></div>
-          <div class="texteditor">
-            <span class="line">{</span>
-            <span class="line">  <span class="k">"mcpServers"</span>: {</span>
-            <span class="line">    <span class="k">"apify"</span>: {</span>
-            <span class="line">      <span class="k">"command"</span>: <span class="s">"npx"</span>,</span>
-            <span class="line">      <span class="k">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"@apify/actors-mcp-server"</span>, ...],</span>
-            <span class="line">      <span class="k">"env"</span>: { <span class="k">"APIFY_TOKEN"</span>: <span class="s"><span class="h">"apify_api_Xxx..."</span></span> }</span>
-            <span class="line">    }</span>
-            <span class="line">  }</span>
-            <span class="line">}</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- SCENARIO B: EXISTING FILE -->
-      <div class="config-scenario-panel" data-scenario="existing">
-        <p><strong>You already have other MCP servers configured.</strong> Don't replace the file. Instead, add <code>"apify"</code> as a new entry inside the existing <code>"mcpServers"</code> block.</p>
-
-        <h5>Before (your current file)</h5>
-        <div class="mockup">
-          <div class="mockup-caption"><span class="dot-r"></span><span class="title">Existing file (e.g. with Linear already configured)</span><span class="badge">Before</span></div>
-          <div class="texteditor">
-            <span class="line">{</span>
-            <span class="line">  <span class="k">"mcpServers"</span>: {</span>
-            <span class="line">    <span class="k">"linear"</span>: {</span>
-            <span class="line">      <span class="k">"command"</span>: <span class="s">"npx"</span>,</span>
-            <span class="line">      <span class="k">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"@linear/mcp-server"</span>],</span>
-            <span class="line">      <span class="k">"env"</span>: { <span class="k">"LINEAR_API_KEY"</span>: <span class="s">"lin_api_..."</span> }</span>
-            <span class="line">    }</span>
-            <span class="line">  }</span>
-            <span class="line">}</span>
-          </div>
-        </div>
-
-        <h5>After · add Apify as a sibling entry (note the comma after the <code>}</code> that closes linear)</h5>
-        <div class="mockup">
-          <div class="mockup-caption"><span class="dot-r"></span><span class="title">Merged file with Apify added</span><span class="badge">After</span></div>
-          <div class="texteditor">
-            <span class="line">{</span>
-            <span class="line">  <span class="k">"mcpServers"</span>: {</span>
-            <span class="line">    <span class="k">"linear"</span>: {</span>
-            <span class="line">      <span class="k">"command"</span>: <span class="s">"npx"</span>,</span>
-            <span class="line">      <span class="k">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"@linear/mcp-server"</span>],</span>
-            <span class="line">      <span class="k">"env"</span>: { <span class="k">"LINEAR_API_KEY"</span>: <span class="s">"lin_api_..."</span> }</span>
-            <span class="line">    }<span class="h">,</span></span>
-            <span class="line">    <span class="h"><span class="k">"apify"</span>: {</span></span>
-            <span class="line">      <span class="h"><span class="k">"command"</span>: <span class="s">"npx"</span>,</span></span>
-            <span class="line">      <span class="h"><span class="k">"args"</span>: [<span class="s">"-y"</span>, <span class="s">"@apify/actors-mcp-server"</span>, ...],</span></span>
-            <span class="line">      <span class="h"><span class="k">"env"</span>: { <span class="k">"APIFY_TOKEN"</span>: <span class="s">"YOUR_TOKEN_HERE"</span> }</span></span>
-            <span class="line">    <span class="h">}</span></span>
-            <span class="line">  }</span>
-            <span class="line">}</span>
-          </div>
-        </div>
-
-        <p>Paste this block as your new <code>"apify"</code> entry (highlighted yellow in the "after" mockup):</p>
-        <div class="cmd"><span class="cmd-label">Add inside existing mcpServers</span>"apify": {
-  "command": "npx",
-  "args": [
-    "-y",
-    "@apify/actors-mcp-server",
-    "--actors",
-    "apify/linkedin-profile-scraper,apify/linkedin-company-scraper,apify/google-search-scraper,apify/website-content-crawler,trudax/reddit-scraper-lite"
-  ],
-  "env": { "APIFY_TOKEN": <span class="h">"YOUR_TOKEN_HERE"</span> }
-}</div>
-
-        <div class="callout warn"><strong>Two things that break this step:</strong> (1) forgetting the comma after the <code>}</code> that closes the previous server, (2) not paying attention to JSON brackets. If Claude Desktop won't load after restart, you have a JSON error. Paste your file into <a href="https://jsonlint.com" target="_blank">jsonlint.com</a> to find it.</div>
-      </div>
-    </div>
-    <h3>13c · Save + fully quit Claude Desktop</h3>
-    <div class="callout danger"><strong>Fully quit, don't just close the window.</strong><br><strong>Mac:</strong> Cmd+Q or Claude menu → Quit.<br><strong>Windows:</strong> Right-click tray icon → Quit.<br>Re-open Claude Desktop. MCP loads on startup.</div>
-  </div>
-</details>
-
-<details class="step" id="s14">
-  <summary>
-    <div class="step-num">14</div>
-    <div class="step-logo lg-apify"><svg><use href="#icon-apify"/></svg></div>
-    <div class="step-title"><span class="tag">Apify MCP</span><h2>Verify Apify is wired</h2><div class="hint">⏱ 2 min · Critical check</div></div>
-    <div class="step-chevron">+</div>
-  </summary>
-  <div class="step-body">
-    <p>Open Claude Code in any folder. Paste:</p>
-    <div class="cmd"><span class="cmd-label">Test prompt</span>Use Apify to search Google for "solopreneur AI 2026". Give me the top 3 results only.</div>
-    <p>If real results appear, Apify is wired.</p>
-    <div class="mockup mockup-dark">
-      <div class="mockup-caption"><span class="dot-r"></span><span class="title">Claude Code · testing Apify MCP</span></div>
-      <div class="terminal">
-        <span class="out"><span class="prompt">&gt;</span> Use Apify to search Google for "solopreneur AI 2026". Top 3 only.</span>
-        <span class="out"></span>
-        <span class="out">🔍 Calling <span class="hl">apify:google-search-scraper</span>...</span>
-        <span class="out">  query: "solopreneur AI 2026"</span>
-        <span class="out">  maxResults: 3</span>
-        <span class="out"></span>
-        <span class="out"><span class="success">✓ 3 results returned in 4.2s</span></span>
-        <span class="out">1. Forbes · The solopreneur AI boom in 2026</span>
-        <span class="out">2. HubSpot · 7 AI tools every solopreneur needs</span>
-        <span class="out">3. Ness Labs · The rise of the one-person AI business</span>
-      </div>
-    </div>
-    <details class="trouble"><summary>Claude says "I don't have access to Apify"</summary><div class="t-body">MCP didn't load. Check: (1) JSON valid, no trailing commas, (2) token starts with <code>apify_api_</code>, (3) Claude Desktop was fully quit and reopened.</div></details>
-  </div>
-</details>
-
-<!-- ===== PHASE 4 ===== -->
-<div class="phase-marker" data-phase="4" data-steps="s15,s16,s17">
-  <div class="phase-marker-inner">
-    <div>
-      <span class="pm-label">◆ Phase 4 of 4</span>
-      <h3>Prepare your folder</h3>
-      <p>Submit your LinkedIn to Danny, create the business folder, initialize an empty Brain file. Steps 15 through 17.</p>
-    </div>
-    <div class="phase-progress">
-      <span class="num"><strong class="pf-done">0</strong>/3</span>
-      <span class="label">steps done</span>
+      <span class="num"><strong class="pf-done">0</strong>/1</span>
+      <span class="label">step done</span>
       <div class="phase-progress-bar"><span class="pf-fill"></span></div>
     </div>
   </div>
@@ -1189,7 +1029,7 @@ cd Purely-Personal-Run-a-business-by-itself</div>
 
 <details class="step" id="s15">
   <summary>
-    <div class="step-num">15</div>
+    <div class="step-num">10</div>
     <div class="step-logo lg-linkedin"><svg><use href="#icon-linkedin"/></svg></div>
     <div class="step-title"><span class="tag">Final Prep</span><h2>Reply with your LinkedIn URL</h2><div class="hint">⏱ 1 min · Load-bearing · do not skip</div></div>
     <div class="step-chevron">+</div>
@@ -1203,82 +1043,6 @@ cd Purely-Personal-Run-a-business-by-itself</div>
     </ol>
   </div>
 </details>
-
-<details class="step" id="s16">
-  <summary>
-    <div class="step-num">16</div>
-    <div class="step-logo"><svg style="color:#f4b400"><use href="#icon-folder"/></svg></div>
-    <div class="step-title"><span class="tag">Final Prep</span><h2>Create your business folder + test launch</h2><div class="hint">⏱ 3 min · Mac or Windows</div></div>
-    <div class="step-chevron">+</div>
-  </summary>
-  <div class="step-body">
-    <p>This is where your <code>BUSINESS-BRAIN.md</code> will live.</p>
-    <div class="os-tabs">
-      <div class="os-tab-header"><div class="os-tab-label mac">macOS</div><div class="os-tab-label win">Windows · Git Bash</div></div>
-      <div class="os-tab-body">
-        <div><div class="cmd"><span class="cmd-label">Mac Terminal</span>mkdir ~/Desktop/my-business
-cd ~/Desktop/my-business
-claude</div></div>
-        <div>
-          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">Right-click Desktop → New → Folder → <code>my-business</code>. Then in <strong>Git Bash</strong> (NOT PowerShell):</p>
-          <div class="cmd"><span class="cmd-label">Windows · Git Bash</span>cd ~/Desktop/my-business
-claude</div>
-        </div>
-      </div>
-    </div>
-    <p>Inside Claude Code, type:</p>
-    <div class="cmd"><span class="cmd-label">Inside Claude Code</span>/plugins</div>
-    <div class="mockup mockup-dark">
-      <div class="mockup-caption"><span class="dot-r"></span><span class="title">Claude Code · /plugins</span></div>
-      <div class="terminal">
-        <span class="out"><span class="prompt">&gt;</span> /plugins</span>
-        <span class="out"></span>
-        <span class="out">Loaded plugins (1):</span>
-        <span class="out">  <span class="success">●</span> <span class="hl">purely-personal</span> v1.0.0</span>
-        <span class="out">    7 skills · 8 commands · 5 templates</span>
-      </div>
-    </div>
-  </div>
-</details>
-
-<details class="step" id="s17">
-  <summary>
-    <div class="step-num">17</div>
-    <div class="step-logo"><svg style="color:var(--pp-red)"><use href="#icon-file"/></svg></div>
-    <div class="step-title"><span class="tag">Final Prep</span><h2>Initialize an empty BUSINESS-BRAIN.md</h2><div class="hint">⏱ 1 min · Last step</div></div>
-    <div class="step-chevron">+</div>
-  </summary>
-  <div class="step-body">
-    <p>Create an empty file. Day 1 walks you through filling every section live.</p>
-    <div class="os-tabs">
-      <div class="os-tab-header"><div class="os-tab-label mac">macOS</div><div class="os-tab-label win">Windows · Git Bash or File Explorer</div></div>
-      <div class="os-tab-body">
-        <div><div class="cmd"><span class="cmd-label">Mac Terminal</span>cd ~/Desktop/my-business
-touch BUSINESS-BRAIN.md</div></div>
-        <div>
-          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">Easiest path · in <strong>Git Bash</strong>:</p>
-          <div class="cmd"><span class="cmd-label">Windows · Git Bash</span>cd ~/Desktop/my-business
-touch BUSINESS-BRAIN.md</div>
-          <p style="margin:14px 0 6px;font-size:13px;color:var(--text-secondary)">Or via File Explorer · right-click → New → Text Document, rename to:</p>
-          <div class="cmd"><span class="cmd-label">Filename</span>BUSINESS-BRAIN.md</div>
-          <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">Confirm Windows isn't saving as <code>BUSINESS-BRAIN.md.txt</code>. Enable "Show file extensions" in File Explorer's View menu.</p>
-        </div>
-      </div>
-    </div>
-    <div class="callout warn"><strong>Don't fill the file yet.</strong> Day 1 walks you through every section via <code>/build-my-brain</code>.</div>
-    <div class="mockup">
-      <div class="mockup-caption"><span class="dot-r"></span><span class="title">Finder · my-business folder</span></div>
-      <div class="finder">
-        <div class="finder-item"><svg style="color:#f4b400"><use href="#icon-folder"/></svg><span class="fname">..</span></div>
-        <div class="finder-item selected"><svg style="color:var(--pp-red)"><use href="#icon-file"/></svg><span class="fname">BUSINESS-BRAIN.md</span><span class="fmeta">0 KB · just now</span></div>
-      </div>
-    </div>
-  </div>
-</details>
-
-<div class="callout ok" style="margin-top:32px">
-  <strong>✓ You're ready for Day 1.</strong> Claude Pro + CLI. Plugin installed. 8 slash commands verified. 4 OAuth connectors (+ Stripe if you use it). Apify MCP wired. LinkedIn URL submitted. Empty BUSINESS-BRAIN.md ready.
-</div>
 
 <!-- ===== PHASE 5 · OPTIONAL POWER-UP · MCP IN CLAUDE DESKTOP ===== -->
 <div class="phase-marker" style="margin-top:40px">
