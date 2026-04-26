@@ -295,6 +295,31 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
 .sm-notif .sm-logo svg{width:14px;height:14px}
 .sm-notif-text .sm-sub{font-weight:700;font-size:12.5px;color:var(--text-primary)}
 .sm-notif-text .sm-snippet{font-size:11.5px;color:var(--text-secondary);margin-top:2px;line-height:1.45}
+.sm-card .sm-stack{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:11.5px;line-height:1.5;margin:8px 0;padding:8px 10px;background:rgba(0,0,0,0.02);border-radius:6px}
+.sm-card .sm-stack dt{font-family:var(--mono);font-size:10px;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;font-weight:700;align-self:start;padding-top:1px}
+.sm-card .sm-stack dd{margin:0;color:var(--text-secondary);font-size:11.5px}
+.sm-card .sm-stack dd strong{color:var(--text-primary);font-weight:700}
+
+/* ===== WEEKLY RHYTHM TIMELINE ===== */
+.weekly-rhythm{padding:22px 24px 4px;background:linear-gradient(180deg,rgba(233,13,65,0.04) 0%,rgba(233,13,65,0) 100%);border-bottom:1px solid var(--divider)}
+.weekly-rhythm .wr-label{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;display:block}
+.weekly-rhythm .wr-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+@media (max-width:760px){.weekly-rhythm .wr-grid{grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}}
+.wr-day{text-align:center;padding:10px 4px 12px;border:1px solid var(--divider);border-radius:8px;background:var(--card-bg);position:relative;min-height:96px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.wr-day.has-routine{border-color:var(--pp-red);background:#fff;box-shadow:0 2px 6px rgba(233,13,65,0.08)}
+.wr-day.is-rest{opacity:0.55}
+.wr-day .wr-d{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:0.18em;color:var(--text-muted);text-transform:uppercase}
+.wr-day.has-routine .wr-d{color:var(--pp-red)}
+.wr-day .wr-icon{width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;background:#000;color:#fff;margin-top:2px}
+.wr-day .wr-icon svg{width:12px;height:12px}
+.wr-day .wr-icon.bg-gmail{background:#ea4335}
+.wr-day .wr-icon.bg-apify{background:#000}
+.wr-day .wr-icon.bg-notion{background:#000}
+.wr-day .wr-icon.bg-google{background:#4285f4}
+.wr-day .wr-icon.bg-cash{background:#635bff}
+.wr-day .wr-r{font-size:10px;font-weight:700;color:var(--text-primary);line-height:1.25;margin-top:2px;padding:0 2px}
+.wr-day .wr-t{font-family:var(--mono);font-size:9px;color:var(--text-muted);letter-spacing:0.05em;margin-top:1px}
+@media (max-width:760px){.wr-day{min-height:78px;padding:6px 2px 8px}.wr-day .wr-r{font-size:8.5px}.wr-day .wr-t{font-size:8px}}
 
 /* ===== PHASE MARKER BANNERS ===== */
 .phase-marker{margin:36px 0 18px;padding:22px 24px;background:linear-gradient(135deg,var(--dark) 0%,var(--dark-card) 100%);border-radius:12px;color:#fff;position:relative;overflow:hidden;border:1px solid var(--divider)}
@@ -860,32 +885,56 @@ Use the Bash tool. Don't make me type commands myself unless I have to (browser 
   <summary>
     <div class="step-num">5</div>
     <div class="step-logo lg-gmail"><svg><use href="#icon-gmail"/></svg></div>
-    <div class="step-title"><span class="tag">Connectors</span><h2>Connect Gmail</h2><div class="hint">⏱ 2 min · OAuth · no API key</div></div>
+    <div class="step-title"><span class="tag">Connector · Required</span><h2>Connect <em>Gmail</em></h2><div class="hint">⏱ 2 min · OAuth · powers 4 routines</div></div>
     <div class="step-chevron">+</div>
   </summary>
   <div class="step-body">
-    <p>Gmail powers Monday Content Drop, Thursday Meeting Prep, and Friday Weekly Wrap.</p>
+
+    <h3 style="font-family:var(--display);font-size:14px;font-weight:800;margin:14px 0 8px;letter-spacing:-0.01em">What Gmail unlocks</h3>
+    <p>Gmail is used by <strong>4 of 6 weekly routines</strong>. Without it, half the autopilot stops working:</p>
+    <ul style="margin:6px 0 14px;padding-left:20px;font-size:14px;line-height:1.55">
+      <li><strong>Monday 7am · Content Drop</strong> · scans your inbox for audience questions to seed this week's posts</li>
+      <li><strong>Thursday 7am · Meeting Prep</strong> · drafts a 3-min brief per external meeting attendee, saves to Drafts</li>
+      <li><strong>Friday 9am · Weekly Wrap</strong> · scans replies + engagement signals, sends a self-summary email</li>
+      <li><strong>Sunday 6pm · Pipeline Report</strong> · counts outreach sent + replies received this week</li>
+    </ul>
+
+    <h3 style="font-family:var(--display);font-size:14px;font-weight:800;margin:14px 0 8px;letter-spacing:-0.01em">How to connect (3 clicks)</h3>
     <ol>
       <li>Open <a href="https://claude.ai/customize/connectors" target="_blank">claude.ai/customize/connectors</a></li>
-      <li>Click the <strong>+</strong> button (top of the Connectors panel)</li>
-      <li>Choose <strong>Browse connectors</strong> → find <strong>Gmail</strong> → click <strong>+</strong></li>
-      <li>Sign in with Google → <strong>allow ALL permissions</strong></li>
+      <li>Click the <strong>+</strong> button at the top of the Connectors panel → <strong>Browse connectors</strong> → find <strong>Gmail</strong> → click <strong>Add</strong></li>
+      <li>Sign in with the Google account you actually use for the business · then approve every permission below</li>
     </ol>
-    <div class="callout danger"><strong>Allow ALL permissions.</strong> If you skip "send drafts", routines fail silently. Allow everything.</div>
+
+    <h3 style="font-family:var(--display);font-size:14px;font-weight:800;margin:14px 0 8px;letter-spacing:-0.01em">Permissions to approve (all 4)</h3>
     <div class="mockup">
-      <div class="mockup-caption"><span class="dot-r"></span><span class="title">claude.ai/customize/connectors</span><span class="badge">Logged-in view</span></div>
-      <div class="claude-connectors">
-        <div class="sidebar-mini"><a>Skills</a><a class="active">Connectors</a></div>
-        <div class="cc-header"><h3>Connectors</h3><div class="plus-btn highlight">+</div></div>
-        <div class="conn-group">Connected</div>
-        <div class="conn-row"><span class="conn-logo lg-github"><svg width="12" height="12"><use href="#icon-github"/></svg></span><span>GitHub</span><span style="margin-left:auto;color:var(--success);font-size:11px">● Connected</span></div>
-        <div class="conn-row highlight"><span class="conn-logo lg-gmail"><svg width="12" height="12"><use href="#icon-gmail"/></svg></span><span>Gmail</span><span style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.5)">Configure</span></div>
-        <div class="conn-row"><span class="conn-logo lg-google"><svg width="12" height="12"><use href="#icon-gcalendar"/></svg></span><span>Google Calendar</span><span style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.5)">Configure</span></div>
-        <div class="conn-row"><span class="conn-logo"><svg width="12" height="12"><use href="#icon-gdrive"/></svg></span><span>Google Drive</span><span style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.5)">Configure</span></div>
-        <div class="conn-row"><span class="conn-logo" style="background:#fff;color:#000"><svg width="12" height="12"><use href="#icon-notion"/></svg></span><span>Notion</span><span style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.5)">Configure</span></div>
+      <div class="mockup-caption"><span class="dot-r"></span><span class="title">Google OAuth · Gmail permissions</span><span class="badge">All required</span></div>
+      <div style="padding:18px 22px;background:#fff;color:#202124">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:12px 14px;font-size:13.5px;line-height:1.5">
+          <div style="width:22px;height:22px;background:#22c55e;color:#fff;border-radius:5px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px">✓</div>
+          <div><strong>Read your email</strong><br><span style="color:#5f6368">Inbox, Sent, Drafts, threads. Used by all 4 routines.</span></div>
+          <div style="width:22px;height:22px;background:#22c55e;color:#fff;border-radius:5px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px">✓</div>
+          <div><strong>Compose &amp; send drafts</strong><br><span style="color:#5f6368">Routines write meeting briefs to Drafts (not sent automatically).</span></div>
+          <div style="width:22px;height:22px;background:#22c55e;color:#fff;border-radius:5px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px">✓</div>
+          <div><strong>Manage labels &amp; threads</strong><br><span style="color:#5f6368">Optional. Only needed if you label incoming leads as "PP-leads".</span></div>
+          <div style="width:22px;height:22px;background:#22c55e;color:#fff;border-radius:5px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px">✓</div>
+          <div><strong>Manage settings &amp; filters</strong><br><span style="color:#5f6368">Optional. Tick if you want auto-routing.</span></div>
+        </div>
       </div>
     </div>
-    <div class="verify">Gmail shows a green "● Connected" status.</div>
+
+    <div class="callout danger"><strong>Tick every box.</strong> Skip "send drafts" and Thursday Meeting Prep silently fails (Claude composes the brief but can't save it). The fastest way: click "Allow all" if Google offers that option.</div>
+
+    <div class="verify">Back on the Connectors page, Gmail shows a green "● Connected" badge. Test by asking Claude in your business folder: <em>"Read the last 3 emails I received today."</em></div>
+
+    <details class="trouble">
+      <summary>Common Gmail issues</summary>
+      <div class="t-body">
+        <strong>"Routines fail silently · I never see drafts."</strong> You skipped "Compose &amp; send drafts" during OAuth. Go to <a href="https://myaccount.google.com/permissions" target="_blank">myaccount.google.com/permissions</a>, find Claude, click Remove access, then reconnect from claude.ai/customize/connectors and tick every box.<br><br>
+        <strong>"My Google Workspace admin blocked third-party OAuth."</strong> Ask your IT admin to allow Claude as an approved third-party app. Or use a personal @gmail.com account for the workshop and forward business emails to it.<br><br>
+        <strong>"I have multiple Gmail accounts · which one should I connect?"</strong> The one you treat as your business inbox. The one your prospects + clients email. Routines read this inbox · pick the one with real signal.
+      </div>
+    </details>
   </div>
 </details>
 
@@ -893,31 +942,48 @@ Use the Bash tool. Don't make me type commands myself unless I have to (browser 
   <summary>
     <div class="step-num">6</div>
     <div class="step-logo lg-notion"><svg><use href="#icon-notion"/></svg></div>
-    <div class="step-title"><span class="tag">Connectors</span><h2>Connect Notion</h2><div class="hint">⏱ 2 min · OAuth</div></div>
+    <div class="step-title"><span class="tag">Connector · Required</span><h2>Connect <em>Notion</em></h2><div class="hint">⏱ 2 min · OAuth · powers 4 routines</div></div>
     <div class="step-chevron">+</div>
   </summary>
   <div class="step-body">
-    <p>Notion holds your content calendar, CRM, and pipeline reports.</p>
+
+    <h3 style="font-family:var(--display);font-size:14px;font-weight:800;margin:14px 0 8px;letter-spacing:-0.01em">What Notion unlocks</h3>
+    <p>Notion is the database brain of the system. <strong>4 of 6 routines write here</strong>:</p>
+    <ul style="margin:6px 0 14px;padding-left:20px;font-size:14px;line-height:1.55">
+      <li><strong>Monday Content Drop</strong> · 3 LinkedIn posts + newsletter idea saved to your Content Calendar database</li>
+      <li><strong>Tuesday Lead Research</strong> · 10 prospects scored + saved to your CRM database with BANT scores</li>
+      <li><strong>Wednesday Newsletter Draft</strong> · pulls topic from Content Calendar to draft full newsletter</li>
+      <li><strong>Sunday Pipeline Report</strong> · queries CRM deals + summarizes status</li>
+    </ul>
+
+    <h3 style="font-family:var(--display);font-size:14px;font-weight:800;margin:14px 0 8px;letter-spacing:-0.01em">Setup tip · prep your workspace first</h3>
+    <p>Claude can write to ANY Notion workspace, but the routines work best when you have at minimum two databases ready:</p>
+    <ul style="margin:6px 0 14px;padding-left:20px;font-size:14px;line-height:1.55">
+      <li>A page or database called <code>Content Calendar</code> · stores draft posts</li>
+      <li>A database called <code>CRM</code> with columns: Name, Company, Role, Status, BANT Score, Notes</li>
+    </ul>
+    <p style="font-size:13px;color:var(--text-muted);margin:0">Don't have these yet? Skip · Day 1 of the workshop walks you through creating them. Or ask Claude Code: <em>"Create my Purely Personal Notion workspace structure."</em></p>
+
+    <h3 style="font-family:var(--display);font-size:14px;font-weight:800;margin:14px 0 8px;letter-spacing:-0.01em">How to connect (4 clicks)</h3>
     <ol>
-      <li>Same Connectors page → <strong>+</strong> → <strong>Browse connectors</strong></li>
-      <li>Find <strong>Notion</strong> → click <strong>+</strong></li>
-      <li>Sign in → pick your main workspace → allow all</li>
+      <li>Connectors page → <strong>+</strong> → <strong>Browse connectors</strong> → <strong>Notion</strong> → <strong>Add</strong></li>
+      <li>Sign in to Notion (use the workspace you treat as your business workspace)</li>
+      <li>Pick which pages Claude can access. <strong>Recommended: select the whole workspace</strong> · Claude only writes where you tell it to.</li>
+      <li>Click <strong>Allow access</strong></li>
     </ol>
-    <div class="mockup">
-      <div class="mockup-caption"><span class="dot-r"></span><span class="title">Directory · Browse connectors</span></div>
-      <div class="directory-modal">
-        <div class="dm-header"><h4>Directory</h4><div class="dm-search">Search connectors…</div></div>
-        <div class="dm-grid">
-          <div class="dm-card"><div class="lg"><svg width="18" height="18"><use href="#icon-gdrive"/></svg></div><div><div class="cn">Google Drive</div><div class="cs">Most popular</div></div></div>
-          <div class="dm-card"><div class="lg"><svg width="18" height="18" class="lg-google"><use href="#icon-gcalendar"/></svg></div><div><div class="cn">Google Calendar</div><div class="cs">#2 popular</div></div></div>
-          <div class="dm-card"><div class="lg"><svg width="18" height="18" class="lg-gmail"><use href="#icon-gmail"/></svg></div><div><div class="cn">Gmail</div><div class="cs">#3 popular</div></div></div>
-          <div class="dm-card highlight"><div class="lg" style="background:#000"><svg width="18" height="18" style="color:#fff"><use href="#icon-notion"/></svg></div><div><div class="cn">Notion</div><div class="cs">Add</div></div></div>
-          <div class="dm-card"><div class="lg"><svg width="18" height="18" class="lg-stripe"><use href="#icon-stripe"/></svg></div><div><div class="cn">Stripe</div><div class="cs">Add</div></div></div>
-          <div class="dm-card"><div class="lg"><svg width="18" height="18" class="lg-linkedin"><use href="#icon-linkedin"/></svg></div><div><div class="cn">LinkedIn</div><div class="cs">Add</div></div></div>
-        </div>
+
+    <div class="callout warn"><strong>"Selected pages" vs "Entire workspace".</strong> If you pick "Selected pages", Claude can only write to pages you explicitly tick. Easier security, but you'll have to come back here every time you create a new database. Pick "Entire workspace" if you trust Claude to write only where instructed (it does · it always asks before writing).</div>
+
+    <div class="verify">Back on Connectors, Notion shows "● Connected" with the workspace name. Test: ask Claude <em>"List the top-level pages in my Notion workspace."</em></div>
+
+    <details class="trouble">
+      <summary>Common Notion issues</summary>
+      <div class="t-body">
+        <strong>"Claude can't find my CRM database."</strong> The CRM database needs the exact name <code>CRM</code> (case-sensitive). Or tell Claude the actual name: <em>"My CRM is called 'Lead Tracker'."</em><br><br>
+        <strong>"I have multiple Notion workspaces · how do I switch?"</strong> Disconnect Notion from claude.ai/customize/connectors. Reconnect and pick the other workspace at the OAuth step.<br><br>
+        <strong>"Routines fail with 'page not found' errors."</strong> You connected with "Selected pages" and didn't tick the Content Calendar / CRM. Reconnect with "Entire workspace" or manually add the missing pages.
       </div>
-    </div>
-    <div class="verify">Notion appears in your Connectors list as "● Connected".</div>
+    </details>
   </div>
 </details>
 
@@ -925,15 +991,38 @@ Use the Bash tool. Don't make me type commands myself unless I have to (browser 
   <summary>
     <div class="step-num">7</div>
     <div class="step-logo lg-google"><svg><use href="#icon-gcalendar"/></svg></div>
-    <div class="step-title"><span class="tag">Connectors</span><h2>Connect Google Calendar</h2><div class="hint">⏱ 1 min · OAuth</div></div>
+    <div class="step-title"><span class="tag">Connector · Required</span><h2>Connect <em>Google Calendar</em></h2><div class="hint">⏱ 1 min · OAuth · read-only</div></div>
     <div class="step-chevron">+</div>
   </summary>
   <div class="step-body">
-    <p>Calendar powers Thursday Meeting Prep.</p>
+
+    <h3 style="font-family:var(--display);font-size:14px;font-weight:800;margin:14px 0 8px;letter-spacing:-0.01em">What Calendar unlocks</h3>
+    <p>Calendar drives <strong>Thursday Meeting Prep</strong> · the routine that delivers a 3-minute brief on every external attendee in your day.</p>
+    <ul style="margin:6px 0 14px;padding-left:20px;font-size:14px;line-height:1.55">
+      <li>Reads <strong>today's external meetings</strong> (anything with attendees outside your domain)</li>
+      <li>For each external attendee, scrapes their LinkedIn (via Apify) + recent posts</li>
+      <li>Writes a 3-min brief to Gmail Drafts so it's waiting in your inbox before the meeting</li>
+    </ul>
+
+    <h3 style="font-family:var(--display);font-size:14px;font-weight:800;margin:14px 0 8px;letter-spacing:-0.01em">Permissions · read-only</h3>
+    <p>Calendar is the <strong>safest</strong> connector. Claude only needs READ access. It never creates events, modifies invitations, or sends responses on your behalf.</p>
+
+    <h3 style="font-family:var(--display);font-size:14px;font-weight:800;margin:14px 0 8px;letter-spacing:-0.01em">How to connect (3 clicks)</h3>
     <ol>
-      <li>Connectors → <strong>+</strong> → <strong>Browse connectors</strong></li>
-      <li>Find <strong>Google Calendar</strong> → add → sign in → allow</li>
+      <li>Connectors page → <strong>+</strong> → <strong>Browse connectors</strong> → <strong>Google Calendar</strong> → <strong>Add</strong></li>
+      <li>Sign in with the same Google account you used for Gmail</li>
+      <li>Approve <strong>"See events from your calendars"</strong> + <strong>"See attendees"</strong>. That's all you need.</li>
     </ol>
+
+    <div class="verify">Calendar shows "● Connected". Test: <em>"What external meetings do I have today?"</em></div>
+
+    <details class="trouble">
+      <summary>Common Calendar issues</summary>
+      <div class="t-body">
+        <strong>"I don't see Thursday Meeting Prep firing."</strong> The routine only fires if you have at least 1 external attendee in today's events (someone with an email outside your domain). Internal-only meetings get skipped (you don't need a brief for your own team).<br><br>
+        <strong>"Multiple Google accounts · which calendar?"</strong> Same as Gmail. Connect the calendar of the account where your prospect + client meetings actually live.
+      </div>
+    </details>
   </div>
 </details>
 
@@ -941,16 +1030,49 @@ Use the Bash tool. Don't make me type commands myself unless I have to (browser 
   <summary>
     <div class="step-num">8</div>
     <div class="step-logo"><svg><use href="#icon-gdrive"/></svg></div>
-    <div class="step-title"><span class="tag">Connectors</span><h2>Connect Google Drive</h2><div class="hint">⏱ 1 min · OAuth · allow file creation</div></div>
+    <div class="step-title"><span class="tag">Connector · Required</span><h2>Connect <em>Google Drive</em></h2><div class="hint">⏱ 1 min · OAuth · MUST allow file creation</div></div>
     <div class="step-chevron">+</div>
   </summary>
   <div class="step-body">
-    <p>Drive is where newsletter drafts and weekly reports save.</p>
+
+    <h3 style="font-family:var(--display);font-size:14px;font-weight:800;margin:14px 0 8px;letter-spacing:-0.01em">What Drive unlocks</h3>
+    <p>Drive is where every <strong>long-form artifact</strong> saves. 3 routines write here:</p>
+    <ul style="margin:6px 0 14px;padding-left:20px;font-size:14px;line-height:1.55">
+      <li><strong>Wednesday Newsletter Draft</strong> · saves the full newsletter as a Doc</li>
+      <li><strong>Friday Weekly Wrap</strong> · saves the weekly performance summary</li>
+      <li><strong>Sunday Pipeline Report</strong> · saves the pipeline status doc</li>
+    </ul>
+
+    <h3 style="font-family:var(--display);font-size:14px;font-weight:800;margin:14px 0 8px;letter-spacing:-0.01em">Recommended folder structure</h3>
+    <p>Before you connect, create a <code>Purely Personal</code> folder in your Drive root. Sub-folders inside: <code>Newsletters</code>, <code>Reports</code>, <code>Briefs</code>. Claude saves files into the right sub-folder automatically.</p>
+
+    <h3 style="font-family:var(--display);font-size:14px;font-weight:800;margin:14px 0 8px;letter-spacing:-0.01em">Permissions · CRITICAL</h3>
+    <div class="callout danger"><strong>You MUST allow "Create new files."</strong> Without this scope, routines can read your Drive but can't write the newsletter draft. The newsletter routine fails silently · you'll wonder why nothing's appearing on Wednesdays.</div>
+
+    <p>The 3 permissions Google asks for:</p>
+    <ul style="margin:6px 0 14px;padding-left:20px;font-size:14px;line-height:1.55">
+      <li>✓ <strong>See and download all your Drive files</strong> · so Claude can read content for context</li>
+      <li>✓ <strong>Create new files in Drive</strong> · CRITICAL · for newsletter + report drafts</li>
+      <li>✓ <strong>Edit your existing Drive files</strong> · so updates land in the same draft instead of creating duplicates</li>
+    </ul>
+
+    <h3 style="font-family:var(--display);font-size:14px;font-weight:800;margin:14px 0 8px;letter-spacing:-0.01em">How to connect (4 clicks)</h3>
     <ol>
-      <li>Connectors → <strong>+</strong> → <strong>Google Drive</strong></li>
-      <li>Sign in → <strong>allow including file creation</strong></li>
+      <li>Connectors page → <strong>+</strong> → <strong>Browse connectors</strong> → <strong>Google Drive</strong> → <strong>Add</strong></li>
+      <li>Sign in (same Google account)</li>
+      <li>On the OAuth screen, <strong>tick all 3 boxes</strong> · do not skip "Create new files"</li>
+      <li>Approve</li>
     </ol>
-    <div class="callout danger"><strong>File creation must be allowed.</strong> Without it, routines can read Drive but cannot write your newsletter drafts.</div>
+
+    <div class="verify">Drive shows "● Connected". Test: <em>"Create a test Doc in my Drive called 'PP test' with the body 'hello'."</em> The Doc should appear in your Drive within seconds.</div>
+
+    <details class="trouble">
+      <summary>Common Drive issues</summary>
+      <div class="t-body">
+        <strong>"Wednesday newsletter never appears in my Drive."</strong> You skipped "Create new files." Disconnect from claude.ai/customize/connectors. Reconnect and tick all 3 boxes.<br><br>
+        <strong>"I'm hitting Drive storage limits."</strong> Old reports pile up. Set a monthly cleanup or use a separate Drive account just for Purely Personal artifacts.
+      </div>
+    </details>
   </div>
 </details>
 
@@ -958,15 +1080,42 @@ Use the Bash tool. Don't make me type commands myself unless I have to (browser 
   <summary>
     <div class="step-num">9</div>
     <div class="step-logo lg-stripe"><svg><use href="#icon-stripe"/></svg></div>
-    <div class="step-title"><span class="tag">Connectors</span><h2>Connect Stripe</h2><div class="hint">⏱ 1 min · Optional</div></div>
+    <div class="step-title"><span class="tag">Connector · Optional</span><h2>Connect <em>Stripe</em></h2><div class="hint">⏱ 1 min · Skip if you don't use Stripe</div></div>
     <div class="step-chevron">+</div>
   </summary>
   <div class="step-body">
-    <p>Optional. If connected, <code>/cash-engine</code> pulls real revenue. If skipped, Claude prompts you to paste numbers.</p>
+
+    <h3 style="font-family:var(--display);font-size:14px;font-weight:800;margin:14px 0 8px;letter-spacing:-0.01em">What Stripe unlocks</h3>
+    <p>Stripe is the <strong>only optional connector</strong>. It powers <code>/cash-engine</code> · the executive that pulls real revenue numbers automatically.</p>
+    <ul style="margin:6px 0 14px;padding-left:20px;font-size:14px;line-height:1.55">
+      <li><strong>MRR + ARR</strong> · current month + annualized recurring revenue</li>
+      <li><strong>Churn</strong> · cancellations + downgrades this period</li>
+      <li><strong>90-day forecast</strong> · revenue projection based on current trajectory</li>
+      <li><strong>Sunday Pipeline Report</strong> · adds a "Cash collected this week" line</li>
+    </ul>
+
+    <p>If you skip this connector, <code>/cash-engine</code> still works · it just prompts you to paste your numbers manually each time you run it.</p>
+
+    <h3 style="font-family:var(--display);font-size:14px;font-weight:800;margin:14px 0 8px;letter-spacing:-0.01em">Permissions · read-only</h3>
+    <p>Claude only requests <strong>read access</strong> to Stripe. Specifically: charges, customers, subscriptions, balance. <strong>Claude cannot modify your Stripe account.</strong> Cannot issue refunds. Cannot create products. Cannot change anything.</p>
+
+    <h3 style="font-family:var(--display);font-size:14px;font-weight:800;margin:14px 0 8px;letter-spacing:-0.01em">How to connect (3 clicks)</h3>
     <ol>
-      <li>Connectors → <strong>+</strong> → <strong>Stripe</strong></li>
-      <li>Sign in with your Stripe account</li>
+      <li>Connectors page → <strong>+</strong> → <strong>Browse connectors</strong> → <strong>Stripe</strong> → <strong>Add</strong></li>
+      <li>Sign in to your Stripe account · pick the right Stripe organization if you have multiple</li>
+      <li>Approve "Read access to charges, customers, subscriptions, balance"</li>
     </ol>
+
+    <div class="verify">Stripe shows "● Connected". Test: <em>"Run /cash-engine and pull my MRR."</em> Real numbers should appear within 5 seconds.</div>
+
+    <details class="trouble">
+      <summary>Common Stripe issues</summary>
+      <div class="t-body">
+        <strong>"I don't use Stripe · should I skip?"</strong> Yes. Skip entirely. <code>/cash-engine</code> works fine without it · it just asks you for numbers each time.<br><br>
+        <strong>"I use multiple Stripe accounts (multiple businesses)."</strong> Pick the one for the business this Brain represents. You can switch later by disconnecting + reconnecting.<br><br>
+        <strong>"Can Claude move money or issue refunds?"</strong> No. Read-only access only. Claude cannot make any change to your Stripe account.
+      </div>
+    </details>
   </div>
 </details>
 
@@ -1132,69 +1281,185 @@ Use the Bash tool. Don't make me type commands myself unless I have to (browser 
 <!-- ===== END-STATE SUCCESS MOCKUP ===== -->
 <div class="success-mockup">
   <div class="success-mockup-header">
-    <span class="tag">◆ The Monday after Day 1</span>
-    <h3>This is what your toolkit does for you, every week, automatically</h3>
-    <p>Sunday night you went to bed. Monday at 7am your routines fire. By the time you sit down with coffee, this is already on your screen.</p>
+    <span class="tag">◆ The week after Day 1</span>
+    <h3>Your week, on autopilot. 6 routines. Zero scheduling on your end.</h3>
+    <p>Once Phase 2 + 3 are connected, six recurring routines run on a fixed weekly schedule. You wake up to drafted posts on Monday, fresh leads on Tuesday, meeting briefs on Thursday, and a pipeline report on Sunday. You review · you don't write from scratch.</p>
   </div>
+
+  <!-- Weekly rhythm timeline -->
+  <div class="weekly-rhythm">
+    <span class="wr-label">your week visualized</span>
+    <div class="wr-grid">
+      <div class="wr-day has-routine">
+        <span class="wr-d">Mon</span>
+        <span class="wr-icon bg-gmail"><svg><use href="#icon-gmail"/></svg></span>
+        <span class="wr-r">Content Drop</span>
+        <span class="wr-t">7:00am</span>
+      </div>
+      <div class="wr-day has-routine">
+        <span class="wr-d">Tue</span>
+        <span class="wr-icon bg-apify"><svg><use href="#icon-apify"/></svg></span>
+        <span class="wr-r">Lead Research</span>
+        <span class="wr-t">8:00am</span>
+      </div>
+      <div class="wr-day has-routine">
+        <span class="wr-d">Wed</span>
+        <span class="wr-icon bg-notion"><svg><use href="#icon-notion"/></svg></span>
+        <span class="wr-r">Newsletter</span>
+        <span class="wr-t">8:00am</span>
+      </div>
+      <div class="wr-day has-routine">
+        <span class="wr-d">Thu</span>
+        <span class="wr-icon bg-google"><svg><use href="#icon-gcalendar"/></svg></span>
+        <span class="wr-r">Meeting Prep</span>
+        <span class="wr-t">7:00am</span>
+      </div>
+      <div class="wr-day has-routine">
+        <span class="wr-d">Fri</span>
+        <span class="wr-icon bg-cash"><svg><use href="#icon-stripe"/></svg></span>
+        <span class="wr-r">Weekly Wrap</span>
+        <span class="wr-t">5:00pm</span>
+      </div>
+      <div class="wr-day is-rest">
+        <span class="wr-d">Sat</span>
+        <span class="wr-r" style="color:var(--text-muted);font-weight:600">rest day</span>
+      </div>
+      <div class="wr-day has-routine">
+        <span class="wr-d">Sun</span>
+        <span class="wr-icon bg-apify"><svg><use href="#icon-apify"/></svg></span>
+        <span class="wr-r">Pipeline Report</span>
+        <span class="wr-t">6:00pm</span>
+      </div>
+    </div>
+  </div>
+
   <div class="success-mockup-body">
 
+    <!-- ROUTINE 1 · MON CONTENT DROP -->
     <div class="sm-card">
       <span class="sm-time">Monday · 7:00am</span>
-      <h4><svg class="lg-gmail"><use href="#icon-gmail"/></svg>Gmail · new draft</h4>
-      <div class="sm-body">Monday Content Drop ran. Read your inbox for audience questions. Drafted 3 LinkedIn posts in your voice.</div>
+      <h4><svg class="lg-gmail"><use href="#icon-gmail"/></svg>Monday Content Drop</h4>
+      <div class="sm-body">Reads your inbox for the audience questions and objections people sent you last week. Pulls last week's wins from your Friday Wrap. Drafts <strong>3 LinkedIn posts</strong> in your voice + queues a newsletter idea for Wednesday.</div>
+      <dl class="sm-stack">
+        <dt>Reads</dt><dd>Gmail (inbox · 7 days), Notion · Content Calendar (last week)</dd>
+        <dt>Writes</dt><dd>Notion · Content Calendar (3 posts queued), Gmail Drafts (1 newsletter)</dd>
+        <dt>Powered by</dt><dd><code>/marketing-engine</code> + <code>prep_marketing_drop</code></dd>
+      </dl>
       <div class="sm-notif">
         <div class="sm-logo lg-gmail"><svg><use href="#icon-gmail"/></svg></div>
         <div class="sm-notif-text">
-          <div class="sm-sub">3 LinkedIn posts ready for Monday</div>
+          <div class="sm-sub">3 LinkedIn posts ready · voice match ✓</div>
           <div class="sm-snippet">"Last week I stopped writing cold DMs. Here's what I did instead..."</div>
         </div>
       </div>
-      <div class="sm-meta">Fired by Monday Content Drop · 00:04 runtime</div>
+      <div class="sm-meta">Fires every Monday · ~4 min runtime · 4 of 6 weekly routines</div>
     </div>
 
-    <div class="sm-card">
-      <span class="sm-time">Monday · 7:02am</span>
-      <h4><svg style="color:#000"><use href="#icon-notion"/></svg>Notion · Content Calendar</h4>
-      <div class="sm-body">Same 3 posts saved to your content calendar. Newsletter idea queued for Wednesday's drop.</div>
-      <div class="sm-notif">
-        <div class="sm-logo" style="background:#000;color:#fff"><svg><use href="#icon-notion"/></svg></div>
-        <div class="sm-notif-text">
-          <div class="sm-sub">Content Calendar · May 4 week</div>
-          <div class="sm-snippet">3 posts queued · 1 newsletter · voice: matches ✓</div>
-        </div>
-      </div>
-      <div class="sm-meta">Monday Content Drop · scheduled weekly</div>
-    </div>
-
+    <!-- ROUTINE 2 · TUE LEAD RESEARCH -->
     <div class="sm-card">
       <span class="sm-time">Tuesday · 8:00am</span>
-      <h4><svg class="lg-apify"><use href="#icon-apify"/></svg>Notion · CRM · 10 new leads</h4>
-      <div class="sm-body">Tuesday Lead Research ran. Apify scraped 10 prospects matching your ICP. BANT-scored. Top 3 got 3-step outreach drafts.</div>
+      <h4><svg class="lg-apify"><use href="#icon-apify"/></svg>Tuesday Lead Research</h4>
+      <div class="sm-body">Apify scrapes <strong>10 fresh prospects</strong> matching your ICP from LinkedIn + Google. Each gets BANT-scored against your offer. Top 3 get a personalised 3-step outreach sequence drafted in Gmail.</div>
+      <dl class="sm-stack">
+        <dt>Reads</dt><dd>Apify (LinkedIn + Google), BUSINESS-BRAIN.md (ICP + offer)</dd>
+        <dt>Writes</dt><dd>Notion · CRM (10 entries), Gmail Drafts (3 sequences ready to send)</dd>
+        <dt>Powered by</dt><dd><code>/sales-engine</code> + <code>prep_prospect_research</code></dd>
+      </dl>
       <div class="sm-notif">
         <div class="sm-logo" style="background:#000;color:#fff"><svg><use href="#icon-notion"/></svg></div>
         <div class="sm-notif-text">
-          <div class="sm-sub">10 new CRM entries · 3 outreach drafted</div>
-          <div class="sm-snippet">Sarah Chen · Founder, TechFlow · BANT 87 · sequence ready</div>
+          <div class="sm-sub">10 new CRM entries · 3 outreach sequences drafted</div>
+          <div class="sm-snippet">Sarah Chen · Founder, TechFlow · BANT 87 · 3-step ready</div>
         </div>
       </div>
-      <div class="sm-meta">Tuesday Lead Research · runs weekly</div>
+      <div class="sm-meta">Fires every Tuesday · ~6 min runtime · uses ~$0.10 of Apify free tier</div>
     </div>
 
+    <!-- ROUTINE 3 · WED NEWSLETTER DRAFT -->
+    <div class="sm-card">
+      <span class="sm-time">Wednesday · 8:00am</span>
+      <h4><svg style="color:#000"><use href="#icon-notion"/></svg>Wednesday Newsletter Draft</h4>
+      <div class="sm-body">Picks Monday's queued newsletter idea. Pulls supporting examples from your business notes. Writes a <strong>full long-form newsletter</strong> in your voice · subject line, hook, story, takeaway. Saves to Drive + Gmail draft.</div>
+      <dl class="sm-stack">
+        <dt>Reads</dt><dd>Notion · Content Calendar (Monday's queued idea), BUSINESS-BRAIN.md (recent wins + customer voice)</dd>
+        <dt>Writes</dt><dd>Drive · /newsletters/2026-W18.md, Gmail Drafts (ready to send)</dd>
+        <dt>Powered by</dt><dd><code>/marketing-engine</code> + <code>prep_post_in_voice</code></dd>
+      </dl>
+      <div class="sm-notif">
+        <div class="sm-logo" style="background:#4285f4;color:#fff"><svg><use href="#icon-gdrive"/></svg></div>
+        <div class="sm-notif-text">
+          <div class="sm-sub">Newsletter draft saved · 847 words</div>
+          <div class="sm-snippet">"The 3-engine system that buys back your Sundays" · subject line A/B ready</div>
+        </div>
+      </div>
+      <div class="sm-meta">Fires every Wednesday · ~5 min runtime · review + send Thursday morning</div>
+    </div>
+
+    <!-- ROUTINE 4 · THU MEETING PREP -->
     <div class="sm-card">
       <span class="sm-time">Thursday · 7:00am</span>
-      <h4><svg class="lg-google"><use href="#icon-gcalendar"/></svg>Gmail · meeting briefs</h4>
-      <div class="sm-body">Calendar showed 2 external meetings today. Apify scraped each attendee on LinkedIn. 3-min brief + 2 sharp questions per person, saved to Gmail drafts.</div>
+      <h4><svg class="lg-google"><use href="#icon-gcalendar"/></svg>Thursday Meeting Prep</h4>
+      <div class="sm-body">Reads today's Calendar. For each external meeting, Apify scrapes the attendee's LinkedIn + their company. You get a <strong>3-minute brief + 2 sharp questions</strong> per person, saved as a Gmail draft you can scan from your phone.</div>
+      <dl class="sm-stack">
+        <dt>Reads</dt><dd>Google Calendar (today + tomorrow), Apify (LinkedIn per attendee)</dd>
+        <dt>Writes</dt><dd>Gmail Drafts (one brief per meeting)</dd>
+        <dt>Powered by</dt><dd><code>/sales-engine</code> + <code>prep_meeting_brief</code></dd>
+      </dl>
       <div class="sm-notif">
         <div class="sm-logo lg-gmail"><svg><use href="#icon-gmail"/></svg></div>
         <div class="sm-notif-text">
           <div class="sm-sub">2 meeting briefs saved to Drafts</div>
-          <div class="sm-snippet">10am: Alex at Ramp · prep brief ready · 2 questions</div>
+          <div class="sm-snippet">10am · Alex at Ramp · 3-min brief · 2 questions · last raise context</div>
         </div>
       </div>
-      <div class="sm-meta">Thursday Meeting Prep · fires weekdays</div>
+      <div class="sm-meta">Fires every weekday morning · only runs if Calendar has external meetings</div>
+    </div>
+
+    <!-- ROUTINE 5 · FRI WEEKLY WRAP -->
+    <div class="sm-card">
+      <span class="sm-time">Friday · 5:00pm</span>
+      <h4><svg style="color:#000"><use href="#icon-notion"/></svg>Friday Weekly Wrap</h4>
+      <div class="sm-body">Closes the loop on the week. Counts <strong>posts shipped, leads booked, meetings held, revenue moved</strong>. Pulls Stripe numbers if connected. Highlights the 1 thing that worked + 1 thing to fix Monday. Saves to Drive.</div>
+      <dl class="sm-stack">
+        <dt>Reads</dt><dd>Notion (Content Calendar + CRM · this week), Stripe (payments · this week), Gmail (sent count)</dd>
+        <dt>Writes</dt><dd>Drive · /weekly-wraps/2026-W18.md, Notion · Leadership log</dd>
+        <dt>Powered by</dt><dd><code>/leadership-engine</code> + <code>prep_pipeline_report</code></dd>
+      </dl>
+      <div class="sm-notif">
+        <div class="sm-logo" style="background:#635bff;color:#fff"><svg><use href="#icon-stripe"/></svg></div>
+        <div class="sm-notif-text">
+          <div class="sm-sub">Week 18 wrap · 5 posts · 12 leads · $4,200 booked</div>
+          <div class="sm-snippet">Won: Tuesday post hit 14k views. Fix: 2 stale CRM cards over 14 days.</div>
+        </div>
+      </div>
+      <div class="sm-meta">Fires every Friday · ~3 min runtime · feeds Monday's Content Drop</div>
+    </div>
+
+    <!-- ROUTINE 6 · SUN PIPELINE REPORT -->
+    <div class="sm-card">
+      <span class="sm-time">Sunday · 6:00pm</span>
+      <h4><svg class="lg-apify"><use href="#icon-apify"/></svg>Sunday Pipeline Report</h4>
+      <div class="sm-body">Looks at the whole pipeline before the new week. Flags <strong>cards stale &gt; 7 days</strong>, calls that didn't get a follow-up, and any forecast gap to your monthly number. You get a 1-screen plan for Monday morning, sent to your inbox.</div>
+      <dl class="sm-stack">
+        <dt>Reads</dt><dd>Notion · CRM (all stages), Stripe (MRR + this month), Calendar (next 7 days)</dd>
+        <dt>Writes</dt><dd>Gmail Drafts (Monday plan email · self-send), Notion · CRM (stale flags)</dd>
+        <dt>Powered by</dt><dd><code>/cash-engine</code> + <code>/sales-engine</code> + <code>prep_pipeline_report</code></dd>
+      </dl>
+      <div class="sm-notif">
+        <div class="sm-logo lg-gmail"><svg><use href="#icon-gmail"/></svg></div>
+        <div class="sm-notif-text">
+          <div class="sm-sub">Pipeline report · 4 stale · $11.4k forecast gap</div>
+          <div class="sm-snippet">Top 3 to nudge tomorrow: Sarah, Marcus, Ramp. Suggested DM drafted.</div>
+        </div>
+      </div>
+      <div class="sm-meta">Fires every Sunday · sets up your Monday in 90 seconds of reading</div>
     </div>
 
   </div>
+</div>
+
+<div class="callout info" style="margin-top:18px">
+  <strong>How to change a routine's day or time:</strong> open Claude Code in your business folder, type <code>/routines</code> · the slash command shows the 6 routines, lets you edit the schedule, the inputs, the output destinations, or pause any routine. Everything lives in <code>BUSINESS-BRAIN.md</code> · nothing is hidden, nothing requires re-installing.
 </div>
 
 <div class="callout ok" style="margin-top:24px">
