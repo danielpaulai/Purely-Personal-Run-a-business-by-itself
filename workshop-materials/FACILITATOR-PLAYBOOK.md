@@ -2,8 +2,23 @@
 
 > The cross-cutting "how to deliver" doc. Read this once before Day 1.
 > Method: Blair Singer Train-the-Trainer + T. Harv Eker MMI / Master
-> Facilitator. Adapted for a 2-day, $49 entry, AI-CEO-upsell workshop
-> running over Zoom.
+> Facilitator. Adapted for a **2-hour-per-day, 2-day**, $49 entry,
+> AI-CEO-upsell workshop running over Zoom.
+
+## ZERO · Format reality check
+
+This is a **4-hour total** workshop. You CANNOT teach foundation +
+build BUSINESS-BRAIN.md + run all 5 engines + sell in 4 hours.
+Foundation is **pre-work** (the install guide videos + plugin install
++ /build-my-brain). Students arrive Day 1 with their plugin installed
+and brain built.
+
+The 4 live hours are:
+
+- **Day 1 · 2hrs ·** show + run 2 engines + map the week + plant AI CEO seeds
+- **Day 2 · 2hrs ·** show 3 more engines + reveal AI CEO + 50-min pitch + close
+
+**42% of Day 2 is the pitch.** That's correct. Stop feeling weird about it.
 
 ---
 
@@ -52,24 +67,27 @@ Use one every **7-10 minutes maximum.** Set a timer if you have to.
 Three minutes of high energy. Three of content. Three of high. Three of
 content. Three of high. Repeat.
 
-**Practical:** never lecture for more than 7 minutes without an
-exercise, story, or state change. If you catch yourself on slide 12
-without an interaction, you've lost them. State change immediately.
+**Practical for 2-hour days:** never lecture for more than **5 minutes**
+without a state change, demo, or "your turn." A 2-hour workshop has
+zero room for slow stretches.
 
 **Day-level energy curve:**
 
 ```
-Day 1:  HIGH (open) → MED (foundation) → HIGH (lunch close) →
-        MED (sales) → HIGH (routines reveal) → MED (preview) →
-        HIGH (commit + Day 2 hook)
+Day 1 (2 hours):
+HIGH (open · 10 min) → MED (mkt engine demo · 10) → KIN (mkt run · 12) →
+HIGH (chat wall · 5) → BREAK (5) → MED (sales demo · 10) →
+KIN (sales run · 10) → HIGH (chat wall · 5) → MED (week map · 15) →
+PEAK (AI CEO seed · 5) → HIGH (commit · 8)
 
-Day 2:  HIGH (wins share) → MED (ops/cash) → HIGH (lunch close) →
-        MED (leadership) → PEAK (AI CEO reveal) → HIGH (the sell) →
-        PEAK (close) → MED (Q&A, integration)
+Day 2 (2 hours):
+HIGH (wins share · 10) → MED (3 engines rapid · 25) → BREAK (5) →
+MED (AI CEO reveal · 20) → PEAK (the pitch · 50) → HIGH (close · 10)
 ```
 
-The PEAK on Day 2 is the AI CEO pitch. Everything before that is
-calibrated to land that peak.
+KIN = kinesthetic (they're typing in their terminal). The PEAK on
+Day 2 is the AI CEO pitch. Everything before is calibrated to land
+that peak.
 
 ---
 
@@ -90,59 +108,68 @@ have a pair-share or chat discussion.
 
 ## 5 · Pre-Framing the Sell (the most important rule in the doc)
 
-The AI CEO sell on Day 2 at 4:15pm only works if you **pre-framed** it
-on Day 1. **Do not surprise them with a pitch.**
+The AI CEO pitch on Day 2 at 12:00 only works if you **pre-framed**
+it on Day 1. **Do not surprise them with a pitch.**
 
-**Pre-frame moments to plant on Day 1:**
+**The 3 AI-CEO seed moments on Day 1 (planted, no pitch attached):**
 
-| Moment | What to say |
-|--------|-------------|
-| **Opening (slide 6)** | "By the end of Sunday, you'll have a business that runs without you. Some of you will want to go further. We'll talk about that on Sunday afternoon. For now, focus on the 5 engines." |
-| **End of Block 4 (routines)** | "These 6 routines are your weekly autopilot. There's a 7th layer above this — an orchestration layer that runs the orchestrator — but that's Sunday afternoon. Today, master these 6." |
-| **Day 1 close (slide 48)** | "Tomorrow we'll cover the last 3 engines, then I'll show you the AI CEO. The AI CEO is what you build when you've outgrown doing this yourself. Some of you will be ready for it Sunday. Some of you won't. Both are fine." |
+| Slide | What to say |
+|-------|-------------|
+| **Day 1 · slide 5** | "Tomorrow at 12:00 · the layer above. Some of you will be ready for it. Some won't." |
+| **Day 1 · slide 24** | "5 · 6 · 1 · ?  Some of you, right now, are looking at this and thinking 'I want the layer above.' That's the AI CEO. Tomorrow at 12:00." |
+| **Day 1 · slide 27** | "Tomorrow we cover 3 more engines · then I show you the AI CEO. The thing some of you have been asking about all weekend." |
 
-**The phrase "AI CEO" must be spoken at least 4 times on Day 1 without
-a pitch attached.** Familiarity. Curiosity. No pressure.
+**The phrase "AI CEO" must be spoken 3+ times on Day 1 without a
+pitch attached.** Familiarity. Curiosity. No pressure.
+
+In a 2-hour day, you don't have room for 4 seeds — but 3 placed at
+slide 5 (open), slide 24 (mid-content), and slide 27 (close) creates
+the crescendo. By the time Day 2 starts, every student knows
+something is coming at 12:00.
 
 ---
 
-## 6 · The Trial Close (use 30+ times across the weekend)
+## 6 · The Trial Close (use 8 times across the weekend)
 
 Every concept block ends with a hands-up question. This builds the
 "yes ladder" T. Harv talks about.
 
 **Trial closes by block:**
 
-- After /marketing-engine: "Hands up if you'd run this every Monday."
-- After /sales-engine: "Hands up if you'd let Claude write your follow-ups for you."
-- After 6-routines: "Hands up if you can see your Monday-Sunday running while you sleep."
-- After /operations-engine: "Hands up if your inbox could be empty by 9am."
-- After /cash-engine: "Hands up if you want to see your real revenue every Friday without opening Stripe."
-- After /leadership-engine: "Hands up if you want to wake up to a 60-second brief on your whole business."
+- Day 1 · after /marketing-engine: "Hands up if you'd run this every Monday."
+- Day 1 · after /sales-engine: "Hands up if you'd let Claude write your follow-ups."
+- Day 1 · after 6-routines: "Hands up if you can see your week running while you sleep."
+- Day 2 · after /operations-engine: "Hands up if your inbox could be empty by 9am."
+- Day 2 · after /cash-engine: "Hands up if you want your real revenue every Friday without opening Stripe."
+- Day 2 · after /leadership-engine: "Hands up if you want a 60-second brief on your whole business every morning."
+- Day 2 · slide 11 (the big one): "Hands up if RIGHT NOW you have a business that runs without you."
+- Day 2 · slide 24 (the close): "Stand up if you can see how AI CEO would work for YOU."
 
-**Each "yes" is a deposit.** The pitch on Day 2 is the withdrawal.
+**Each "yes" is a deposit.** The 50-min pitch on Day 2 is the withdrawal.
 
 ---
 
 ## 7 · Anchors and Rituals
 
-**Opening ritual (every morning):**
-- 11:00 sharp · music up · cameras on · 60-second silence "look around the room"
-- 11:01 · "Type one word that describes how you arrived"
-- 11:02 · "Type one word that describes what you want by Sunday at 5"
-- 11:03 · "Stand up. Right now. Both hands in the air. Shout YES on 3."
+**Opening ritual (both days · 4 minutes):**
+- 11:00 sharp · music up · cameras on · 30 seconds of silence
+- 11:00:30 · "Type ONE word: how did you arrive?"
+- 11:01 · "Stand up. Both hands in the air. On 3, shout YES. 1·2·3·YES."
+- 11:02 · 4 agreements re-read · "type YES if we're on the same page"
+- 11:03 · today's map · "we go till 13:00 sharp"
 - 11:04 · Begin
 
-**Closing ritual (Day 1 only):**
-- 17:55 · "Type one win from today in chat"
-- 17:57 · "Type one thing you're committing to do before tomorrow at 11"
-- 17:59 · "See you tomorrow at 11. Be here. Be honest. Be ready."
+**Day 1 closing ritual (12:55 - 13:00 · 5 min):**
+- 12:55 · "Type one win from today in chat"
+- 12:57 · "Type 'I'll be back tomorrow at 11' in chat · public commitment"
+- 12:58 · acknowledge 6-8 commitments aloud
+- 13:00 · "Run your alarm Monday morning · see you tomorrow at 11"
 
-**Day 2 closing ritual (after the pitch):**
-- 17:30 · group photo (Zoom screenshot)
-- 17:35 · "Each person, unmute, give us your ONE win + your ONE next move"
-- 17:55 · graduation (you read each name + one specific thing they shipped)
-- 18:00 · final clap + cameras off
+**Day 2 closing ritual (12:50 - 13:00 · 10 min · after the pitch):**
+- 12:50 · 5 min Q&A · keep tight
+- 12:55 · "Each person · unmute · ONE word: how you feel"
+- 12:58 · graduation · you read each name (use Zoom roster)
+- 13:00 · group photo (Zoom screenshot) · "see you in the cohort or Monday morning"
 
 ---
 

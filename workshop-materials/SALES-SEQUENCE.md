@@ -1,9 +1,15 @@
-# Sales Sequence · The AI CEO Pitch · Day 2 · 16:15 - 17:15
+# Sales Sequence · The AI CEO Pitch · Day 2 · 12:00 - 12:50
 
-> 60 minutes. The most important hour of the workshop.
+> 50 minutes. The most important block of the entire workshop.
 > Method: T. Harv Eker's 7 P's (Promise · Provoke · Prove · Punch ·
-> Pivot · Practice · Persuade) · adapted for a $1,999 / $2,999 offer
-> over Zoom · cohort of 30.
+> Pivot · Practice · Persuade) · compressed for a 2hr/day workshop ·
+> $1,999 / $2,999 offer · cohort of 30.
+
+**The 50 minutes break down:**
+- 12:00-12:16 · Promise + Provoke + Prove + Punch · 16 min · YOU only, no slide
+- 12:16-12:24 · Pivot · what's inside · 2 tiers · 8 min · slides 20-21
+- 12:24-12:32 · Practice · stack + scarcity + risk reversal · 8 min · slides 22-23
+- 12:32-12:50 · Persuade · decisive close + live wall + objections · 18 min · slides 24-26
 
 **Economics:**
 - Workshop: 30 × $49 = $1,470
@@ -33,23 +39,23 @@ You're delivering on the seed you planted.
 
 | P | Time | Slide | What it does |
 |---|------|-------|--------------|
-| **Promise** | 16:15-16:18 | 34 | What you walk out with |
-| **Provoke** | 16:18-16:23 | 34 | The pain of staying where you are |
-| **Prove** | 16:23-16:27 | 34 | Why this works · proof |
-| **Punch** | 16:27-16:30 | 34 | The big idea, sharply stated |
-| **Pivot** | 16:30-16:35 | 35-36 | What's inside · 2 tiers |
-| **Practice** | 16:35-16:50 | 37-38 | Stack + scarcity + risk reversal |
-| **Persuade** | 16:50-17:15 | 39-43 | Decisive close · live wall · objections · last call |
+| **Promise** | 12:00-12:03 | 19 | What you walk out with |
+| **Provoke** | 12:03-12:08 | 19 | The pain of staying where you are |
+| **Prove** | 12:08-12:12 | 19 | Why this works · proof |
+| **Punch** | 12:12-12:16 | 19 | The big idea, sharply stated |
+| **Pivot** | 12:16-12:24 | 20-21 | What's inside · 2 tiers |
+| **Practice** | 12:24-12:32 | 22-23 | Stack + scarcity + risk reversal |
+| **Persuade** | 12:32-12:50 | 24-26 | Decisive close · live wall · objections · last call |
 
 ---
 
 ## VERBATIM PITCH SCRIPT
 
-### 16:15 · 1 · PROMISE (3 minutes · slide 34 · YOU only · no slide visible)
+### 12:00 · 1 · PROMISE (3 minutes · slide 19 · YOU only · no slide visible)
 
-> "I want to ask for 60 minutes of your attention.
+> "I want to ask for 50 minutes of your attention.
 >
-> You've earned 11 hours of mine.
+> You've earned 4 hours of mine.
 >
 > What I'm about to share with you is what I built for myself when I
 > realised the engines weren't enough. When I realised running the
@@ -73,7 +79,7 @@ You're delivering on the seed you planted.
 
 ---
 
-### 16:18 · 2 · PROVOKE (5 minutes · still no slide · YOU only)
+### 12:03 · 2 · PROVOKE (5 minutes · still no slide · YOU only)
 
 > "Let me tell you what's about to happen on Monday morning if you do
 > nothing.
@@ -109,7 +115,7 @@ You're delivering on the seed you planted.
 
 ---
 
-### 16:23 · 3 · PROVE (4 minutes · still no slide · YOU only)
+### 12:08 · 3 · PROVE (4 minutes · still no slide · YOU only)
 
 > "I built AI CEO for myself 6 months ago. I'll show you what it did.
 >
@@ -132,7 +138,7 @@ You're delivering on the seed you planted.
 
 ---
 
-### 16:27 · 4 · PUNCH (3 minutes · still no slide)
+### 12:12 · 4 · PUNCH (4 minutes · still no slide)
 
 > "Here's the punch.
 >
@@ -149,9 +155,9 @@ You're delivering on the seed you planted.
 
 ---
 
-### 16:30 · 5 · PIVOT · WHAT'S INSIDE (5 minutes · slides 35-36)
+### 12:16 · 5 · PIVOT · WHAT'S INSIDE (8 minutes · slides 20-21)
 
-**Slide 35 · TIER 1 · $1,999**
+**Slide 20 · TIER 1 · $1,999**
 
 > "Tier 1 is $1,999. Here's what's inside:
 >
@@ -177,7 +183,7 @@ You're delivering on the seed you planted.
 > Tier 1 is $1,999. That's everything you need to run AI CEO yourself
 > with the cohort backing you up."
 
-**Slide 36 · TIER 2 · $2,999**
+**Slide 21 · TIER 2 · $2,999**
 
 > "Tier 2 is $2,999. It includes everything in Tier 1, plus:
 >
@@ -205,9 +211,9 @@ You're delivering on the seed you planted.
 
 ---
 
-### 16:35 · 6 · PRACTICE · STACK + SCARCITY (8 minutes · slide 37)
+### 12:24 · 6 · PRACTICE · STACK + SCARCITY (5 minutes · slide 22)
 
-**Slide 37 · THE STACK**
+**Slide 22 · THE STACK**
 
 > "Let me put a number on what you're getting.
 >
@@ -230,13 +236,13 @@ You're delivering on the seed you planted.
 > Tier 1 is $1,999. Tier 2 is $2,999.
 >
 > But here's the part that matters: this offer · this price · is for
-> the 30 people in this room. After 18:00 tonight, both links close.
+> the 30 people in this room. After 13:00 today, both links close.
 > The next cohort, if I run one, is 3 months away and the price will
-> be $2,999 base. So this is the only window for $1,999. Tonight."
+> be $2,999 base. So this is the only window for $1,999. Today."
 
 ---
 
-### 16:43 · RISK REVERSAL (slide 38)
+### 12:29 · RISK REVERSAL (3 min · slide 23)
 
 > "Here's the deal I'm making with you.
 >
@@ -254,9 +260,9 @@ You're delivering on the seed you planted.
 
 ---
 
-### 16:50 · 7 · PERSUADE · THE DECISIVE CLOSE (5 min · slide 39)
+### 12:32 · 7 · PERSUADE · THE DECISIVE CLOSE (5 min · slide 24)
 
-**Slide 39 · "If you can see how this would work for YOU · stand up."**
+**Slide 24 · "If you can see how this would work for YOU · stand up."**
 
 > "Everyone stand up.
 >
@@ -285,19 +291,19 @@ You're delivering on the seed you planted.
 
 ---
 
-### 16:55 · DROP THE LINKS (slide 40)
+### 12:37 · DROP THE LINKS (slide 25)
 
 **Pin both links in chat. Both visible.**
 
 > "Two links. They're in chat. Pinned. Tier 1 · $1,999. Tier 2 ·
-> $2,999. Both close at 18:00 today.
+> $2,999. Both close at 13:00 today.
 >
-> Anyone wants help deciding · DM me. I'll respond inside 60 minutes.
+> Anyone wants help deciding · DM me. I'll respond inside 30 minutes.
 > Or just click."
 
 ---
 
-### 17:00 · 17:15 · LIVE WALL + OBJECTIONS (slides 41-42)
+### 12:40 · 12:50 · LIVE WALL + OBJECTIONS (slide 26)
 
 **As people buy, you announce each one out loud:**
 
@@ -319,22 +325,22 @@ You're delivering on the seed you planted.
 
 ---
 
-### 17:15 · LAST CALL (slide 43)
+### 12:48 · LAST CALL (slide 26)
 
-> "45 minutes left. Doors at 18:00.
+> "10 minutes till doors close at 13:00.
 >
 > If you're standing and you haven't clicked yet · click. Or DM me.
 > One of those two things.
 >
-> If you're sitting · stay with us through Q&A. We've got 30 minutes
+> If you're sitting · stay with us through Q&A. We've got 5 minutes
 > of any-question-you-want left."
 
 ---
 
-## After 18:00 · DOORS CLOSE
+## After 13:00 · DOORS CLOSE
 
-- Lock the Stripe links (you can keep them open if you want a 24-48hr post-workshop window · but announce it as such, don't sneak it).
-- DM every person who stood up at slide 39 but didn't buy. ONE message. "Saw you stood up. What's the question?"
+- Lock the Stripe links at 13:00 (or extend by 5 hours to 18:00 if you announce it: "doors close at 18:00 today instead of 13:00 · last window").
+- DM every person who stood up at slide 24 but didn't buy. ONE message. "Saw you stood up. What's the question?"
 - Send the group photo + 2-track recap email (one for buyers, one for non-buyers).
 
 ---
