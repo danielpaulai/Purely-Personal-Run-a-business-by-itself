@@ -758,14 +758,13 @@ I have: you (Claude Code) running. Git installed. A GitHub account.
 
 Do these in order. Confirm each before running:
 
-1. Clone the repo to my home directory:
-   git clone https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself.git ~/Purely-Personal-Run-a-business-by-itself
+1. Add the Purely Personal marketplace inside Claude Code:
+   /plugin marketplace add danielpaulai/Purely-Personal-Run-a-business-by-itself
 
-2. cd into the cloned folder.
+2. Install the plugin from the marketplace:
+   /plugin install purely-personal@purely-personal-marketplace
 
-3. Install the plugin: claude plugin install .
-
-4. List the 8 slash commands and confirm they all loaded:
+3. List the 8 slash commands and confirm they all loaded:
    build-my-brain, marketing-engine, sales-engine, operations-engine,
    cash-engine, leadership-engine, prep-workshop-slides, ship-it-live
 
@@ -804,11 +803,13 @@ Use the Bash tool. Don't make me type commands myself unless I have to (browser 
         <span class="out"></span>
         <span class="out" style="color:#a8a39b">$ git clone https://github.com/danielpaulai/Purely-Personal-Run-a-business-by-itself.git ...</span>
         <span class="out" style="color:#22c55e">✓ Cloned (4.2 MiB, 2,847 objects).</span>
-        <span class="out" style="color:#a8a39b">Now installing the plugin from inside the repo. Confirm?</span>
+        <span class="out" style="color:#a8a39b">Now adding the marketplace and installing the plugin. Confirm?</span>
         <span class="out"></span>
         <span class="out"><span class="prompt">&gt;</span> yes</span>
         <span class="out"></span>
-        <span class="out" style="color:#a8a39b">$ claude plugin install .</span>
+        <span class="out" style="color:#a8a39b">/plugin marketplace add danielpaulai/Purely-Personal-Run-a-business-by-itself</span>
+        <span class="out" style="color:#22c55e">✓ Marketplace 'purely-personal-marketplace' added.</span>
+        <span class="out" style="color:#a8a39b">/plugin install purely-personal@purely-personal-marketplace</span>
         <span class="out" style="color:#22c55e">✓ Plugin 'purely-personal' installed. 8 slash commands loaded:</span>
         <span class="out">  /build-my-brain · /marketing-engine · /sales-engine · /operations-engine</span>
         <span class="out">  /cash-engine · /leadership-engine · /prep-workshop-slides · /ship-it-live</span>
@@ -1492,12 +1493,16 @@ Use the Bash tool. Don't make me type commands myself unless I have to (browser 
         <div class="tg-body"><strong>Mac:</strong> the <code>xcode-select --install</code> dialog never appeared, or you clicked Cancel. Re-run the command. <strong>Windows:</strong> the git installer didn't finish or you're not using Git Bash. Open Git Bash from Start menu.</div>
       </details>
       <details>
-        <summary><code>claude plugin install .</code> fails or says "not recognized"</summary>
-        <div class="tg-body"><strong>Check 1:</strong> you're <em>inside</em> the cloned repo folder. Type <code>pwd</code> (Mac) or <code>cd</code> (Win). The path should end in <code>Purely-Personal-Run-a-business-by-itself</code>. <strong>Check 2:</strong> your Claude Code is 1.0 or newer. Run <code>claude --version</code>. <strong>Fallback:</strong> symlink manually with <code>ln -s $(pwd) ~/.claude/plugins/purely-personal</code>.</div>
+        <summary>I typed <code>/</code> in Claude Code but no Purely Personal commands appear</summary>
+        <div class="tg-body"><strong>Cause:</strong> the plugin marketplace wasn't added. Claude Code 2.x installs plugins from marketplaces (a GitHub repo with a <code>marketplace.json</code>) · not from local folders. <strong>Fix:</strong> inside Claude Code, type <code>/plugin marketplace add danielpaulai/Purely-Personal-Run-a-business-by-itself</code> and press Enter. Then <code>/plugin install purely-personal@purely-personal-marketplace</code>. Restart Claude Code if needed. Type <code>/</code> · all 8 commands should appear.</div>
+      </details>
+      <details>
+        <summary><code>claude plugin install .</code> says "not recognized" (the OLD instruction)</summary>
+        <div class="tg-body"><strong>Why:</strong> that command was for an older Claude Code version. Claude Code 2.x has no <code>claude plugin install</code> CLI command at all. Use the new flow: <code>/plugin marketplace add danielpaulai/Purely-Personal-Run-a-business-by-itself</code> from INSIDE Claude Code (not the terminal). Then <code>/plugin install purely-personal@purely-personal-marketplace</code>.</div>
       </details>
       <details>
         <summary>Only 5 or 6 slash commands appear, not 8</summary>
-        <div class="tg-body">Plugin didn't fully install. Close Claude Code. Run <code>claude plugin list</code> and confirm <code>purely-personal</code> appears. If not, re-run <code>claude plugin install .</code> from inside the repo.</div>
+        <div class="tg-body">Plugin didn't fully install. Inside Claude Code, type <code>/plugin list</code> and confirm <code>purely-personal@purely-personal-marketplace</code> appears. If not, re-run <code>/plugin install purely-personal@purely-personal-marketplace</code>. If still missing, run <code>/plugin marketplace list</code> to confirm the marketplace was added correctly.</div>
       </details>
     </div>
 
@@ -1556,7 +1561,7 @@ Use the Bash tool. Don't make me type commands myself unless I have to (browser 
       </details>
       <details>
         <summary><code>/plugins</code> inside Claude Code says "no plugins"</summary>
-        <div class="tg-body">You're inside Claude Code but the plugin wasn't installed globally. Go back to the repo folder, run <code>claude plugin install .</code> once more, then <code>cd ~/Desktop/my-business</code> and re-launch <code>claude</code>.</div>
+        <div class="tg-body">The plugin marketplace wasn't added. Inside Claude Code: <code>/plugin marketplace add danielpaulai/Purely-Personal-Run-a-business-by-itself</code> then <code>/plugin install purely-personal@purely-personal-marketplace</code>. Restart Claude Code. Type <code>/</code> · all 8 commands should appear.</div>
       </details>
       <details>
         <summary>Claude Code won't launch at all</summary>
