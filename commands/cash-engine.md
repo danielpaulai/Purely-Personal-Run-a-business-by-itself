@@ -1,6 +1,6 @@
 ---
 description: Pull Stripe, forecast 90 days, flag anomalies. Reads BUSINESS-BRAIN.md for key metric + 90-day goal.
-argument-hint: [optional: "forecast" | "anomalies" | "pricing"]
+argument-hint: '[optional: forecast | anomalies | pricing]'
 ---
 
 # /cash-engine

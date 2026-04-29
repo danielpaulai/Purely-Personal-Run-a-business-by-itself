@@ -1,14 +1,13 @@
 {
-  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "purely-personal-marketplace",
-  "description": "The Purely Personal AI C-Suite plugin · 5 engines (Marketing, Sales, Operations, Cash, Leadership) + 38 frameworks + BUSINESS-BRAIN.md as the context layer",
   "owner": {
     "name": "Daniel Paul",
     "email": "danny@danielpaul.ai",
     "url": "https://purelypersonal.ai"
   },
   "metadata": {
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "description": "The Purely Personal AI C-Suite plugin · 5 engines (Marketing, Sales, Operations, Cash, Leadership) + 38 frameworks + BUSINESS-BRAIN.md as the context layer"
   },
   "plugins": [
     {

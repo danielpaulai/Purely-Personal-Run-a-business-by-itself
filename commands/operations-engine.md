@@ -1,6 +1,6 @@
 ---
 description: Triage your inbox, extract recurring patterns, and generate SOPs from what you actually do. Reads BUSINESS-BRAIN.md for voice + business context.
-argument-hint: [optional: "inbox" | "sop" | "audit"]
+argument-hint: '[optional: inbox | sop | audit]'
 ---
 
 # /operations-engine

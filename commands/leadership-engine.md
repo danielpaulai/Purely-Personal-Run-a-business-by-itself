@@ -1,6 +1,6 @@
 ---
 description: The morning brief. Summarizes the last 7 days across Marketing, Sales, Operations, and Cash — plus the top 3 priorities for today. Reads BUSINESS-BRAIN.md for goal context.
-argument-hint: [optional: "today" | "week" | "month"]
+argument-hint: '[optional: today | week | month]'
 ---
 
 # /leadership-engine
