@@ -768,10 +768,23 @@ Do these in order. Confirm each before running:
    then run `claude` again from your terminal. Plugins only load
    at session start.
 
-4. After restart, type / and confirm all 9 slash commands appear:
-   build-my-brain, marketing-engine, sales-engine, operations-engine,
-   cash-engine, leadership-engine, prep-workshop-slides, ship-it-live,
-   new-workshop
+4. After restart, type /purely-personal and the 9 commands filter
+   into the autocomplete with the namespace prefix:
+   /purely-personal:build-my-brain
+   /purely-personal:marketing-engine
+   /purely-personal:sales-engine
+   /purely-personal:operations-engine
+   /purely-personal:cash-engine
+   /purely-personal:leadership-engine
+   /purely-personal:prep-workshop-slides
+   /purely-personal:ship-it-live
+   /purely-personal:new-workshop
+
+   IMPORTANT: Claude Code 2.x prefixes every plugin command with
+   the plugin name (purely-personal:) to prevent collisions. The
+   commands work the same · they're just typed with the prefix.
+   When you see /marketing-engine in this guide, type
+   /purely-personal:marketing-engine to invoke it.
 
 5. Wire Apify MCP into Claude Desktop:
    - Tell me to go to apify.com, sign up free, then console.apify.com to create a token named "Claude Workshop"
@@ -816,8 +829,11 @@ Use the Bash tool. Don't make me type commands myself unless I have to (browser 
         <span class="out" style="color:#22c55e">✓ Marketplace 'purely-personal-marketplace' added.</span>
         <span class="out" style="color:#a8a39b">/plugin install purely-personal@purely-personal-marketplace</span>
         <span class="out" style="color:#22c55e">✓ Plugin 'purely-personal' installed. 8 slash commands loaded:</span>
-        <span class="out">  /build-my-brain · /marketing-engine · /sales-engine · /operations-engine</span>
-        <span class="out">  /cash-engine · /leadership-engine · /prep-workshop-slides · /ship-it-live</span>
+        <span class="out">  /purely-personal:build-my-brain · /purely-personal:marketing-engine</span>
+        <span class="out">  /purely-personal:sales-engine · /purely-personal:operations-engine</span>
+        <span class="out">  /purely-personal:cash-engine · /purely-personal:leadership-engine</span>
+        <span class="out">  /purely-personal:prep-workshop-slides · /purely-personal:ship-it-live</span>
+        <span class="out">  /purely-personal:new-workshop</span>
         <span class="out"></span>
         <span class="out" style="color:#a8a39b">Now Apify. Open <span class="hl">apify.com</span> in your browser. Sign up (free). Then go to console.apify.com → Settings → Integrations → Create new token. Name it "Claude Workshop". Paste it here when you have it.</span>
         <span class="out"></span>
@@ -1499,7 +1515,7 @@ Use the Bash tool. Don't make me type commands myself unless I have to (browser 
       </details>
       <details>
         <summary>I typed <code>/</code> in Claude Code but no Purely Personal commands appear</summary>
-        <div class="tg-body"><strong>Most common cause:</strong> you didn't restart Claude Code after installing the plugin. Plugins only load at session start. <strong>Fix:</strong> type <code>/exit</code> (or press Ctrl+D), then re-run <code>claude</code> in your terminal. Type <code>/</code> · all 9 commands appear with descriptions. <strong>If that fails:</strong> the marketplace wasn't added. Inside Claude Code, type <code>/plugin marketplace add danielpaulai/Purely-Personal-Run-a-business-by-itself</code>, then <code>/plugin install purely-personal@purely-personal-marketplace</code>, THEN restart.</div>
+        <div class="tg-body"><strong>Most common cause:</strong> you're looking for <code>/build-my-brain</code> but Claude Code 2.x namespaces plugin commands as <code>/purely-personal:build-my-brain</code>. <strong>Fix:</strong> type <code>/purely-personal</code> · all 9 commands filter into the autocomplete. <strong>If they still don't appear:</strong> you didn't restart Claude Code. Type <code>/exit</code> (or Ctrl+D), re-run <code>claude</code>, type <code>/purely-personal</code>. <strong>If they're still not there:</strong> the marketplace wasn't added. Run <code>/plugin marketplace add danielpaulai/Purely-Personal-Run-a-business-by-itself</code>, then <code>/plugin install purely-personal@purely-personal-marketplace</code>, THEN restart.</div>
       </details>
       <details>
         <summary><code>claude plugin install .</code> says "not recognized" (the OLD instruction)</summary>
@@ -1566,7 +1582,7 @@ Use the Bash tool. Don't make me type commands myself unless I have to (browser 
       </details>
       <details>
         <summary><code>/plugins</code> inside Claude Code says "no plugins"</summary>
-        <div class="tg-body">Either the marketplace wasn't added OR you forgot to restart. <strong>First try:</strong> <code>/exit</code> · then re-run <code>claude</code>. Plugins only load at session start. <strong>If that doesn't work:</strong> the marketplace was never added. Run <code>/plugin marketplace add danielpaulai/Purely-Personal-Run-a-business-by-itself</code>, then <code>/plugin install purely-personal@purely-personal-marketplace</code>, THEN <code>/exit</code> + re-run <code>claude</code>. Type <code>/</code> · all 9 commands appear.</div>
+        <div class="tg-body">Three possible causes in order. <strong>First:</strong> commands ARE installed but namespaced. Type <code>/purely-personal</code> instead of <code>/build-my-brain</code> · all 9 appear. <strong>Second:</strong> you forgot to restart. <code>/exit</code> · re-run <code>claude</code>. <strong>Third:</strong> marketplace wasn't added. Run <code>/plugin marketplace add danielpaulai/Purely-Personal-Run-a-business-by-itself</code>, then <code>/plugin install purely-personal@purely-personal-marketplace</code>, THEN <code>/exit</code> + re-run <code>claude</code>.</div>
       </details>
       <details>
         <summary>Claude Code won't launch at all</summary>
