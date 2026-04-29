@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 2 · In-Class Workbook · Purely Personal</title>
+<meta name="description" content="Day 2 fillable workbook · Sunday May 3, 2026 · Build a Business That Runs By Itself.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Rethink+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page-bg:#faf8f4;--card-bg:#ffffff;--sub-card-bg:#fbf9f6;
+  --divider:#e8e2d8;--divider-strong:#d0cdc8;
+  --text-primary:#1a1a1a;--text-secondary:#6b6b6b;--text-muted:#a8a39b;
+  --pp-red:#e90d41;--pp-red-deep:#c70a38;--pp-red-soft:#fce8ed;--pp-red-whisper:#fdf2f5;
+  --dark:#0f0f10;--dark-card:#16171a;
+  --good:#1a8d4d;--good-soft:#e6f4ec;
+  --display:'Rethink Sans','Inter',-apple-system,sans-serif;
+  --body:'Inter',-apple-system,sans-serif;
+  --mono:'JetBrains Mono','SF Mono',Menlo,monospace;
+  --shadow-card:0 1px 2px rgba(20,14,8,.04),0 6px 20px rgba(20,14,8,.05);
+  --shadow-red:0 4px 16px rgba(233,13,65,.25);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--page-bg);color:var(--text-primary);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--pp-red);text-decoration:none;border-bottom:1px solid transparent;transition:border-color 120ms}
+a:hover{border-color:var(--pp-red)}
+.nav{position:sticky;top:0;z-index:30;background:rgba(250,248,244,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--divider)}
+.nav-inner{max-width:980px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:15px}
+.brand .mark{width:24px;height:24px;background:var(--pp-red);border-radius:5px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:12px}
+.brand .sep{color:var(--text-muted);font-weight:400;margin:0 6px}
+.brand .label{color:var(--text-secondary);font-weight:600;font-size:12px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.day-pill{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pp-red);background:var(--pp-red-soft);padding:5px 10px;border-radius:3px}
+.spacer{flex:1}
+.btn-line{appearance:none;border:1px solid var(--divider-strong);background:#fff;color:var(--text-primary);padding:7px 12px;border-radius:5px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:border-color 120ms,background 120ms}
+.btn-line:hover{border-color:var(--pp-red);background:var(--pp-red-whisper);color:var(--pp-red)}
+.btn-line.danger{color:#a02232;border-color:#e8c2cb}
+.btn-line.danger:hover{background:#fbeef1}
+.btn-pill{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;background:var(--pp-red);color:#fff;border-radius:5px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:0;cursor:pointer;text-decoration:none}
+.btn-pill:hover{background:var(--pp-red-deep);border:0}
+.hero{padding:48px 24px 24px;background:linear-gradient(180deg,#fff 0%,var(--page-bg) 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-180px;right:-180px;width:520px;height:520px;border-radius:999px;background:radial-gradient(circle,rgba(233,13,65,.05) 0%,transparent 60%);pointer-events:none}
+.hero-inner{max-width:980px;margin:0 auto;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pp-red);background:var(--pp-red-soft);padding:6px 12px;border-radius:3px;margin-bottom:18px}
+h1{font-family:var(--display);font-size:46px;font-weight:800;line-height:1.05;letter-spacing:-.025em;margin:0 0 14px;max-width:760px}
+h1 em{font-style:normal;color:var(--pp-red)}
+.hero-sub{font-size:17px;color:var(--text-secondary);max-width:640px;line-height:1.5;margin:0}
+.meta-strip{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--text-secondary);letter-spacing:.06em}
+.meta-strip span{padding:6px 12px;background:#fff;border:1px solid var(--divider);border-radius:4px}
+.meta-strip b{color:var(--text-primary);font-weight:700;letter-spacing:0}
+main{max-width:980px;margin:24px auto 80px;padding:0 24px}
+h2{font-family:var(--display);font-size:24px;font-weight:800;letter-spacing:-.015em;margin:0 0 6px}
+h3{font-family:var(--display);font-size:15px;font-weight:700;margin:18px 0 8px;color:var(--text-primary)}
+.kicker{display:block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pp-red);margin-bottom:6px}
+.muted{color:var(--text-muted)}
+.dim{color:var(--text-secondary)}
+code.inline{font-family:var(--mono);font-size:12.5px;background:var(--page-bg);padding:1px 6px;border-radius:3px;color:var(--pp-red);border:1px solid var(--divider)}
+.panel{background:var(--card-bg);border:1px solid var(--divider);border-radius:10px;padding:24px;margin:18px 0;box-shadow:var(--shadow-card)}
+.panel.activity{position:relative;border-left:3px solid var(--pp-red);padding-left:26px}
+.panel h2{margin-top:0}
+.time{display:inline-flex;align-items:center;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--pp-red);background:var(--pp-red-soft);padding:4px 9px;border-radius:3px;margin-left:10px;vertical-align:2px}
+.goal{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;background:var(--sub-card-bg);border:1px solid var(--divider);border-radius:8px;padding:14px;margin:14px 0 18px}
+.goal div{font-size:13.5px;color:var(--text-primary);line-height:1.45}
+.goal b{display:block;font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--pp-red);margin-bottom:4px}
+@media(max-width:680px){.goal{grid-template-columns:1fr}}
+label.field{display:block;margin:12px 0}
+label.field>span{display:block;font-size:13px;color:var(--text-secondary);margin-bottom:6px;font-weight:500}
+input[type=text],input[type=number],input[type=date],textarea,select{width:100%;background:#fff;border:1px solid var(--divider-strong);color:var(--text-primary);padding:10px 12px;border-radius:6px;font-family:inherit;font-size:14px;line-height:1.5;transition:border-color 120ms,box-shadow 120ms}
+textarea{min-height:78px;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--pp-red);box-shadow:0 0 0 3px rgba(233,13,65,.12)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:640px){.row,.row-3{grid-template-columns:1fr}}
+.checkrow{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-radius:6px;cursor:pointer;border:1px solid transparent;font-size:14px;line-height:1.45}
+.checkrow:hover{background:var(--sub-card-bg);border-color:var(--divider)}
+.checkrow input[type=checkbox]{margin-top:2px;accent-color:var(--pp-red);width:17px;height:17px;flex-shrink:0;cursor:pointer}
+.radios{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.radios label{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--divider-strong);padding:7px 12px;border-radius:5px;cursor:pointer;font-size:13px;color:var(--text-secondary);transition:border-color 120ms,color 120ms,background 120ms}
+.radios label:hover{border-color:var(--pp-red);color:var(--text-primary)}
+.radios input[type=radio]{accent-color:var(--pp-red);margin:0}
+.radios label:has(input:checked){color:var(--text-primary);border-color:var(--pp-red);background:var(--pp-red-whisper)}
+.paste{background:var(--dark);border-radius:10px;padding:14px 16px 14px;margin:14px 0;font-family:var(--mono);color:#e9ecf1;position:relative;border:1px solid #1f2227;box-shadow:0 6px 18px rgba(15,15,16,.18)}
+.paste .paste-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.paste .label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--pp-red);font-weight:700;font-family:var(--mono)}
+.paste .badge{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9be3b6;background:#13502f;padding:2px 7px;border-radius:3px}
+.paste pre{margin:0;white-space:pre-wrap;word-break:break-word;font-size:13.5px;line-height:1.55;color:#e9ecf1}
+.paste .copy{position:absolute;top:12px;right:12px;background:var(--pp-red);border:0;color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:.1em;font-weight:700;padding:6px 10px;border-radius:4px;cursor:pointer;text-transform:uppercase;transition:background 120ms}
+.paste .copy:hover{background:var(--pp-red-deep)}
+.paste .copy.ok{background:var(--good)}
+table{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:13.5px;background:#fff;border-radius:6px;overflow:hidden;border:1px solid var(--divider)}
+th,td{border-bottom:1px solid var(--divider);padding:10px 12px;text-align:left;vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{background:var(--sub-card-bg);color:var(--text-secondary);font-weight:700;font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono)}
+td input[type=text],td input[type=number]{padding:6px 8px;font-size:13px;border-radius:4px}
+td input[type=checkbox],td input[type=radio]{accent-color:var(--pp-red);width:17px;height:17px;cursor:pointer}
+.score{display:flex;align-items:center;gap:18px;background:var(--pp-red-whisper);border:1px solid var(--pp-red-soft);border-radius:8px;padding:14px 18px;margin-top:16px}
+.score .num{font-family:var(--display);font-size:30px;font-weight:800;color:var(--pp-red);line-height:1}
+.score .legend{font-family:var(--mono);font-size:11px;color:var(--text-secondary);letter-spacing:.04em}
+.score .legend b{color:var(--text-primary);font-weight:700}
+.troubleshoot th{color:var(--pp-red)}
+.foot{text-align:center;margin-top:42px;padding-top:18px;border-top:1px solid var(--divider);font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:.08em}
+.foot a{color:var(--text-muted)}
+.foot a:hover{color:var(--pp-red)}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1a1a1d;color:#fff;padding:10px 16px;border-radius:6px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;opacity:0;pointer-events:none;transition:opacity .2s ease;z-index:60;box-shadow:0 6px 24px rgba(15,15,16,.3)}
+.toast.on{opacity:1}
+.hidden{display:none!important}
+.sign{background:var(--sub-card-bg);border:1px dashed var(--divider-strong);border-radius:8px;padding:16px 18px;margin-top:14px}
+.sign h3{margin-top:0}
+.callout{background:var(--pp-red-whisper);border:1px solid var(--pp-red-soft);border-radius:8px;padding:14px 16px;font-size:13.5px;color:var(--text-primary);margin:14px 0;display:flex;gap:12px;align-items:flex-start}
+.callout .ico{flex-shrink:0;width:24px;height:24px;background:var(--pp-red);color:#fff;border-radius:5px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;font-family:var(--display)}
+.callout b{color:var(--pp-red);font-weight:700}
+
+/* AI CEO panel — special treatment */
+.aiceo{background:linear-gradient(180deg,var(--dark) 0%,var(--dark-card) 100%);color:#e9ecf1;border:1px solid #2a2c33;border-radius:14px;padding:28px;margin:20px 0;position:relative;overflow:hidden}
+.aiceo::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:999px;background:radial-gradient(circle,rgba(233,13,65,.18) 0%,transparent 60%);pointer-events:none}
+.aiceo h2{color:#fff;position:relative}
+.aiceo .kicker{color:var(--pp-red)}
+.aiceo h3{color:#fff;border-top:1px solid rgba(255,255,255,.08);padding-top:16px;margin-top:18px}
+.aiceo h3:first-of-type{border-top:0;padding-top:0}
+.aiceo .checkrow{color:#d6dae4}
+.aiceo .checkrow:hover{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}
+.aiceo .checkrow input[type=checkbox]{accent-color:var(--pp-red)}
+.aiceo .row,.aiceo .row-3{margin:6px 0}
+.aiceo .score{background:rgba(233,13,65,.12);border-color:rgba(233,13,65,.3);color:#fff}
+.aiceo .score .num{color:#fff}
+.aiceo .score .legend{color:#a4adbe}
+.aiceo .score .legend b{color:#fff}
+.aiceo .radios label{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);color:#a4adbe}
+.aiceo .radios label:has(input:checked){background:rgba(233,13,65,.18);border-color:var(--pp-red);color:#fff}
+.aiceo textarea,.aiceo input[type=text]{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);color:#fff}
+.aiceo textarea:focus,.aiceo input[type=text]:focus{border-color:var(--pp-red);box-shadow:0 0 0 3px rgba(233,13,65,.2)}
+.aiceo label.field>span{color:#a4adbe}
+.aiceo .pricing{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.aiceo .pricing .tier{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:14px}
+.aiceo .pricing .tier b{display:block;font-family:var(--display);font-size:14px;color:#fff;margin-bottom:4px}
+.aiceo .pricing .tier .price{font-family:var(--mono);font-size:13px;color:var(--pp-red);font-weight:700}
+@media(max-width:640px){.aiceo .pricing{grid-template-columns:1fr}}
+
+@media print{
+  :root{--page-bg:#fff}
+  .nav,.btn-line,.btn-pill,.copy,.toast{display:none!important}
+  body{background:#fff}
+  .panel{box-shadow:none;break-inside:avoid;page-break-inside:avoid;border-color:#bbb}
+  .paste,.aiceo{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .paste .copy{display:none!important}
+  .hero{padding:24px 0}
+  main{margin:12px 0;padding:0 12mm;max-width:none}
+  h2{break-after:avoid}
+  .score{break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .eyebrow,.time,.kicker,.day-pill,.callout{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand"><div class="mark">P</div>Purely Personal<span class="sep">·</span><span class="label">In-Class Workbook</span></div>
+    <span class="day-pill">Day 2</span>
+    <div class="spacer"></div>
+    <button class="btn-line" id="saveBtn">Save</button>
+    <button class="btn-line" id="loadBtn">Load</button>
+    <input type="file" id="loadFile" class="hidden" accept="application/json,.json">
+    <button class="btn-line" onclick="window.print()">Print / PDF</button>
+    <button class="btn-line danger" id="resetBtn">Reset</button>
+    <a class="btn-pill" href="../day-1/">← Day 1</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Sunday May 3, 2026 · Day 2 of 2</span>
+    <h1>Finish the system.<br>Decide on <em>AI CEO</em>.</h1>
+    <p class="hero-sub">Today we close the loop: operations, cash, leadership · then the platform decision. By 13:00 you'll have a 90-day cash forecast in your hands and a clear yes / not-yet / no on the AI CEO Platform.</p>
+    <div class="meta-strip">
+      <span><b>11:00 - 13:00</b> Finland UTC+3</span>
+      <span><b>3 activities</b> + AI CEO</span>
+      <span><b>Live Zoom</b> cameras on</span>
+      <span><b>Decision</b> by 13:00</span>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <!-- ── Win share ── -->
+  <div class="panel">
+    <span class="kicker">Step 0 · Win-share</span>
+    <h2>What happened between Day 1 and today? <span class="time">11:00 - 11:15</span></h2>
+    <div class="row">
+      <label class="field"><span>Did you publish the post?</span>
+        <select data-k="d2.win.publish"><option value="">—</option><option>Yes</option><option>No</option></select>
+      </label>
+      <label class="field"><span>Likes / comments</span><input type="text" data-k="d2.win.engagement"></label>
+    </div>
+    <div class="row">
+      <label class="field"><span>Did you send the 3 outreaches?</span>
+        <select data-k="d2.win.outreach"><option value="">—</option><option>Yes</option><option>No</option></select>
+      </label>
+      <label class="field"><span>Replies so far</span><input type="text" data-k="d2.win.replies"></label>
+    </div>
+    <label class="field"><span>Did the Monday brief fire?</span>
+      <div class="radios">
+        <label><input type="radio" name="d2winbrief" data-k="d2.win.brief" value="yes">Yes</label>
+        <label><input type="radio" name="d2winbrief" data-k="d2.win.brief" value="no">No</label>
+        <label><input type="radio" name="d2winbrief" data-k="d2.win.brief" value="skipped">Skipped</label>
+      </div>
+    </label>
+    <label class="field"><span>One thing that surprised me</span><textarea data-k="d2.win.surprise"></textarea></label>
+    <div class="callout"><div class="ico">📸</div><div>Screenshot this section · drop in Zoom chat. Three minutes max — we go round-robin.</div></div>
+  </div>
+
+  <!-- ── Activity 5 ── -->
+  <div class="panel activity">
+    <span class="kicker">Activity 5</span>
+    <h2>Inbox on autopilot <span class="time">11:20 - 11:40</span></h2>
+    <div class="goal">
+      <div><b>Goal</b>Triage · draft replies · 1 SOP shipped</div>
+      <div><b>Tool</b><code class="inline">/purely-personal:operations-engine</code></div>
+      <div><b>Win</b>Inbox to zero pending review</div>
+    </div>
+
+    <h3>5.1 · Run operations-engine</h3>
+    <div class="paste">
+      <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">triage 7 days</span></div>
+<pre>/purely-personal:operations-engine
+
+triage last 7 days · draft replies for high-priority</pre>
+      <button class="copy" data-copy="/purely-personal:operations-engine
+
+triage last 7 days · draft replies for high-priority">Copy</button>
+    </div>
+
+    <h3>5.2 · Triage results</h3>
+    <div class="row">
+      <label class="field"><span>🔥 Needs you personally</span><input type="number" data-k="d2.a5.needs"></label>
+      <label class="field"><span>⚡ Drafted reply</span><input type="number" data-k="d2.a5.drafted"></label>
+    </div>
+    <div class="row">
+      <label class="field"><span>📂 Should be archived</span><input type="number" data-k="d2.a5.archive"></label>
+      <label class="field"><span>🗑 Should be deleted</span><input type="number" data-k="d2.a5.delete"></label>
+    </div>
+    <label class="field"><span>Total time saved (estimate, minutes)</span><input type="number" data-k="d2.a5.saved"></label>
+
+    <h3>5.3 · Approve drafts</h3>
+    <table>
+      <tr><th>#</th><th>To</th><th>Approve</th><th>Edit</th><th>Reject</th></tr>
+      <tr><td>1</td><td><input type="text" data-k="d2.a5.d1.to"></td><td><input type="radio" name="d2a5d1" data-k="d2.a5.d1.act" value="approve"></td><td><input type="radio" name="d2a5d1" data-k="d2.a5.d1.act" value="edit"></td><td><input type="radio" name="d2a5d1" data-k="d2.a5.d1.act" value="reject"></td></tr>
+      <tr><td>2</td><td><input type="text" data-k="d2.a5.d2.to"></td><td><input type="radio" name="d2a5d2" data-k="d2.a5.d2.act" value="approve"></td><td><input type="radio" name="d2a5d2" data-k="d2.a5.d2.act" value="edit"></td><td><input type="radio" name="d2a5d2" data-k="d2.a5.d2.act" value="reject"></td></tr>
+      <tr><td>3</td><td><input type="text" data-k="d2.a5.d3.to"></td><td><input type="radio" name="d2a5d3" data-k="d2.a5.d3.act" value="approve"></td><td><input type="radio" name="d2a5d3" data-k="d2.a5.d3.act" value="edit"></td><td><input type="radio" name="d2a5d3" data-k="d2.a5.d3.act" value="reject"></td></tr>
+      <tr><td>4</td><td><input type="text" data-k="d2.a5.d4.to"></td><td><input type="radio" name="d2a5d4" data-k="d2.a5.d4.act" value="approve"></td><td><input type="radio" name="d2a5d4" data-k="d2.a5.d4.act" value="edit"></td><td><input type="radio" name="d2a5d4" data-k="d2.a5.d4.act" value="reject"></td></tr>
+      <tr><td>5</td><td><input type="text" data-k="d2.a5.d5.to"></td><td><input type="radio" name="d2a5d5" data-k="d2.a5.d5.act" value="approve"></td><td><input type="radio" name="d2a5d5" data-k="d2.a5.d5.act" value="edit"></td><td><input type="radio" name="d2a5d5" data-k="d2.a5.d5.act" value="reject"></td></tr>
+    </table>
+
+    <h3>5.4 · Generate one SOP</h3>
+    <label class="field"><span>Recurring question (asked 3+ times)</span><textarea data-k="d2.a5.sop.q"></textarea></label>
+    <div class="paste">
+      <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">create SOP</span></div>
+<pre>create an SOP for the recurring question:
+"[paste your question from above]"
+· save to /sops/ folder
+· 1-page max · steps + screenshots placeholder</pre>
+      <button class="copy" data-copy='create an SOP for the recurring question:
+"[paste your question from above]"
+· save to /sops/ folder
+· 1-page max · steps + screenshots placeholder'>Copy</button>
+    </div>
+    <label class="checkrow"><input type="checkbox" data-k="d2.a5.sop.saved"> <span>SOP saved to <code class="inline">/sops/[name].md</code></span></label>
+    <label class="checkrow"><input type="checkbox" data-k="d2.a5.sop.linked"> <span>Linked from BUSINESS-BRAIN.md section 7</span></label>
+
+    <h3>Troubleshooting</h3>
+    <table class="troubleshoot">
+      <tr><th>What went wrong</th><th>Quick fix</th></tr>
+      <tr><td>Gmail not connected</td><td>Open <a href="https://claude.ai/customize/connectors">claude.ai/customize/connectors</a> → Gmail → grant ALL 4 permissions</td></tr>
+      <tr><td>Drafts in wrong tone</td><td>Paste: <code class="inline">re-draft using my voice from VOICE-SIGNATURE.md</code></td></tr>
+      <tr><td>Triage too aggressive</td><td>Paste: <code class="inline">move all "deletes" to archive instead · I'll review later</code></td></tr>
+      <tr><td>SOP too long</td><td>Paste: <code class="inline">cut to 200 words · 5 numbered steps max</code></td></tr>
+    </table>
+
+    <label class="checkrow"><input type="checkbox" data-k="d2.a5.done"> <span><b>Activity 5 complete</b> · Inbox triaged · 1 SOP shipped</span></label>
+  </div>
+
+  <!-- ── Activity 6 ── -->
+  <div class="panel activity">
+    <span class="kicker">Activity 6</span>
+    <h2>Money on rails <span class="time">11:45 - 12:00</span></h2>
+    <div class="goal">
+      <div><b>Goal</b>90-day cash forecast + Profit First splits</div>
+      <div><b>Tool</b><code class="inline">/purely-personal:cash-engine</code></div>
+      <div><b>Win</b>Runway visible · Friday transfers ready</div>
+    </div>
+
+    <div class="paste">
+      <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">90-day forecast</span></div>
+<pre>/purely-personal:cash-engine
+
+90-day forecast · pull Stripe + bank · Profit First splits</pre>
+      <button class="copy" data-copy="/purely-personal:cash-engine
+
+90-day forecast · pull Stripe + bank · Profit First splits">Copy</button>
+    </div>
+
+    <h3>Last 30 days</h3>
+    <div class="row-3">
+      <label class="field"><span>Revenue $</span><input type="text" data-k="d2.a6.rev"></label>
+      <label class="field"><span>Expenses $</span><input type="text" data-k="d2.a6.exp"></label>
+      <label class="field"><span>Net $</span><input type="text" data-k="d2.a6.net"></label>
+    </div>
+
+    <h3>Next 90 days · forecast</h3>
+    <div class="row-3">
+      <label class="field"><span>Expected revenue $</span><input type="text" data-k="d2.a6.fc.rev"></label>
+      <label class="field"><span>Fixed costs $</span><input type="text" data-k="d2.a6.fc.cost"></label>
+      <label class="field"><span>Runway (months)</span><input type="text" data-k="d2.a6.fc.runway"></label>
+    </div>
+
+    <h3>Profit First · Friday transfers</h3>
+    <div class="row">
+      <label class="field"><span>Profit (5%) $</span><input type="text" data-k="d2.a6.pf.profit"></label>
+      <label class="field"><span>Owner pay (50%) $</span><input type="text" data-k="d2.a6.pf.owner"></label>
+    </div>
+    <div class="row">
+      <label class="field"><span>Tax (15%) $</span><input type="text" data-k="d2.a6.pf.tax"></label>
+      <label class="field"><span>Operating (30%) $</span><input type="text" data-k="d2.a6.pf.op"></label>
+    </div>
+
+    <h3>Looking at my 90-day forecast · the ONE thing I must do is</h3>
+    <div class="radios">
+      <label><input type="radio" name="d2a6pick" data-k="d2.a6.must" value="leads">Get more leads</label>
+      <label><input type="radio" name="d2a6pick" data-k="d2.a6.must" value="prices">Raise prices</label>
+      <label><input type="radio" name="d2a6pick" data-k="d2.a6.must" value="cut">Cut a recurring expense</label>
+      <label><input type="radio" name="d2a6pick" data-k="d2.a6.must" value="offer">Launch a new offer</label>
+      <label><input type="radio" name="d2a6pick" data-k="d2.a6.must" value="hire">Hire</label>
+      <label><input type="radio" name="d2a6pick" data-k="d2.a6.must" value="other">Other</label>
+    </div>
+    <label class="field"><span>Specifics (which expense / which offer / which role)</span><input type="text" data-k="d2.a6.must.note"></label>
+
+    <label class="checkrow"><input type="checkbox" data-k="d2.a6.done"> <span><b>Activity 6 complete</b> · Cash visible · transfers ready</span></label>
+  </div>
+
+  <!-- ── Activity 7 ── -->
+  <div class="panel activity">
+    <span class="kicker">Activity 7</span>
+    <h2>The 60-second CEO <span class="time">12:05 - 12:20</span></h2>
+    <div class="goal">
+      <div><b>Goal</b>5 engines fused into 1 daily readout</div>
+      <div><b>Tool</b><code class="inline">/purely-personal:leadership-engine</code></div>
+      <div><b>Win</b>You decide before email opens</div>
+    </div>
+
+    <div class="paste">
+      <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">full CEO brief</span></div>
+<pre>/purely-personal:leadership-engine
+
+give me the full CEO morning brief · all 5 engines</pre>
+      <button class="copy" data-copy="/purely-personal:leadership-engine
+
+give me the full CEO morning brief · all 5 engines">Copy</button>
+    </div>
+
+    <h3 style="color:var(--pp-red)">🎯 Marketing</h3>
+    <div class="row-3">
+      <label class="field"><span>Posts shipped (week)</span><input type="number" data-k="d2.a7.m.posts"></label>
+      <label class="field"><span>Top performer reach</span><input type="number" data-k="d2.a7.m.reach"></label>
+      <label class="field"><span>Newsletter subs</span><input type="number" data-k="d2.a7.m.subs"></label>
+    </div>
+
+    <h3 style="color:var(--pp-red)">🤝 Sales</h3>
+    <div class="row-3">
+      <label class="field"><span>Active prospects</span><input type="number" data-k="d2.a7.s.prospects"></label>
+      <label class="field"><span>Meetings booked</span><input type="number" data-k="d2.a7.s.meetings"></label>
+      <label class="field"><span>Pipeline value $</span><input type="text" data-k="d2.a7.s.pipeline"></label>
+    </div>
+
+    <h3 style="color:var(--pp-red)">⚙ Operations</h3>
+    <div class="row-3">
+      <label class="field"><span>Inbox unread</span><input type="number" data-k="d2.a7.o.inbox"></label>
+      <label class="field"><span>SOPs total</span><input type="number" data-k="d2.a7.o.sops"></label>
+      <label class="field"><span>Open tickets</span><input type="number" data-k="d2.a7.o.tickets"></label>
+    </div>
+
+    <h3 style="color:var(--pp-red)">💰 Cash</h3>
+    <div class="row-3">
+      <label class="field"><span>Bank $</span><input type="text" data-k="d2.a7.c.bank"></label>
+      <label class="field"><span>Runway (months)</span><input type="text" data-k="d2.a7.c.runway"></label>
+      <label class="field"><span>Week revenue $</span><input type="text" data-k="d2.a7.c.rev"></label>
+    </div>
+
+    <h3 style="color:var(--pp-red)">🧠 Leadership</h3>
+    <label class="field"><span>#1 today</span><input type="text" data-k="d2.a7.l.prio"></label>
+    <label class="field"><span>Biggest blocker</span><input type="text" data-k="d2.a7.l.block"></label>
+    <label class="field"><span>One decision needed</span><input type="text" data-k="d2.a7.l.decision"></label>
+
+    <label class="checkrow"><input type="checkbox" data-k="d2.a7.done"> <span><b>Activity 7 complete</b> · 5 engines fused</span></label>
+  </div>
+
+  <!-- ── AI CEO BIG REVEAL ── -->
+  <div class="aiceo">
+    <span class="kicker">The big reveal</span>
+    <h2>AI CEO Platform · decision block <span class="time" style="background:rgba(233,13,65,.18);color:#fff">12:25 - 13:00</span></h2>
+    <p style="color:#a4adbe;max-width:640px;margin:6px 0 18px">You just built the system in 2 days. The platform takes you further: we run it WITH you, add 4 more engines (Brand · Funnel · CRM · Reporting), migrate your past data, hold weekly office hours.</p>
+
+    <div class="pricing">
+      <div class="tier"><b>Standard</b><span class="price">$1,997 + $99 / mo</span></div>
+      <div class="tier"><b>Diamond</b><span class="price">$2,997 + $199 / mo · incl. 1:1 strategy calls</span></div>
+    </div>
+
+    <h3>Honest about where I am today</h3>
+    <div class="row">
+      <label class="checkrow"><input type="checkbox" data-k="d2.aiceo.now.1"> <span>I run my business mostly from my inbox</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.aiceo.now.2"> <span>Haven't published consistently in 30+ days</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.aiceo.now.3"> <span>I have leads I haven't followed up with</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.aiceo.now.4"> <span>I don't know my 90-day cash position</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.aiceo.now.5"> <span>Work that should be SOPs every week</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.aiceo.now.6"> <span>I lose 5+ hours/week to admin</span></label>
+    </div>
+    <div class="score"><div class="num"><span id="aiceoNow">0</span><span style="color:#a4adbe;font-size:18px;font-weight:700"> / 6</span></div><div class="legend">Now-score · what's true today</div></div>
+
+    <h3>Honest about my goal</h3>
+    <div class="row">
+      <label class="checkrow"><input type="checkbox" data-k="d2.aiceo.goal.1"> <span>I want my evenings + weekends back</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.aiceo.goal.2"> <span>Publish without writing every post</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.aiceo.goal.3"> <span>Steady pipeline without chasing</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.aiceo.goal.4"> <span>Team (or future team) on SOPs</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.aiceo.goal.5"> <span>Know my numbers without an accountant</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.aiceo.goal.6"> <span>Be the CEO · not the doer</span></label>
+    </div>
+    <div class="score"><div class="num"><span id="aiceoGoal">0</span><span style="color:#a4adbe;font-size:18px;font-weight:700"> / 6</span></div><div class="legend">Goal-score · where you want to be</div></div>
+
+    <h3>Confirm what I heard</h3>
+    <div class="row">
+      <label class="checkrow"><input type="checkbox" data-k="d2.aiceo.heard.1"> <span>Includes everything I just built</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.aiceo.heard.2"> <span>+ 4 more engines (Brand · Funnel · CRM · Reporting)</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.aiceo.heard.3"> <span>Weekly live office hours (90 min)</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.aiceo.heard.4"> <span>Data migration done WITH me</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.aiceo.heard.5"> <span>Priority Slack support</span></label>
+    </div>
+
+    <h3>My gut</h3>
+    <div class="radios">
+      <label><input type="radio" name="d2gut" data-k="d2.aiceo.gut" value="standard">In · Standard</label>
+      <label><input type="radio" name="d2gut" data-k="d2.aiceo.gut" value="diamond">In · Diamond</label>
+      <label><input type="radio" name="d2gut" data-k="d2.aiceo.gut" value="question">Want to · 1 question first</label>
+      <label><input type="radio" name="d2gut" data-k="d2.aiceo.gut" value="think">Need to think this week</label>
+      <label><input type="radio" name="d2gut" data-k="d2.aiceo.gut" value="no">Not for me right now</label>
+    </div>
+
+    <label class="field"><span>Question for Danny (if any)</span><textarea data-k="d2.aiceo.q"></textarea></label>
+  </div>
+
+  <!-- ── Day 2 commitments ── -->
+  <div class="panel">
+    <span class="kicker">Commit</span>
+    <h2>This week I will <span class="time">12:55 - 13:00</span></h2>
+    <div class="sign">
+      <label class="checkrow"><input type="checkbox" data-k="d2.commit.brief"> <span>1. Run Monday 7am morning brief (LIVE) · alarm set</span></label>
+      <label class="field"><span>2. Publish 1 LinkedIn post / week · first publish date</span><input type="date" data-k="d2.commit.publish"></label>
+      <label class="field"><span>3. Send 10 outreach messages / week · first batch by</span><input type="date" data-k="d2.commit.batch"></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.commit.fri"> <span>4. Friday 5pm wrap (Profit First transfers) · alarm set</span></label>
+      <label class="field"><span>The 1 thing I commit to STOP doing</span><textarea data-k="d2.commit.stop" placeholder="e.g. checking email before 10am"></textarea></label>
+      <label class="field"><span>The 1 thing I commit to START doing</span><textarea data-k="d2.commit.start" placeholder="e.g. running the morning brief before opening anything else"></textarea></label>
+      <div class="row">
+        <label class="field"><span>Signed</span><input type="text" data-k="d2.commit.signed"></label>
+        <label class="field"><span>Date</span><input type="date" data-k="d2.commit.date"></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Day 2 scorecard ── -->
+  <div class="panel">
+    <span class="kicker">Scorecard</span>
+    <h2>How did Day 2 land?</h2>
+    <div class="row">
+      <label class="checkrow"><input type="checkbox" data-k="d2.sc.1"> <span>Operations engine ran</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.sc.2"> <span>Inbox triaged · 1 SOP saved</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.sc.3"> <span>Cash engine ran</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.sc.4"> <span>90-day forecast filled</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.sc.5"> <span>Leadership engine ran</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.sc.6"> <span>5 engines visible in 1 brief</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.sc.7"> <span>AI CEO checklist completed</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.sc.8"> <span>Path chosen</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.sc.9"> <span>Both alarms set</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.sc.10"> <span>Stop / Start filled in</span></label>
+    </div>
+    <div class="score">
+      <div class="num"><span id="d2Score">0</span><span style="color:var(--text-muted);font-size:18px;font-weight:700"> / 10</span></div>
+      <div class="legend"><b>9-10</b> Day-3 CEO · <b>6-8</b> catch up tonight · <b>0-5</b> book troubleshooting</div>
+    </div>
+  </div>
+
+  <!-- ── Leave with ── -->
+  <div class="panel">
+    <span class="kicker">Take with you</span>
+    <h2>What you leave the workshop with</h2>
+    <div class="row">
+      <label class="checkrow"><input type="checkbox" data-k="d2.leave.brain"> <span>BUSINESS-BRAIN.md filled</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.leave.cal"> <span>6 routines on calendar (4 hrs/wk)</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.leave.engines"> <span>5 engines tested in your hands</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.leave.ship"> <span>1 post · 3 outreaches · 1 SOP shipped</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.leave.cash"> <span>90-day cash forecast</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.leave.voice"> <span>Voice corpus that sounds like you</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.leave.bundle"> <span>Bundle zip (offline backup)</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d2.leave.decision"> <span>A decision on AI CEO Platform</span></label>
+    </div>
+  </div>
+
+  <div class="panel" style="background:linear-gradient(180deg,#fff 0%,var(--page-bg) 100%);text-align:center">
+    <span class="kicker">End of workshop</span>
+    <h2>You now run a business that runs by itself.</h2>
+    <p class="dim" style="max-width:520px;margin:8px auto 16px">Add Danny on LinkedIn so we can see your first post. Tag <b style="color:var(--pp-red)">#PurelyPersonal</b>. Re-open this workbook every Friday for 4 weeks.</p>
+    <a class="btn-pill" href="../" style="font-size:13px;padding:11px 18px">Workbook hub →</a>
+  </div>
+
+  <div class="foot">
+    SUNDAY MAY 3, 2026 · PURELY PERSONAL · BUILT WITH CLAUDE CODE · <a href="../">workbook hub</a> · <a href="../day-1/">day 1</a>
+  </div>
+</main>
+
+<div class="toast" id="toast">Saved</div>
+
+<script>
+(()=>{
+  const KEY='pp.workbook.day2.v1';
+  const tabs=document.querySelectorAll('[data-k]');
+  const read=()=>{const o={};tabs.forEach(el=>{const k=el.dataset.k;if(el.type==='checkbox')o[k]=!!el.checked;else if(el.type==='radio'){if(el.checked)o[k]=el.value;}else o[k]=el.value||'';});return o;};
+  const write=(s)=>{if(!s)return;tabs.forEach(el=>{const k=el.dataset.k;if(!(k in s))return;const v=s[k];if(el.type==='checkbox')el.checked=!!v;else if(el.type==='radio')el.checked=(el.value===v);else el.value=v==null?'':v;});};
+  const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify(read()));}catch(e){}updateScores();};
+  document.addEventListener('input',persist);document.addEventListener('change',persist);
+  try{const r=localStorage.getItem(KEY);if(r)write(JSON.parse(r));}catch(e){}
+  const count=keys=>{let n=0;keys.forEach(k=>{const el=document.querySelector(`[data-k="${k}"]`);if(el&&el.checked)n++;});return n;};
+  const updateScores=()=>{
+    const d2=['d2.sc.1','d2.sc.2','d2.sc.3','d2.sc.4','d2.sc.5','d2.sc.6','d2.sc.7','d2.sc.8','d2.sc.9','d2.sc.10'];
+    const now=['d2.aiceo.now.1','d2.aiceo.now.2','d2.aiceo.now.3','d2.aiceo.now.4','d2.aiceo.now.5','d2.aiceo.now.6'];
+    const goal=['d2.aiceo.goal.1','d2.aiceo.goal.2','d2.aiceo.goal.3','d2.aiceo.goal.4','d2.aiceo.goal.5','d2.aiceo.goal.6'];
+    const m={d2Score:d2,aiceoNow:now,aiceoGoal:goal};
+    Object.keys(m).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=count(m[id]);});
+  };
+  updateScores();
+  document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async e=>{e.preventDefault();const t=b.dataset.copy||'';try{await navigator.clipboard.writeText(t);}catch{const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}b.classList.add('ok');const o=b.textContent;b.textContent='Copied ✓';setTimeout(()=>{b.classList.remove('ok');b.textContent=o;},1200);}));
+  const toast=document.getElementById('toast');const flash=m=>{toast.textContent=m;toast.classList.add('on');setTimeout(()=>toast.classList.remove('on'),1400);};
+  document.getElementById('saveBtn').addEventListener('click',()=>{const s=read();const blob=new Blob([JSON.stringify(s,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`pp-workbook-day2-${new Date().toISOString().slice(0,10)}.json`;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);flash('Saved');});
+  document.getElementById('loadBtn').addEventListener('click',()=>document.getElementById('loadFile').click());
+  document.getElementById('loadFile').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{write(JSON.parse(r.result));persist();flash('Loaded');}catch{flash('Invalid file');}};r.readAsText(f);});
+  document.getElementById('resetBtn').addEventListener('click',()=>{if(!confirm('Reset every field on Day 2?'))return;tabs.forEach(el=>{if(el.type==='checkbox'||el.type==='radio')el.checked=false;else el.value='';});persist();flash('Cleared');});
+  window.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='s'){e.preventDefault();document.getElementById('saveBtn').click();}});
+})();
+</script>
+
+</body>
+</html>

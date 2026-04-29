@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 1 · In-Class Workbook · Purely Personal</title>
+<meta name="description" content="Day 1 fillable workbook · Saturday May 2, 2026 · Build a Business That Runs By Itself.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Rethink+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page-bg:#faf8f4;--card-bg:#ffffff;--sub-card-bg:#fbf9f6;
+  --divider:#e8e2d8;--divider-strong:#d0cdc8;
+  --text-primary:#1a1a1a;--text-secondary:#6b6b6b;--text-muted:#a8a39b;
+  --pp-red:#e90d41;--pp-red-deep:#c70a38;--pp-red-soft:#fce8ed;--pp-red-whisper:#fdf2f5;
+  --dark:#0f0f10;--dark-card:#16171a;
+  --good:#1a8d4d;--good-soft:#e6f4ec;
+  --display:'Rethink Sans','Inter',-apple-system,sans-serif;
+  --body:'Inter',-apple-system,sans-serif;
+  --mono:'JetBrains Mono','SF Mono',Menlo,monospace;
+  --shadow-card:0 1px 2px rgba(20,14,8,.04),0 6px 20px rgba(20,14,8,.05);
+  --shadow-red:0 4px 16px rgba(233,13,65,.25);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--page-bg);color:var(--text-primary);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--pp-red);text-decoration:none;border-bottom:1px solid transparent;transition:border-color 120ms}
+a:hover{border-color:var(--pp-red)}
+
+/* ── nav ── */
+.nav{position:sticky;top:0;z-index:30;background:rgba(250,248,244,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--divider)}
+.nav-inner{max-width:980px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:15px}
+.brand .mark{width:24px;height:24px;background:var(--pp-red);border-radius:5px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:12px}
+.brand .sep{color:var(--text-muted);font-weight:400;margin:0 6px}
+.brand .label{color:var(--text-secondary);font-weight:600;font-size:12px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.day-pill{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pp-red);background:var(--pp-red-soft);padding:5px 10px;border-radius:3px}
+.spacer{flex:1}
+.btn-line{appearance:none;border:1px solid var(--divider-strong);background:#fff;color:var(--text-primary);padding:7px 12px;border-radius:5px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:border-color 120ms,background 120ms}
+.btn-line:hover{border-color:var(--pp-red);background:var(--pp-red-whisper);color:var(--pp-red)}
+.btn-line.danger{color:#a02232;border-color:#e8c2cb}
+.btn-line.danger:hover{background:#fbeef1}
+.btn-pill{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;background:var(--pp-red);color:#fff;border-radius:5px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:0;cursor:pointer;text-decoration:none}
+.btn-pill:hover{background:var(--pp-red-deep);border:0}
+
+/* ── hero ── */
+.hero{padding:48px 24px 24px;background:linear-gradient(180deg,#fff 0%,var(--page-bg) 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-180px;right:-180px;width:520px;height:520px;border-radius:999px;background:radial-gradient(circle,rgba(233,13,65,.05) 0%,transparent 60%);pointer-events:none}
+.hero-inner{max-width:980px;margin:0 auto;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pp-red);background:var(--pp-red-soft);padding:6px 12px;border-radius:3px;margin-bottom:18px}
+h1{font-family:var(--display);font-size:46px;font-weight:800;line-height:1.05;letter-spacing:-.025em;margin:0 0 14px;max-width:760px}
+h1 em{font-style:normal;color:var(--pp-red)}
+.hero-sub{font-size:17px;color:var(--text-secondary);max-width:640px;line-height:1.5;margin:0}
+.meta-strip{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--text-secondary);letter-spacing:.06em}
+.meta-strip span{padding:6px 12px;background:#fff;border:1px solid var(--divider);border-radius:4px}
+.meta-strip b{color:var(--text-primary);font-weight:700;letter-spacing:0}
+
+/* ── layout ── */
+main{max-width:980px;margin:24px auto 80px;padding:0 24px}
+h2{font-family:var(--display);font-size:24px;font-weight:800;letter-spacing:-.015em;margin:0 0 6px}
+h3{font-family:var(--display);font-size:15px;font-weight:700;margin:18px 0 8px;color:var(--text-primary)}
+.kicker{display:block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pp-red);margin-bottom:6px}
+.muted{color:var(--text-muted)}
+.dim{color:var(--text-secondary)}
+code.inline{font-family:var(--mono);font-size:12.5px;background:var(--page-bg);padding:1px 6px;border-radius:3px;color:var(--pp-red);border:1px solid var(--divider)}
+
+/* ── panels ── */
+.panel{background:var(--card-bg);border:1px solid var(--divider);border-radius:10px;padding:24px;margin:18px 0;box-shadow:var(--shadow-card)}
+.panel.activity{position:relative;border-left:3px solid var(--pp-red);padding-left:26px}
+.panel.activity::before{content:'';position:absolute;top:0;left:-1px;height:0}
+.panel h2{margin-top:0}
+
+/* time chip */
+.time{display:inline-flex;align-items:center;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--pp-red);background:var(--pp-red-soft);padding:4px 9px;border-radius:3px;margin-left:10px;vertical-align:2px}
+
+/* goal strip */
+.goal{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;background:var(--sub-card-bg);border:1px solid var(--divider);border-radius:8px;padding:14px;margin:14px 0 18px}
+.goal div{font-size:13.5px;color:var(--text-primary);line-height:1.45}
+.goal b{display:block;font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--pp-red);margin-bottom:4px}
+@media(max-width:680px){.goal{grid-template-columns:1fr}}
+
+/* inputs */
+label.field{display:block;margin:12px 0}
+label.field>span{display:block;font-size:13px;color:var(--text-secondary);margin-bottom:6px;font-weight:500}
+input[type=text],input[type=number],input[type=date],textarea,select{
+  width:100%;background:#fff;border:1px solid var(--divider-strong);color:var(--text-primary);
+  padding:10px 12px;border-radius:6px;font-family:inherit;font-size:14px;line-height:1.5;
+  transition:border-color 120ms,box-shadow 120ms;
+}
+textarea{min-height:78px;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--pp-red);box-shadow:0 0 0 3px rgba(233,13,65,.12)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:640px){.row,.row-3{grid-template-columns:1fr}}
+
+/* checkboxes */
+.checkrow{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-radius:6px;cursor:pointer;border:1px solid transparent;font-size:14px;line-height:1.45}
+.checkrow:hover{background:var(--sub-card-bg);border-color:var(--divider)}
+.checkrow input[type=checkbox]{margin-top:2px;accent-color:var(--pp-red);width:17px;height:17px;flex-shrink:0;cursor:pointer}
+.checkrow input[type=checkbox]:checked + span{color:var(--text-primary)}
+
+/* radios */
+.radios{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.radios label{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--divider-strong);padding:7px 12px;border-radius:5px;cursor:pointer;font-size:13px;color:var(--text-secondary);transition:border-color 120ms,color 120ms,background 120ms}
+.radios label:hover{border-color:var(--pp-red);color:var(--text-primary)}
+.radios input[type=radio]{accent-color:var(--pp-red);margin:0}
+.radios input[type=radio]:checked + *,.radios label:has(input:checked){color:var(--text-primary);border-color:var(--pp-red);background:var(--pp-red-whisper)}
+
+/* paste box ── dark style ── */
+.paste{background:var(--dark);border-radius:10px;padding:14px 16px 14px;margin:14px 0;font-family:var(--mono);color:#e9ecf1;position:relative;border:1px solid #1f2227;box-shadow:0 6px 18px rgba(15,15,16,.18)}
+.paste .paste-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.paste .label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--pp-red);font-weight:700;font-family:var(--mono)}
+.paste .badge{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9be3b6;background:#13502f;padding:2px 7px;border-radius:3px}
+.paste pre{margin:0;white-space:pre-wrap;word-break:break-word;font-size:13.5px;line-height:1.55;color:#e9ecf1}
+.paste .copy{position:absolute;top:12px;right:12px;background:var(--pp-red);border:0;color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:.1em;font-weight:700;padding:6px 10px;border-radius:4px;cursor:pointer;text-transform:uppercase;transition:background 120ms}
+.paste .copy:hover{background:var(--pp-red-deep)}
+.paste .copy.ok{background:var(--good)}
+
+/* tables */
+table{width:100%;border-collapse:collapse;margin:8px 0 4px;font-size:13.5px;background:#fff;border-radius:6px;overflow:hidden;border:1px solid var(--divider)}
+th,td{border-bottom:1px solid var(--divider);padding:10px 12px;text-align:left;vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{background:var(--sub-card-bg);color:var(--text-secondary);font-weight:700;font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono)}
+td input[type=text],td input[type=number]{padding:6px 8px;font-size:13px;border-radius:4px}
+td input[type=checkbox],td input[type=radio]{accent-color:var(--pp-red);width:17px;height:17px;cursor:pointer}
+
+/* score */
+.score{display:flex;align-items:center;gap:18px;background:var(--pp-red-whisper);border:1px solid var(--pp-red-soft);border-radius:8px;padding:14px 18px;margin-top:16px}
+.score .num{font-family:var(--display);font-size:30px;font-weight:800;color:var(--pp-red);line-height:1}
+.score .legend{font-family:var(--mono);font-size:11px;color:var(--text-secondary);letter-spacing:.04em}
+.score .legend b{color:var(--text-primary);font-weight:700}
+
+/* troubleshooting accent */
+.troubleshoot th{color:var(--pp-red)}
+
+/* footer */
+.foot{text-align:center;margin-top:42px;padding-top:18px;border-top:1px solid var(--divider);font-family:var(--mono);font-size:11px;color:var(--text-muted);letter-spacing:.08em}
+.foot a{color:var(--text-muted)}
+.foot a:hover{color:var(--pp-red)}
+
+/* toast */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1a1a1d;color:#fff;padding:10px 16px;border-radius:6px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;opacity:0;pointer-events:none;transition:opacity .2s ease;z-index:60;box-shadow:0 6px 24px rgba(15,15,16,.3)}
+.toast.on{opacity:1}
+.hidden{display:none!important}
+
+/* signing block */
+.sign{background:var(--sub-card-bg);border:1px dashed var(--divider-strong);border-radius:8px;padding:16px 18px;margin-top:14px}
+.sign h3{margin-top:0}
+
+/* note callout */
+.callout{background:var(--pp-red-whisper);border:1px solid var(--pp-red-soft);border-radius:8px;padding:14px 16px;font-size:13.5px;color:var(--text-primary);margin:14px 0;display:flex;gap:12px;align-items:flex-start}
+.callout .ico{flex-shrink:0;width:24px;height:24px;background:var(--pp-red);color:#fff;border-radius:5px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;font-family:var(--display)}
+.callout b{color:var(--pp-red);font-weight:700}
+
+/* print */
+@media print{
+  :root{--page-bg:#fff}
+  .nav,.btn-line,.btn-pill,.copy,.toast{display:none!important}
+  body{background:#fff}
+  .panel{box-shadow:none;break-inside:avoid;page-break-inside:avoid;border-color:#bbb}
+  .paste{background:#0f0f10!important;color:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .paste .copy{display:none!important}
+  .hero{padding:24px 0}
+  main{margin:12px 0;padding:0 12mm;max-width:none}
+  h2{break-after:avoid}
+  .score{break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .eyebrow,.time,.kicker,.day-pill,.callout{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand"><div class="mark">P</div>Purely Personal<span class="sep">·</span><span class="label">In-Class Workbook</span></div>
+    <span class="day-pill">Day 1</span>
+    <div class="spacer"></div>
+    <button class="btn-line" id="saveBtn">Save</button>
+    <button class="btn-line" id="loadBtn">Load</button>
+    <input type="file" id="loadFile" class="hidden" accept="application/json,.json">
+    <button class="btn-line" onclick="window.print()">Print / PDF</button>
+    <button class="btn-line danger" id="resetBtn">Reset</button>
+    <a class="btn-pill" href="../day-2/">Day 2 →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Saturday May 2, 2026 · Day 1 of 2</span>
+    <h1>Build the engines.<br>Ship <em>one</em> post by 13:00.</h1>
+    <p class="hero-sub">By the end of today you'll have run two routines live, mapped your week to 6 anchors, and proven the Monday loop. This workbook is your live sidecar — paste the prompts into Claude Code, fill the blanks as Claude responds.</p>
+    <div class="meta-strip">
+      <span><b>11:00 - 13:00</b> Finland UTC+3</span>
+      <span><b>4 activities</b> live</span>
+      <span><b>Live Zoom</b> cameras on</span>
+      <span><b>Claude Code</b> open</span>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <!-- ── Your details ── -->
+  <div class="panel">
+    <span class="kicker">Step 0 · 11:00 - 11:15</span>
+    <h2>Your details</h2>
+    <p class="dim">So I can call on you by name and personalise the demos. Fill before we start.</p>
+    <div class="row">
+      <label class="field"><span>Name</span><input type="text" data-k="d1.name"></label>
+      <label class="field"><span>Zoom handle</span><input type="text" data-k="d1.zoom" placeholder="how I'll find you on the call"></label>
+    </div>
+    <div class="row">
+      <label class="field"><span>What I do</span><input type="text" data-k="d1.do"></label>
+      <label class="field"><span>Who I serve</span><input type="text" data-k="d1.serve"></label>
+    </div>
+    <label class="field"><span>#1 bottleneck (the part of your business that drains you most)</span><textarea data-k="d1.bottleneck"></textarea></label>
+  </div>
+
+  <!-- ── Pre-flight ── -->
+  <div class="panel">
+    <span class="kicker">Pre-flight check</span>
+    <h2>Three terminal commands · 5 minutes <span class="time">10:45 - 11:00</span></h2>
+
+    <h3>Check 1 · Claude Code installed</h3>
+    <div class="paste">
+      <div class="paste-head"><span class="label">Paste in Terminal</span><span class="badge">verify install</span></div>
+      <pre>claude --version</pre>
+      <button class="copy" data-copy="claude --version">Copy</button>
+    </div>
+    <label class="field"><span>What you saw</span><input type="text" data-k="d1.check1"></label>
+
+    <h3>Check 2 · Plugin loaded</h3>
+    <div class="paste">
+      <div class="paste-head"><span class="label">Paste in Terminal</span><span class="badge">launch claude</span></div>
+      <pre>claude</pre>
+      <button class="copy" data-copy="claude">Copy</button>
+    </div>
+    <p class="dim">Once Claude Code opens, type <code class="inline">/purely-personal:</code> and watch autocomplete.</p>
+    <label class="field"><span>How many commands appeared (out of 9)?</span><input type="number" min="0" max="9" data-k="d1.check2"></label>
+
+    <h3>Check 3 · BUSINESS-BRAIN.md filled</h3>
+    <div class="paste">
+      <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">brain audit</span></div>
+      <pre>read BUSINESS-BRAIN.md and tell me which sections are still empty</pre>
+      <button class="copy" data-copy="read BUSINESS-BRAIN.md and tell me which sections are still empty">Copy</button>
+    </div>
+    <label class="field"><span>Sections still empty</span><input type="text" data-k="d1.check3"></label>
+
+    <label class="checkrow"><input type="checkbox" data-k="d1.preflight"> <span><b>Pre-flight pass</b> · all 3 green</span></label>
+  </div>
+
+  <!-- ── Activity 1 ── -->
+  <div class="panel activity">
+    <span class="kicker">Activity 1</span>
+    <h2>Your first content drop <span class="time">11:20 - 11:35</span></h2>
+    <div class="goal">
+      <div><b>Goal</b>3 LinkedIn posts in YOUR voice</div>
+      <div><b>Tool</b><code class="inline">/purely-personal:marketing-engine</code></div>
+      <div><b>Win</b>1 post good enough to publish today</div>
+    </div>
+
+    <h3>1.1 · Set the topic</h3>
+    <label class="field"><span>One thing you've learned this week your audience needs (1 sentence is enough · Claude expands it)</span>
+      <textarea data-k="d1.a1.topic"></textarea>
+    </label>
+
+    <h3>1.2 · Run marketing-engine</h3>
+    <div class="paste">
+      <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">/purely-personal:marketing-engine</span></div>
+      <pre>/purely-personal:marketing-engine</pre>
+      <button class="copy" data-copy="/purely-personal:marketing-engine">Copy</button>
+    </div>
+    <p class="dim">Claude reads your voice corpus before writing. Wait 30-60s. 3 posts will appear.</p>
+
+    <h3>1.3 · Score the output</h3>
+    <div class="row-3">
+      <label class="field"><span>Post 1 · hook</span><input type="text" data-k="d1.a1.p1.hook"></label>
+      <label class="field"><span>Post 2 · hook</span><input type="text" data-k="d1.a1.p2.hook"></label>
+      <label class="field"><span>Post 3 · hook</span><input type="text" data-k="d1.a1.p3.hook"></label>
+    </div>
+    <table>
+      <tr><th>Post</th><th>Sounds like me?</th><th>Would publish?</th><th>One word that feels off</th></tr>
+      <tr><td>1</td>
+        <td><div class="radios"><label><input type="radio" name="d1a1p1sounds" data-k="d1.a1.p1.sounds" value="yes">Yes</label><label><input type="radio" name="d1a1p1sounds" data-k="d1.a1.p1.sounds" value="no">No</label><label><input type="radio" name="d1a1p1sounds" data-k="d1.a1.p1.sounds" value="meh">Meh</label></div></td>
+        <td><div class="radios"><label><input type="radio" name="d1a1p1pub" data-k="d1.a1.p1.pub" value="yes">Yes</label><label><input type="radio" name="d1a1p1pub" data-k="d1.a1.p1.pub" value="no">No</label><label><input type="radio" name="d1a1p1pub" data-k="d1.a1.p1.pub" value="edit">Edit</label></div></td>
+        <td><input type="text" data-k="d1.a1.p1.off"></td></tr>
+      <tr><td>2</td>
+        <td><div class="radios"><label><input type="radio" name="d1a1p2sounds" data-k="d1.a1.p2.sounds" value="yes">Yes</label><label><input type="radio" name="d1a1p2sounds" data-k="d1.a1.p2.sounds" value="no">No</label><label><input type="radio" name="d1a1p2sounds" data-k="d1.a1.p2.sounds" value="meh">Meh</label></div></td>
+        <td><div class="radios"><label><input type="radio" name="d1a1p2pub" data-k="d1.a1.p2.pub" value="yes">Yes</label><label><input type="radio" name="d1a1p2pub" data-k="d1.a1.p2.pub" value="no">No</label><label><input type="radio" name="d1a1p2pub" data-k="d1.a1.p2.pub" value="edit">Edit</label></div></td>
+        <td><input type="text" data-k="d1.a1.p2.off"></td></tr>
+      <tr><td>3</td>
+        <td><div class="radios"><label><input type="radio" name="d1a1p3sounds" data-k="d1.a1.p3.sounds" value="yes">Yes</label><label><input type="radio" name="d1a1p3sounds" data-k="d1.a1.p3.sounds" value="no">No</label><label><input type="radio" name="d1a1p3sounds" data-k="d1.a1.p3.sounds" value="meh">Meh</label></div></td>
+        <td><div class="radios"><label><input type="radio" name="d1a1p3pub" data-k="d1.a1.p3.pub" value="yes">Yes</label><label><input type="radio" name="d1a1p3pub" data-k="d1.a1.p3.pub" value="no">No</label><label><input type="radio" name="d1a1p3pub" data-k="d1.a1.p3.pub" value="edit">Edit</label></div></td>
+        <td><input type="text" data-k="d1.a1.p3.off"></td></tr>
+    </table>
+
+    <h3>1.4 · Pick your champion</h3>
+    <div class="radios">
+      <label><input type="radio" name="d1a1pick" data-k="d1.a1.pick" value="1">Post #1</label>
+      <label><input type="radio" name="d1a1pick" data-k="d1.a1.pick" value="2">Post #2</label>
+      <label><input type="radio" name="d1a1pick" data-k="d1.a1.pick" value="3">Post #3</label>
+    </div>
+    <label class="field"><span>Why it works</span><input type="text" data-k="d1.a1.why"></label>
+
+    <h3>1.5 · Tighten + ship</h3>
+    <div class="paste">
+      <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">tighten the hook</span></div>
+      <pre>take post #[YOUR PICK] · tighten the hook · cut 20% words · keep my voice</pre>
+      <button class="copy" data-copy="take post #[YOUR PICK] · tighten the hook · cut 20% words · keep my voice">Copy</button>
+    </div>
+    <label class="checkrow"><input type="checkbox" data-k="d1.a1.copied"> <span>Copied final post to LinkedIn</span></label>
+    <label class="checkrow"><input type="checkbox" data-k="d1.a1.scheduled"> <span>Scheduled for tomorrow 7am (or published now)</span></label>
+    <label class="checkrow"><input type="checkbox" data-k="d1.a1.bank"> <span>Saved to <code class="inline">/content-bank/2026-05-02.md</code></span></label>
+
+    <h3>Troubleshooting</h3>
+    <table class="troubleshoot">
+      <tr><th>What went wrong</th><th>Quick fix</th></tr>
+      <tr><td>Posts sound like generic AI</td><td>Voice corpus empty → paste 3 of your real LinkedIn posts into <code class="inline">frameworks/marketing/linkedin-voice-examples/</code> and re-run</td></tr>
+      <tr><td>Hook is weak</td><td>Paste: <code class="inline">make the hook more visceral · pattern interrupt · no buzzwords</code></td></tr>
+      <tr><td>Too long for LinkedIn</td><td>Paste: <code class="inline">cut to 1300 characters · keep the punch line</code></td></tr>
+      <tr><td>Banned phrases appearing</td><td>Paste: <code class="inline">re-read VOICE-SIGNATURE.md · remove banned phrases · keep meaning</code></td></tr>
+    </table>
+
+    <label class="checkrow"><input type="checkbox" data-k="d1.a1.done"> <span><b>Activity 1 complete</b> · 1 post ready to publish</span></label>
+  </div>
+
+  <!-- ── Activity 2 ── -->
+  <div class="panel activity">
+    <span class="kicker">Activity 2</span>
+    <h2>Your first 10 leads <span class="time">11:40 - 12:00</span></h2>
+    <div class="goal">
+      <div><b>Goal</b>10 prospects researched · BANT-scored</div>
+      <div><b>Tool</b><code class="inline">/purely-personal:sales-engine</code></div>
+      <div><b>Win</b>3 personalised outreach drafts queued</div>
+    </div>
+
+    <h3>2.1 · Define your ICP filter</h3>
+    <div class="row">
+      <label class="field"><span>Role / title</span><input type="text" data-k="d1.a2.role"></label>
+      <label class="field"><span>Industry</span><input type="text" data-k="d1.a2.industry"></label>
+    </div>
+    <div class="row">
+      <label class="field"><span>Company size</span><input type="text" data-k="d1.a2.size"></label>
+      <label class="field"><span>Location</span><input type="text" data-k="d1.a2.location"></label>
+    </div>
+    <label class="field"><span>Signal to scrape (e.g. "posted about AI hiring last 30 days")</span>
+      <textarea data-k="d1.a2.signal"></textarea>
+    </label>
+
+    <h3>2.2 · Run sales-engine</h3>
+    <div class="paste">
+      <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">/purely-personal:sales-engine</span></div>
+      <pre>/purely-personal:sales-engine</pre>
+      <button class="copy" data-copy="/purely-personal:sales-engine">Copy</button>
+    </div>
+    <p class="dim">Then paste your ICP filter from 2.1 when prompted.</p>
+
+    <h3>2.3 · Top 3 prospects</h3>
+    <table>
+      <tr><th>#</th><th>Name</th><th>Title / company</th><th>Signal</th><th>BANT</th></tr>
+      <tr><td>1</td><td><input type="text" data-k="d1.a2.p1.name"></td><td><input type="text" data-k="d1.a2.p1.tc"></td><td><input type="text" data-k="d1.a2.p1.sig"></td><td><input type="number" min="0" max="40" data-k="d1.a2.p1.bant"></td></tr>
+      <tr><td>2</td><td><input type="text" data-k="d1.a2.p2.name"></td><td><input type="text" data-k="d1.a2.p2.tc"></td><td><input type="text" data-k="d1.a2.p2.sig"></td><td><input type="number" min="0" max="40" data-k="d1.a2.p2.bant"></td></tr>
+      <tr><td>3</td><td><input type="text" data-k="d1.a2.p3.name"></td><td><input type="text" data-k="d1.a2.p3.tc"></td><td><input type="text" data-k="d1.a2.p3.sig"></td><td><input type="number" min="0" max="40" data-k="d1.a2.p3.bant"></td></tr>
+    </table>
+
+    <h3>2.4 · Generate outreach</h3>
+    <div class="paste">
+      <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">3-step sequence</span></div>
+<pre>draft a 3-step outreach sequence for prospect #1
+· LinkedIn connection note (300 chars)
+· email follow-up day 3 (150 words)
+· breakup message day 7 (50 words)
+tone: my voice from VOICE-SIGNATURE.md</pre>
+      <button class="copy" data-copy="draft a 3-step outreach sequence for prospect #1
+· LinkedIn connection note (300 chars)
+· email follow-up day 3 (150 words)
+· breakup message day 7 (50 words)
+tone: my voice from VOICE-SIGNATURE.md">Copy</button>
+    </div>
+    <p class="dim">Repeat for #2 and #3 (change the number).</p>
+
+    <h3>2.5 · Score + ship</h3>
+    <table>
+      <tr><th>Prospect</th><th>LI sent</th><th>Email queued</th><th>Day 7 reminder</th></tr>
+      <tr><td>1</td><td><input type="checkbox" data-k="d1.a2.p1.li"></td><td><input type="checkbox" data-k="d1.a2.p1.em"></td><td><input type="checkbox" data-k="d1.a2.p1.rem"></td></tr>
+      <tr><td>2</td><td><input type="checkbox" data-k="d1.a2.p2.li"></td><td><input type="checkbox" data-k="d1.a2.p2.em"></td><td><input type="checkbox" data-k="d1.a2.p2.rem"></td></tr>
+      <tr><td>3</td><td><input type="checkbox" data-k="d1.a2.p3.li"></td><td><input type="checkbox" data-k="d1.a2.p3.em"></td><td><input type="checkbox" data-k="d1.a2.p3.rem"></td></tr>
+    </table>
+
+    <h3>Troubleshooting</h3>
+    <table class="troubleshoot">
+      <tr><th>What went wrong</th><th>Quick fix</th></tr>
+      <tr><td>"I don't have access to Apify"</td><td>Restart Claude Desktop fully (Cmd+Q on Mac) · re-run</td></tr>
+      <tr><td>Apify free credits exhausted</td><td>Drop to 5: paste <code class="inline">re-run with limit 5 prospects</code></td></tr>
+      <tr><td>All 10 are bad fit</td><td>Tighten signal · paste <code class="inline">re-run with stricter filter: [criteria]</code></td></tr>
+      <tr><td>Outreach feels generic</td><td>Paste <code class="inline">add the specific signal from their LinkedIn into line 1 of every message</code></td></tr>
+    </table>
+
+    <label class="checkrow"><input type="checkbox" data-k="d1.a2.done"> <span><b>Activity 2 complete</b> · 3 outreaches queued</span></label>
+  </div>
+
+  <!-- ── Activity 3 ── -->
+  <div class="panel activity">
+    <span class="kicker">Activity 3</span>
+    <h2>Map your week <span class="time">12:05 - 12:25</span></h2>
+    <div class="goal">
+      <div><b>Goal</b>6 routines on calendar · 4 hrs/wk total</div>
+      <div><b>Tool</b>Google Calendar (one-time)</div>
+      <div><b>Win</b>Mon 7am + Sun 6pm alarms set</div>
+    </div>
+
+    <h3>3.1 · The 6 weekly anchors</h3>
+    <table>
+      <tr><th>Day</th><th>Time</th><th>Routine</th><th>Command</th><th>Set</th></tr>
+      <tr><td>MON</td><td>7:00am</td><td>Content Drop</td><td><code class="inline">/purely-personal:marketing-engine</code></td><td><input type="checkbox" data-k="d1.a3.mon"></td></tr>
+      <tr><td>TUE</td><td>8:00am</td><td>Lead Research</td><td><code class="inline">/purely-personal:sales-engine</code></td><td><input type="checkbox" data-k="d1.a3.tue"></td></tr>
+      <tr><td>WED</td><td>8:00am</td><td>Newsletter Draft</td><td><code class="inline">/purely-personal:marketing-engine</code></td><td><input type="checkbox" data-k="d1.a3.wed"></td></tr>
+      <tr><td>THU</td><td>7:00am</td><td>Meeting Prep</td><td><code class="inline">/purely-personal:sales-engine</code></td><td><input type="checkbox" data-k="d1.a3.thu"></td></tr>
+      <tr><td>FRI</td><td>5:00pm</td><td>Weekly Wrap</td><td><code class="inline">/purely-personal:operations-engine</code></td><td><input type="checkbox" data-k="d1.a3.fri"></td></tr>
+      <tr><td>SUN</td><td>6:00pm</td><td>Pipeline Report</td><td><code class="inline">/purely-personal:sales-engine</code></td><td><input type="checkbox" data-k="d1.a3.sun"></td></tr>
+    </table>
+
+    <div class="callout">
+      <div class="ico">!</div>
+      <div><b>Make the calendar event title = the command.</b> When the alarm fires you know exactly what to paste. Each routine takes 4-7 min · YOU review + approve · Claude writes everything.</div>
+    </div>
+
+    <h3>3.2 · Block your "do not disturb" deep-work windows</h3>
+    <div class="row-3">
+      <label class="field"><span>Window 1 day / time</span><input type="text" data-k="d1.a3.dw1"></label>
+      <label class="field"><span>Window 2 day / time</span><input type="text" data-k="d1.a3.dw2"></label>
+      <label class="field"><span>Window 3 day / time</span><input type="text" data-k="d1.a3.dw3"></label>
+    </div>
+
+    <label class="checkrow"><input type="checkbox" data-k="d1.a3.shot"> <span>Screenshot of week view dropped in Zoom chat</span></label>
+    <label class="checkrow"><input type="checkbox" data-k="d1.a3.done"> <span><b>Activity 3 complete</b> · Week is mapped</span></label>
+  </div>
+
+  <!-- ── Activity 4 ── -->
+  <div class="panel activity">
+    <span class="kicker">Activity 4</span>
+    <h2>Monday 7am anchor <span class="time">12:30 - 12:50</span></h2>
+    <div class="goal">
+      <div><b>Goal</b>Run Mon 7am routine NOW · prove the loop</div>
+      <div><b>Tool</b><code class="inline">/purely-personal:leadership-engine</code></div>
+      <div><b>Win</b>You see the brief format</div>
+    </div>
+
+    <h3>4.1 · Run the morning brief</h3>
+    <div class="paste">
+      <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">simulate Monday 7am</span></div>
+<pre>/purely-personal:leadership-engine
+
+simulate Monday 7am · pull from all 5 engines</pre>
+      <button class="copy" data-copy="/purely-personal:leadership-engine
+
+simulate Monday 7am · pull from all 5 engines">Copy</button>
+    </div>
+
+    <h3>4.2 · The 60-second read</h3>
+    <label class="field"><span>🏆 Yesterday's biggest win</span><input type="text" data-k="d1.a4.win"></label>
+    <label class="field"><span>⚡ Today's #1 priority</span><input type="text" data-k="d1.a4.prio"></label>
+    <label class="field"><span>🚨 Biggest blocker</span><input type="text" data-k="d1.a4.block"></label>
+    <div class="row-3">
+      <label class="field"><span>💰 Money in (week) $</span><input type="text" data-k="d1.a4.in"></label>
+      <label class="field"><span>💸 Money out (week) $</span><input type="text" data-k="d1.a4.out"></label>
+      <label class="field"><span>📤 Content ready</span><input type="text" data-k="d1.a4.content"></label>
+    </div>
+
+    <h3>4.3 · Gut check</h3>
+    <div class="radios">
+      <label><input type="radio" name="d1a4useful" data-k="d1.a4.useful" value="yes">Yes · clearly</label>
+      <label><input type="radio" name="d1a4useful" data-k="d1.a4.useful" value="maybe">Maybe · need to tune</label>
+      <label><input type="radio" name="d1a4useful" data-k="d1.a4.useful" value="no">No · not useful</label>
+    </div>
+    <label class="field"><span>If maybe/no · what would you change?</span><textarea data-k="d1.a4.change"></textarea></label>
+    <label class="checkrow"><input type="checkbox" data-k="d1.a4.done"> <span><b>Activity 4 complete</b> · Monday loop proven</span></label>
+  </div>
+
+  <!-- ── Day 1 commitments ── -->
+  <div class="panel">
+    <span class="kicker">Commit</span>
+    <h2>Three promises before Day 2 <span class="time">12:55 - 13:00</span></h2>
+    <div class="sign">
+      <h3>By tomorrow's session, I commit to:</h3>
+      <label class="field"><span>1. Publish the LinkedIn post from Activity 1 — date · time</span><input type="text" data-k="d1.commit.publish"></label>
+      <label class="field"><span>2. Send the 3 outreach messages from Activity 2 — by</span><input type="text" data-k="d1.commit.outreach"></label>
+      <label class="checkrow"><input type="checkbox" data-k="d1.commit.alarm"> <span>3. Run Monday 7am morning brief for real · alarm set</span></label>
+      <div class="row">
+        <label class="field"><span>Signed</span><input type="text" data-k="d1.commit.signed"></label>
+        <label class="field"><span>Date</span><input type="date" data-k="d1.commit.date"></label>
+      </div>
+    </div>
+    <div class="callout"><div class="ico">📸</div><div>Screenshot this section → drop in Zoom chat. Tomorrow we open Day 2 by reading these out loud.</div></div>
+  </div>
+
+  <!-- ── Day 1 scorecard ── -->
+  <div class="panel">
+    <span class="kicker">Scorecard</span>
+    <h2>How did Day 1 land?</h2>
+    <div class="row">
+      <label class="checkrow"><input type="checkbox" data-k="d1.sc.1a"> <span>Marketing engine ran</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d1.sc.1b"> <span>1 post ready to publish</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d1.sc.2a"> <span>Sales engine ran</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d1.sc.2b"> <span>3 outreaches queued</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d1.sc.3a"> <span>6 routines on calendar</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d1.sc.3b"> <span>Screenshot in chat</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d1.sc.4a"> <span>Leadership engine ran</span></label>
+      <label class="checkrow"><input type="checkbox" data-k="d1.sc.4b"> <span>Brief makes sense</span></label>
+    </div>
+    <div class="score">
+      <div class="num"><span id="d1Score">0</span><span style="color:var(--text-muted);font-size:18px;font-weight:700"> / 8</span></div>
+      <div class="legend"><b>7-8</b> shipping tomorrow · <b>5-6</b> catch up tonight (60 min) · <b>0-4</b> DM Danny tonight</div>
+    </div>
+  </div>
+
+  <div class="panel" style="background:linear-gradient(180deg,#fff 0%,var(--page-bg) 100%);text-align:center">
+    <span class="kicker">End of Day 1</span>
+    <h2>See you tomorrow at 11:00 Finland.</h2>
+    <p class="dim" style="max-width:520px;margin:8px auto 16px">Day 2 finishes the system: operations, cash, leadership · then the AI CEO Platform decision.</p>
+    <a class="btn-pill" href="../day-2/" style="font-size:13px;padding:11px 18px">Open Day 2 →</a>
+  </div>
+
+  <div class="foot">
+    SATURDAY MAY 2, 2026 · PURELY PERSONAL · BUILT WITH CLAUDE CODE · <a href="../">workbook hub</a>
+  </div>
+</main>
+
+<div class="toast" id="toast">Saved</div>
+
+<script>
+(()=>{
+  const KEY='pp.workbook.day1.v1';
+  const tabs=document.querySelectorAll('[data-k]');
+  const read=()=>{const o={};tabs.forEach(el=>{const k=el.dataset.k;if(el.type==='checkbox')o[k]=!!el.checked;else if(el.type==='radio'){if(el.checked)o[k]=el.value;}else o[k]=el.value||'';});return o;};
+  const write=(s)=>{if(!s)return;tabs.forEach(el=>{const k=el.dataset.k;if(!(k in s))return;const v=s[k];if(el.type==='checkbox')el.checked=!!v;else if(el.type==='radio')el.checked=(el.value===v);else el.value=v==null?'':v;});};
+  const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify(read()));}catch(e){}updateScore();};
+  document.addEventListener('input',persist);document.addEventListener('change',persist);
+  try{const r=localStorage.getItem(KEY);if(r)write(JSON.parse(r));}catch(e){}
+  const updateScore=()=>{const keys=['d1.sc.1a','d1.sc.1b','d1.sc.2a','d1.sc.2b','d1.sc.3a','d1.sc.3b','d1.sc.4a','d1.sc.4b'];let n=0;keys.forEach(k=>{const el=document.querySelector(`[data-k="${k}"]`);if(el&&el.checked)n++;});const out=document.getElementById('d1Score');if(out)out.textContent=n;};
+  updateScore();
+  document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async e=>{e.preventDefault();const t=b.dataset.copy||'';try{await navigator.clipboard.writeText(t);}catch{const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}b.classList.add('ok');const o=b.textContent;b.textContent='Copied ✓';setTimeout(()=>{b.classList.remove('ok');b.textContent=o;},1200);}));
+  const toast=document.getElementById('toast');const flash=m=>{toast.textContent=m;toast.classList.add('on');setTimeout(()=>toast.classList.remove('on'),1400);};
+  document.getElementById('saveBtn').addEventListener('click',()=>{const s=read();const name=(s['d1.name']||'workbook').toString().trim().toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9\-]/g,'')||'workbook';const blob=new Blob([JSON.stringify(s,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`pp-workbook-day1-${name}-${new Date().toISOString().slice(0,10)}.json`;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);flash('Saved');});
+  document.getElementById('loadBtn').addEventListener('click',()=>document.getElementById('loadFile').click());
+  document.getElementById('loadFile').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{write(JSON.parse(r.result));persist();flash('Loaded');}catch{flash('Invalid file');}};r.readAsText(f);});
+  document.getElementById('resetBtn').addEventListener('click',()=>{if(!confirm('Reset every field on Day 1?'))return;tabs.forEach(el=>{if(el.type==='checkbox'||el.type==='radio')el.checked=false;else el.value='';});persist();flash('Cleared');});
+  window.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='s'){e.preventDefault();document.getElementById('saveBtn').click();}});
+})();
+</script>
+
+</body>
+</html>
