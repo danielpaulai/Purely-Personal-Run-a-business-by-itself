@@ -764,9 +764,14 @@ Do these in order. Confirm each before running:
 2. Install the plugin from the marketplace:
    /plugin install purely-personal@purely-personal-marketplace
 
-3. List the 8 slash commands and confirm they all loaded:
+3. RESTART required: type /exit (or Ctrl+D) to exit Claude Code,
+   then run `claude` again from your terminal. Plugins only load
+   at session start.
+
+4. After restart, type / and confirm all 9 slash commands appear:
    build-my-brain, marketing-engine, sales-engine, operations-engine,
-   cash-engine, leadership-engine, prep-workshop-slides, ship-it-live
+   cash-engine, leadership-engine, prep-workshop-slides, ship-it-live,
+   new-workshop
 
 5. Wire Apify MCP into Claude Desktop:
    - Tell me to go to apify.com, sign up free, then console.apify.com to create a token named "Claude Workshop"
@@ -1494,7 +1499,7 @@ Use the Bash tool. Don't make me type commands myself unless I have to (browser 
       </details>
       <details>
         <summary>I typed <code>/</code> in Claude Code but no Purely Personal commands appear</summary>
-        <div class="tg-body"><strong>Cause:</strong> the plugin marketplace wasn't added. Claude Code 2.x installs plugins from marketplaces (a GitHub repo with a <code>marketplace.json</code>) · not from local folders. <strong>Fix:</strong> inside Claude Code, type <code>/plugin marketplace add danielpaulai/Purely-Personal-Run-a-business-by-itself</code> and press Enter. Then <code>/plugin install purely-personal@purely-personal-marketplace</code>. Restart Claude Code if needed. Type <code>/</code> · all 8 commands should appear.</div>
+        <div class="tg-body"><strong>Most common cause:</strong> you didn't restart Claude Code after installing the plugin. Plugins only load at session start. <strong>Fix:</strong> type <code>/exit</code> (or press Ctrl+D), then re-run <code>claude</code> in your terminal. Type <code>/</code> · all 9 commands appear with descriptions. <strong>If that fails:</strong> the marketplace wasn't added. Inside Claude Code, type <code>/plugin marketplace add danielpaulai/Purely-Personal-Run-a-business-by-itself</code>, then <code>/plugin install purely-personal@purely-personal-marketplace</code>, THEN restart.</div>
       </details>
       <details>
         <summary><code>claude plugin install .</code> says "not recognized" (the OLD instruction)</summary>
@@ -1561,7 +1566,7 @@ Use the Bash tool. Don't make me type commands myself unless I have to (browser 
       </details>
       <details>
         <summary><code>/plugins</code> inside Claude Code says "no plugins"</summary>
-        <div class="tg-body">The plugin marketplace wasn't added. Inside Claude Code: <code>/plugin marketplace add danielpaulai/Purely-Personal-Run-a-business-by-itself</code> then <code>/plugin install purely-personal@purely-personal-marketplace</code>. Restart Claude Code. Type <code>/</code> · all 8 commands should appear.</div>
+        <div class="tg-body">Either the marketplace wasn't added OR you forgot to restart. <strong>First try:</strong> <code>/exit</code> · then re-run <code>claude</code>. Plugins only load at session start. <strong>If that doesn't work:</strong> the marketplace was never added. Run <code>/plugin marketplace add danielpaulai/Purely-Personal-Run-a-business-by-itself</code>, then <code>/plugin install purely-personal@purely-personal-marketplace</code>, THEN <code>/exit</code> + re-run <code>claude</code>. Type <code>/</code> · all 9 commands appear.</div>
       </details>
       <details>
         <summary>Claude Code won't launch at all</summary>
