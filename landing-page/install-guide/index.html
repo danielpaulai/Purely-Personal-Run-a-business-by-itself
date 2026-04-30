@@ -103,6 +103,96 @@ main{padding:48px 56px 80px;max-width:940px}
   .win-callout-head{flex-direction:column;align-items:flex-start}
 }
 
+/* ============== Terminal cheat-sheet ============== */
+.term-cheat{margin:24px 0;background:var(--card-bg);border:1px solid var(--divider);border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(20,14,8,0.05)}
+.term-cheat-head{padding:22px 24px 12px;background:linear-gradient(180deg,#fff 0%,var(--page-bg) 100%);border-bottom:1px solid var(--divider)}
+.term-cheat-eyebrow{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--pp-red);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:8px}
+.term-cheat-head h3{font-family:var(--display);font-size:22px;font-weight:800;letter-spacing:-0.015em;color:var(--text-primary);margin:0 0 6px;line-height:1.2}
+.term-cheat-head p{font-size:13.5px;color:var(--text-secondary);margin:0;line-height:1.55}
+.term-cheat-tbl{width:100%;border-collapse:collapse;font-size:14px}
+.term-cheat-tbl th{background:var(--sub-card-bg);color:var(--text-secondary);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-family:var(--mono);padding:10px 18px;text-align:left;border-bottom:1px solid var(--divider)}
+.term-cheat-tbl td{padding:14px 18px;border-bottom:1px solid var(--divider);vertical-align:middle;line-height:1.5}
+.term-cheat-tbl tr:last-child td{border-bottom:0}
+.term-cheat-tbl td code{font-family:var(--mono);font-size:12.5px;background:rgba(233,13,65,0.07);color:var(--pp-red);padding:1px 5px;border-radius:3px;font-weight:700}
+.term-cheat-tbl td strong{color:var(--text-primary)}
+.tc-num{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;background:var(--pp-red);color:#fff;font-family:var(--display);font-weight:800;font-size:14px}
+.term-pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;padding:5px 10px;border-radius:5px;white-space:nowrap}
+.term-pill.ps{background:#1a3050;color:#a8c2ff;border:1px solid #2a3a5a}
+.term-pill.gb{background:#0d2c1f;color:#9be3b6;border:1px solid #1f7a4e}
+.term-pill.br{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
+.term-pill.in{background:#f3eee5;color:#666;border:1px solid var(--divider-strong)}
+.term-cheat-rules{padding:14px 24px 18px;background:var(--sub-card-bg);border-top:1px solid var(--divider)}
+.term-cheat-rules .rule{display:flex;gap:12px;align-items:flex-start;padding:8px 0;font-size:13.5px;color:var(--text-secondary);line-height:1.55}
+.term-cheat-rules .rule strong{color:var(--text-primary)}
+.term-cheat-rules .rule code{font-family:var(--mono);font-size:12px;background:rgba(0,0,0,0.05);color:var(--text-primary);padding:1px 5px;border-radius:3px}
+.term-cheat-rules .rule-ico{flex-shrink:0;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--pp-red);font-size:14px}
+
+/* ============== Rescue block (Stuck → Claude) ============== */
+.rescue-block{margin:24px 0;display:flex;gap:18px;align-items:flex-start;background:linear-gradient(135deg,#fff5f7 0%,#fff 60%,#fef3c7 100%);border:2px dashed var(--pp-red);border-radius:14px;padding:22px 24px;position:relative;overflow:hidden}
+.rescue-icon{flex-shrink:0;width:58px;height:58px;background:var(--pp-red);color:#fff;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 8px 20px rgba(233,13,65,0.3)}
+.rescue-body{flex:1;min-width:0}
+.rescue-body h3{font-family:var(--display);font-size:20px;font-weight:800;letter-spacing:-0.015em;color:var(--text-primary);margin:0 0 6px;line-height:1.2}
+.rescue-lead{font-size:14px;color:var(--text-secondary);line-height:1.55;margin:0 0 12px}
+.rescue-lead strong{color:var(--pp-red);font-weight:700}
+.rescue-steps{margin:8px 0 10px;padding-left:24px}
+.rescue-steps li{font-size:14px;color:var(--text-primary);line-height:1.55;margin-bottom:8px}
+.rescue-steps li strong{font-weight:700}
+.rescue-cmd{margin:8px 0 4px}
+.rescue-foot{font-size:12.5px;color:var(--text-muted);margin:8px 0 0;line-height:1.5}
+@media(max-width:640px){.rescue-block{flex-direction:column}.rescue-icon{width:48px;height:48px;font-size:26px}}
+
+/* ============== Admin badge (Run as Administrator etc.) ============== */
+.admin-badge{display:flex;gap:14px;align-items:flex-start;background:#fef3c7;border:1px solid #fde68a;border-left:4px solid #f59e0b;border-radius:8px;padding:12px 16px;margin:0 0 8px}
+.admin-badge.mac{background:#dbeafe;border-color:#bfdbfe;border-left-color:#3b82f6}
+.admin-icon{flex-shrink:0;font-size:20px;line-height:1.2}
+.admin-badge>div>strong{display:block;font-size:14px;color:var(--text-primary);font-weight:700;margin-bottom:4px}
+.admin-badge>div>span{display:block;font-size:13px;color:var(--text-secondary);line-height:1.55}
+.admin-badge>div>span code{font-family:var(--mono);font-size:12px;background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:3px;color:var(--text-primary);font-weight:700}
+.admin-badge>div>span kbd{font-family:var(--mono);font-size:11px;background:#fff;border:1px solid var(--divider-strong);border-bottom-width:2px;border-radius:4px;padding:1px 5px;color:var(--text-primary);font-weight:700}
+.admin-badge>div>span strong{color:var(--text-primary);font-weight:700}
+
+/* ============== PATH-fix block (Step 1 troubleshooting) ============== */
+.trouble.path-fix{background:linear-gradient(180deg,#fef3c7 0%,#fff 100%);border:1px solid #f59e0b;border-radius:10px;padding:0;margin:14px 0;overflow:hidden}
+.trouble.path-fix>summary{padding:14px 18px;cursor:pointer;list-style:none;font-size:14px;line-height:1.5;color:var(--text-primary);user-select:none}
+.trouble.path-fix>summary::-webkit-details-marker{display:none}
+.trouble.path-fix>summary::before{content:'+ ';color:var(--pp-red);font-weight:800}
+.trouble.path-fix[open]>summary::before{content:'− '}
+.trouble.path-fix>summary code{font-family:var(--mono);font-size:12px;background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:3px;color:var(--pp-red);font-weight:700}
+.trouble.path-fix .t-body{padding:0 18px 16px;font-size:13.5px;line-height:1.6;color:var(--text-secondary)}
+.path-fix-steps{margin:10px 0 14px;padding-left:24px}
+.path-fix-steps li{margin-bottom:8px;color:var(--text-primary);font-size:13.5px;line-height:1.5}
+.path-fix-steps li strong{color:var(--text-primary);font-weight:700}
+.path-fix-steps li kbd{font-family:var(--mono);font-size:11px;background:#fff;border:1px solid var(--divider-strong);border-bottom-width:2px;border-radius:4px;padding:1px 5px;color:var(--text-primary);font-weight:700}
+.path-fix-steps li code{font-family:var(--mono);font-size:12px;background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:3px;color:var(--pp-red);font-weight:700}
+.path-fix-tip{display:block;margin-top:6px;font-size:12px;color:var(--text-muted);font-style:italic;line-height:1.5}
+.path-fix-foot{margin:14px 0 12px;padding:10px 12px;background:#dbeafe;border-radius:6px;font-size:12.5px;color:var(--text-secondary)}
+.path-fix-foot strong{color:#1e40af;font-weight:700}
+.path-fix-foot code{font-family:var(--mono);font-size:11.5px;background:#fff;color:#1e40af;padding:1px 5px;border-radius:3px;font-weight:700;border:1px solid #bfdbfe}
+
+/* ============== 32/64-bit detection tip ============== */
+.arch-tip{background:#dbeafe;border:1px solid #bfdbfe;border-left:4px solid #3b82f6;border-radius:8px;padding:11px 14px;margin:0 0 8px;font-size:13px;line-height:1.55}
+.arch-tip strong{display:block;color:#1e40af;font-weight:700;margin-bottom:3px;font-size:13px}
+.arch-tip span{color:var(--text-secondary)}
+.arch-tip code{font-family:var(--mono);font-size:12px;background:#fff;color:#1e40af;padding:1px 5px;border-radius:3px;font-weight:700}
+.arch-tip kbd{font-family:var(--mono);font-size:11px;background:#fff;border:1px solid #bfdbfe;border-bottom-width:2px;border-radius:4px;padding:1px 5px;color:#1e40af;font-weight:700}
+
+/* ============== Auth block (Step 3b · Git ↔ GitHub) ============== */
+.auth-block{margin:18px 0 4px;background:linear-gradient(180deg,#fdf2f5 0%,#fff 100%);border:1px solid var(--pp-red-soft);border-radius:12px;padding:22px 24px;position:relative}
+.auth-block-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:8px}
+.auth-num{flex-shrink:0;width:44px;height:44px;border-radius:10px;background:var(--pp-red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:18px;box-shadow:0 4px 12px rgba(233,13,65,0.3)}
+.auth-eyebrow{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--pp-red);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:2px}
+.auth-block-head h3{font-family:var(--display);font-size:20px;font-weight:800;letter-spacing:-0.015em;color:var(--text-primary);margin:0;line-height:1.2}
+.auth-lead{font-size:14px;color:var(--text-secondary);line-height:1.6;margin:8px 0 14px}
+.auth-lead strong{color:var(--text-primary);font-weight:700}
+.auth-lead code{font-family:var(--mono);font-size:12.5px;background:rgba(233,13,65,0.07);color:var(--pp-red);padding:1px 5px;border-radius:3px;font-weight:700}
+.auth-steps{margin:10px 0;padding-left:24px}
+.auth-steps>li{margin-bottom:14px;font-size:14px;color:var(--text-primary);line-height:1.55}
+.auth-steps>li strong{font-weight:700}
+.auth-steps>li code{font-family:var(--mono);font-size:12.5px;background:rgba(0,0,0,0.05);padding:1px 5px;border-radius:3px;color:var(--pp-red);font-weight:700}
+.auth-verify{margin-top:14px;padding:11px 14px;background:#f0fdf4;border:1px solid #bbf7d0;border-left:4px solid var(--success);border-radius:6px;font-size:13.5px;color:var(--text-secondary);line-height:1.55}
+.auth-verify strong{color:var(--success);font-weight:700}
+.auth-verify code{font-family:var(--mono);font-size:12px;background:#fff;border:1px solid #bbf7d0;color:var(--success);padding:1px 5px;border-radius:3px;font-weight:700}
+
 details.step{margin:14px 0;border:1px solid var(--divider);border-radius:10px;background:var(--card-bg);overflow:hidden;scroll-margin-top:20px;transition:box-shadow 180ms}
 details.step[open]{box-shadow:0 8px 28px rgba(0,0,0,0.06),0 2px 6px rgba(233,13,65,0.06)}
 details.step summary{padding:18px 22px;cursor:pointer;display:flex;align-items:center;gap:16px;list-style:none;user-select:none}
@@ -648,6 +738,48 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
     </div>
   </div>
 
+  <!-- ===== Which terminal at which step (cheat-sheet) ===== -->
+  <div class="term-cheat">
+    <div class="term-cheat-head">
+      <span class="term-cheat-eyebrow">Terminal cheat-sheet · Windows</span>
+      <h3>Which terminal at which step?</h3>
+      <p>Stick to this and you'll never get a "command not recognized" error. Print it · keep it next to your laptop.</p>
+    </div>
+    <table class="term-cheat-tbl">
+      <thead><tr><th>Step</th><th>What you do</th><th>Where</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tc-num">1</span></td><td>Install Claude Code · paste <code>iwr ... | iex</code></td><td><span class="term-pill ps">⚡ PowerShell · Run as Administrator</span></td></tr>
+        <tr><td><span class="tc-num">2</span></td><td>Sign up for GitHub</td><td><span class="term-pill br">🌐 Browser</span></td></tr>
+        <tr><td><span class="tc-num">3</span></td><td>Download + install Git for Windows</td><td><span class="term-pill br">🌐 Browser</span> + <span class="term-pill in">⚙ Installer</span></td></tr>
+        <tr><td><span class="tc-num">4</span></td><td><strong>Verify everything ·</strong> <code>claude --version</code> · <code>git --version</code> · launch <code>claude</code></td><td><span class="term-pill gb">🐙 Git Bash</span></td></tr>
+        <tr><td><span class="tc-num">5+</span></td><td><strong>Every step from here on</strong> · plugin install · BUSINESS-BRAIN · routines · everything</td><td><span class="term-pill gb">🐙 Git Bash</span></td></tr>
+      </tbody>
+    </table>
+    <div class="term-cheat-rules">
+      <div class="rule"><span class="rule-ico">⚠</span><div><strong>Open PowerShell as Administrator</strong> for Step 1. Right-click PowerShell in the Start menu → <em>Run as administrator</em>. Without admin, the install can fail silently.</div></div>
+      <div class="rule"><span class="rule-ico">✕</span><div><strong>Plugin commands NEVER go in PowerShell.</strong> If you try <code>/plugin marketplace add ...</code> in PowerShell, you'll get cryptic errors. Switch to Git Bash · re-run.</div></div>
+      <div class="rule"><span class="rule-ico">✓</span><div><strong>Mac users:</strong> just use <strong>Terminal</strong> for every step. None of this Windows complexity applies. (Run <code>xcode-select --install</code> in Step 3 instead of downloading Git separately.)</div></div>
+    </div>
+  </div>
+
+  <!-- ===== Stuck-help rescue block · always visible ===== -->
+  <div class="rescue-block">
+    <div class="rescue-icon">🆘</div>
+    <div class="rescue-body">
+      <h3>Stuck? Use the Claude rescue loop · 30-second fix</h3>
+      <p class="rescue-lead">Whenever ANY command fails (red error · "command not found" · cryptic message · weird popup), do this <strong>before</strong> asking in Slack:</p>
+      <ol class="rescue-steps">
+        <li><strong>Screenshot the entire terminal window</strong> · including the command you ran AND the error.</li>
+        <li><strong>Open <a href="https://claude.ai" target="_blank">claude.ai</a></strong> in a browser tab (not Claude Code · the web chat).</li>
+        <li>Paste this prompt + drop in the screenshot:
+          <div class="cmd rescue-cmd"><span class="cmd-label">Paste in claude.ai chat</span>I'm following the Purely Personal install guide for Windows. I ran the command shown in the screenshot and got this error. Tell me exactly what to do next · which terminal · which command · in numbered steps. Be precise · I'm not technical.</div>
+        </li>
+        <li><strong>Follow Claude's numbered steps.</strong> 90% of install errors are fixed in under 60 seconds this way.</li>
+      </ol>
+      <p class="rescue-foot">If Claude can't fix it · post the screenshot + Claude's response in the workshop Slack channel · Danny or a teammate jumps in within 30 min during Finland hours.</p>
+    </div>
+  </div>
+
   <div class="callout warn"><strong>Stuck at any step?</strong> Post in the workshop Slack channel (link in your registration email). Danny or a teammate will unblock you within 30 minutes during Finland business hours.</div>
 
   <!-- Expand/Collapse All controls -->
@@ -719,9 +851,16 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
           <div class="cmd"><span class="cmd-label">Mac Terminal</span>curl -fsSL https://claude.ai/install.sh | sh</div>
         </div>
         <div>
-          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">Open <strong>PowerShell</strong> (this is the ONE command that needs PowerShell · everything else uses Git Bash):</p>
-          <div class="cmd"><span class="cmd-label">PowerShell · Step 1 only</span>iwr https://claude.ai/install.ps1 -UseBasicParsing | iex</div>
-          <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">After this install completes, <strong>close PowerShell</strong>. Use <strong>Git Bash</strong> for every step after this one (it speaks Unix syntax · PowerShell does not).</p>
+          <div class="admin-badge">
+            <span class="admin-icon">🛡</span>
+            <div>
+              <strong>Open PowerShell as Administrator</strong>
+              <span>Press <kbd>⊞ Win</kbd> · type <code>PowerShell</code> · <strong>right-click</strong> "Windows PowerShell" → <strong>Run as administrator</strong>. (Without admin, the installer can fail silently · you'll waste 10 minutes wondering why.)</span>
+            </div>
+          </div>
+          <p style="margin:14px 0 6px;font-size:13px;color:var(--text-secondary)">Then paste this command (this is the <strong>ONE</strong> time you'll use PowerShell · everything else uses Git Bash):</p>
+          <div class="cmd"><span class="cmd-label">PowerShell · Step 1 only · Admin</span>iwr https://claude.ai/install.ps1 -UseBasicParsing | iex</div>
+          <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">⏱ Takes 6-7 minutes. Wait for "Installation complete." After this, <strong>close PowerShell</strong> · switch to Git Bash for every other step.</p>
         </div>
       </div>
     </div>
@@ -737,10 +876,34 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
         <span class="out"><span class="prompt">~</span> <span class="path">danny@Mac</span> $ <span class="cursor"></span></span>
       </div>
     </div>
-    <div class="verify">Type <code>claude --version</code>. Should see <code>1.0.x</code> or higher. If "command not found", close and re-open the terminal.</div>
-    <details class="trouble">
-      <summary>Still says "command not found"</summary>
-      <div class="t-body"><strong>Mac:</strong> <code>source ~/.zshrc</code> and try again.<br><strong>Windows:</strong> fully close PowerShell and re-open. Check "Environment Variables" → user PATH includes <code>%USERPROFILE%\.claude\bin</code>.</div>
+    <div class="verify">Open <strong>Git Bash</strong> and type <code>claude --version</code>. Should see <code>1.0.x</code> or higher. If "command not found" · see the fix box below.</div>
+
+    <!-- ===== PATH FIX (the one Elif hit on April 30) ===== -->
+    <details class="trouble path-fix" open>
+      <summary><strong>If you see <code>'claude' is not recognized</code> or <code>command not found</code> · do this</strong></summary>
+      <div class="t-body">
+        <p style="margin-top:0"><strong>What happened:</strong> Claude Code installed correctly, but Windows doesn't yet know where to find it. The PATH variable needs the install folder added. <strong>This is the #1 install error · 5-minute fix.</strong></p>
+
+        <ol class="path-fix-steps">
+          <li>Press <kbd>⊞ Win</kbd> + <kbd>R</kbd> to open the Run dialog.</li>
+          <li>Type <code>sysdm.cpl</code> · press <kbd>Enter</kbd>. The "System Properties" window opens.</li>
+          <li>Click the <strong>Advanced</strong> tab → <strong>Environment Variables…</strong> button at the bottom.</li>
+          <li>In the <strong>top</strong> section ("User variables for &lt;your name&gt;"), find the row called <code>Path</code>. <strong>Single-click it</strong> · then click <strong>Edit…</strong></li>
+          <li>Click <strong>New</strong> · paste this exactly (replace <code>YourUsername</code> with your actual Windows username):
+            <div class="cmd"><span class="cmd-label">Paste in Path · Edit</span>C:\Users\YourUsername\.local\bin</div>
+            <span class="path-fix-tip">Not sure of your username? Open Git Bash · type <code>whoami</code> · the part after the <code>\</code> is your username.</span>
+          </li>
+          <li>Click <strong>OK</strong> on every window (3 OKs in total).</li>
+          <li><strong>Close Git Bash and PowerShell completely</strong> · re-open Git Bash.</li>
+          <li>Run <code>claude --version</code> again. Should now print <code>1.0.x</code>.</li>
+        </ol>
+
+        <div class="path-fix-foot">
+          <strong>Mac equivalent:</strong> if <code>claude</code> isn't found, run <code>source ~/.zshrc</code> in Terminal. If still missing, run <code>echo 'export PATH="$HOME/.claude/bin:$PATH"' &gt;&gt; ~/.zshrc &amp;&amp; source ~/.zshrc</code>.
+        </div>
+
+        <p style="margin-bottom:0;font-size:13px;color:var(--text-muted)">Still stuck? Use the <strong>Claude rescue loop</strong> at the top of this guide · screenshot + paste in claude.ai · 30 seconds.</p>
+      </div>
     </details>
   </div>
 </details>
@@ -787,14 +950,31 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
       <div class="os-tab-header"><div class="os-tab-label mac">macOS</div><div class="os-tab-label win">Windows</div></div>
       <div class="os-tab-body">
         <div>
-          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">Open Terminal, paste:</p>
-          <div class="cmd"><span class="cmd-label">Mac</span>xcode-select --install</div>
-          <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">Dialog appears. Click <strong>Install</strong>. ~3 min.</p>
+          <div class="admin-badge mac">
+            <span class="admin-icon">🛡</span>
+            <div>
+              <strong>Don't skip this · Mac users always miss it</strong>
+              <span>This installs Apple's command-line tools (Git is bundled). Without it, <code>git --version</code> fails later. Run it now · 3 minutes · no admin password needed.</span>
+            </div>
+          </div>
+          <p style="margin:14px 0 6px;font-size:13px;color:var(--text-secondary)">Open Terminal · paste:</p>
+          <div class="cmd"><span class="cmd-label">Mac Terminal</span>xcode-select --install</div>
+          <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">Dialog appears. Click <strong>Install</strong>. ~3 min. Then run <code>git --version</code> to verify.</p>
         </div>
         <div>
-          <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">Download 64-bit installer:</p>
-          <p style="margin:0"><a href="https://git-scm.com/download/win" target="_blank">git-scm.com/download/win</a></p>
-          <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">Run it. Click <strong>Next</strong> on every screen.</p>
+          <div class="arch-tip">
+            <strong>32-bit or 64-bit?</strong>
+            <span>Press <kbd>⊞ Win</kbd> · type <code>System</code> · click "About your PC". Look at <strong>System type</strong>. Almost all PCs from the last 10 years are <strong>64-bit</strong>. If it says 32-bit · download the x86 version instead.</span>
+          </div>
+          <p style="margin:14px 0 6px;font-size:13px;color:var(--text-secondary)">Download Git for Windows (Git Bash is bundled · same installer):</p>
+          <a class="win-download-btn" href="https://git-scm.com/download/win" target="_blank" rel="noopener">
+            <span class="win-download-icon">↓</span>
+            <span>
+              <span class="win-download-label">git-scm.com/download/win</span>
+              <span class="win-download-meta">~50 MB · official · 64-bit recommended</span>
+            </span>
+          </a>
+          <p style="font-size:12px;color:var(--text-muted);margin:10px 0 0">Run the installer. Click <strong>Next</strong> on every screen. Defaults are correct.</p>
         </div>
       </div>
     </div>
@@ -805,7 +985,37 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
         <div class="download-box"><a>Click here to download the latest (2.54.0) x64 version of Git for Windows</a><div class="version">Latest version · 2.54.0 · Released 4 days ago</div></div>
       </div>
     </div>
-    <div class="verify">Type <code>git --version</code>. You should see <code>git version 2.x</code>.</div>
+    <div class="verify">Open <strong>Git Bash</strong> · type <code>git --version</code>. You should see <code>git version 2.x</code>.</div>
+
+    <!-- ===== Step 3b · Authenticate Git with GitHub (the missed step) ===== -->
+    <div class="auth-block">
+      <div class="auth-block-head">
+        <span class="auth-num">3b</span>
+        <div>
+          <span class="auth-eyebrow">Most-missed step · 2 minutes</span>
+          <h3>Tell Git who you are on GitHub</h3>
+        </div>
+      </div>
+      <p class="auth-lead">Creating a GitHub account in your browser is <strong>not</strong> the same as Git on your machine knowing about it. Without this step, plugin install can fail with a cryptic <code>SSO required</code> or <code>repository not found</code> error · even though the repo is public.</p>
+
+      <ol class="auth-steps">
+        <li>
+          <strong>Open Git Bash</strong> · paste these two commands (replace the placeholders with the email + name you used at github.com/signup):
+          <div class="cmd"><span class="cmd-label">Git Bash · 1 of 2</span>git config --global user.name "Your Name"</div>
+          <div class="cmd"><span class="cmd-label">Git Bash · 2 of 2</span>git config --global user.email "you@example.com"</div>
+        </li>
+        <li>
+          <strong>First time you use Git for a private repo</strong>, a browser tab pops up asking you to sign in to GitHub. <strong>Sign in · click "Authorize git-credential-manager"</strong> · close the tab. Git now remembers your account.
+        </li>
+        <li>
+          <strong>If your GitHub account has SSO enabled</strong> (corporate accounts only): go to <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a> → after creating a personal access token, click <strong>Configure SSO</strong> next to it → <strong>Authorize</strong> for the orgs you need. Most personal accounts don't need this.
+        </li>
+      </ol>
+
+      <div class="auth-verify">
+        <strong>Verify it worked:</strong> in Git Bash, run <code>git config --global user.email</code>. It should print the email you entered. If it does · you're done · move to Phase 2 below.
+      </div>
+    </div>
   </div>
 </details>
 
@@ -1593,9 +1803,39 @@ Use the Bash tool. Don't make me type commands myself unless I have to (browser 
         <summary><strong>Windows:</strong> PowerShell says <code>'claude'</code>, <code>'ln'</code>, or <code>'$(pwd)'</code> is not recognized</summary>
         <div class="tg-body"><strong>Cause:</strong> PowerShell does not understand Unix-style commands. <code>claude</code> may be installed but not on PowerShell's PATH. <code>ln -s</code>, <code>$(pwd)</code>, and <code>~/</code> paths simply do not exist in PowerShell. <strong>Fix:</strong> close PowerShell. Open <strong>Git Bash</strong> from the Start menu (it was installed alongside Git in Step 3). Re-run every command in Git Bash · they all work there. The ONLY command that uses PowerShell is the Step 1 install (<code>iwr ... | iex</code>); after that, switch to Git Bash for everything.</div>
       </details>
+      <details open>
+        <summary>Terminal says <code>command not found: claude</code> · or Windows says <code>'claude' is not recognized</code></summary>
+        <div class="tg-body"><strong>This is the #1 install error.</strong> Means Claude installed but Windows/Mac doesn't know where to find it (PATH issue). <strong>Step-by-step fix:</strong>
+          <br><br><strong>Mac:</strong> run <code>source ~/.zshrc</code> and try again. If still failing, run: <code>echo 'export PATH="$HOME/.claude/bin:$PATH"' &gt;&gt; ~/.zshrc &amp;&amp; source ~/.zshrc</code>
+          <br><br><strong>Windows · 7-step PATH fix:</strong>
+          <br>1. <kbd>⊞ Win</kbd> + <kbd>R</kbd> · type <code>sysdm.cpl</code> · Enter
+          <br>2. Advanced tab → Environment Variables…
+          <br>3. Under <strong>User variables</strong> · click <code>Path</code> · Edit…
+          <br>4. New · paste <code>C:\Users\YourUsername\.local\bin</code> (replace YourUsername · find via <code>whoami</code> in Git Bash)
+          <br>5. OK · OK · OK
+          <br>6. Close all terminals · re-open Git Bash
+          <br>7. Run <code>claude --version</code> · should work now</div>
+      </details>
       <details>
-        <summary>Terminal says <code>command not found: claude</code></summary>
-        <div class="tg-body"><strong>Fix:</strong> close and re-open the terminal so PATH refreshes. <strong>Mac:</strong> run <code>source ~/.zshrc</code> and try again. <strong>Windows:</strong> open "Environment Variables" in Start menu, check user PATH includes <code>%USERPROFILE%\.claude\bin</code>, re-open Git Bash (not PowerShell).</div>
+        <summary>Plugin install says <code>The command is valid, but failed because GitHub's SSO isn't configured</code></summary>
+        <div class="tg-body"><strong>Cause:</strong> Git on your machine hasn't been authenticated with your GitHub account · or your GitHub account requires SSO authorization for an org. <strong>Fix · two parts:</strong>
+          <br><br><strong>Part 1 · tell Git who you are</strong> (do this in Git Bash):
+          <br><code>git config --global user.name "Your Name"</code>
+          <br><code>git config --global user.email "you@example.com"</code>
+          <br><br><strong>Part 2 · authorize SSO if you have a corporate GitHub:</strong>
+          <br>1. Go to <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a>
+          <br>2. Click <strong>Generate new token (classic)</strong> · select scopes <code>repo</code> + <code>read:org</code> · 90-day expiry
+          <br>3. After creation, click <strong>Configure SSO</strong> next to the token · click <strong>Authorize</strong> for the org you need
+          <br>4. Use the token as your password the first time Git asks you to sign in (Git Credential Manager will remember it)
+          <br><br><strong>Most personal GitHub accounts don't have SSO</strong> · Part 1 alone usually fixes it. Re-run <code>/plugin marketplace add danielpaulai/Purely-Personal-Run-a-business-by-itself</code> after.</div>
+      </details>
+      <details>
+        <summary>PowerShell installer ran but nothing happened · or installation never completed</summary>
+        <div class="tg-body"><strong>Cause:</strong> PowerShell wasn't run as administrator · the installer needs admin rights to create folders in your user profile. <strong>Fix:</strong> close PowerShell. Press <kbd>⊞ Win</kbd> · type <code>PowerShell</code> · <strong>right-click</strong> "Windows PowerShell" · click <strong>Run as administrator</strong>. Re-paste <code>iwr https://claude.ai/install.ps1 -UseBasicParsing | iex</code>. Wait 6-7 minutes for the green ✓ "Installation complete." Then close PowerShell, open Git Bash, run <code>claude --version</code>.</div>
+      </details>
+      <details>
+        <summary>Plugin install fails in PowerShell with red errors</summary>
+        <div class="tg-body"><strong>Cause:</strong> you're trying to install the plugin from PowerShell. The <code>/plugin marketplace add</code> command ONLY works from inside Claude Code · which is launched from <strong>Git Bash</strong>, not PowerShell. <strong>Fix:</strong> close PowerShell. Open Git Bash. Type <code>claude</code> to launch Claude Code. Inside Claude Code, paste <code>/plugin marketplace add danielpaulai/Purely-Personal-Run-a-business-by-itself</code> · press Enter. Then <code>/plugin install purely-personal@purely-personal-marketplace</code> · press Enter. Then <code>/exit</code> · re-run <code>claude</code>.</div>
       </details>
       <details>
         <summary>Terminal says <code>command not found: git</code></summary>
