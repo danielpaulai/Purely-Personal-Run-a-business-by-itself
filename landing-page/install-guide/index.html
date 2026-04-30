@@ -98,6 +98,26 @@ main{padding:48px 56px 80px;max-width:940px}
 .win-download-meta{display:block;font-family:var(--mono);font-size:11px;font-weight:500;opacity:0.85;letter-spacing:0.06em;margin-top:2px}
 .win-callout-foot{padding:14px 24px;background:#fef3c7;border-top:1px solid #fde68a;font-size:13px;color:var(--text-secondary);line-height:1.5}
 .win-callout-foot strong{color:#92400e;font-weight:700}
+
+/* ============== Install Fixes video embed ============== */
+.fixes-video{margin:28px 0;background:linear-gradient(180deg,var(--dark) 0%,#16171a 100%);border:1px solid #2a2c33;border-radius:14px;overflow:hidden;box-shadow:0 12px 40px rgba(15,15,16,0.4),0 0 0 1px rgba(233,13,65,0.15);position:relative}
+.fixes-video::before{content:'';position:absolute;top:-100px;right:-100px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(233,13,65,0.18) 0%,transparent 60%);pointer-events:none;z-index:0}
+.fixes-video-head{position:relative;z-index:1;padding:24px 28px 18px}
+.fixes-video-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(233,13,65,0.16);border:1px solid rgba(233,13,65,0.4);padding:6px 12px;border-radius:999px;margin-bottom:14px}
+.fixes-badge-dot{width:8px;height:8px;border-radius:50%;background:var(--pp-red);box-shadow:0 0 0 4px rgba(233,13,65,0.2);animation:fixes-pulse 2s ease-in-out infinite}
+@keyframes fixes-pulse{0%,100%{box-shadow:0 0 0 0 rgba(233,13,65,0.4)}50%{box-shadow:0 0 0 6px rgba(233,13,65,0)}}
+.fixes-badge-label{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#ff5d83}
+.fixes-video-head h3{font-family:var(--display);font-size:26px;font-weight:800;letter-spacing:-0.02em;color:#fafafa;margin:0 0 8px;line-height:1.2}
+.fixes-video-head h3 em{color:var(--pp-red);font-style:italic}
+.fixes-video-head p{font-size:14px;color:#a4adbe;line-height:1.6;margin:0;max-width:720px}
+.fixes-video-player{width:100%;display:block;background:#000;position:relative;z-index:1}
+.fixes-video-foot{padding:18px 28px 22px;background:rgba(255,255,255,0.02);border-top:1px solid rgba(255,255,255,0.06);position:relative;z-index:1}
+.fixes-foot-eyebrow{display:block;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--pp-red);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:10px}
+.fixes-video-foot ol{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;list-style:none;padding:0;margin:0}
+.fixes-video-foot li{font-size:13.5px;color:#cbd2dd;line-height:1.5;display:flex;align-items:baseline;gap:8px}
+.fixes-video-foot li strong{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--pp-red);background:rgba(233,13,65,0.16);padding:2px 7px;border-radius:4px;letter-spacing:0.06em;flex-shrink:0}
+.fixes-video-foot li code{font-family:var(--mono);font-size:12px;background:rgba(0,0,0,0.4);color:#ff7a99;padding:1px 5px;border-radius:3px;font-weight:700}
+@media(max-width:640px){.fixes-video-foot ol{grid-template-columns:1fr}}
 @media (max-width:640px){
   .win-callout-mac{max-width:none;margin-left:0;margin-top:6px}
   .win-callout-head{flex-direction:column;align-items:flex-start}
@@ -792,6 +812,32 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
 
     <div class="win-callout-foot">
       <strong>The one exception:</strong> Step 1 below (the Claude Code installer) needs PowerShell once. After that one command, close PowerShell and switch back to Git Bash for everything else. Seeing red errors? You're probably in the wrong terminal · open Git Bash and re-run.
+    </div>
+  </div>
+
+  <!-- ===== Install Fixes video (April 30 update · watch first) ===== -->
+  <div class="fixes-video">
+    <div class="fixes-video-head">
+      <div class="fixes-video-badge">
+        <span class="fixes-badge-dot"></span>
+        <span class="fixes-badge-label">April 30 · Update</span>
+      </div>
+      <h3>Watch this <em>before</em> you start · 52 sec</h3>
+      <p>Animated walkthrough of the 4 most-common install pitfalls our team hit · and the exact fix for each. Saves you the typical 30-60 minute "why isn't this working?" loop.</p>
+    </div>
+    <video class="fixes-video-player" controls preload="metadata" playsinline>
+      <source src="../teaser/pp-install-fixes-52s.mp4" type="video/mp4">
+      Your browser doesn't support video.
+      <a href="../teaser/pp-install-fixes-52s.mp4">Download install-fixes walkthrough</a>.
+    </video>
+    <div class="fixes-video-foot">
+      <span class="fixes-foot-eyebrow">What's covered</span>
+      <ol>
+        <li><strong>01</strong> · Run PowerShell as Administrator</li>
+        <li><strong>02</strong> · The 9-step PATH fix (when <code>claude</code> says "not recognized")</li>
+        <li><strong>03</strong> · Restart Claude Code after plugin install</li>
+        <li><strong>04</strong> · Enable the 11 Apify actors</li>
+      </ol>
     </div>
   </div>
 
