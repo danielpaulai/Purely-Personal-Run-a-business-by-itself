@@ -193,6 +193,63 @@ main{padding:48px 56px 80px;max-width:940px}
 .auth-verify strong{color:var(--success);font-weight:700}
 .auth-verify code{font-family:var(--mono);font-size:12px;background:#fff;border:1px solid #bbf7d0;color:var(--success);padding:1px 5px;border-radius:3px;font-weight:700}
 
+/* ============== Apify Actors checklist ============== */
+.actors-block{margin:36px 0;background:var(--card-bg);border:1px solid var(--divider);border-radius:14px;padding:0;overflow:hidden;box-shadow:0 4px 24px rgba(20,14,8,0.06)}
+.actors-head{padding:24px 26px 18px;background:linear-gradient(180deg,#fff 0%,var(--page-bg) 100%);border-bottom:1px solid var(--divider)}
+.actors-eyebrow{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--pp-red);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:8px}
+.actors-head h3{font-family:var(--display);font-size:24px;font-weight:800;letter-spacing:-0.015em;color:var(--text-primary);margin:0 0 8px;line-height:1.2}
+.actors-head h3 em{font-style:italic;color:var(--pp-red);font-weight:800}
+.actors-head p{font-size:14px;color:var(--text-secondary);margin:0;line-height:1.6}
+.actors-head p strong{color:var(--text-primary);font-weight:700}
+.actors-store-btn{display:inline-flex;align-items:center;gap:14px;background:#000;color:#fff;text-decoration:none;border-radius:8px;padding:13px 22px;margin:18px 26px 8px;font-family:var(--display);font-weight:700;border:0;transition:transform 120ms,box-shadow 120ms;box-shadow:0 4px 14px rgba(0,0,0,0.2)}
+.actors-store-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,0.25);background:#1a1a1a;border:0}
+.actors-store-icon{font-size:18px;font-weight:800;line-height:1;color:#97D700}
+.actors-store-label{display:block;font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:0.04em;line-height:1.2}
+.actors-store-meta{display:block;font-family:var(--mono);font-size:11px;font-weight:500;opacity:0.7;letter-spacing:0.04em;margin-top:2px}
+.actors-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 26px}
+@media(max-width:780px){.actors-grid{grid-template-columns:1fr}}
+.actor-card{display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--sub-card-bg);border:1px solid var(--divider);border-radius:8px;transition:border-color 120ms,background 120ms}
+.actor-card:hover{border-color:var(--pp-red);background:var(--pp-red-whisper)}
+.actor-num{flex-shrink:0;width:28px;height:28px;border-radius:6px;background:var(--pp-red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:13px}
+.actor-meta{flex:1;min-width:0}
+.actor-name{display:block;font-family:var(--mono);font-size:13px;font-weight:700;color:var(--pp-red);text-decoration:none;line-height:1.3;border:0;word-break:break-all}
+.actor-name:hover{color:var(--pp-red-deep);text-decoration:underline;border:0}
+.actor-purpose{display:block;font-size:12px;color:var(--text-muted);margin-top:2px;line-height:1.3}
+.actor-engine{flex-shrink:0;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:4px 8px;border-radius:4px;white-space:nowrap}
+.engine-all{background:#dbeafe;color:#1e40af}
+.engine-marketing{background:#fce8ed;color:var(--pp-red-deep)}
+.engine-sales{background:#fef3c7;color:#92400e}
+.actors-paste{padding:10px 26px 16px;border-top:1px solid var(--divider)}
+.actors-paste-label{font-size:13px;color:var(--text-secondary);margin-bottom:8px;line-height:1.5}
+.actors-paste-label em{color:var(--text-primary);font-style:italic;font-weight:600}
+.actors-foot{padding:14px 26px;background:#fef3c7;border-top:1px solid #fde68a;font-size:13px;color:var(--text-secondary);line-height:1.55}
+.actors-foot strong{color:#92400e;font-weight:700}
+
+/* ============== "Don't git clone" callout ============== */
+.dont-clone{display:flex;gap:14px;align-items:flex-start;background:#fff5f7;border:2px solid var(--pp-red);border-radius:10px;padding:14px 18px;margin:0 0 20px}
+.dont-clone .dont-icon{flex-shrink:0;width:32px;height:32px;background:var(--pp-red);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800}
+.dont-clone>div>strong{display:block;font-size:14px;color:var(--text-primary);font-weight:700;margin-bottom:4px}
+.dont-clone>div>strong code{font-family:var(--mono);font-size:13px;background:rgba(233,13,65,0.1);color:var(--pp-red);padding:1px 5px;border-radius:3px;font-weight:700}
+.dont-clone>div>span{display:block;font-size:13px;color:var(--text-secondary);line-height:1.55}
+.dont-clone>div>span code{font-family:var(--mono);font-size:12px;background:rgba(0,0,0,0.05);color:var(--text-primary);padding:1px 5px;border-radius:3px;font-weight:700}
+.dont-clone>div>span strong{color:var(--text-primary);font-weight:700}
+
+/* ============== Restart-Claude banner ============== */
+.restart-banner{display:flex;gap:14px;align-items:flex-start;background:linear-gradient(135deg,#fef3c7 0%,#fff5f7 100%);border:2px solid #f59e0b;border-left-width:5px;border-radius:10px;padding:14px 18px;margin:18px 0}
+.restart-icon{flex-shrink:0;width:36px;height:36px;background:#f59e0b;color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.restart-banner>div>strong{display:block;font-size:15px;color:var(--text-primary);font-weight:800;margin-bottom:4px;font-family:var(--display);letter-spacing:-0.01em}
+.restart-banner>div>strong code{font-family:var(--mono);font-size:13px;background:#1a1a1a;color:#fff;padding:2px 7px;border-radius:4px;font-weight:700}
+.restart-banner>div>span{display:block;font-size:13.5px;color:var(--text-secondary);line-height:1.55}
+.restart-banner>div>span code{font-family:var(--mono);font-size:12px;background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:3px;color:var(--text-primary);font-weight:700}
+.restart-banner>div>span strong{color:#92400e;font-weight:700}
+
+/* ============== Duration-badge on commands ============== */
+.cmd-eta{position:absolute;top:-9px;right:12px;padding:2px 9px;background:#1a3050;color:#a8c2ff;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.06em;border-radius:3px;text-transform:uppercase;border:1px solid #2a3a5a}
+
+/* ============== Patience tip (under long commands) ============== */
+.patience-tip{margin:10px 0 0;padding:10px 12px;background:#dbeafe;border:1px solid #bfdbfe;border-left:3px solid #3b82f6;border-radius:6px;font-size:12.5px;color:var(--text-secondary);line-height:1.55}
+.patience-tip strong{color:#1e40af;font-weight:700}
+
 details.step{margin:14px 0;border:1px solid var(--divider);border-radius:10px;background:var(--card-bg);overflow:hidden;scroll-margin-top:20px;transition:box-shadow 180ms}
 details.step[open]{box-shadow:0 8px 28px rgba(0,0,0,0.06),0 2px 6px rgba(233,13,65,0.06)}
 details.step summary{padding:18px 22px;cursor:pointer;display:flex;align-items:center;gap:16px;list-style:none;user-select:none}
@@ -848,7 +905,7 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
       <div class="os-tab-body">
         <div>
           <p style="margin-top:0;font-size:13px;color:var(--text-secondary)">Open <strong>Terminal</strong> and paste:</p>
-          <div class="cmd"><span class="cmd-label">Mac Terminal</span>curl -fsSL https://claude.ai/install.sh | sh</div>
+          <div class="cmd"><span class="cmd-label">Mac Terminal</span><span class="cmd-eta">⏱ ~2 min</span>curl -fsSL https://claude.ai/install.sh | sh</div>
         </div>
         <div>
           <div class="admin-badge">
@@ -859,8 +916,9 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
             </div>
           </div>
           <p style="margin:14px 0 6px;font-size:13px;color:var(--text-secondary)">Then paste this command (this is the <strong>ONE</strong> time you'll use PowerShell · everything else uses Git Bash):</p>
-          <div class="cmd"><span class="cmd-label">PowerShell · Step 1 only · Admin</span>iwr https://claude.ai/install.ps1 -UseBasicParsing | iex</div>
-          <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">⏱ Takes 6-7 minutes. Wait for "Installation complete." After this, <strong>close PowerShell</strong> · switch to Git Bash for every other step.</p>
+          <div class="cmd"><span class="cmd-label">PowerShell · Step 1 only · Admin</span><span class="cmd-eta">⏱ 6-7 min · don't close terminal</span>iwr https://claude.ai/install.ps1 -UseBasicParsing | iex</div>
+          <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">After "Installation complete." · <strong>close PowerShell</strong> · switch to Git Bash for every other step.</p>
+          <div class="patience-tip"><strong>Patience rule:</strong> if PowerShell shows no output for 30+ seconds, that's <strong>normal</strong>. The installer downloads ~120 MB silently · then writes files · then prints the green ✓. Don't close PowerShell mid-install.</div>
         </div>
       </div>
     </div>
@@ -896,6 +954,7 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
           <li>Click <strong>OK</strong> on every window (3 OKs in total).</li>
           <li><strong>Close Git Bash and PowerShell completely</strong> · re-open Git Bash.</li>
           <li>Run <code>claude --version</code> again. Should now print <code>1.0.x</code>.</li>
+          <li><strong>Last resort · restart your laptop.</strong> Windows sometimes needs a full reboot to pick up new PATH entries · "close + reopen terminal" doesn't always do it. After restart, open Git Bash · run <code>claude --version</code> · should work.</li>
         </ol>
 
         <div class="path-fix-foot">
@@ -958,7 +1017,7 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
             </div>
           </div>
           <p style="margin:14px 0 6px;font-size:13px;color:var(--text-secondary)">Open Terminal · paste:</p>
-          <div class="cmd"><span class="cmd-label">Mac Terminal</span>xcode-select --install</div>
+          <div class="cmd"><span class="cmd-label">Mac Terminal</span><span class="cmd-eta">⏱ ~3 min</span>xcode-select --install</div>
           <p style="font-size:12px;color:var(--text-muted);margin:8px 0 0">Dialog appears. Click <strong>Install</strong>. ~3 min. Then run <code>git --version</code> to verify.</p>
         </div>
         <div>
@@ -1044,11 +1103,19 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
   </summary>
   <div class="step-body">
 
+    <div class="dont-clone">
+      <span class="dont-icon">✕</span>
+      <div>
+        <strong>Do NOT <code>git clone</code> the plugin repo manually.</strong>
+        <span>The Setup Prompt below tells Claude to install the plugin via <code>/plugin marketplace add</code> · which puts it in the right place automatically. If you cloned the repo to your Desktop yourself · the plugin won't load. <strong>If you already cloned it:</strong> delete that folder and start the Setup Prompt fresh.</span>
+      </div>
+    </div>
+
     <p><strong>4a · Launch Claude Code.</strong> In your terminal (Mac Terminal or Git Bash on Windows), type:</p>
-    <div class="cmd"><span class="cmd-label">Terminal · Mac or Git Bash</span>claude</div>
+    <div class="cmd"><span class="cmd-label">Terminal · Mac or Git Bash</span><span class="cmd-eta">⏱ ~5 sec</span>claude</div>
     <p>Claude Code opens. You'll see a prompt waiting for input.</p>
 
-    <p><strong>4b · Copy the Setup Prompt.</strong> Click the 📋 button on the dark box below to copy. Then paste into Claude Code and hit Enter.</p>
+    <p><strong>4b · Copy the Setup Prompt.</strong> Click the 📋 button on the dark box below to copy. Then paste into Claude Code and hit Enter. <strong>Total time: 10-15 minutes</strong> · Claude does the work · you confirm + paste your Apify token when asked.</p>
 
     <div class="cmd"><span class="cmd-label">The Setup Prompt · copy + paste into Claude Code</span>I'm a Purely Personal workshop attendee. Walk me through setup.
 
@@ -1145,6 +1212,15 @@ Use the Bash tool. Don't make me type commands myself unless I have to (browser 
 
     <p>And so on, until everything is wired.</p>
 
+    <!-- ===== Restart Claude Code banner (NEW · April 30 chat) ===== -->
+    <div class="restart-banner">
+      <span class="restart-icon">🔄</span>
+      <div>
+        <strong>After plugin install · type <code>/exit</code> · re-run <code>claude</code></strong>
+        <span>Plugins <strong>only load at session start</strong>. If Claude doesn't remind you · do it yourself. After re-launching, type <code>/purely-personal</code> · all 9 commands appear in autocomplete.<br>This is the <strong>#2 "why isn't it working?"</strong> error after PATH issues.</span>
+      </div>
+    </div>
+
     <div class="callout info"><strong>What if Claude asks me to type a command myself?</strong> It shouldn't · the Setup Prompt explicitly says "use the Bash tool, don't make me type commands." If it does ask anyway, just tell it: <em>"Run it for me with the Bash tool."</em> Claude has Bash access in Claude Code · it can run any shell command directly.</div>
 
     <div class="callout warn"><strong>The 4 things you'll have to do yourself</strong> (Claude can't do these for you):
@@ -1174,6 +1250,124 @@ Use the Bash tool. Don't make me type commands myself unless I have to (browser 
 </details>
 
 <!-- ===== PHASE 2 ===== -->
+
+<!-- ===== Apify Actors checklist (NEW · April 30 fix from team install meeting) ===== -->
+<div class="actors-block">
+  <div class="actors-head">
+    <span class="actors-eyebrow">Phase 2 · final piece · 3 minutes</span>
+    <h3>Enable these <em>11 Apify actors</em> in your console</h3>
+    <p>Once Claude has wired your Apify token, you need to enable each actor that the engines call. Each actor is its own scraper · all 11 are <strong>free on the Apify free tier</strong>. Click each link · click <strong>Try for free</strong> · done.</p>
+  </div>
+
+  <a class="actors-store-btn" href="https://console.apify.com/store" target="_blank" rel="noopener">
+    <span class="actors-store-icon">↗</span>
+    <span>
+      <span class="actors-store-label">Open Apify Console · Store</span>
+      <span class="actors-store-meta">console.apify.com/store · sign in with the same account you created the token from</span>
+    </span>
+  </a>
+
+  <div class="actors-grid">
+    <div class="actor-card" data-engine="all">
+      <div class="actor-num">1</div>
+      <div class="actor-meta">
+        <a class="actor-name" href="https://apify.com/apify/rag-web-browser" target="_blank" rel="noopener">apify/rag-web-browser</a>
+        <span class="actor-purpose">Web research · Google search · all 5 engines</span>
+      </div>
+      <span class="actor-engine engine-all">All engines</span>
+    </div>
+    <div class="actor-card" data-engine="all">
+      <div class="actor-num">2</div>
+      <div class="actor-meta">
+        <a class="actor-name" href="https://apify.com/apify/website-content-crawler" target="_blank" rel="noopener">apify/website-content-crawler</a>
+        <span class="actor-purpose">Crawls a competitor or prospect site · pulls structured content</span>
+      </div>
+      <span class="actor-engine engine-all">All engines</span>
+    </div>
+    <div class="actor-card" data-engine="sales">
+      <div class="actor-num">3</div>
+      <div class="actor-meta">
+        <a class="actor-name" href="https://apify.com/supreme_coder/linkedin-profile-scraper" target="_blank" rel="noopener">supreme_coder/linkedin-profile-scraper</a>
+        <span class="actor-purpose">Profile lookup for prospect research</span>
+      </div>
+      <span class="actor-engine engine-sales">Sales</span>
+    </div>
+    <div class="actor-card" data-engine="sales">
+      <div class="actor-num">4</div>
+      <div class="actor-meta">
+        <a class="actor-name" href="https://apify.com/harvestapi/linkedin-profile-search" target="_blank" rel="noopener">harvestapi/linkedin-profile-search</a>
+        <span class="actor-purpose">Bulk LinkedIn search · 10-prospect lead generation</span>
+      </div>
+      <span class="actor-engine engine-sales">Sales</span>
+    </div>
+    <div class="actor-card" data-engine="sales">
+      <div class="actor-num">5</div>
+      <div class="actor-meta">
+        <a class="actor-name" href="https://apify.com/saswave/github-trending-repositories-developers" target="_blank" rel="noopener">saswave/github-trending-repositories-developers</a>
+        <span class="actor-purpose">Find developers/founders in your niche</span>
+      </div>
+      <span class="actor-engine engine-sales">Sales</span>
+    </div>
+    <div class="actor-card" data-engine="marketing">
+      <div class="actor-num">6</div>
+      <div class="actor-meta">
+        <a class="actor-name" href="https://apify.com/apify/instagram-profile-scraper" target="_blank" rel="noopener">apify/instagram-profile-scraper</a>
+        <span class="actor-purpose">Pull a creator's IG profile · post grid + bio</span>
+      </div>
+      <span class="actor-engine engine-marketing">Marketing</span>
+    </div>
+    <div class="actor-card" data-engine="marketing">
+      <div class="actor-num">7</div>
+      <div class="actor-meta">
+        <a class="actor-name" href="https://apify.com/apify/instagram-scraper" target="_blank" rel="noopener">apify/instagram-scraper</a>
+        <span class="actor-purpose">Hashtag + content scraping for IG content drops</span>
+      </div>
+      <span class="actor-engine engine-marketing">Marketing</span>
+    </div>
+    <div class="actor-card" data-engine="marketing">
+      <div class="actor-num">8</div>
+      <div class="actor-meta">
+        <a class="actor-name" href="https://apify.com/clockworks/tiktok-scraper" target="_blank" rel="noopener">clockworks/tiktok-scraper</a>
+        <span class="actor-purpose">TikTok hooks + trending content for short-form</span>
+      </div>
+      <span class="actor-engine engine-marketing">Marketing</span>
+    </div>
+    <div class="actor-card" data-engine="marketing">
+      <div class="actor-num">9</div>
+      <div class="actor-meta">
+        <a class="actor-name" href="https://apify.com/apidojo/tweet-scraper" target="_blank" rel="noopener">apidojo/tweet-scraper</a>
+        <span class="actor-purpose">Twitter/X content + competitor monitoring</span>
+      </div>
+      <span class="actor-engine engine-marketing">Marketing</span>
+    </div>
+    <div class="actor-card" data-engine="marketing">
+      <div class="actor-num">10</div>
+      <div class="actor-meta">
+        <a class="actor-name" href="https://apify.com/scraper-engine/google-trends-scraper" target="_blank" rel="noopener">scraper-engine/google-trends-scraper</a>
+        <span class="actor-purpose">Topic discovery · what's rising this week</span>
+      </div>
+      <span class="actor-engine engine-marketing">Marketing</span>
+    </div>
+    <div class="actor-card" data-engine="marketing">
+      <div class="actor-num">11</div>
+      <div class="actor-meta">
+        <a class="actor-name" href="https://apify.com/creator-tribe/Automated-Video-Thumbnail-Generator" target="_blank" rel="noopener">creator-tribe/Automated-Video-Thumbnail-Generator</a>
+        <span class="actor-purpose">Auto thumbnail generation for YouTube / Reels</span>
+      </div>
+      <span class="actor-engine engine-marketing">Marketing</span>
+    </div>
+  </div>
+
+  <div class="actors-paste">
+    <div class="actors-paste-label">Or paste this list to Claude Code · "<em>walk me through enabling each of these actors</em>":</div>
+    <div class="cmd"><span class="cmd-label">Paste in Claude Code</span>apify/rag-web-browser, apify/website-content-crawler, supreme_coder/linkedin-profile-scraper, harvestapi/linkedin-profile-search, saswave/github-trending-repositories-developers, apify/instagram-profile-scraper, apify/instagram-scraper, clockworks/tiktok-scraper, apidojo/tweet-scraper, scraper-engine/google-trends-scraper, creator-tribe/Automated-Video-Thumbnail-Generator</div>
+  </div>
+
+  <div class="actors-foot">
+    <strong>Free-tier note:</strong> all 11 actors run on the $5/mo free credit. Workshop-week usage is typically <strong>$0.50-1.00</strong>. You'll never hit the limit during the workshop.
+  </div>
+</div>
+
 <!-- ===== PHASE 3 · Connect your apps (browser OAuth) ===== -->
 <div class="phase-marker" data-phase="3" data-steps="s7,s8,s9,s10,s11">
   <div class="phase-marker-inner">
