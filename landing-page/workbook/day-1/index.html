@@ -173,6 +173,19 @@ td input[type=checkbox],td input[type=radio]{accent-color:var(--pp-red);width:17
 .foundation-lead{font-size:15px;line-height:1.6;color:var(--text-secondary);margin:8px 0 14px;max-width:780px}
 .foundation-lead strong{color:var(--text-primary);font-weight:700}
 
+/* dual-path cards · Foundation interactive vs fast-track */
+.dual-path{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0 18px}
+@media(max-width:780px){.dual-path{grid-template-columns:1fr}}
+.path-card{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--divider);border-radius:10px;padding:16px}
+.path-card.path-fasttrack{background:linear-gradient(135deg,#fff5f7 0%,#fff 60%);border-color:var(--pp-red);border-left-width:4px}
+.path-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:var(--pp-red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:15px}
+.path-body{flex:1;min-width:0}
+.path-body h4{font-family:var(--display);font-size:15px;font-weight:800;letter-spacing:-.01em;color:var(--text-primary);margin:0 0 6px;line-height:1.3}
+.path-body p{font-size:13px;color:var(--text-secondary);line-height:1.55;margin:0 0 10px}
+.path-body p strong{color:var(--text-primary);font-weight:700}
+.path-card .paste pre{font-size:12px;line-height:1.55;max-height:140px;overflow:auto;white-space:pre-wrap}
+.path-card.path-fasttrack .paste pre{max-height:200px}
+
 /* act block · 4 acts of build-my-brain */
 .act-block{background:#fff;border:1px solid var(--divider);border-radius:8px;padding:14px 18px;margin:12px 0}
 .act-head{display:flex;align-items:center;gap:12px;margin-bottom:8px}
@@ -351,20 +364,44 @@ body.catchup-mode .nav .btn-line#catchupBtn{background:var(--pp-red);color:#fff;
     </div>
 
     <h3>0.1 · Run build-my-brain</h3>
-    <div class="paste">
-      <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">40-min foundation</span></div>
-      <pre>/purely-personal:build-my-brain</pre>
-      <button class="copy" data-copy="/purely-personal:build-my-brain">Copy</button>
-    </div>
-    <p class="dim">Claude walks you through 4 acts · scrapes your LinkedIn · website · competitors · Reddit. Most of it auto-fills. You answer 5 strategic questions. <strong>Total time: 40 min.</strong></p>
 
-    <h3>0.2 · Capture the wow moments as you go</h3>
+    <!-- Two paths · interactive vs fast-track -->
+    <div class="dual-path">
+      <div class="path-card path-interactive">
+        <div class="path-num">A</div>
+        <div class="path-body">
+          <h4>Interactive · Claude asks each question</h4>
+          <p>Just paste this. Claude walks you through Acts 1-4 one question at a time. Fill the workbook fields below as you answer Claude.</p>
+          <div class="paste">
+            <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">40-min interactive</span></div>
+            <pre>/purely-personal:build-my-brain</pre>
+            <button class="copy" data-copy="/purely-personal:build-my-brain">Copy command</button>
+          </div>
+        </div>
+      </div>
+      <div class="path-card path-fasttrack">
+        <div class="path-num">B</div>
+        <div class="path-body">
+          <h4>Fast-track · pre-fill answers, paste once</h4>
+          <p><strong>Fill the workbook fields below first</strong> · then this button bundles them with the command into one paste · Claude runs faster because it has your answers up front.</p>
+          <div class="paste">
+            <div class="paste-head"><span class="label">Paste in Claude Code · with your answers</span><span class="badge" id="fast-badge">fields empty</span></div>
+            <pre id="fast-preview">/purely-personal:build-my-brain
+
+[your filled-in fields will appear here once you start typing below]</pre>
+            <button class="copy" id="fast-copy" data-copy="/purely-personal:build-my-brain">Copy command + my answers</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>0.2 · Fill these fields · they auto-bundle into Path B above</h3>
 
     <!-- Act 1 · Voice -->
     <div class="act-block">
       <div class="act-head"><span class="act-num">1</span><span class="act-title">Voice</span><span class="act-time">~5 min</span></div>
       <p class="act-cue">Claude says: <em>"Paste your LinkedIn profile URL."</em></p>
-      <label class="field"><span>Your LinkedIn URL</span><input type="url" data-k="d1.f.li" placeholder="https://linkedin.com/in/your-handle"></label>
+      <label class="field"><span>Your LinkedIn URL</span><input type="text" data-k="d1.f.li" placeholder="https://linkedin.com/in/your-handle"></label>
       <div class="row">
         <label class="field"><span>Profile score (out of 100)</span><input type="number" min="0" max="100" data-k="d1.f.score"></label>
         <label class="field"><span>Top 3 banned phrases extracted</span><input type="text" data-k="d1.f.banned" placeholder="e.g. unlock, leverage, supercharge"></label>
@@ -376,7 +413,7 @@ body.catchup-mode .nav .btn-line#catchupBtn{background:var(--pp-red);color:#fff;
     <div class="act-block">
       <div class="act-head"><span class="act-num">2</span><span class="act-title">Business</span><span class="act-time">~5 min</span></div>
       <p class="act-cue">Claude says: <em>"Paste your website URL."</em></p>
-      <label class="field"><span>Your website URL</span><input type="url" data-k="d1.f.site" placeholder="https://yourwebsite.com"></label>
+      <label class="field"><span>Your website URL</span><input type="text" data-k="d1.f.site" placeholder="https://yourwebsite.com"></label>
       <label class="field"><span>90-day goal (one sentence)</span><input type="text" data-k="d1.f.goal"></label>
       <label class="field"><span>The one metric that matters (number + label, e.g. "$75K MRR")</span><input type="text" data-k="d1.f.metric"></label>
       <p class="wow">💡 <strong>Wow moment:</strong> "It pulled my colors and fonts automatically."</p>
@@ -387,9 +424,9 @@ body.catchup-mode .nav .btn-line#catchupBtn{background:var(--pp-red);color:#fff;
       <div class="act-head"><span class="act-num">3</span><span class="act-title">Competitors + ICP</span><span class="act-time">~10 min</span></div>
       <p class="act-cue">Claude says: <em>"Paste three competitor URLs · one per line."</em></p>
       <div class="row-3">
-        <label class="field"><span>Competitor 1</span><input type="url" data-k="d1.f.c1"></label>
-        <label class="field"><span>Competitor 2</span><input type="url" data-k="d1.f.c2"></label>
-        <label class="field"><span>Competitor 3</span><input type="url" data-k="d1.f.c3"></label>
+        <label class="field"><span>Competitor 1</span><input type="text" data-k="d1.f.c1"></label>
+        <label class="field"><span>Competitor 2</span><input type="text" data-k="d1.f.c2"></label>
+        <label class="field"><span>Competitor 3</span><input type="text" data-k="d1.f.c3"></label>
       </div>
       <label class="field"><span>Your ICP in one line (role + context)</span><input type="text" data-k="d1.f.icp" placeholder="e.g. Solopreneurs running a 1-3 person service business, $5K-50K MRR"></label>
       <p class="wow">💡 <strong>Wow moment:</strong> "This is the competitor research I've been paying an agency for."</p>
@@ -783,6 +820,68 @@ simulate Monday 7am · pull from all 5 engines">Copy</button>
   window.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='s'){e.preventDefault();document.getElementById('saveBtn').click();}});
 
   /* ────── NEW · May 1 upgrades ────── */
+
+  // ─── Fast-track Foundation bundle · auto-builds prompt + filled answers ───
+  const fastPreview=document.getElementById('fast-preview');
+  const fastCopy=document.getElementById('fast-copy');
+  const fastBadge=document.getElementById('fast-badge');
+  const buildFoundationBundle=()=>{
+    if(!fastPreview||!fastCopy)return;
+    const get=(k)=>{const el=document.querySelector(`[data-k="${k}"]`);return el&&el.value?el.value.trim():'';};
+    const fields={
+      li:get('d1.f.li'),score:get('d1.f.score'),banned:get('d1.f.banned'),
+      site:get('d1.f.site'),goal:get('d1.f.goal'),metric:get('d1.f.metric'),
+      c1:get('d1.f.c1'),c2:get('d1.f.c2'),c3:get('d1.f.c3'),icp:get('d1.f.icp'),
+      kw:get('d1.f.kw'),pain:get('d1.f.pain'),aiscore:get('d1.f.aiscore')
+    };
+    const filledCount=Object.values(fields).filter(v=>v).length;
+
+    if(filledCount===0){
+      fastPreview.textContent='/purely-personal:build-my-brain\n\n[your filled-in fields will appear here once you start typing below]';
+      fastCopy.dataset.copy='/purely-personal:build-my-brain';
+      fastBadge.textContent='fields empty';
+      return;
+    }
+
+    const lines=['/purely-personal:build-my-brain','',
+      "I'm running build-my-brain. I've already pre-filled some answers below · use these to skip questions where I've answered, and only ask follow-ups for sections I left blank. Still do the LinkedIn / website / competitor / Reddit scrapes for verification.",
+      ''];
+    if(fields.li||fields.score||fields.banned){
+      lines.push('## Act 1 · Voice');
+      if(fields.li)lines.push(`- LinkedIn URL: ${fields.li}`);
+      if(fields.score)lines.push(`- Profile score (self-rated): ${fields.score}/100`);
+      if(fields.banned)lines.push(`- Banned phrases I want avoided: ${fields.banned}`);
+      lines.push('');
+    }
+    if(fields.site||fields.goal||fields.metric){
+      lines.push('## Act 2 · Business');
+      if(fields.site)lines.push(`- Website: ${fields.site}`);
+      if(fields.goal)lines.push(`- 90-day goal: ${fields.goal}`);
+      if(fields.metric)lines.push(`- Key metric: ${fields.metric}`);
+      lines.push('');
+    }
+    if(fields.c1||fields.c2||fields.c3||fields.icp){
+      lines.push('## Act 3 · Competitors + ICP');
+      if(fields.c1)lines.push(`- Competitor 1: ${fields.c1}`);
+      if(fields.c2)lines.push(`- Competitor 2: ${fields.c2}`);
+      if(fields.c3)lines.push(`- Competitor 3: ${fields.c3}`);
+      if(fields.icp)lines.push(`- ICP (one line): ${fields.icp}`);
+      lines.push('');
+    }
+    if(fields.kw||fields.pain||fields.aiscore){
+      lines.push('## Act 4 · Pain + AI Visibility');
+      if(fields.kw)lines.push(`- Keyword for Reddit: ${fields.kw}`);
+      if(fields.pain)lines.push(`- Top pain theme I've heard: ${fields.pain}`);
+      if(fields.aiscore)lines.push(`- AI visibility score (self-rated): ${fields.aiscore}/100`);
+      lines.push('');
+    }
+    const blob=lines.join('\n').trim();
+    fastPreview.textContent=blob;
+    fastCopy.dataset.copy=blob;
+    fastBadge.textContent=`${filledCount} of 13 fields ready`;
+  };
+  document.querySelectorAll('[data-k^="d1.f."]').forEach(el=>el.addEventListener('input',buildFoundationBundle));
+  buildFoundationBundle();
 
   // [YOUR PICK] auto-fill · sync 1.5 prompt with 1.4 radio selection
   const tightenNum=document.getElementById('tighten-num');
