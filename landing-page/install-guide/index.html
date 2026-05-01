@@ -270,6 +270,46 @@ main{padding:48px 56px 80px;max-width:940px}
 .patience-tip{margin:10px 0 0;padding:10px 12px;background:#dbeafe;border:1px solid #bfdbfe;border-left:3px solid #3b82f6;border-radius:6px;font-size:12.5px;color:var(--text-secondary);line-height:1.55}
 .patience-tip strong{color:#1e40af;font-weight:700}
 
+/* ============== Why each tool? explainer ============== */
+.why-tools{margin:24px 0;background:var(--card-bg);border:1px solid var(--divider);border-radius:14px;overflow:hidden;box-shadow:0 4px 24px rgba(20,14,8,0.05)}
+.why-tools-head{padding:24px 28px 14px;background:linear-gradient(180deg,var(--page-bg) 0%,#fff 100%);border-bottom:1px solid var(--divider)}
+.why-tools-eyebrow{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--pp-red);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:8px}
+.why-tools-head h3{font-family:var(--display);font-size:24px;font-weight:800;letter-spacing:-0.02em;color:var(--text-primary);margin:0 0 10px;line-height:1.2}
+.why-tools-head h3 em{font-style:italic;color:var(--pp-red);font-weight:800}
+.why-tools-head p{font-size:14px;color:var(--text-secondary);line-height:1.6;margin:0;max-width:820px}
+.why-tools-head p strong{color:var(--text-primary);font-weight:700}
+.why-tools-head p code{font-family:var(--mono);font-size:12.5px;background:var(--page-bg);padding:1px 5px;border-radius:3px;color:var(--pp-red);font-weight:700;border:1px solid var(--divider)}
+
+.why-tools-grid{padding:8px 0;display:flex;flex-direction:column}
+.why-tool{display:flex;gap:18px;align-items:flex-start;padding:18px 28px;border-bottom:1px solid var(--divider);position:relative;transition:background 120ms}
+.why-tool:hover{background:var(--page-bg)}
+.why-tool:last-child{border-bottom:0}
+.why-tool-final{background:linear-gradient(90deg,var(--pp-red-whisper) 0%,#fff 60%);border-bottom:0}
+.why-tool-final:hover{background:var(--pp-red-whisper)}
+
+.why-tool-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:var(--pp-red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:-0.02em}
+.why-tool-icon{flex-shrink:0;width:54px;height:54px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:#fff;font-family:var(--display)}
+.why-tool-icon.ps{background:#1a3050;color:#a8c2ff;border:1px solid #2a3a5a;font-size:22px}
+.why-tool-icon.gh{background:#0d2c1f;color:#9be3b6;border:1px solid #1f7a4e;font-size:22px}
+.why-tool-icon.git{background:#f3eee5;color:#92400e;border:1px solid var(--divider-strong)}
+.why-tool-icon.cc{background:var(--pp-red);color:#fff;font-size:22px}
+
+.why-tool-body{flex:1;min-width:0}
+.why-tool-body h4{font-family:var(--display);font-size:16px;font-weight:800;letter-spacing:-0.01em;color:var(--text-primary);margin:0 0 4px;line-height:1.3}
+.why-tool-body h4 .why-tool-platform{display:inline-block;margin-left:6px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);background:var(--page-bg);padding:2px 7px;border-radius:3px;border:1px solid var(--divider);vertical-align:1px}
+.why-tool-body p{font-size:13.5px;color:var(--text-secondary);line-height:1.55;margin:0 0 8px;max-width:680px}
+.why-tool-body p strong{color:var(--text-primary);font-weight:700}
+.why-tool-body p code{font-family:var(--mono);font-size:12px;background:rgba(0,0,0,0.05);color:var(--pp-red);padding:1px 5px;border-radius:3px;font-weight:700}
+.why-tool-tag{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--pp-red);background:var(--pp-red-soft);padding:3px 8px;border-radius:4px;letter-spacing:0.04em;text-transform:uppercase}
+
+.why-tools-foot{padding:16px 28px;background:#fef3c7;border-top:1px solid #fde68a;font-size:13px;color:var(--text-secondary);line-height:1.55}
+.why-tools-foot strong{color:#92400e;font-weight:700}
+
+@media(max-width:640px){
+  .why-tool{flex-wrap:wrap;gap:12px;padding:16px 20px}
+  .why-tools-head,.why-tools-foot{padding-left:20px;padding-right:20px}
+}
+
 /* ============== Substep card (4a, 4b, 4c) ============== */
 .substep{display:flex;gap:18px;align-items:flex-start;background:var(--card-bg);border:1px solid var(--divider);border-radius:10px;padding:20px 22px;margin:18px 0;box-shadow:0 2px 8px rgba(20,14,8,0.04)}
 .substep.substep-focus{background:linear-gradient(180deg,#fff5f7 0%,#fff 60%);border-color:var(--pp-red);border-left-width:4px;box-shadow:0 4px 20px rgba(233,13,65,0.1)}
@@ -884,6 +924,61 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
         <li><strong>03</strong> · Restart Claude Code after plugin install</li>
         <li><strong>04</strong> · Enable the 11 Apify actors</li>
       </ol>
+    </div>
+  </div>
+
+  <!-- ===== Why each tool? · explainer (May 1 · attendees keep asking) ===== -->
+  <div class="why-tools">
+    <div class="why-tools-head">
+      <span class="why-tools-eyebrow">Wondering why so many steps?</span>
+      <h3>Each tool does <em>one job.</em> Here's the full chain.</h3>
+      <p>The 9 slash commands live in a folder on GitHub. Claude Code is the app that runs them. Git is the courier that downloads them. PowerShell is how Windows installs Claude Code in the first place. <strong>Each tool exists for a single, specific reason</strong> · skip any one and the chain breaks.</p>
+    </div>
+
+    <div class="why-tools-grid">
+      <div class="why-tool">
+        <div class="why-tool-num">1</div>
+        <div class="why-tool-icon ps">⚡</div>
+        <div class="why-tool-body">
+          <h4>PowerShell <span class="why-tool-platform">Windows</span></h4>
+          <p>Used <strong>once</strong> · to install Claude Code itself. Anthropic ships the Windows installer as a PowerShell command (<code>iwr ... | iex</code>). Mac uses <code>curl ... | sh</code> for the same job.</p>
+          <span class="why-tool-tag">Unavoidable · upstream of everything</span>
+        </div>
+      </div>
+
+      <div class="why-tool">
+        <div class="why-tool-num">2</div>
+        <div class="why-tool-icon gh">⊙</div>
+        <div class="why-tool-body">
+          <h4>GitHub account</h4>
+          <p>Git Credential Manager pops up on first <code>git clone</code> and asks for authentication · even for public repos. The GitHub account is what Git authenticates against.</p>
+          <span class="why-tool-tag">Free · 90 seconds to create</span>
+        </div>
+      </div>
+
+      <div class="why-tool">
+        <div class="why-tool-num">3</div>
+        <div class="why-tool-icon git">⎇</div>
+        <div class="why-tool-body">
+          <h4>Git for Windows / xcode-select <span class="why-tool-platform">Mac</span></h4>
+          <p>Claude Code's <code>/plugin marketplace add</code> uses <code>git clone</code> under the hood to download your plugin from GitHub. Without Git installed locally · the marketplace command fails.</p>
+          <span class="why-tool-tag">The hidden tool · powers the plugin install</span>
+        </div>
+      </div>
+
+      <div class="why-tool why-tool-final">
+        <div class="why-tool-num">4</div>
+        <div class="why-tool-icon cc">▮</div>
+        <div class="why-tool-body">
+          <h4>Claude Code · the brain</h4>
+          <p>Where the 9 slash commands actually run. Loads the plugin from <code>~/.claude/plugins/</code> · executes <code>marketing-engine</code>, <code>sales-engine</code>, etc. · reads from <code>BUSINESS-BRAIN.md</code> · calls Apify via MCP.</p>
+          <span class="why-tool-tag">This is the workshop · everything else is dependency</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="why-tools-foot">
+      <strong>The deeper truth:</strong> this is how every plugin-based system on the internet works. VSCode extensions, Obsidian plugins, Cursor plugins, Raycast extensions — all of them require Git or HTTPS plus a host app plus an account. Plugins live somewhere · need to get downloaded · need to run somewhere. Three pieces, always.
     </div>
   </div>
 
