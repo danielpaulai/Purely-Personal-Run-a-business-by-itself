@@ -237,6 +237,34 @@ td input[type=checkbox],td input[type=radio]{accent-color:var(--pp-red);width:17
 .callout.danger{background:#fef2f2;border:1px solid #fecaca;border-left:4px solid #dc2626;border-radius:6px;padding:12px 14px;font-size:13.5px;color:#7f1d1d;line-height:1.55}
 .callout.danger strong{color:#991b1b;font-weight:700}
 
+/* Calendar export · .ics download */
+.calendar-export{margin:14px 0 18px;background:linear-gradient(135deg,var(--pp-red-whisper) 0%,#fff 60%);border:2px solid var(--pp-red);border-left-width:5px;border-radius:10px;padding:18px 22px;box-shadow:0 4px 18px rgba(233,13,65,.1)}
+.ce-head{margin-bottom:14px}
+.ce-eyebrow{display:block;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--pp-red);letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px}
+.ce-head strong{display:block;font-family:var(--display);font-size:18px;font-weight:800;color:var(--text-primary);letter-spacing:-.015em;margin-bottom:6px}
+.ce-head p{font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin:0}
+.ce-head p strong{color:var(--text-primary);font-weight:700}
+.ce-head p code{font-family:var(--mono);font-size:12px;background:rgba(0,0,0,.06);padding:1px 5px;border-radius:3px;color:var(--pp-red);font-weight:700}
+.ce-btn{display:inline-flex;align-items:center;gap:14px;background:var(--pp-red);color:#fff;border:0;border-radius:8px;padding:14px 22px;cursor:pointer;font-family:inherit;text-align:left;box-shadow:0 6px 18px rgba(233,13,65,.3);transition:transform 120ms,box-shadow 120ms,background 120ms;width:auto}
+.ce-btn:hover{background:var(--pp-red-deep);transform:translateY(-1px);box-shadow:0 8px 22px rgba(233,13,65,.4)}
+.ce-icon{font-size:20px;font-weight:800;line-height:1}
+.ce-label{display:block;font-family:var(--display);font-size:15px;font-weight:800;letter-spacing:-.01em}
+.ce-meta{display:block;font-family:var(--mono);font-size:11px;font-weight:600;opacity:.85;letter-spacing:.04em;margin-top:2px}
+.ce-foot{margin:12px 0 0;font-size:12.5px;color:var(--text-muted);line-height:1.55;font-style:italic}
+
+/* Manual calendar fallback · collapsible */
+.manual-cal{margin:12px 0;background:var(--sub-card-bg);border:1px solid var(--divider);border-radius:8px;overflow:hidden}
+.manual-cal>summary{padding:12px 16px;cursor:pointer;list-style:none;font-size:13.5px;font-weight:600;color:var(--text-primary);user-select:none}
+.manual-cal>summary::-webkit-details-marker{display:none}
+.manual-cal>summary::before{content:'▸ ';color:var(--pp-red);font-weight:700;display:inline-block;transition:transform 120ms}
+.manual-cal[open]>summary::before{content:'▾ '}
+.manual-cal-body{padding:0 18px 16px;font-size:13.5px;line-height:1.6;color:var(--text-secondary)}
+.manual-cal-body h4{font-family:var(--display);font-size:14px;font-weight:800;color:var(--text-primary);margin:14px 0 8px;letter-spacing:-.01em}
+.manual-cal-body ol{padding-left:22px}
+.manual-cal-body ol li{margin-bottom:5px}
+.manual-cal-body code{font-family:var(--mono);font-size:12px;background:#fff;color:var(--pp-red);padding:1px 5px;border-radius:3px;border:1px solid var(--divider);font-weight:700}
+.manual-cal-body strong{color:var(--text-primary);font-weight:700}
+
 /* "I'm behind" mode · hide skippable activities */
 body.catchup-mode .panel[data-skippable="true"]{display:none}
 body.catchup-mode .nav .btn-line#catchupBtn{background:var(--pp-red);color:#fff;border-color:var(--pp-red)}
@@ -619,13 +647,35 @@ body.catchup-mode .nav .btn-line#catchupBtn{background:var(--pp-red);color:#fff;
       <textarea data-k="d1.a2.signal"></textarea>
     </label>
 
-    <h3>2.2 · Run sales-engine</h3>
-    <div class="paste">
-      <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">/purely-personal:sales-engine</span></div>
-      <pre>/purely-personal:sales-engine</pre>
-      <button class="copy" data-copy="/purely-personal:sales-engine">Copy</button>
+    <h3>2.2 · Run sales-engine · two paths</h3>
+    <div class="dual-path">
+      <div class="path-card path-interactive">
+        <div class="path-num">A</div>
+        <div class="path-body">
+          <h4>Interactive · Claude asks for your ICP</h4>
+          <p>Paste this · Claude asks "what's your ICP filter?" · type or paste your answer.</p>
+          <div class="paste">
+            <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">interactive</span></div>
+            <pre>/purely-personal:sales-engine</pre>
+            <button class="copy" data-copy="/purely-personal:sales-engine">Copy command</button>
+          </div>
+        </div>
+      </div>
+      <div class="path-card path-fasttrack">
+        <div class="path-num">B</div>
+        <div class="path-body">
+          <h4>Fast-track · pre-fill ICP, paste once</h4>
+          <p><strong>Fill the 5 ICP fields above first</strong> · this button bundles them with the command · Claude scrapes 10 leads matching your filter immediately.</p>
+          <div class="paste">
+            <div class="paste-head"><span class="label">Paste in Claude Code · with your ICP</span><span class="badge" id="a2-fast-badge">fields empty</span></div>
+            <pre id="a2-fast-preview">/purely-personal:sales-engine
+
+[your ICP filter will appear here once you fill the fields above]</pre>
+            <button class="copy" id="a2-fast-copy" data-copy="/purely-personal:sales-engine">Copy command + my ICP</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <p class="dim">Then paste your ICP filter from 2.1 when prompted.</p>
 
     <h3>2.3 · Top 3 prospects</h3>
     <table>
@@ -681,9 +731,28 @@ tone: my voice from VOICE-SIGNATURE.md">Copy</button>
       <div><b>Win</b>Mon 7am + Sun 6pm alarms set</div>
     </div>
 
-    <h3>3.1 · The 6 weekly anchors</h3>
+    <h3>3.1 · The 6 weekly anchors · one-click setup</h3>
+
+    <!-- ONE-CLICK CALENDAR DOWNLOAD · the fix Danny asked for -->
+    <div class="calendar-export">
+      <div class="ce-head">
+        <span class="ce-eyebrow">⚡ The 30-second setup · works on Google Calendar, Apple Calendar, Outlook</span>
+        <strong>Download all 6 routines as one calendar file</strong>
+        <p>Click the button · download <code class="inline">pp-week.ics</code> · double-click the file · your calendar opens with all 6 events ready to import. Each event recurs every week. <strong>Done.</strong></p>
+      </div>
+      <button class="ce-btn" id="ics-download">
+        <span class="ce-icon">↓</span>
+        <span>
+          <span class="ce-label">Download pp-week.ics</span>
+          <span class="ce-meta">6 events · weekly recurrence · 15 min each · ~2 KB</span>
+        </span>
+      </button>
+      <p class="ce-foot">After import, each event title is the slash command itself · so when the alarm fires, you know exactly what to paste into Claude Code.</p>
+    </div>
+
+    <h3>3.1b · What you're importing</h3>
     <table>
-      <tr><th>Day</th><th>Time</th><th>Routine</th><th>Command</th><th>Set</th></tr>
+      <tr><th>Day</th><th>Time</th><th>Routine</th><th>Command (= event title)</th><th>Imported</th></tr>
       <tr><td>MON</td><td>7:00am</td><td>Content Drop</td><td><code class="inline">/purely-personal:marketing-engine</code></td><td><input type="checkbox" data-k="d1.a3.mon"></td></tr>
       <tr><td>TUE</td><td>8:00am</td><td>Lead Research</td><td><code class="inline">/purely-personal:sales-engine</code></td><td><input type="checkbox" data-k="d1.a3.tue"></td></tr>
       <tr><td>WED</td><td>8:00am</td><td>Newsletter Draft</td><td><code class="inline">/purely-personal:marketing-engine</code></td><td><input type="checkbox" data-k="d1.a3.wed"></td></tr>
@@ -694,8 +763,47 @@ tone: my voice from VOICE-SIGNATURE.md">Copy</button>
 
     <div class="callout">
       <div class="ico">!</div>
-      <div><b>Make the calendar event title = the command.</b> When the alarm fires you know exactly what to paste. Each routine takes 4-7 min · YOU review + approve · Claude writes everything.</div>
+      <div><b>Why is the event title the command?</b> So when the alarm fires Monday 7am, you read "/purely-personal:marketing-engine" and know exactly what to paste into Claude Code. Each routine takes 4-7 min · YOU review + approve · Claude writes everything.</div>
     </div>
+
+    <h3>3.1c · Manual setup (if .ics doesn't open in your calendar)</h3>
+    <details class="manual-cal">
+      <summary>Click here for step-by-step manual setup · Google Calendar / Apple Calendar / Outlook</summary>
+      <div class="manual-cal-body">
+        <h4>Google Calendar</h4>
+        <ol>
+          <li>Open <a href="https://calendar.google.com" target="_blank">calendar.google.com</a></li>
+          <li>Settings (gear icon) → <strong>Settings</strong> → <strong>Import &amp; export</strong> → <strong>Import</strong></li>
+          <li>Select the downloaded <code class="inline">pp-week.ics</code> file → click <strong>Import</strong></li>
+          <li>All 6 events appear · already set to repeat weekly</li>
+        </ol>
+
+        <h4>Apple Calendar (Mac)</h4>
+        <ol>
+          <li>Double-click the downloaded <code class="inline">pp-week.ics</code> file · Calendar opens automatically</li>
+          <li>Click <strong>Add All</strong> when the dialog appears</li>
+          <li>Pick which calendar (Personal / Work / iCloud) · click OK</li>
+        </ol>
+
+        <h4>Outlook</h4>
+        <ol>
+          <li>Outlook desktop · <strong>File → Open &amp; Export → Import/Export</strong></li>
+          <li>Choose <strong>Import an iCalendar (.ics) or vCalendar file</strong> → Next</li>
+          <li>Browse to <code class="inline">pp-week.ics</code> · click <strong>Import</strong></li>
+        </ol>
+
+        <h4>If you'd rather create them by hand · 6 calendar entries</h4>
+        <p>For each row in the table above:</p>
+        <ol>
+          <li><strong>Title</strong> · paste the slash command (e.g. <code class="inline">/purely-personal:marketing-engine</code>)</li>
+          <li><strong>Day + Time</strong> · as shown in the table</li>
+          <li><strong>Duration</strong> · 15 minutes</li>
+          <li><strong>Repeat</strong> · "Every week on [day]" · indefinitely</li>
+          <li><strong>Notification</strong> · 5 minutes before</li>
+          <li>Save</li>
+        </ol>
+      </div>
+    </details>
 
     <h3>3.2 · Block your "do not disturb" deep-work windows</h3>
     <div class="row-3">
@@ -882,6 +990,103 @@ simulate Monday 7am · pull from all 5 engines">Copy</button>
   };
   document.querySelectorAll('[data-k^="d1.f."]').forEach(el=>el.addEventListener('input',buildFoundationBundle));
   buildFoundationBundle();
+
+  // ─── Activity 2 · sales-engine fast-track bundle ───
+  const a2Preview=document.getElementById('a2-fast-preview');
+  const a2Copy=document.getElementById('a2-fast-copy');
+  const a2Badge=document.getElementById('a2-fast-badge');
+  const buildSalesBundle=()=>{
+    if(!a2Preview||!a2Copy)return;
+    const get=(k)=>{const el=document.querySelector(`[data-k="${k}"]`);return el&&el.value?el.value.trim():'';};
+    const f={
+      role:get('d1.a2.role'),industry:get('d1.a2.industry'),size:get('d1.a2.size'),
+      location:get('d1.a2.location'),signal:get('d1.a2.signal')
+    };
+    const filledCount=Object.values(f).filter(v=>v).length;
+    if(filledCount===0){
+      a2Preview.textContent='/purely-personal:sales-engine\n\n[your ICP filter will appear here once you fill the fields above]';
+      a2Copy.dataset.copy='/purely-personal:sales-engine';
+      a2Badge.textContent='fields empty';
+      return;
+    }
+    const lines=['/purely-personal:sales-engine','',
+      'Find me 10 leads matching this ICP. BANT-score each. Return top 3 ready for outreach.','',
+      '## ICP filter'];
+    if(f.role)lines.push(`- Role/title: ${f.role}`);
+    if(f.industry)lines.push(`- Industry: ${f.industry}`);
+    if(f.size)lines.push(`- Company size: ${f.size}`);
+    if(f.location)lines.push(`- Location: ${f.location}`);
+    if(f.signal)lines.push(`- Signal to scrape: ${f.signal}`);
+    const blob=lines.join('\n').trim();
+    a2Preview.textContent=blob;
+    a2Copy.dataset.copy=blob;
+    a2Badge.textContent=`${filledCount} of 5 ICP fields ready`;
+  };
+  document.querySelectorAll('[data-k^="d1.a2.role"],[data-k="d1.a2.industry"],[data-k="d1.a2.size"],[data-k="d1.a2.location"],[data-k="d1.a2.signal"]').forEach(el=>el.addEventListener('input',buildSalesBundle));
+  buildSalesBundle();
+
+  // ─── Activity 3 · .ics calendar download ───
+  const icsBtn=document.getElementById('ics-download');
+  if(icsBtn){
+    icsBtn.addEventListener('click',()=>{
+      // Generate .ics with 6 weekly recurring events · seeded for next Monday after May 2 2026
+      // Day codes: SU=0 MO=1 TU=2 WE=3 TH=4 FR=5 SA=6
+      const events=[
+        {day:1,hour:7,name:'Content Drop',cmd:'/purely-personal:marketing-engine'},
+        {day:2,hour:8,name:'Lead Research',cmd:'/purely-personal:sales-engine'},
+        {day:3,hour:8,name:'Newsletter Draft',cmd:'/purely-personal:marketing-engine'},
+        {day:4,hour:7,name:'Meeting Prep',cmd:'/purely-personal:sales-engine'},
+        {day:5,hour:17,name:'Weekly Wrap',cmd:'/purely-personal:operations-engine'},
+        {day:0,hour:18,name:'Pipeline Report',cmd:'/purely-personal:sales-engine'}
+      ];
+      const dayNames=['SU','MO','TU','WE','TH','FR','SA'];
+      // Seed start date: Mon May 4 2026 (the first Monday AFTER the workshop)
+      const seedYear=2026,seedMonth=5; // May
+      const seedDay={1:4,2:5,3:6,4:7,5:8,0:10}; // M=4 T=5 W=6 Th=7 F=8 Sun=10
+      const pad=(n)=>String(n).padStart(2,'0');
+      const fmt=(y,m,d,h,mi)=>`${y}${pad(m)}${pad(d)}T${pad(h)}${pad(mi)}00`;
+      const now=new Date();
+      const dtstamp=`${now.getUTCFullYear()}${pad(now.getUTCMonth()+1)}${pad(now.getUTCDate())}T${pad(now.getUTCHours())}${pad(now.getUTCMinutes())}${pad(now.getUTCSeconds())}Z`;
+      const lines=[
+        'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Purely Personal//Workshop//EN',
+        'CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:Purely Personal · Weekly Routines',
+        'X-WR-TIMEZONE:Europe/Helsinki',
+        'BEGIN:VTIMEZONE','TZID:Europe/Helsinki',
+        'BEGIN:STANDARD','DTSTART:20251026T040000','TZOFFSETFROM:+0300','TZOFFSETTO:+0200','TZNAME:EET','END:STANDARD',
+        'BEGIN:DAYLIGHT','DTSTART:20260329T030000','TZOFFSETFROM:+0200','TZOFFSETTO:+0300','TZNAME:EEST','END:DAYLIGHT',
+        'END:VTIMEZONE'
+      ];
+      events.forEach((ev,i)=>{
+        const sd=seedDay[ev.day];
+        const start=fmt(seedYear,seedMonth,sd,ev.hour,0);
+        const end=fmt(seedYear,seedMonth,sd,ev.hour,15);
+        lines.push('BEGIN:VEVENT');
+        lines.push(`UID:pp-routine-${i}-${dtstamp}@purelypersonal.ai`);
+        lines.push(`DTSTAMP:${dtstamp}`);
+        lines.push(`DTSTART;TZID=Europe/Helsinki:${start}`);
+        lines.push(`DTEND;TZID=Europe/Helsinki:${end}`);
+        lines.push(`RRULE:FREQ=WEEKLY;BYDAY=${dayNames[ev.day]}`);
+        lines.push(`SUMMARY:${ev.cmd}`);
+        lines.push(`DESCRIPTION:Purely Personal weekly routine: ${ev.name}.\\n\\nPaste this command into Claude Code: ${ev.cmd}\\n\\n4-7 minutes \\: review + approve \\: Claude does the work.`);
+        lines.push('LOCATION:Claude Code');
+        lines.push('BEGIN:VALARM');
+        lines.push('TRIGGER:-PT5M');
+        lines.push('ACTION:DISPLAY');
+        lines.push(`DESCRIPTION:${ev.name} · 5 min`);
+        lines.push('END:VALARM');
+        lines.push('END:VEVENT');
+      });
+      lines.push('END:VCALENDAR');
+      const ics=lines.join('\r\n');
+      const blob=new Blob([ics],{type:'text/calendar;charset=utf-8'});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement('a');
+      a.href=url;a.download='pp-week.ics';
+      document.body.appendChild(a);a.click();a.remove();
+      URL.revokeObjectURL(url);
+      flash('Downloaded pp-week.ics · open it in your calendar');
+    });
+  }
 
   // [YOUR PICK] auto-fill · sync 1.5 prompt with 1.4 radio selection
   const tightenNum=document.getElementById('tighten-num');

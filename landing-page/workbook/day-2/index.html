@@ -138,12 +138,67 @@ td input[type=checkbox],td input[type=radio]{accent-color:var(--pp-red);width:17
 .aiceo .pricing .tier .price{font-family:var(--mono);font-size:13px;color:var(--pp-red);font-weight:700}
 @media(max-width:640px){.aiceo .pricing{grid-template-columns:1fr}}
 
+/* ════════════════════ NEW · May 1 Day 2 upgrades ════════════════════ */
+
+/* Sticky time strip */
+.time-strip{position:sticky;top:53px;z-index:25;background:linear-gradient(180deg,#0f0f10 0%,#16171a 100%);color:#fafafa;border-bottom:1px solid #2a2c33;box-shadow:0 4px 16px rgba(0,0,0,.18)}
+.time-strip-inner{max-width:980px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:12px;flex-wrap:wrap}
+.ts-now,.ts-current,.ts-next{display:flex;flex-direction:column;line-height:1.2;min-width:0}
+.ts-label{font-size:9px;color:#9aa3b2;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:2px}
+.ts-clock{font-size:14px;font-weight:700;color:var(--pp-red);font-family:var(--mono);letter-spacing:.04em}
+.ts-activity{font-size:12px;font-weight:600;color:#fafafa;font-family:var(--mono);letter-spacing:.04em}
+.ts-current .ts-activity{color:#7bd389}
+.ts-next .ts-activity{color:#a4adbe}
+.ts-sep{color:var(--pp-red);font-weight:800;font-size:13px}
+.ts-tz{margin-left:auto;font-size:9px;color:#6b7280;letter-spacing:.18em;font-weight:700;text-transform:uppercase}
+
+/* 3-window dance · beginner intro */
+.windows-dance{background:linear-gradient(135deg,#fff5f7 0%,#fff 50%,#fef3c7 100%);border:1px solid var(--divider);border-radius:10px;padding:18px 20px;margin:14px 0 18px}
+.windows-dance-head{margin-bottom:14px}
+.windows-dance-head strong{display:block;font-family:var(--display);font-size:15px;color:var(--text-primary);margin-bottom:4px;font-weight:800}
+.windows-dance-head span{font-size:13.5px;color:var(--text-secondary);line-height:1.55}
+.windows-dance-grid{display:grid;grid-template-columns:1fr 24px 1fr 24px 1fr;gap:8px;align-items:stretch;margin:14px 0}
+@media(max-width:680px){.windows-dance-grid{grid-template-columns:1fr;gap:8px}.wd-arrow{transform:rotate(90deg);justify-self:center}}
+.wd-card{background:#fff;border:1px solid var(--divider-strong);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;position:relative}
+.wd-num{position:absolute;top:-9px;left:12px;width:22px;height:22px;border-radius:50%;background:var(--pp-red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:11px}
+.wd-icon{font-size:24px;line-height:1;margin-top:4px}
+.wd-card h4{font-family:var(--display);font-size:14px;font-weight:800;letter-spacing:-.01em;color:var(--text-primary);margin:0}
+.wd-card p{font-size:12.5px;color:var(--text-secondary);line-height:1.5;margin:0}
+.wd-card p strong{color:var(--text-primary);font-weight:700}
+.wd-card p code{font-family:var(--mono);font-size:11px;background:rgba(0,0,0,.05);color:var(--pp-red);padding:1px 4px;border-radius:3px;font-weight:700}
+.wd-arrow{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:18px;color:var(--pp-red);font-weight:800}
+.windows-dance-foot{font-size:13px;color:var(--text-secondary);line-height:1.55;margin:8px 0 0;padding:10px 12px;background:rgba(233,13,65,.08);border-radius:6px}
+.windows-dance-foot strong{color:var(--pp-red);font-weight:700}
+
+/* Dual-path cards · interactive vs fast-track */
+.dual-path{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0 18px}
+@media(max-width:780px){.dual-path{grid-template-columns:1fr}}
+.path-card{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--divider);border-radius:10px;padding:16px}
+.path-card.path-fasttrack{background:linear-gradient(135deg,#fff5f7 0%,#fff 60%);border-color:var(--pp-red);border-left-width:4px}
+.path-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:var(--pp-red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:15px}
+.path-body{flex:1;min-width:0}
+.path-body h4{font-family:var(--display);font-size:15px;font-weight:800;letter-spacing:-.01em;color:var(--text-primary);margin:0 0 6px;line-height:1.3}
+.path-body p{font-size:13px;color:var(--text-secondary);line-height:1.55;margin:0 0 10px}
+.path-body p strong{color:var(--text-primary);font-weight:700}
+.path-card .paste pre{font-size:12px;line-height:1.55;max-height:140px;overflow:auto;white-space:pre-wrap}
+.path-card.path-fasttrack .paste pre{max-height:200px}
+
+/* Copy-from-terminal callout */
+.copy-from-terminal{margin:14px 0;background:linear-gradient(135deg,#0f0f10 0%,#16171a 100%);color:#fafafa;border-radius:10px;padding:18px 20px;border:1px solid #2a2c33;box-shadow:0 6px 24px rgba(15,15,16,.2)}
+.cft-head{margin-bottom:10px}
+.cft-eyebrow{display:block;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--pp-red);letter-spacing:.16em;text-transform:uppercase;margin-bottom:4px}
+.cft-head strong{display:block;font-family:var(--display);font-size:17px;font-weight:800;color:#fafafa;letter-spacing:-.015em;line-height:1.3}
+.cft-steps{padding-left:24px;margin:8px 0 0;list-style:decimal}
+.cft-steps li{font-size:13.5px;color:#cbd2dd;line-height:1.65;margin-bottom:5px}
+.cft-steps li strong{color:#fafafa;font-weight:700}
+.cft-steps li a{color:#7bd389;border-bottom:1px solid rgba(123,211,137,.3)}
+
 @media print{
   :root{--page-bg:#fff}
-  .nav,.btn-line,.btn-pill,.copy,.toast{display:none!important}
+  .nav,.btn-line,.btn-pill,.copy,.toast,.time-strip{display:none!important}
   body{background:#fff}
   .panel{box-shadow:none;break-inside:avoid;page-break-inside:avoid;border-color:#bbb}
-  .paste,.aiceo{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .paste,.aiceo,.copy-from-terminal{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .paste .copy{display:none!important}
   .hero{padding:24px 0}
   main{margin:12px 0;padding:0 12mm;max-width:none}
@@ -168,6 +223,18 @@ td input[type=checkbox],td input[type=radio]{accent-color:var(--pp-red);width:17
     <a class="btn-pill" href="../day-1/">← Day 1</a>
   </div>
 </nav>
+
+<!-- Sticky time strip -->
+<div class="time-strip" id="timeStrip">
+  <div class="time-strip-inner">
+    <div class="ts-now"><span class="ts-label">Now</span><span class="ts-clock" id="tsClock">—</span></div>
+    <div class="ts-sep">→</div>
+    <div class="ts-current"><span class="ts-label">Currently</span><span class="ts-activity" id="tsActivity">Win-share</span></div>
+    <div class="ts-sep">→</div>
+    <div class="ts-next"><span class="ts-label">Next</span><span class="ts-activity" id="tsNext">Activity 5 · 11:20</span></div>
+    <span class="ts-tz">FINLAND · UTC+3</span>
+  </div>
+</div>
 
 <section class="hero">
   <div class="hero-inner">
@@ -222,6 +289,37 @@ td input[type=checkbox],td input[type=radio]{accent-color:var(--pp-red);width:17
       <div><b>Win</b>Inbox to zero pending review</div>
     </div>
 
+    <!-- Beginner-friendly intro · what's about to happen -->
+    <div class="windows-dance">
+      <div class="windows-dance-head">
+        <strong>What this activity does · in plain English</strong>
+        <span>Claude reads your last 7 days of Gmail · sorts every email into 4 buckets · drafts replies for the ones that need a personal reply · all without you doing anything except review.</span>
+      </div>
+      <div class="windows-dance-grid">
+        <div class="wd-card">
+          <div class="wd-num">1</div>
+          <div class="wd-icon wd-1">📋</div>
+          <h4>This Workbook</h4>
+          <p>You're here. Click <strong>Copy</strong> on the prompt below, switch to Claude Code, paste.</p>
+        </div>
+        <div class="wd-arrow">→</div>
+        <div class="wd-card">
+          <div class="wd-num">2</div>
+          <div class="wd-icon wd-2">⚡</div>
+          <h4>Claude Code</h4>
+          <p>Claude reads Gmail · buckets emails into 🔥 needs you · ⚡ drafted · 📂 archive · 🗑 delete · drafts replies in your Gmail Drafts folder.</p>
+        </div>
+        <div class="wd-arrow">→</div>
+        <div class="wd-card">
+          <div class="wd-num">3</div>
+          <div class="wd-icon wd-3">📧</div>
+          <h4>Gmail Drafts</h4>
+          <p>Open <a href="https://mail.google.com/mail/u/0/#drafts" target="_blank">Gmail → Drafts</a> · review each draft Claude wrote · click <strong>Send</strong> on the ones you like.</p>
+        </div>
+      </div>
+      <p class="windows-dance-foot"><strong>You don't write replies. You review them.</strong> Average user clicks Send on ~70% without editing · the other 30% need a 1-line tweak.</p>
+    </div>
+
     <h3>5.1 · Run operations-engine</h3>
     <div class="paste">
       <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">triage 7 days</span></div>
@@ -232,8 +330,10 @@ triage last 7 days · draft replies for high-priority</pre>
 
 triage last 7 days · draft replies for high-priority">Copy</button>
     </div>
+    <p class="dim"><strong>If Gmail not connected:</strong> open <a href="https://claude.ai/customize/connectors" target="_blank">claude.ai/customize/connectors</a> · click + · pick Gmail · grant ALL 4 permissions · re-run.</p>
 
-    <h3>5.2 · Triage results</h3>
+    <h3>5.2 · Triage results · count what Claude returned</h3>
+    <p class="dim">Claude reports back with 4 numbers. Fill them here as you read them in the terminal.</p>
     <div class="row">
       <label class="field"><span>🔥 Needs you personally</span><input type="number" data-k="d2.a5.needs"></label>
       <label class="field"><span>⚡ Drafted reply</span><input type="number" data-k="d2.a5.drafted"></label>
@@ -244,7 +344,24 @@ triage last 7 days · draft replies for high-priority">Copy</button>
     </div>
     <label class="field"><span>Total time saved (estimate, minutes)</span><input type="number" data-k="d2.a5.saved"></label>
 
-    <h3>5.3 · Approve drafts</h3>
+    <h3>5.3 · Approve drafts · open Gmail and review</h3>
+
+    <!-- Now do this · explicit walkthrough -->
+    <div class="copy-from-terminal">
+      <div class="cft-head">
+        <span class="cft-eyebrow">The part the workbook can't do for you</span>
+        <strong>Open Gmail · review the drafts Claude wrote · send the good ones</strong>
+      </div>
+      <ol class="cft-steps">
+        <li><strong>Open <a href="https://mail.google.com/mail/u/0/#drafts" target="_blank" style="color:#7bd389">Gmail → Drafts folder</a></strong> · the new drafts Claude created appear at the top</li>
+        <li><strong>Click each draft</strong> · read the recipient and the message · 30 seconds per draft</li>
+        <li>If it's good · click <strong>Send</strong> · done</li>
+        <li>If it needs a tweak · edit one line · click <strong>Send</strong></li>
+        <li>If it's wrong · click the trash icon · paste this back to Claude: <code style="font-family:var(--mono);font-size:11px;background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;color:#fff">re-draft for [recipient name] · my voice from VOICE-SIGNATURE.md · keep it shorter</code></li>
+      </ol>
+    </div>
+
+    <p class="dim">Track each draft below as you process it:</p>
     <table>
       <tr><th>#</th><th>To</th><th>Approve</th><th>Edit</th><th>Reject</th></tr>
       <tr><td>1</td><td><input type="text" data-k="d2.a5.d1.to"></td><td><input type="radio" name="d2a5d1" data-k="d2.a5.d1.act" value="approve"></td><td><input type="radio" name="d2a5d1" data-k="d2.a5.d1.act" value="edit"></td><td><input type="radio" name="d2a5d1" data-k="d2.a5.d1.act" value="reject"></td></tr>
@@ -292,17 +409,51 @@ triage last 7 days · draft replies for high-priority">Copy</button>
       <div><b>Win</b>Runway visible · Friday transfers ready</div>
     </div>
 
-    <div class="paste">
-      <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">90-day forecast</span></div>
-<pre>/purely-personal:cash-engine
-
-90-day forecast · pull Stripe + bank · Profit First splits</pre>
-      <button class="copy" data-copy="/purely-personal:cash-engine
-
-90-day forecast · pull Stripe + bank · Profit First splits">Copy</button>
+    <!-- Beginner-friendly intro · what this does -->
+    <div class="windows-dance">
+      <div class="windows-dance-head">
+        <strong>What this does · in plain English</strong>
+        <span>Claude looks at how much money came in, how much went out, and projects 90 days forward. Then splits future revenue into 4 buckets (Profit · Owner Pay · Tax · Operating) so you know what to transfer every Friday.</span>
+      </div>
+      <p class="windows-dance-foot" style="margin-top:8px"><strong>Two paths depending on whether Stripe is connected.</strong> Pick A or B below.</p>
     </div>
 
-    <h3>Last 30 days</h3>
+    <h3>6.1 · Run cash-engine · pick your path</h3>
+    <div class="dual-path">
+      <div class="path-card path-interactive">
+        <div class="path-num">A</div>
+        <div class="path-body">
+          <h4>Stripe connected · auto-pulls real numbers</h4>
+          <p>If you wired Stripe in install Phase 3, Claude pulls last 30 days of charges automatically. Just paste:</p>
+          <div class="paste">
+            <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">auto-pull</span></div>
+            <pre>/purely-personal:cash-engine
+
+90-day forecast · pull Stripe + bank · Profit First splits</pre>
+            <button class="copy" data-copy="/purely-personal:cash-engine
+
+90-day forecast · pull Stripe + bank · Profit First splits">Copy</button>
+          </div>
+        </div>
+      </div>
+      <div class="path-card path-fasttrack">
+        <div class="path-num">B</div>
+        <div class="path-body">
+          <h4>No Stripe · type your numbers</h4>
+          <p>If you don't take Stripe payments (or skipped that connector), <strong>fill the 30-day numbers below first</strong> · this button bundles them so Claude can forecast without scraping.</p>
+          <div class="paste">
+            <div class="paste-head"><span class="label">Paste in Claude Code · with your numbers</span><span class="badge" id="a6-fast-badge">fields empty</span></div>
+            <pre id="a6-fast-preview">/purely-personal:cash-engine
+
+[your 30-day numbers will appear here once you fill the fields below]</pre>
+            <button class="copy" id="a6-fast-copy" data-copy="/purely-personal:cash-engine">Copy command + my numbers</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="dim"><strong>Where to find your 30-day numbers if Stripe isn't connected:</strong> open your bank app · filter "deposits" for the last 30 days · sum them = revenue. Filter outgoing = expenses. Net = revenue minus expenses.</p>
+
+    <h3>6.2 · Last 30 days · fill these (used by Path B)</h3>
     <div class="row-3">
       <label class="field"><span>Revenue $</span><input type="text" data-k="d2.a6.rev"></label>
       <label class="field"><span>Expenses $</span><input type="text" data-k="d2.a6.exp"></label>
@@ -350,15 +501,51 @@ triage last 7 days · draft replies for high-priority">Copy</button>
       <div><b>Win</b>You decide before email opens</div>
     </div>
 
-    <div class="paste">
-      <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">full CEO brief</span></div>
-<pre>/purely-personal:leadership-engine
+    <!-- Beginner-friendly intro -->
+    <div class="windows-dance">
+      <div class="windows-dance-head">
+        <strong>What this does · in plain English</strong>
+        <span>Claude reads everything from your other 4 engines (marketing, sales, ops, cash) plus your BUSINESS-BRAIN.md and produces a 60-second-read morning brief. <strong>This is what you'll see at 7am every Monday from now on.</strong></span>
+      </div>
+      <p class="windows-dance-foot" style="margin-top:8px"><strong>This is the wow moment of Day 2.</strong> When you see all 5 engines on one screen, that's the daily CEO experience the AI CEO Platform delivers.</p>
+    </div>
+
+    <h3>7.1 · Run leadership-engine · two paths</h3>
+    <div class="dual-path">
+      <div class="path-card path-interactive">
+        <div class="path-num">A</div>
+        <div class="path-body">
+          <h4>Auto · Claude reads all engine outputs</h4>
+          <p>Claude looks at the data each engine has produced today and synthesizes the brief. Just paste:</p>
+          <div class="paste">
+            <div class="paste-head"><span class="label">Paste in Claude Code</span><span class="badge">auto-fuse</span></div>
+            <pre>/purely-personal:leadership-engine
 
 give me the full CEO morning brief · all 5 engines</pre>
-      <button class="copy" data-copy="/purely-personal:leadership-engine
+            <button class="copy" data-copy="/purely-personal:leadership-engine
 
 give me the full CEO morning brief · all 5 engines">Copy</button>
+          </div>
+        </div>
+      </div>
+      <div class="path-card path-fasttrack">
+        <div class="path-num">B</div>
+        <div class="path-body">
+          <h4>Fast-track · pre-fill numbers from Activities 5+6</h4>
+          <p><strong>Fill the 14 number fields below</strong> · Claude uses them to produce a brief immediately even without re-running the other engines.</p>
+          <div class="paste">
+            <div class="paste-head"><span class="label">Paste in Claude Code · with all my numbers</span><span class="badge" id="a7-fast-badge">fields empty</span></div>
+            <pre id="a7-fast-preview">/purely-personal:leadership-engine
+
+[your numbers will appear here once you fill the 5-engine fields below]</pre>
+            <button class="copy" id="a7-fast-copy" data-copy="/purely-personal:leadership-engine">Copy command + my numbers</button>
+          </div>
+        </div>
+      </div>
     </div>
+    <p class="dim"><strong>Tip:</strong> if you've already run cash-engine and operations-engine, those numbers should auto-populate from the workbook fields. Just fill the gaps.</p>
+
+    <h3>7.2 · Fill these · they auto-bundle into Path B above</h3>
 
     <h3 style="color:var(--pp-red)">🎯 Marketing</h3>
     <div class="row-3">
@@ -400,6 +587,11 @@ give me the full CEO morning brief · all 5 engines">Copy</button>
   <div class="aiceo">
     <span class="kicker">The big reveal</span>
     <h2>AI CEO Platform · decision block <span class="time" style="background:rgba(233,13,65,.18);color:#fff">12:25 - 13:00</span></h2>
+
+    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:14px 18px;margin:14px 0 18px;font-size:14px;line-height:1.6;color:#cbd2dd">
+      <strong style="color:#fff;display:block;margin-bottom:6px;font-family:var(--display);font-size:15px">How this part works · in plain English</strong>
+      Danny presents the AI CEO Platform offer for ~30 minutes. <strong style="color:#fff">Your job is to listen and tick the checkboxes below as honestly as possible</strong> · they aren't tests, they're a self-mirror. By 13:00 you'll know if this is for you. <span style="color:#a4adbe">Three answers are valid: yes (Standard or Diamond), not yet (book a 15-min call this week), no (the system you built today is yours forever, free).</span>
+    </div>
     <p style="color:#a4adbe;max-width:640px;margin:6px 0 18px">You just built the system in 2 days. The platform takes you further: we run it WITH you, add 4 more engines (Brand · Funnel · CRM · Reporting), migrate your past data, hold weekly office hours.</p>
 
     <div class="pricing">
@@ -545,6 +737,146 @@ give me the full CEO morning brief · all 5 engines">Copy</button>
   document.getElementById('loadFile').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{write(JSON.parse(r.result));persist();flash('Loaded');}catch{flash('Invalid file');}};r.readAsText(f);});
   document.getElementById('resetBtn').addEventListener('click',()=>{if(!confirm('Reset every field on Day 2?'))return;tabs.forEach(el=>{if(el.type==='checkbox'||el.type==='radio')el.checked=false;else el.value='';});persist();flash('Cleared');});
   window.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='s'){e.preventDefault();document.getElementById('saveBtn').click();}});
+
+  /* ────── NEW · May 1 Day 2 upgrades ────── */
+
+  // Sticky time strip · live wall-clock + current activity (Finland UTC+3)
+  const schedule=[
+    {start:'10:00',end:'11:00',name:'Get ready · open Zoom + Claude Code'},
+    {start:'11:00',end:'11:15',name:'Win-share round-robin'},
+    {start:'11:15',end:'11:20',name:'Break'},
+    {start:'11:20',end:'11:40',name:'Activity 5 · operations-engine'},
+    {start:'11:40',end:'11:45',name:'Break'},
+    {start:'11:45',end:'12:05',name:'Activity 6 · cash-engine'},
+    {start:'12:05',end:'12:10',name:'Break'},
+    {start:'12:10',end:'12:25',name:'Activity 7 · leadership-engine'},
+    {start:'12:25',end:'13:00',name:'★ AI CEO Platform · pitch + decision'},
+    {start:'13:00',end:'23:59',name:'Workshop wrapped · book a call this week'}
+  ];
+  const toMin=(t)=>{const [h,m]=t.split(':').map(Number);return h*60+m;};
+  const updateTimeStrip=()=>{
+    const tsClock=document.getElementById('tsClock');
+    const tsActivity=document.getElementById('tsActivity');
+    const tsNext=document.getElementById('tsNext');
+    if(!tsClock||!tsActivity||!tsNext)return;
+    const now=new Date();
+    const finlandMins=(now.getUTCHours()*60+now.getUTCMinutes()+180)%(24*60);
+    tsClock.textContent=`${String(Math.floor(finlandMins/60)).padStart(2,'0')}:${String(finlandMins%60).padStart(2,'0')}`;
+    let curIdx=schedule.findIndex(s=>finlandMins>=toMin(s.start)&&finlandMins<toMin(s.end));
+    if(curIdx===-1){
+      if(finlandMins<toMin('10:00')){tsActivity.textContent='Workshop starts 11:00';tsNext.textContent='Win-share 11:00';}
+      else{tsActivity.textContent='Day 2 complete';tsNext.textContent='Monday 7am · run brief for real';}
+      return;
+    }
+    tsActivity.textContent=`${schedule[curIdx].name} (until ${schedule[curIdx].end})`;
+    const nxt=schedule[curIdx+1];
+    tsNext.textContent=nxt?`${nxt.name} · ${nxt.start}`:'Day 2 wraps · 13:00';
+  };
+  updateTimeStrip();
+  setInterval(updateTimeStrip,30000);
+
+  // ─── Activity 6 · cash-engine fast-track bundle (Path B) ───
+  const a6Preview=document.getElementById('a6-fast-preview');
+  const a6Copy=document.getElementById('a6-fast-copy');
+  const a6Badge=document.getElementById('a6-fast-badge');
+  const buildCashBundle=()=>{
+    if(!a6Preview||!a6Copy)return;
+    const get=(k)=>{const el=document.querySelector(`[data-k="${k}"]`);return el&&el.value?el.value.trim():'';};
+    const f={rev:get('d2.a6.rev'),exp:get('d2.a6.exp'),net:get('d2.a6.net')};
+    const filled=Object.values(f).filter(v=>v).length;
+    if(filled===0){
+      a6Preview.textContent='/purely-personal:cash-engine\n\n[your 30-day numbers will appear here once you fill the fields below]';
+      a6Copy.dataset.copy='/purely-personal:cash-engine';
+      a6Badge.textContent='fields empty';
+      return;
+    }
+    const lines=['/purely-personal:cash-engine','',
+      'My Stripe is not connected · here are my last 30 days numbers manually. Build me a 90-day forecast and Profit First splits from these.','',
+      '## Last 30 days'];
+    if(f.rev)lines.push(`- Revenue: $${f.rev}`);
+    if(f.exp)lines.push(`- Expenses: $${f.exp}`);
+    if(f.net)lines.push(`- Net: $${f.net}`);
+    const blob=lines.join('\n').trim();
+    a6Preview.textContent=blob;
+    a6Copy.dataset.copy=blob;
+    a6Badge.textContent=`${filled} of 3 fields ready`;
+  };
+  document.querySelectorAll('[data-k="d2.a6.rev"],[data-k="d2.a6.exp"],[data-k="d2.a6.net"]').forEach(el=>el.addEventListener('input',buildCashBundle));
+  buildCashBundle();
+
+  // ─── Activity 7 · leadership-engine fast-track · bundle ALL Day 2 numbers ───
+  const a7Preview=document.getElementById('a7-fast-preview');
+  const a7Copy=document.getElementById('a7-fast-copy');
+  const a7Badge=document.getElementById('a7-fast-badge');
+  const buildLeadershipBundle=()=>{
+    if(!a7Preview||!a7Copy)return;
+    const get=(k)=>{const el=document.querySelector(`[data-k="${k}"]`);return el&&el.value?el.value.trim():'';};
+    const f={
+      m_posts:get('d2.a7.m.posts'),m_reach:get('d2.a7.m.reach'),m_subs:get('d2.a7.m.subs'),
+      s_prosp:get('d2.a7.s.prospects'),s_meet:get('d2.a7.s.meetings'),s_pipe:get('d2.a7.s.pipeline'),
+      o_inbox:get('d2.a7.o.inbox'),o_sops:get('d2.a7.o.sops'),o_tickets:get('d2.a7.o.tickets'),
+      c_bank:get('d2.a7.c.bank'),c_runway:get('d2.a7.c.runway'),c_rev:get('d2.a7.c.rev'),
+      l_prio:get('d2.a7.l.prio'),l_block:get('d2.a7.l.block'),l_decision:get('d2.a7.l.decision'),
+      // pull from Activity 6 too
+      a6_rev:get('d2.a6.rev'),a6_runway:get('d2.a6.fc.runway'),
+      // pull from Activity 5 too
+      a5_inbox:get('d2.a5.needs'),a5_drafts:get('d2.a5.drafted')
+    };
+    const filled=Object.values(f).filter(v=>v).length;
+    if(filled===0){
+      a7Preview.textContent='/purely-personal:leadership-engine\n\n[your numbers will appear here once you fill the 5-engine fields below]';
+      a7Copy.dataset.copy='/purely-personal:leadership-engine';
+      a7Badge.textContent='fields empty';
+      return;
+    }
+    const lines=['/purely-personal:leadership-engine','',
+      "Build me the 60-second CEO morning brief from these numbers. I've already pulled them from the other engines · use them to skip re-running and just synthesize.",''];
+    if(f.m_posts||f.m_reach||f.m_subs){
+      lines.push('## 🎯 Marketing');
+      if(f.m_posts)lines.push(`- Posts shipped (week): ${f.m_posts}`);
+      if(f.m_reach)lines.push(`- Top performer reach: ${f.m_reach}`);
+      if(f.m_subs)lines.push(`- Newsletter subs: ${f.m_subs}`);
+      lines.push('');
+    }
+    if(f.s_prosp||f.s_meet||f.s_pipe){
+      lines.push('## 🤝 Sales');
+      if(f.s_prosp)lines.push(`- Active prospects: ${f.s_prosp}`);
+      if(f.s_meet)lines.push(`- Meetings booked: ${f.s_meet}`);
+      if(f.s_pipe)lines.push(`- Pipeline value: $${f.s_pipe}`);
+      lines.push('');
+    }
+    if(f.o_inbox||f.o_sops||f.o_tickets||f.a5_inbox||f.a5_drafts){
+      lines.push('## ⚙ Operations');
+      if(f.o_inbox)lines.push(`- Inbox unread: ${f.o_inbox}`);
+      if(f.o_sops)lines.push(`- SOPs total: ${f.o_sops}`);
+      if(f.o_tickets)lines.push(`- Open tickets: ${f.o_tickets}`);
+      if(f.a5_inbox)lines.push(`- Needs me personally (this week): ${f.a5_inbox}`);
+      if(f.a5_drafts)lines.push(`- Drafts queued (this week): ${f.a5_drafts}`);
+      lines.push('');
+    }
+    if(f.c_bank||f.c_runway||f.c_rev||f.a6_rev){
+      lines.push('## 💰 Cash');
+      if(f.c_bank)lines.push(`- Bank: $${f.c_bank}`);
+      if(f.c_runway)lines.push(`- Runway: ${f.c_runway} months`);
+      if(f.c_rev)lines.push(`- Week revenue: $${f.c_rev}`);
+      if(f.a6_rev&&!f.c_rev)lines.push(`- 30-day revenue: $${f.a6_rev}`);
+      lines.push('');
+    }
+    if(f.l_prio||f.l_block||f.l_decision){
+      lines.push('## 🧠 Leadership');
+      if(f.l_prio)lines.push(`- #1 today: ${f.l_prio}`);
+      if(f.l_block)lines.push(`- Biggest blocker: ${f.l_block}`);
+      if(f.l_decision)lines.push(`- One decision needed: ${f.l_decision}`);
+      lines.push('');
+    }
+    const blob=lines.join('\n').trim();
+    a7Preview.textContent=blob;
+    a7Copy.dataset.copy=blob;
+    a7Badge.textContent=`${filled} fields ready`;
+  };
+  // listen on all relevant fields (a5 + a6 + a7)
+  document.querySelectorAll('[data-k^="d2.a7."],[data-k="d2.a6.rev"],[data-k="d2.a6.fc.runway"],[data-k="d2.a5.needs"],[data-k="d2.a5.drafted"]').forEach(el=>el.addEventListener('input',buildLeadershipBundle));
+  buildLeadershipBundle();
 })();
 </script>
 
