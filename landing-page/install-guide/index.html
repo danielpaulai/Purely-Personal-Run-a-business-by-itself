@@ -270,6 +270,67 @@ main{padding:48px 56px 80px;max-width:940px}
 .patience-tip{margin:10px 0 0;padding:10px 12px;background:#dbeafe;border:1px solid #bfdbfe;border-left:3px solid #3b82f6;border-radius:6px;font-size:12.5px;color:var(--text-secondary);line-height:1.55}
 .patience-tip strong{color:#1e40af;font-weight:700}
 
+/* ════════════════════ Errors Gallery · live workshop errors + fixes ════════════════════ */
+.errors-gallery{margin:18px 0;background:linear-gradient(180deg,#fff5f7 0%,#fff 100%);border:2px solid var(--pp-red);border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(233,13,65,.12)}
+.errors-gallery>summary{padding:18px 22px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,var(--pp-red-whisper) 0%,#fff 100%);user-select:none}
+.errors-gallery>summary::-webkit-details-marker{display:none}
+.eg-icon{font-size:24px;line-height:1}
+.eg-title{flex:1;font-family:var(--display);font-size:17px;font-weight:800;color:var(--text-primary);letter-spacing:-.015em}
+.eg-title em{font-style:italic;color:var(--text-muted);font-weight:500}
+.eg-toggle{font-size:18px;color:var(--pp-red);font-weight:800;transition:transform 200ms}
+.errors-gallery[open]>summary>.eg-toggle{transform:rotate(180deg)}
+.eg-body{padding:16px 22px 20px;border-top:1px solid var(--pp-red-soft);background:#fff}
+.eg-intro{font-size:14px;color:var(--text-secondary);line-height:1.6;margin:0 0 14px}
+.eg-intro strong{color:var(--text-primary);font-weight:700}
+
+.eg-entry{margin:10px 0;background:var(--card-bg);border:1px solid var(--divider);border-radius:8px;overflow:hidden;transition:border-color 120ms}
+.eg-entry[open]{border-color:var(--pp-red)}
+.eg-entry>summary{padding:12px 14px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;font-family:var(--body);user-select:none;flex-wrap:wrap}
+.eg-entry>summary::-webkit-details-marker{display:none}
+.eg-num{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--pp-red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:13px}
+.eg-os{flex-shrink:0;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.08em;padding:3px 8px;border-radius:4px;text-transform:uppercase;white-space:nowrap}
+.eg-os.win-tag{background:#1a3050;color:#a8c2ff;border:1px solid #2a3a5a}
+.eg-os.both-tag{background:var(--page-bg);color:var(--text-secondary);border:1px solid var(--divider-strong)}
+.eg-os.mac-tag{background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe}
+.eg-name{flex:1;font-size:13.5px;color:var(--text-primary);font-weight:600;line-height:1.4;min-width:0}
+.eg-name code{font-family:var(--mono);font-size:12px;background:rgba(0,0,0,.06);padding:1px 5px;border-radius:3px;color:var(--pp-red);font-weight:700}
+.eg-chev{flex-shrink:0;color:var(--pp-red);font-weight:800;transition:transform 200ms}
+.eg-entry[open]>summary>.eg-chev{transform:rotate(180deg)}
+
+.eg-content{padding:0 16px 16px;border-top:1px solid var(--divider)}
+.eg-content h4{font-family:var(--display);font-size:13px;font-weight:800;letter-spacing:.04em;color:var(--pp-red);text-transform:uppercase;margin:14px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--pp-red-soft)}
+.eg-content p{font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin:0 0 8px}
+.eg-content p strong{color:var(--text-primary);font-weight:700}
+.eg-content p code{font-family:var(--mono);font-size:12px;background:rgba(0,0,0,.05);padding:1px 5px;border-radius:3px;color:var(--pp-red);font-weight:700}
+.eg-content ol{padding-left:22px;margin:8px 0}
+.eg-content ol li{margin-bottom:6px;font-size:13.5px;line-height:1.55;color:var(--text-primary)}
+.eg-content ol li strong{font-weight:700}
+.eg-content ol li code{font-family:var(--mono);font-size:12px;background:rgba(0,0,0,.05);color:var(--pp-red);padding:1px 5px;border-radius:3px;font-weight:700}
+.eg-content kbd{font-family:var(--mono);font-size:11px;background:#fff;border:1px solid var(--divider-strong);border-bottom-width:2px;border-radius:4px;padding:1px 5px;color:var(--text-primary);font-weight:700}
+
+.eg-alt{margin-top:12px;padding:10px 12px;background:#dbeafe;border:1px solid #bfdbfe;border-left:3px solid #3b82f6;border-radius:6px;font-size:12.5px;color:var(--text-secondary);line-height:1.55}
+.eg-alt strong{color:#1e40af;font-weight:700}
+.eg-alt code{font-family:var(--mono);font-size:11.5px;background:#fff;color:#1e40af;padding:1px 5px;border-radius:3px;border:1px solid #bfdbfe;font-weight:700}
+
+.eg-foot{margin:16px 0 0;padding:12px 14px;background:var(--page-bg);border:1px dashed var(--divider-strong);border-radius:6px;font-size:13px;color:var(--text-secondary);line-height:1.55}
+.eg-foot strong{color:var(--text-primary);font-weight:700}
+
+/* Mock terminal · simulated screenshot of the error */
+.eg-mock{background:#0a0a0b;border-radius:8px;padding:16px 18px;margin:8px 0;font-family:var(--mono);font-size:12.5px;line-height:1.55;color:#e6e6e6;overflow-x:auto;border:1px solid #2a2c33;box-shadow:0 6px 18px rgba(15,15,16,.18)}
+.eg-mock pre{margin:0;white-space:pre-wrap;word-break:break-word;color:#e6e6e6;font-family:var(--mono);font-size:12.5px;line-height:1.55}
+.mok-cmd{color:#ffd166;font-weight:700}
+.mok-err{color:#ff6b6b;font-weight:600}
+.mok-prompt{color:#7bd389}
+
+/* Mock Claude Code GUI error · the "Select a folder first" red banner */
+.eg-mock-claude{background:#0f0f10;border-radius:10px;padding:0;overflow:hidden}
+.eg-mock-claude .mok-banner{background:#3a1518;color:#ff6b6b;padding:10px 14px;font-weight:700;font-size:13px;border-bottom:1px solid #5a2128;display:block}
+.eg-mock-claude p{margin:8px 14px;color:#a4adbe;font-size:12.5px;font-family:var(--body);line-height:1.5}
+.eg-mock-claude .mok-error-line{background:rgba(255,107,107,.12);border:1px solid rgba(255,107,107,.3);border-radius:6px;padding:8px 12px;margin:8px 14px;font-family:var(--mono);font-size:12.5px;color:#fff}
+.eg-mock-claude .mok-claude-buttons{padding:10px 14px 14px;display:flex;gap:8px;border-top:1px solid #1f2227;background:#16171a}
+.eg-mock-claude .mok-btn{padding:6px 12px;border-radius:5px;font-family:var(--body);font-size:12px;color:#cbd2dd;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);font-weight:600}
+.eg-mock-claude .mok-btn.mok-btn-primary{background:rgba(233,13,65,.14);color:#ff7a99;border-color:rgba(233,13,65,.4)}
+
 /* ════════════════════ OS picker · pick once, page filters ════════════════════ */
 .os-picker{margin:24px 0;background:linear-gradient(135deg,var(--pp-red-whisper) 0%,#fff 50%,#dbeafe 100%);border:2px solid var(--pp-red);border-radius:14px;padding:20px 24px;box-shadow:0 8px 28px rgba(233,13,65,.12)}
 .os-picker-q{margin-bottom:14px}
@@ -1195,6 +1256,189 @@ details.step.done>summary .step-title h2{text-decoration:line-through;color:var(
       <p class="rescue-foot">If Claude can't fix it · post the screenshot + Claude's response in the workshop Slack channel · Danny or a teammate jumps in within 30 min during Finland hours.</p>
     </div>
   </div>
+
+  <!-- ════════════════════ ERRORS GALLERY · the actual errors people hit ════════════════════ -->
+  <details class="errors-gallery" id="errorsGallery">
+    <summary>
+      <span class="eg-icon">🐛</span>
+      <span class="eg-title">4 specific errors people are hitting <em>(May 2 · live workshop)</em></span>
+      <span class="eg-toggle">▾</span>
+    </summary>
+    <div class="eg-body">
+      <p class="eg-intro">Real errors from the workshop attendees right now · each one with a screenshot of what you'll see + the exact fix. Click any error to expand. <strong>If you hit one · the fix is 30 seconds away.</strong></p>
+
+      <!-- ─── Error 1 · PowerShell ExecutionPolicy ─── -->
+      <details class="eg-entry">
+        <summary>
+          <span class="eg-num">1</span>
+          <span class="eg-os win-tag">🪟 Windows</span>
+          <span class="eg-name"><code>npm.ps1 cannot be loaded · scripts is disabled</code></span>
+          <span class="eg-chev">▾</span>
+        </summary>
+        <div class="eg-content">
+          <h4>What you see</h4>
+          <div class="eg-mock eg-mock-error">
+<pre>PS C:\Users\azam_&gt; <span class="mok-cmd">npm install -g @anthropic-ai/claude-code</span>
+<span class="mok-err">npm : File C:\Program Files\nodejs\npm.ps1 cannot be loaded because running
+scripts is disabled on this system.</span>
+At line:1 char:1
++ npm install -g @anthropic-ai/claude-code
+    + CategoryInfo          : SecurityError: (:) [], PSSecurityException
+    + FullyQualifiedErrorId : UnauthorizedAccess</pre>
+          </div>
+
+          <h4>Why it happens</h4>
+          <p>Windows PowerShell has a default security policy ("Restricted") that blocks <code class="inline">.ps1</code> scripts. <code class="inline">npm</code> on Windows is actually a <code class="inline">.ps1</code> script · so PowerShell refuses to run it.</p>
+
+          <h4>The fix · 30 seconds</h4>
+          <p><strong>1. Open PowerShell as Administrator</strong> · right-click PowerShell in Start menu → Run as administrator.</p>
+          <p><strong>2. Run this single command:</strong></p>
+          <div class="cmd"><span class="cmd-label">PowerShell · Admin · 1 of 2</span><span class="cmd-eta">⏱ 5 sec</span>Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force</div>
+          <p class="dim-tip">This allows scripts you've downloaded yourself to run · doesn't affect security otherwise.</p>
+          <p><strong>3. Re-try the npm install:</strong></p>
+          <div class="cmd"><span class="cmd-label">PowerShell · Admin · 2 of 2</span><span class="cmd-eta">⏱ ~2 min</span>npm install -g @anthropic-ai/claude-code</div>
+          <p>Should complete without the error. Verify with <code class="inline">claude --version</code>.</p>
+
+          <div class="eg-alt">
+            <strong>Alternative · don't want to change ExecutionPolicy?</strong> Run npm via <code class="inline">cmd.exe</code> instead (cmd doesn't have this restriction):
+            <div class="cmd"><span class="cmd-label">PowerShell or Run dialog</span>cmd /c "npm install -g @anthropic-ai/claude-code"</div>
+          </div>
+        </div>
+      </details>
+
+      <!-- ─── Error 2 · Claude Code "Select a folder first" ─── -->
+      <details class="eg-entry">
+        <summary>
+          <span class="eg-num">2</span>
+          <span class="eg-os both-tag">🌐 Both</span>
+          <span class="eg-name"><code>Something went wrong · Select a folder first</code></span>
+          <span class="eg-chev">▾</span>
+        </summary>
+        <div class="eg-content">
+          <h4>What you see</h4>
+          <div class="eg-mock eg-mock-claude">
+            <div class="mok-banner">✕ Something went wrong</div>
+            <p>Try sending your message again. If it keeps happening, share feedback.</p>
+            <div class="mok-error-line"><strong>Select a folder first.</strong></div>
+            <div class="mok-claude-buttons">
+              <span class="mok-btn">📁 Local</span>
+              <span class="mok-btn mok-btn-primary">📂 Select folder...</span>
+            </div>
+          </div>
+
+          <h4>Why it happens</h4>
+          <p>Claude Code (the desktop GUI version) requires a working directory before it can run any commands. When you open it without picking a folder · or you skipped Step 4a · it gets stuck on this red banner.</p>
+
+          <h4>The fix · 10 seconds</h4>
+          <ol>
+            <li><strong>Click the <code class="inline">📂 Select folder...</code></strong> button at the bottom of Claude Code.</li>
+            <li>Navigate to your <strong>Desktop</strong>.</li>
+            <li>Click the <code class="inline">purely-personal</code> folder you created in Step 4a.</li>
+            <li>Click <strong>OK</strong> · the red banner disappears · you can now type commands.</li>
+          </ol>
+
+          <div class="eg-alt">
+            <strong>If you don't have a <code>purely-personal</code> folder yet:</strong> scroll up to <strong>Step 4a</strong> · paste the <code class="inline">mkdir</code> command in Terminal/Git Bash · then come back · click <strong>Select folder...</strong> · pick the new folder.
+          </div>
+
+          <div class="eg-alt">
+            <strong>Better long-term · use the CLI flow:</strong> close Claude Code GUI · open Terminal (Mac) or Git Bash (Windows) · run <code class="inline">cd ~/Desktop/purely-personal</code> · then type <code class="inline">claude</code> · it auto-picks the folder you cd'd into. No more "Select a folder" prompt.
+          </div>
+        </div>
+      </details>
+
+      <!-- ─── Error 3 · claude not recognized in PowerShell ─── -->
+      <details class="eg-entry">
+        <summary>
+          <span class="eg-num">3</span>
+          <span class="eg-os win-tag">🪟 Windows</span>
+          <span class="eg-name"><code>'claude' is not recognized as the name of a cmdlet</code></span>
+          <span class="eg-chev">▾</span>
+        </summary>
+        <div class="eg-content">
+          <h4>What you see</h4>
+          <div class="eg-mock eg-mock-error">
+<pre>PS C:\WINDOWS\system32&gt; <span class="mok-cmd">claude --version</span>
+<span class="mok-err">claude : The term 'claude' is not recognized as the name of a cmdlet, function,
+script file, or operable program.</span>
+At line:1 char:1
++ claude --version
++ ~~~~~~
+    + CategoryInfo          : ObjectNotFound: (claude:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException</pre>
+          </div>
+
+          <h4>Why it happens · two possible causes</h4>
+          <p><strong>Cause A · You're in PowerShell (x86) · the 32-bit version.</strong> Look at the title bar of your terminal. If it says "Windows PowerShell (x86)" · that's an older 32-bit version with different PATH. Close it. Open regular <strong>Windows PowerShell</strong>.</p>
+          <p><strong>Cause B · Claude Code installed but PATH wasn't updated.</strong> The installer didn't add <code class="inline">claude</code>'s folder to your system PATH.</p>
+
+          <h4>The fix · pick the cause that matches</h4>
+          <p><strong>If Cause A · 1 minute:</strong></p>
+          <ol>
+            <li>Close the PowerShell (x86) window completely.</li>
+            <li>Press <kbd>⊞ Win</kbd> · type <code class="inline">PowerShell</code> · click on the regular "Windows PowerShell" (NOT the x86 one).</li>
+            <li>Type <code class="inline">claude --version</code> · should work now.</li>
+          </ol>
+
+          <p><strong>If Cause B · 2 minutes:</strong></p>
+          <p>Find where Claude is actually installed:</p>
+          <div class="cmd"><span class="cmd-label">PowerShell · find claude</span><span class="cmd-eta">⏱ 5 sec</span>where.exe claude</div>
+          <p class="dim-tip">If it prints nothing · Claude wasn't installed. Re-run the install: <code class="inline">npm install -g @anthropic-ai/claude-code</code> (need ExecutionPolicy fixed first · see Error 1).</p>
+          <p>If it prints a path like <code class="inline">C:\Users\you\AppData\Roaming\npm\claude</code> · the binary exists but PATH doesn't include its folder. Fix:</p>
+          <ol>
+            <li>Press <kbd>⊞ Win</kbd> + <kbd>R</kbd> · type <code class="inline">sysdm.cpl</code> · Enter</li>
+            <li>Advanced tab → Environment Variables</li>
+            <li>Under <strong>User variables</strong> · find <code>Path</code> · click Edit</li>
+            <li>Click New · paste the folder containing claude (e.g. <code class="inline">C:\Users\YourName\AppData\Roaming\npm</code>)</li>
+            <li>OK · OK · OK · close PowerShell · re-open · run <code class="inline">claude --version</code></li>
+          </ol>
+        </div>
+      </details>
+
+      <!-- ─── Error 4 · claude not found in Git Bash ─── -->
+      <details class="eg-entry">
+        <summary>
+          <span class="eg-num">4</span>
+          <span class="eg-os win-tag">🪟 Windows · Git Bash</span>
+          <span class="eg-name"><code>bash: claude: command not found</code></span>
+          <span class="eg-chev">▾</span>
+        </summary>
+        <div class="eg-content">
+          <h4>What you see</h4>
+          <div class="eg-mock eg-mock-error">
+<pre><span class="mok-prompt">YourName@LAPTOP MINGW64 ~</span>
+<span class="mok-prompt">$</span> <span class="mok-cmd">claude --version</span>
+<span class="mok-err">bash: claude: command not found</span>
+
+<span class="mok-prompt">YourName@LAPTOP MINGW64 ~</span>
+<span class="mok-prompt">$</span></pre>
+          </div>
+
+          <h4>Why it happens</h4>
+          <p>Git Bash maintains its own PATH that doesn't auto-pick up Windows-installed tools. Claude installed via npm or PowerShell sits in <code class="inline">~/.local/bin</code> or <code class="inline">~/AppData/Roaming/npm</code> · neither is on Git Bash's PATH by default.</p>
+
+          <h4>The fix · 30 seconds</h4>
+          <p>In <strong>Git Bash</strong>, run this single line · adds both common locations to your PATH permanently:</p>
+          <div class="cmd"><span class="cmd-label">Git Bash · 1 of 1</span><span class="cmd-eta">⏱ 5 sec</span>echo 'export PATH="$HOME/.local/bin:$HOME/AppData/Roaming/npm:$PATH"' &gt;&gt; ~/.bashrc &amp;&amp; source ~/.bashrc</div>
+          <p>Then re-run:</p>
+          <div class="cmd"><span class="cmd-label">Git Bash</span>claude --version</div>
+          <p>Should print the version number now.</p>
+
+          <div class="eg-alt">
+            <strong>Still not found?</strong> Find where it's actually installed on your machine:
+            <div class="cmd"><span class="cmd-label">Git Bash · scan</span>find /c -name "claude*" 2>/dev/null | head -5</div>
+            <p class="dim-tip">Add the folder containing the result to <code class="inline">~/.bashrc</code> with the same <code class="inline">echo ... &gt;&gt;</code> pattern above.</p>
+          </div>
+
+          <div class="eg-alt">
+            <strong>Quick alternative · use PowerShell instead.</strong> If Git Bash refuses to find claude · you can do the install steps in regular PowerShell instead. Open <strong>Windows PowerShell</strong> · run <code class="inline">claude --version</code> there. The marketplace add + plugin install can run in PowerShell too · just paste the same commands.
+          </div>
+        </div>
+      </details>
+
+      <p class="eg-foot">⚠ <strong>Still stuck after the fix?</strong> Use the <strong>🆘 Claude rescue loop above</strong> · screenshot the error · paste in claude.ai · 30-second AI fix. If THAT doesn't work · DM Danny in the workshop Slack.</p>
+    </div>
+  </details>
 
   <div class="callout warn"><strong>Stuck at any step?</strong> Post in the workshop Slack channel (link in your registration email). Danny or a teammate will unblock you within 30 minutes during Finland business hours.</div>
 
