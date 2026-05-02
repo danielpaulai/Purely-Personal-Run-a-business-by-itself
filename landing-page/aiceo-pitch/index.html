@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI CEO Platform · Sales Pitch · Day 2 · May 3, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Rethink+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0204;--bg-2:#1a0204;--bg-3:#2a0408;
+  --pp-red:#ec4357;--pp-red-deep:#d92e44;--pp-red-glow:rgba(236,67,87,.4);
+  --gold:#fbbf24;--gold-deep:#f59e0b;
+  --ink:#fff;--ink-2:#d8d8d8;--ink-3:#9aa3b2;
+  --display:'Rethink Sans','Inter',sans-serif;
+  --body:'Inter',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased}
+
+/* ── Top nav · slide controls + speaker note toggle ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,2,4,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(236,67,87,.2);padding:10px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.nav .brand{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:800;font-size:13px;color:#fff}
+.nav .brand .mark{width:22px;height:22px;background:var(--pp-red);border-radius:5px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:11px}
+.nav .pitch-pill{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pp-red);background:rgba(236,67,87,.16);padding:5px 10px;border-radius:3px;border:1px solid rgba(236,67,87,.4)}
+.nav .spacer{flex:1}
+.nav-btn{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.14);padding:6px 11px;border-radius:5px;cursor:pointer}
+.nav-btn:hover{border-color:var(--pp-red);background:rgba(236,67,87,.16)}
+.nav-btn.active{background:var(--pp-red);border-color:var(--pp-red)}
+.nav-counter{font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:.06em;font-weight:600}
+
+/* ── Slide ── */
+.slide{min-height:100vh;padding:80px 60px 40px;display:flex;flex-direction:column;justify-content:center;position:relative;border-bottom:1px solid rgba(236,67,87,.12);background:radial-gradient(ellipse at top right,var(--bg-3) 0%,var(--bg-2) 50%,var(--bg) 100%)}
+.slide-num{position:absolute;top:74px;left:60px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--ink-3)}
+.slide-tag{position:absolute;top:74px;right:60px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;background:rgba(236,67,87,.16);color:var(--pp-red);padding:4px 9px;border-radius:3px;border:1px solid rgba(236,67,87,.3)}
+.slide-tag.gold{background:rgba(251,191,36,.16);color:var(--gold);border-color:rgba(251,191,36,.4)}
+
+.slide-content{max-width:1100px;width:100%;margin:0 auto;text-align:center}
+.slide.left .slide-content{text-align:left}
+
+h1.headline{font-family:var(--display);font-weight:800;font-size:84px;line-height:1.02;letter-spacing:-.03em;color:var(--pp-red);text-shadow:0 0 40px var(--pp-red-glow);margin-bottom:18px}
+h1.headline em{font-style:italic;color:#fff}
+h2.title{font-family:var(--display);font-weight:800;font-size:54px;line-height:1.05;letter-spacing:-.025em;color:#fff;margin-bottom:14px}
+h2.title em{font-style:italic;color:var(--pp-red)}
+h3.eyebrow{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--pp-red);margin-bottom:18px}
+.lead{font-size:22px;color:var(--ink-2);line-height:1.55;max-width:840px;margin:0 auto 14px;font-weight:500}
+.slide.left .lead{margin-left:0}
+.lead strong{color:#fff;font-weight:700}
+.lead em{font-style:italic;color:var(--pp-red)}
+
+/* ── Component card · stack reveal ── */
+.component-card{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;max-width:980px;margin:24px auto;padding:24px 30px;background:rgba(15,5,5,.85);border:1.5px solid var(--pp-red);border-radius:12px;box-shadow:0 12px 40px rgba(236,67,87,.18)}
+.component-card.gold{border-color:var(--gold);background:rgba(40,28,5,.7);box-shadow:0 12px 40px rgba(251,191,36,.15)}
+.component-num{width:64px;height:64px;border-radius:50%;background:var(--pp-red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:900;font-size:28px}
+.component-card.gold .component-num{background:var(--gold);color:#1a0204}
+.component-text h4{font-family:var(--display);font-weight:800;font-size:30px;color:#fff;letter-spacing:-.015em;margin-bottom:6px;line-height:1.15;text-align:left}
+.component-text p{font-size:15px;color:var(--ink-2);line-height:1.5;text-align:left}
+.component-text p strong{color:#fff;font-weight:700}
+.component-price{font-family:var(--display);font-weight:900;font-size:38px;color:var(--pp-red);letter-spacing:-.02em;text-align:right;line-height:1;white-space:nowrap}
+.component-price .label{display:block;font-family:var(--mono);font-size:10px;color:var(--ink-3);font-weight:700;letter-spacing:.16em;margin-top:4px;text-align:right}
+.component-card.gold .component-price{color:var(--gold)}
+
+/* ── Two-tier pricing ── */
+.tiers{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:980px;margin:30px auto 20px}
+.tier{background:rgba(15,5,5,.85);border:2px solid rgba(236,67,87,.4);border-radius:14px;padding:32px 28px;text-align:left}
+.tier.featured{border-color:var(--pp-red);background:linear-gradient(180deg,rgba(236,67,87,.12) 0%,rgba(15,5,5,.85) 50%);box-shadow:0 16px 50px rgba(236,67,87,.25)}
+.tier-name{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+.tier.featured .tier-name{color:var(--pp-red)}
+.tier-price{font-family:var(--display);font-weight:900;font-size:62px;color:#fff;letter-spacing:-.025em;line-height:1}
+.tier-price .currency{font-size:32px;vertical-align:18px;color:var(--pp-red);margin-right:4px}
+.tier-period{font-size:14px;color:var(--ink-3);margin-top:4px;font-family:var(--mono);letter-spacing:.04em}
+.tier-features{margin-top:22px;padding-left:0;list-style:none}
+.tier-features li{padding:8px 0 8px 24px;border-bottom:1px solid rgba(255,255,255,.06);font-size:14px;color:var(--ink-2);line-height:1.5;position:relative}
+.tier-features li:last-child{border-bottom:0}
+.tier-features li::before{content:'✓';position:absolute;left:0;color:var(--pp-red);font-weight:900}
+.tier.featured .tier-features li::before{color:var(--gold)}
+.tier-cta{display:block;margin-top:18px;padding:14px 18px;background:var(--pp-red);color:#fff;text-align:center;font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.02em;text-transform:uppercase;text-decoration:none;border-radius:6px;box-shadow:0 6px 20px rgba(236,67,87,.35);transition:transform 120ms,box-shadow 120ms}
+.tier-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(236,67,87,.45);background:var(--pp-red-deep)}
+.tier.featured .tier-cta{background:var(--gold);color:#1a0204;box-shadow:0 6px 20px rgba(251,191,36,.4)}
+.tier.featured .tier-cta:hover{background:var(--gold-deep)}
+
+/* ── If-anchoring ── */
+.if-stack{max-width:840px;margin:30px auto;display:flex;flex-direction:column;gap:18px}
+.if-line{display:flex;gap:18px;align-items:flex-start;padding:18px 24px;background:rgba(15,5,5,.7);border-left:4px solid var(--pp-red);border-radius:8px;font-family:var(--display);font-size:24px;font-weight:700;color:#fff;letter-spacing:-.01em;line-height:1.3}
+.if-line .if-num{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--pp-red);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px}
+.if-line em{font-style:italic;color:var(--pp-red)}
+
+/* ── Stack reveal value totals ── */
+.value-stack{max-width:980px;margin:30px auto;background:rgba(15,5,5,.9);border:2px solid var(--gold);border-radius:14px;padding:28px 36px}
+.value-stack-title{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;text-align:center}
+.value-stack-rows{margin-bottom:18px}
+.value-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed rgba(255,255,255,.1);font-size:15px;font-family:var(--display);font-weight:600}
+.value-row:last-child{border-bottom:0}
+.value-row .name{color:var(--ink-2)}
+.value-row .price{color:var(--pp-red);font-weight:800;font-family:var(--mono)}
+.value-total{padding:18px 0 6px;border-top:2px solid var(--gold);font-family:var(--display);font-size:34px;font-weight:900;text-align:center;color:var(--gold);letter-spacing:-.02em}
+.value-total span{color:#fff}
+
+/* ── CTA mega-block ── */
+.cta-mega{max-width:900px;margin:30px auto;text-align:center}
+.cta-mega .strike{font-family:var(--display);font-size:32px;font-weight:700;color:var(--ink-3);text-decoration:line-through;margin-bottom:8px}
+.cta-mega .price-big{font-family:var(--display);font-size:120px;font-weight:900;color:var(--pp-red);letter-spacing:-.04em;line-height:1;text-shadow:0 0 50px var(--pp-red-glow)}
+.cta-mega .price-big .currency{font-size:54px;vertical-align:36px;margin-right:6px}
+.cta-mega .price-note{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-top:6px}
+
+/* ── Risk reversal ── */
+.risk-block{max-width:780px;margin:24px auto;padding:22px 30px;background:linear-gradient(135deg,rgba(251,191,36,.12) 0%,rgba(15,5,5,.85) 80%);border:2px solid var(--gold);border-radius:12px;text-align:center}
+.risk-title{font-family:var(--display);font-size:24px;font-weight:900;color:var(--gold);letter-spacing:-.01em;margin-bottom:8px}
+.risk-body{font-size:16px;color:var(--ink-2);line-height:1.55}
+.risk-body strong{color:#fff;font-weight:700}
+
+/* ── Two choices · physical close ── */
+.choice-block{max-width:900px;margin:24px auto;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.choice{padding:28px;border:2px solid rgba(255,255,255,.12);border-radius:12px;text-align:center;background:rgba(15,5,5,.7)}
+.choice-title{font-family:var(--display);font-size:22px;font-weight:800;color:#fff;margin-bottom:10px}
+.choice-desc{font-size:14px;color:var(--ink-3);line-height:1.55}
+.choice.yes{border-color:var(--pp-red);background:linear-gradient(180deg,rgba(236,67,87,.14) 0%,rgba(15,5,5,.7) 60%)}
+.choice.yes .choice-title{color:var(--pp-red)}
+
+/* ── Speaker notes drawer ── */
+.notes{position:fixed;bottom:0;left:0;right:0;z-index:40;background:linear-gradient(180deg,rgba(0,0,0,.97) 0%,rgba(20,2,4,.99) 100%);border-top:2px solid var(--pp-red);max-height:50vh;overflow-y:auto;display:none;backdrop-filter:blur(18px)}
+body.notes-open .notes{display:block}
+body.notes-open{padding-bottom:50vh}
+.notes-inner{max-width:1100px;margin:0 auto;padding:18px 60px 24px}
+.notes-eyebrow{display:flex;align-items:baseline;gap:12px;margin-bottom:10px}
+.notes-eyebrow .label{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--pp-red)}
+.notes-eyebrow .slide-ref{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.notes-block{display:none;font-family:var(--body);font-size:15px;color:var(--ink-2);line-height:1.65}
+.notes-block.active{display:block}
+.notes-block h5{font-family:var(--display);font-size:14px;font-weight:800;color:#fff;margin:14px 0 6px;letter-spacing:-.005em}
+.notes-block .say{margin:8px 0;padding:10px 14px;background:rgba(236,67,87,.1);border-left:3px solid var(--pp-red);border-radius:4px;font-style:italic;color:#fff;font-size:15px;line-height:1.55}
+.notes-block .say strong{font-style:normal;font-weight:800;color:var(--pp-red);text-transform:uppercase;letter-spacing:.04em}
+.notes-block .do{margin:8px 0;padding:8px 12px;background:rgba(59,130,246,.12);border-left:3px solid #3b82f6;border-radius:4px;font-size:14px;color:var(--ink-2)}
+.notes-block .do strong{color:#60a5fa;font-weight:700}
+.notes-block .energy{display:inline-block;font-family:var(--mono);font-size:11px;background:rgba(251,191,36,.16);color:var(--gold);padding:3px 8px;border-radius:3px;letter-spacing:.06em;font-weight:700;margin-left:6px}
+
+/* ── Print: page-break per slide ── */
+@media print{
+  .nav{display:none}
+  body.notes-open{padding-bottom:0}
+  .notes{display:none}
+  .slide{min-height:auto;break-inside:avoid;page-break-inside:avoid;page-break-after:always}
+  body{background:#fff}
+  .slide{background:#fff;color:#000}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="brand"><div class="mark">P</div>AI CEO Pitch</div>
+  <span class="pitch-pill">Day 2 · 12:25 - 13:00 · Sun May 3</span>
+  <div class="spacer"></div>
+  <button class="nav-btn" id="notesToggle">📝 Speaker notes</button>
+  <span class="nav-counter" id="slideCounter">slide 1 / 15</span>
+</nav>
+
+<!-- ════════════════════ SLIDE 1 · Pattern interrupt ════════════════════ -->
+<section class="slide" id="s1">
+  <div class="slide-num">01 / 15</div>
+  <div class="slide-tag">Eker · Pattern interrupt</div>
+  <div class="slide-content">
+    <h3 class="eyebrow">For the people who just saw their business write a post</h3>
+    <h1 class="headline">What you JUST did<br>in 4 hours…</h1>
+    <p class="lead">…was always supposed to be <em>a 12-month transformation</em>.<br><br>You compressed it. The question now is what comes next.</p>
+  </div>
+</section>
+
+<!-- ════════════════════ SLIDE 2 · The stuck point ════════════════════ -->
+<section class="slide" id="s2">
+  <div class="slide-num">02 / 15</div>
+  <div class="slide-tag">Eker · Future pace</div>
+  <div class="slide-content">
+    <h3 class="eyebrow">Sunday night → Monday at 7am</h3>
+    <h2 class="title">You go home tonight.<br>Monday at 7am · the alarm fires.<br><em>Then what?</em></h2>
+    <p class="lead">By Friday · most of you have run <strong>marketing-engine 3 times</strong>. Some of you have run <strong>cash-engine once</strong>. Not because you're lazy. Because <strong>you're alone</strong>.</p>
+  </div>
+</section>
+
+<!-- ════════════════════ SLIDE 3 · The DIY anchor ════════════════════ -->
+<section class="slide" id="s3">
+  <div class="slide-num">03 / 15</div>
+  <div class="slide-tag">Anchor · DIY cost</div>
+  <div class="slide-content">
+    <h3 class="eyebrow">If you build this yourself · the math is brutal</h3>
+    <h1 class="headline">$50K+ a year</h1>
+    <p class="lead"><strong>Tools.</strong> $400/mo across 6 SaaS.<br><strong>Freelancers.</strong> $4K/mo for 1 part-time content + ops person · still needs daily managing.<br><strong>Coaching.</strong> $5K/year for a strategy course that doesn't get built.</p>
+    <p class="lead" style="font-size:18px;color:var(--gold);margin-top:18px">The DIY annual cost · <strong>$50,000+</strong>. And you still own the management.</p>
+  </div>
+</section>
+
+<!-- ════════════════════ SLIDE 4 · The reveal ════════════════════ -->
+<section class="slide" id="s4">
+  <div class="slide-num">04 / 15</div>
+  <div class="slide-tag gold">★ The Offer</div>
+  <div class="slide-content">
+    <h3 class="eyebrow">The path most of you needed when you walked in</h3>
+    <h1 class="headline">AI CEO<br>Platform</h1>
+    <p class="lead"><strong>Everything a CEO needs to grow · in one place.</strong> Content · CRM · email · landing pages · social publishing · lead tracking · automation. One unified system built around YOUR business · with our team beside you for 30 days. Built · not assigned.</p>
+  </div>
+</section>
+
+<!-- ════════════════════ SLIDE 5 · Component 1 ════════════════════ -->
+<section class="slide" id="s5">
+  <div class="slide-num">05 / 15</div>
+  <div class="slide-tag">Stack · Component 1</div>
+  <div class="slide-content">
+    <h3 class="eyebrow">Component 1</h3>
+    <h2 class="title">The AI CEO Platform · <em>12 months</em></h2>
+    <div class="component-card">
+      <div class="component-num">1</div>
+      <div class="component-text">
+        <h4>Platform · 12 month access</h4>
+        <p>AI content engine · CRM + leads · email automation · landing pages · social publishing · lead tracking · automation workflows. <strong>Replaces 6+ separate tools</strong> you'd otherwise stitch together with Zapier.</p>
+      </div>
+      <div class="component-price">$24,000<span class="label">12-mo retail value</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ SLIDE 6 · Component 2 ════════════════════ -->
+<section class="slide" id="s6">
+  <div class="slide-num">06 / 15</div>
+  <div class="slide-tag">Stack · Component 2</div>
+  <div class="slide-content">
+    <h3 class="eyebrow">Component 2</h3>
+    <h2 class="title">Done-With-You Setup · <em>30 days</em></h2>
+    <div class="component-card">
+      <div class="component-num">2</div>
+      <div class="component-text">
+        <h4>Our team alongside you · 30 days</h4>
+        <p>Not a self-serve trial. <strong>Our team works WITH you</strong> for 30 days to build · connect · and launch your complete system. Tailored to YOUR business · not a template you fill in.</p>
+      </div>
+      <div class="component-price">$5,000<span class="label">implementation cost</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ SLIDE 7 · Component 3 ════════════════════ -->
+<section class="slide" id="s7">
+  <div class="slide-num">07 / 15</div>
+  <div class="slide-tag">Stack · Component 3</div>
+  <div class="slide-content">
+    <h3 class="eyebrow">Component 3</h3>
+    <h2 class="title">Business Foundations · <em>locked</em></h2>
+    <div class="component-card">
+      <div class="component-num">3</div>
+      <div class="component-text">
+        <h4>ICP · Messaging · Positioning</h4>
+        <p>The frameworks that turn your BUSINESS-BRAIN.md into a brand the right people recognize. So the system attracts the right buyers · not random eyeballs.</p>
+      </div>
+      <div class="component-price">$3,000<span class="label">strategy value</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ SLIDE 8 · Component 4 (Pro) ════════════════════ -->
+<section class="slide" id="s8">
+  <div class="slide-num">08 / 15</div>
+  <div class="slide-tag gold">PRO · Component 4</div>
+  <div class="slide-content">
+    <h3 class="eyebrow">Component 4 · PRO tier only</h3>
+    <h2 class="title">Priority Slack · <em>30 days</em></h2>
+    <div class="component-card gold">
+      <div class="component-num">4</div>
+      <div class="component-text">
+        <h4>Direct line to our team</h4>
+        <p><strong>Not email tickets · not a community thread · a private Slack</strong> with our team for the 30-day setup window. Fast responses · live troubleshooting · hands-on help when you're stuck at midnight.</p>
+      </div>
+      <div class="component-price">$2,000<span class="label">consulting value</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ SLIDE 9 · Component 5 (Pro) ════════════════════ -->
+<section class="slide" id="s9">
+  <div class="slide-num">09 / 15</div>
+  <div class="slide-tag gold">PRO · Component 5</div>
+  <div class="slide-content">
+    <h3 class="eyebrow">Component 5 · PRO tier only</h3>
+    <h2 class="title">Weekly Strategy Sessions · <em>52 weeks</em></h2>
+    <div class="component-card gold">
+      <div class="component-num">5</div>
+      <div class="component-text">
+        <h4>52 live sessions · full year</h4>
+        <p>Live strategy sessions every week · for a full year. Content strategy · system updates · practical implementation. <strong>The 9pm Wednesday call that keeps your business compounding</strong> instead of stalling.</p>
+      </div>
+      <div class="component-price">$12,000<span class="label">12-mo retail value</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ SLIDE 10 · Component 6 (Pro) ════════════════════ -->
+<section class="slide" id="s10">
+  <div class="slide-num">10 / 15</div>
+  <div class="slide-tag gold">PRO · Component 6</div>
+  <div class="slide-content">
+    <h3 class="eyebrow">Component 6 · PRO tier only</h3>
+    <h2 class="title">All Workshops · <em>full year</em></h2>
+    <div class="component-card gold">
+      <div class="component-num">6</div>
+      <div class="component-text">
+        <h4>Every workshop we run · for 12 months</h4>
+        <p>This $49 weekend was the entry. <strong>The platform unlocks every other workshop we run</strong> for the next 12 months · same format · same intensity · different topics. Plus access to the beta-features as we ship them.</p>
+      </div>
+      <div class="component-price">$4,000<span class="label">12-mo workshop value</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ SLIDE 11 · Stack total ════════════════════ -->
+<section class="slide" id="s11">
+  <div class="slide-num">11 / 15</div>
+  <div class="slide-tag gold">★ Stack reveal · total</div>
+  <div class="slide-content">
+    <h3 class="eyebrow">Real-world value · let's add it up</h3>
+    <div class="value-stack">
+      <div class="value-stack-title">Total real-world value</div>
+      <div class="value-stack-rows">
+        <div class="value-row"><span class="name">1 · Platform · 12 months</span><span class="price">$24,000</span></div>
+        <div class="value-row"><span class="name">2 · Done-With-You setup · 30 days</span><span class="price">$5,000</span></div>
+        <div class="value-row"><span class="name">3 · Business foundations</span><span class="price">$3,000</span></div>
+        <div class="value-row"><span class="name">4 · Priority Slack · 30 days</span><span class="price">$2,000</span></div>
+        <div class="value-row"><span class="name">5 · Weekly strategy · 52 sessions</span><span class="price">$12,000</span></div>
+        <div class="value-row"><span class="name">6 · All workshops · 12 months</span><span class="price">$4,000</span></div>
+      </div>
+      <div class="value-total"><span>Total · </span>$50,000+</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ SLIDE 12 · If anchoring ════════════════════ -->
+<section class="slide" id="s12">
+  <div class="slide-num">12 / 15</div>
+  <div class="slide-tag">Eker · If-anchoring</div>
+  <div class="slide-content">
+    <h3 class="eyebrow">5 questions · before the price reveal</h3>
+    <h2 class="title">If all this did was…</h2>
+    <div class="if-stack">
+      <div class="if-line"><span class="if-num">1</span><span><em>If it saved you</em> from hiring one $4K/mo VA · would it be worth it?</span></div>
+      <div class="if-line"><span class="if-num">2</span><span><em>If it earned you</em> 1 client at your normal rate · in the first 60 days · would it be worth it?</span></div>
+      <div class="if-line"><span class="if-num">3</span><span><em>If it gave you back</em> 10 hours a week · for the next 12 months · would it be worth it?</span></div>
+      <div class="if-line"><span class="if-num">4</span><span><em>If it locked your voice</em> · so every post for 12 months sounds like YOU · would it be worth it?</span></div>
+      <div class="if-line"><span class="if-num">5</span><span><em>If you walked into Q4</em> with a system that compounds · while your competitors are still hiring · would it be worth it?</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ SLIDE 13 · Two tiers · price reveal ════════════════════ -->
+<section class="slide" id="s13">
+  <div class="slide-num">13 / 15</div>
+  <div class="slide-tag gold">★ Price reveal</div>
+  <div class="slide-content">
+    <h3 class="eyebrow">Two plans · same outcome · different speed</h3>
+    <h2 class="title">Your <em>investment</em></h2>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-name">Core</div>
+        <div class="tier-price"><span class="currency">$</span>2,997</div>
+        <div class="tier-period">one-time · 12-month access</div>
+        <ul class="tier-features">
+          <li>AI CEO Platform · 12 months</li>
+          <li>Done-with-you setup · 30 days</li>
+          <li>ICP · messaging · positioning</li>
+          <li>All tools + workflows configured</li>
+          <li>Private community · full year</li>
+          <li>30-day money-back guarantee</li>
+        </ul>
+        <a class="tier-cta" href="https://aiceo.purelypersonal.ai/landing-page" target="_blank">Start with Core</a>
+      </div>
+      <div class="tier featured">
+        <div class="tier-name">Pro · ★ Most attendees pick this</div>
+        <div class="tier-price"><span class="currency">$</span>3,997</div>
+        <div class="tier-period">one-time · 12-month access</div>
+        <ul class="tier-features">
+          <li>Everything in Core · plus:</li>
+          <li>30-day priority Slack support</li>
+          <li>Weekly strategy sessions · 52</li>
+          <li>All online workshops · full year</li>
+          <li>Beta-features access</li>
+          <li>30-day money-back guarantee</li>
+        </ul>
+        <a class="tier-cta" href="https://aiceo.purelypersonal.ai/landing-page" target="_blank">Start with Pro</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ SLIDE 14 · Risk reversal ════════════════════ -->
+<section class="slide" id="s14">
+  <div class="slide-num">14 / 15</div>
+  <div class="slide-tag gold">★ Risk reversal</div>
+  <div class="slide-content">
+    <h3 class="eyebrow">The promise · ironclad</h3>
+    <h2 class="title">If it doesn't work · <em>30-day money back</em>.</h2>
+    <div class="risk-block">
+      <div class="risk-title">★ The 30-Day Guarantee ★</div>
+      <div class="risk-body">Show up to the 30-day onboarding. Build your platform live with our team. <strong>If by day 30 you don't see clear value</strong> · email me · we refund in full. <strong>You keep everything you built up to that point</strong> · the templates · the configurations · the workflows.</div>
+    </div>
+    <p class="lead" style="margin-top:24px;font-size:18px">There are exactly two outcomes: you build the system · or you get your money back. <strong>The risk is mine.</strong></p>
+  </div>
+</section>
+
+<!-- ════════════════════ SLIDE 15 · The decision · physical close ════════════════════ -->
+<section class="slide" id="s15">
+  <div class="slide-num">15 / 15</div>
+  <div class="slide-tag">Singer · Public commitment</div>
+  <div class="slide-content">
+    <h3 class="eyebrow">The choice · for the next 5 minutes</h3>
+    <h1 class="headline" style="font-size:64px">Three answers.<br><em>All valid.</em></h1>
+    <div class="choice-block">
+      <div class="choice yes">
+        <div class="choice-title">YES · in</div>
+        <div class="choice-desc">Stand · click the link in chat · Stripe checkout · book your kickoff call before you sleep tonight</div>
+      </div>
+      <div class="choice">
+        <div class="choice-title">NOT YET</div>
+        <div class="choice-desc">Book a 15-min call this week · we figure out if it's the right time</div>
+      </div>
+    </div>
+    <div class="choice-block" style="grid-template-columns:1fr;max-width:440px;margin-top:8px">
+      <div class="choice">
+        <div class="choice-title">NO · for now</div>
+        <div class="choice-desc">The system you built today is yours forever · paid or not. We keep in touch. Workshop #2 is in October.</div>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:24px;font-size:18px"><strong>Either choice is the right choice.</strong> The only wrong move is scrolling LinkedIn for 6 months wishing you'd asked the question.</p>
+    <p class="lead" style="margin-top:14px;font-size:16px;color:var(--pp-red);font-weight:700;letter-spacing:.04em;text-transform:uppercase">Bring receipts.</p>
+  </div>
+</section>
+
+<!-- ════════════════════ Speaker notes drawer ════════════════════ -->
+<aside class="notes" id="notes">
+  <div class="notes-inner">
+    <div class="notes-eyebrow">
+      <span class="label">📝 Speaker notes</span>
+      <span class="slide-ref" id="notesRef">— scroll to a slide —</span>
+    </div>
+
+    <div class="notes-block" data-for="s1">
+      <h5>Energy · 7/10 · grounded · slow <span class="energy">Eker pattern interrupt</span></h5>
+      <div class="say"><strong>Say:</strong> "Stop. Before I open the next thing. I want you to remember something. At 11:00 today · most of you didn't believe your business could write in your voice. Two hours later · it did. The question I want you to sit with for the next 30 minutes is · was that the END · or was that the BEGINNING?"</div>
+      <div class="do"><strong>Do:</strong> 3-second silence after the question. Don't fill it. Camera on you. Nobody else moves.</div>
+    </div>
+
+    <div class="notes-block" data-for="s2">
+      <h5>Energy · 5/10 · honest · vulnerable <span class="energy">Eker future pace</span></h5>
+      <div class="say"><strong>Say:</strong> "I'm not going to lie to you about Monday. By Friday · most of you have run marketing-engine three times · maybe four. Some of you haven't opened it again. You're not lazy. You're alone. The system works · but the loneliness of running it solo is what kills 70% of weekend-workshop conversions. I've watched it happen across 12 cohorts."</div>
+      <div class="do"><strong>Do:</strong> Eye contact across the camera grid. Pause after "alone." Let the discomfort land.</div>
+    </div>
+
+    <div class="notes-block" data-for="s3">
+      <h5>Energy · 6/10 · authoritative <span class="energy">Anchor · DIY cost</span></h5>
+      <div class="say"><strong>Say:</strong> "Let me give you the math nobody tells you. Tools alone · $400 a month across six SaaS. A part-time content + ops freelancer · $4K a month · still needs daily managing. Strategy course · $5K once a year that doesn't get built. Add it up. $50K a year for what you THOUGHT would save you time. And you still own the management."</div>
+      <div class="do"><strong>Do:</strong> This is the FIRST anchor before you ever say a price. The big number is on screen for 8+ seconds before you move on.</div>
+    </div>
+
+    <div class="notes-block" data-for="s4">
+      <h5>Energy · 8/10 · confident · big-stage <span class="energy">Mac Attram offer reveal</span></h5>
+      <div class="say"><strong>Say:</strong> "AI CEO Platform. Everything a CEO needs to grow · in one place. Content · CRM · email · landing pages · social publishing · lead tracking · automation. One unified system built around YOUR business · with our team beside you for 30 days. <strong>Built · not assigned.</strong>"</div>
+      <div class="do"><strong>Do:</strong> Music cue · slow build (Hans Zimmer "Time" or similar). Don't say a price. Don't gesture toward one. Let the name land alone.</div>
+    </div>
+
+    <div class="notes-block" data-for="s5">
+      <h5>Energy · 7/10 · component reveal <span class="energy">Stack · component 1</span></h5>
+      <div class="say"><strong>Say:</strong> "Component number one · the platform itself · 12 months access. Content engine · CRM · email · landing pages · automation. <strong>Replaces six separate tools.</strong> If you bought these individually · 12 months · twenty-four thousand dollars. Easy."</div>
+      <div class="do"><strong>Do:</strong> Reveal the price ON SCREEN at the moment you say "twenty-four thousand." Synchronization matters. Pause. Move on.</div>
+    </div>
+
+    <div class="notes-block" data-for="s6">
+      <h5>Energy · 7/10 <span class="energy">Stack · component 2</span></h5>
+      <div class="say"><strong>Say:</strong> "Component two · done-with-you setup · 30 days. <strong>This is not a self-serve trial. This is our team WITH you</strong> · for 30 days · building · connecting · launching your complete system. Tailored to YOUR business. Not a template you fill in. If you hired a consultant for that · five thousand."</div>
+      <div class="do"><strong>Do:</strong> Hit the word "WITH" hard. That's the part that justifies the price.</div>
+    </div>
+
+    <div class="notes-block" data-for="s7">
+      <h5>Energy · 7/10 <span class="energy">Stack · component 3</span></h5>
+      <div class="say"><strong>Say:</strong> "Component three · business foundations. ICP · messaging · positioning. The frameworks that turn your BUSINESS-BRAIN file into a brand the RIGHT people recognize. So the system attracts the right buyers · not random eyeballs. Three thousand."</div>
+      <div class="do"><strong>Do:</strong> Reference the BUSINESS-BRAIN.md they ALREADY built yesterday. This makes them feel they're 80% there · the platform is the last 20%.</div>
+    </div>
+
+    <div class="notes-block" data-for="s8">
+      <h5>Energy · 8/10 · gold tier intro <span class="energy">Pro tier · component 4</span></h5>
+      <div class="say"><strong>Say:</strong> "From here on · these next three components are PRO tier only. Component four · priority Slack for 30 days. <strong>Not email tickets. Not a community thread.</strong> Private Slack. Direct line to our team. When you're stuck at midnight · you message · we respond. Two thousand."</div>
+      <div class="do"><strong>Do:</strong> Tone shifts gold here. The "Pro tier" framing creates the upsell anchor before the price reveal in slide 13.</div>
+    </div>
+
+    <div class="notes-block" data-for="s9">
+      <h5>Energy · 8/10 <span class="energy">Pro · component 5</span></h5>
+      <div class="say"><strong>Say:</strong> "Component five · weekly strategy sessions · for 52 weeks. Live · with our team. Content strategy · system updates · practical implementation. <strong>The 9pm Wednesday call that keeps your business compounding</strong> instead of stalling. Twelve thousand."</div>
+      <div class="do"><strong>Do:</strong> Twelve thousand is the biggest number on screen so far. Pause 4 seconds. Don't rush.</div>
+    </div>
+
+    <div class="notes-block" data-for="s10">
+      <h5>Energy · 7/10 <span class="energy">Pro · component 6</span></h5>
+      <div class="say"><strong>Say:</strong> "Component six · every workshop we run · for 12 months. This $49 weekend was the ENTRY. The platform unlocks every other workshop · same format · same intensity · different topics. Plus beta features as we ship them. Four thousand value."</div>
+      <div class="do"><strong>Do:</strong> Frame this $49 weekend AS proof they liked the format · so the unlimited-workshops bonus has emotional weight.</div>
+    </div>
+
+    <div class="notes-block" data-for="s11">
+      <h5>Energy · 9/10 · big stack reveal <span class="energy">Mac Attram value stack</span></h5>
+      <div class="say"><strong>Say:</strong> "Let me add it up. Twenty-four. Five. Three. Two. Twelve. Four. Real-world value · <strong>$50,000+</strong>. That is what this would cost you to put together yourself across the next 12 months. Hold that number in your head."</div>
+      <div class="do"><strong>Do:</strong> Read each number aloud as it appears. Build it · don't just show it. Hold the $50,000+ on screen for 6 seconds before moving.</div>
+    </div>
+
+    <div class="notes-block" data-for="s12">
+      <h5>Energy · 6/10 · slow · seductive <span class="energy">Eker if-anchoring</span></h5>
+      <div class="say"><strong>Say all 5 slowly · pause after each:</strong> "If it saved you from hiring one $4K-a-month VA · would it be worth it?" [pause] "If it earned you one client at your normal rate · in the first 60 days · would it be worth it?" [pause] "If it gave you back 10 hours a week · for the next 12 months · would it be worth it?" [pause] "If it locked your voice · so every post for 12 months sounds like YOU · would it be worth it?" [pause] "If you walked into Q4 with a system that compounds · while your competitors are still hiring · would it be worth it?"</div>
+      <div class="do"><strong>Do:</strong> Eye contact across the room after each. You're NOT asking for hands · you're seeding the answer in their head. Don't break the rhythm.</div>
+    </div>
+
+    <div class="notes-block" data-for="s13">
+      <h5>Energy · 9/10 · price reveal <span class="energy">Mac Attram price drop</span></h5>
+      <div class="say"><strong>Say:</strong> "Two plans. Same outcome. Different speed. Core · $2,997 · the platform · the setup · the foundations. Pro · $3,997 · everything in Core · plus 30 days of priority Slack · plus weekly strategy sessions for a YEAR · plus every workshop we run. <strong>$1,000 difference for $20,000 of additional value.</strong> Most attendees pick Pro · because if you're already saying yes · the math doesn't work to NOT pick Pro."</div>
+      <div class="do"><strong>Do:</strong> Drop the link in chat NOW. <code>https://aiceo.purelypersonal.ai/landing-page</code> · don't make them ask for it.</div>
+    </div>
+
+    <div class="notes-block" data-for="s14">
+      <h5>Energy · 7/10 · ironclad <span class="energy">Risk reversal</span></h5>
+      <div class="say"><strong>Say:</strong> "Here's my promise. Show up to the 30-day onboarding. Build your platform live with our team. If by day 30 you don't see clear value · email me · we refund in full. <strong>You keep everything you built up to that point.</strong> The templates · the configurations · the workflows. There are exactly two outcomes: you build the system · or you get your money back. <strong>The risk is mine.</strong>"</div>
+      <div class="do"><strong>Do:</strong> Slow down. This is the trust moment. Don't smile · don't gesture. Just say it · let it land.</div>
+    </div>
+
+    <div class="notes-block" data-for="s15">
+      <h5>Energy · 9/10 · physical close <span class="energy">Singer public commitment</span></h5>
+      <div class="say"><strong>Say:</strong> "Three answers. All valid. <strong>YES</strong> · stand · click the link in chat · book your kickoff call before you sleep tonight. <strong>NOT YET</strong> · book a 15-minute call with me this week · we figure out if it's right time. <strong>NO for now</strong> · the system you built today is yours forever · paid or not · we keep in touch · workshop two in October. Either choice is the right choice. The only wrong move is scrolling LinkedIn for 6 months wishing you'd asked the question."</div>
+      <div class="say"><strong>Final line · MEMORISE · slow:</strong> "Bring receipts."</div>
+      <div class="do"><strong>Do:</strong> HARD CLOSE. Don't say "any questions." Don't say "feel free to email me." Just close. Drop off the call exactly on time. The take-away matters as much as the offer.</div>
+    </div>
+  </div>
+</aside>
+
+<script>
+const slides=document.querySelectorAll('.slide');
+const counter=document.getElementById('slideCounter');
+const notesRef=document.getElementById('notesRef');
+const notesBlocks=document.querySelectorAll('.notes-block');
+
+function activateSlide(idx){
+  counter.textContent=`slide ${idx+1} / 15`;
+  notesRef.textContent=`slide ${idx+1} · ${slides[idx].querySelector('h2.title, h1.headline').textContent.slice(0,60)}`;
+  notesBlocks.forEach(b=>b.classList.remove('active'));
+  const sid=slides[idx].id;
+  const block=document.querySelector(`.notes-block[data-for="${sid}"]`);
+  if(block)block.classList.add('active');
+}
+
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&e.intersectionRatio>0.5){
+      const idx=Array.from(slides).indexOf(e.target);
+      activateSlide(idx);
+    }
+  });
+},{threshold:[0,.5,1]});
+slides.forEach(s=>obs.observe(s));
+
+document.getElementById('notesToggle').addEventListener('click',e=>{
+  document.body.classList.toggle('notes-open');
+  e.target.classList.toggle('active');
+});
+
+// Arrow key navigation
+window.addEventListener('keydown',e=>{
+  const cur=Array.from(slides).findIndex(s=>{const r=s.getBoundingClientRect();return r.top>-100&&r.top<200});
+  if(e.key==='ArrowDown'||e.key==='ArrowRight'||e.key===' '){e.preventDefault();const next=Math.min(slides.length-1,cur+1);slides[next].scrollIntoView({behavior:'smooth'})}
+  if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();const prev=Math.max(0,cur-1);slides[prev].scrollIntoView({behavior:'smooth'})}
+  if(e.key==='n'||e.key==='N'){document.getElementById('notesToggle').click()}
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI CEO Platform — Special Offer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page { size: A4; margin: 0; }
+
+  html, body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #fff;
+    background: #1a1a1a;
+    line-height: 1.4;
+  }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    background:
+      radial-gradient(ellipse at top right, #4a0d10 0%, #1a0204 45%, #0a0000 100%);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 8mm 14mm 4mm;
+    position: relative;
+    flex-shrink: 0;
+    min-height: 60mm;
+  }
+
+  .hero .offer-name {
+    font-weight: 900;
+    font-size: 60pt;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: #ec4357;
+    text-transform: uppercase;
+    margin-bottom: 3mm;
+    text-shadow: 0 0 30px rgba(236,67,87,0.4);
+    max-width: 130mm;
+    position: relative;
+    z-index: 3;
+  }
+
+  .hero .offer-subtitle {
+    font-weight: 700;
+    font-size: 11pt;
+    line-height: 1.3;
+    color: #fff;
+    max-width: 125mm;
+    font-style: italic;
+  }
+
+  .hero .offer-tag {
+    display: inline-block;
+    margin-bottom: 2mm;
+    padding: 1.5mm 3mm;
+    background: rgba(236, 67, 87, 0.18);
+    border: 0.5pt solid rgba(236, 67, 87, 0.5);
+    border-radius: 1mm;
+    font-weight: 700;
+    font-size: 7.5pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #ec4357;
+  }
+
+  .photo {
+    position: absolute;
+    top: 4mm;
+    right: 8mm;
+    width: 60mm;
+    height: 80mm;
+    background: linear-gradient(135deg, rgba(236,67,87,0.18), rgba(251,191,36,0.08));
+    border: 1pt solid rgba(236,67,87,0.4);
+    border-radius: 4mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4mm;
+  }
+  .photo .p-mark {
+    width: 16mm; height: 16mm;
+    background: #ec4357;
+    border-radius: 3mm;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-weight: 900;
+    font-size: 28pt;
+    margin-bottom: 3mm;
+    box-shadow: 0 4mm 12mm rgba(236,67,87,0.4);
+  }
+  .photo .p-name {
+    font-weight: 900;
+    font-size: 12pt;
+    color: #fff;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .photo .p-tag {
+    font-weight: 700;
+    font-size: 7.5pt;
+    color: #fbbf24;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 1mm;
+  }
+
+  /* OUTCOMES STRIP */
+  .outcomes {
+    margin: 0 14mm;
+    background: rgba(236, 67, 87, 0.12);
+    border-top: 1pt solid rgba(236, 67, 87, 0.5);
+    border-bottom: 1pt solid rgba(236, 67, 87, 0.5);
+    padding: 3mm 4mm;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .outcome { text-align: center; }
+  .outcome .num {
+    font-weight: 900;
+    font-size: 16pt;
+    color: #ec4357;
+    line-height: 1;
+  }
+  .outcome .label {
+    font-size: 7.5pt;
+    color: #d8d8d8;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 1mm;
+  }
+  .outcome .divider {
+    width: 1px;
+    height: 9mm;
+    background: rgba(255,255,255,0.15);
+  }
+
+  /* SECTION TITLES */
+  .section-title {
+    padding: 3.5mm 14mm 2mm;
+    font-weight: 900;
+    font-size: 12pt;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .gold-tier-title {
+    padding: 2.5mm 14mm 1.5mm;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+  }
+  .gold-tier-title .label {
+    background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%);
+    color: #1a0204;
+    padding: 1.2mm 2.5mm;
+    border-radius: 1.5mm;
+    font-weight: 900;
+    font-size: 8.5pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .gold-tier-title .text {
+    font-weight: 800;
+    font-size: 10pt;
+    color: #fbbf24;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  /* COMPONENT ROWS (re-using bonus pattern) */
+  .components {
+    padding: 0 14mm;
+    display: flex;
+    flex-direction: column;
+    gap: 1mm;
+    flex-shrink: 0;
+  }
+
+  .comp {
+    display: flex;
+    align-items: stretch;
+    background: rgba(15, 5, 5, 0.85);
+    border: 1pt solid #ec4357;
+    border-radius: 2mm;
+    overflow: hidden;
+    min-height: 8mm;
+    position: relative;
+    z-index: 2;
+  }
+
+  .comp.gold {
+    border: 1.5pt solid #fbbf24;
+    background: rgba(40, 28, 5, 0.75);
+  }
+
+  .comp-content {
+    flex: 1;
+    padding: 1.2mm 4mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .comp-name {
+    font-weight: 800;
+    font-size: 9.5pt;
+    line-height: 1.15;
+    color: #fff;
+    margin-bottom: 0.3mm;
+  }
+
+  .comp-desc {
+    font-size: 7.8pt;
+    line-height: 1.3;
+    color: #c8c8c8;
+    font-weight: 400;
+  }
+
+  .comp-price {
+    background: linear-gradient(90deg, #ec4357 0%, #d92e44 100%);
+    color: #fff;
+    width: 30mm;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 13.5pt;
+    letter-spacing: -0.02em;
+  }
+
+  .comp.gold .comp-price {
+    background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%);
+    color: #1a0204;
+  }
+
+  /* GUARANTEE */
+  .promise {
+    margin: 3mm 14mm 0;
+    border: 1.5pt solid #fbbf24;
+    background: linear-gradient(90deg, rgba(251,191,36,0.12), rgba(245,158,11,0.06));
+    border-radius: 2mm;
+    padding: 2.5mm 4mm;
+    flex-shrink: 0;
+  }
+  .promise .ptitle {
+    font-weight: 900;
+    font-size: 10pt;
+    color: #fbbf24;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1mm;
+  }
+  .promise .pbody {
+    font-size: 8.3pt;
+    line-height: 1.4;
+    color: #fff;
+    font-weight: 500;
+  }
+
+  /* TOTALS · TWO TIERS */
+  .totals-block {
+    padding: 3mm 14mm 1mm;
+    flex-shrink: 0;
+    margin-top: auto;
+  }
+
+  .total-value {
+    font-weight: 900;
+    font-size: 12pt;
+    color: #ec4357;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 1mm;
+  }
+
+  .tier-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm;
+    margin: 2.5mm 0;
+  }
+  .tier-box {
+    border: 1pt solid rgba(236, 67, 87, 0.5);
+    background: rgba(15, 5, 5, 0.8);
+    border-radius: 2mm;
+    padding: 2.5mm 3mm;
+    text-align: center;
+  }
+  .tier-box.featured {
+    border: 1.5pt solid #fbbf24;
+    background: linear-gradient(180deg, rgba(251,191,36,0.12) 0%, rgba(15,5,5,0.85) 60%);
+  }
+  .tier-box .tname {
+    font-weight: 900;
+    font-size: 9pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #ec4357;
+    margin-bottom: 1mm;
+  }
+  .tier-box.featured .tname { color: #fbbf24; }
+  .tier-box .tprice {
+    font-weight: 900;
+    font-size: 22pt;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5mm;
+  }
+  .tier-box .tperiod {
+    font-size: 7.5pt;
+    color: #c8c8c8;
+    letter-spacing: 0.04em;
+  }
+  .tier-box .tpick {
+    margin-top: 1.5mm;
+    font-size: 7pt;
+    color: #fbbf24;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .urgency {
+    margin-top: 2mm;
+    font-size: 9pt;
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .regret {
+    margin-top: 1mm;
+    font-size: 8pt;
+    color: #fbbf24;
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  /* BRAND FOOTER */
+  .brand-footer {
+    padding: 2.5mm 14mm 3mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7pt;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .brand-footer .brand {
+    color: #ec4357;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+  }
+
+  @media print {
+    body { background: #000; }
+    .page { box-shadow: none; }
+  }
+
+  @media screen {
+    body { padding: 24px 16px; background: #2a2a2a; }
+    .page { box-shadow: 0 12px 50px rgba(0,0,0,0.6); }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="hero">
+    <div class="photo">
+      <div class="p-mark">P</div>
+      <div class="p-name">Purely Personal</div>
+      <div class="p-tag">★ AI CEO PLATFORM</div>
+    </div>
+    <div class="offer-tag">For workshop attendees · May 3, 2026</div>
+    <div class="offer-name">AI CEO</div>
+    <div class="offer-subtitle">Everything a CEO needs to grow — in one place. Content. CRM. Email. Landing pages. Social. Lead tracking. Automation. One unified system, built around your business.</div>
+  </div>
+
+  <div class="outcomes">
+    <div class="outcome">
+      <div class="num">$50K+</div>
+      <div class="label">DIY annual cost · replaced</div>
+    </div>
+    <div class="divider"></div>
+    <div class="outcome">
+      <div class="num">12 mo</div>
+      <div class="label">Full platform access</div>
+    </div>
+    <div class="divider"></div>
+    <div class="outcome">
+      <div class="num">30 day</div>
+      <div class="label">Done-with-you setup</div>
+    </div>
+    <div class="divider"></div>
+    <div class="outcome">
+      <div class="num">52</div>
+      <div class="label">Weekly strategy sessions (Pro)</div>
+    </div>
+  </div>
+
+  <div class="section-title">What You Get:</div>
+
+  <div class="components">
+
+    <div class="comp">
+      <div class="comp-content">
+        <div class="comp-name">AI CEO Platform · 12 months access</div>
+        <div class="comp-desc">Content engine + CRM + email + landing pages + social publishing + lead tracking + automation. Replaces 6+ separate tools you'd otherwise stitch with Zapier.</div>
+      </div>
+      <div class="comp-price">$24,000</div>
+    </div>
+
+    <div class="comp">
+      <div class="comp-content">
+        <div class="comp-name">Done-With-You Setup · 30 days</div>
+        <div class="comp-desc">Our team works WITH you for 30 days · build · connect · launch your complete system tailored to your business. Not a self-serve trial.</div>
+      </div>
+      <div class="comp-price">$5,000</div>
+    </div>
+
+    <div class="comp">
+      <div class="comp-content">
+        <div class="comp-name">Business Foundations · ICP + Messaging</div>
+        <div class="comp-desc">ICP, messaging framework, personal authority positioning · so the system attracts the RIGHT buyers, not random eyeballs.</div>
+      </div>
+      <div class="comp-price">$3,000</div>
+    </div>
+
+    <div class="comp">
+      <div class="comp-content">
+        <div class="comp-name">Private Community · full year</div>
+        <div class="comp-desc">Other AI CEO members. The brain trust. Some of the most important relationships of your year happen here.</div>
+      </div>
+      <div class="comp-price">$1,500</div>
+    </div>
+
+  </div>
+
+  <div class="gold-tier-title">
+    <div class="label">PRO Tier Only</div>
+    <div class="text">Everything Above PLUS:</div>
+  </div>
+
+  <div class="components">
+
+    <div class="comp gold">
+      <div class="comp-content">
+        <div class="comp-name">30-Day Priority Slack Support</div>
+        <div class="comp-desc">Direct line to our team during the 30-day setup window. Not email tickets · not a community thread. Private Slack. Fast responses · live troubleshooting.</div>
+      </div>
+      <div class="comp-price">$2,000</div>
+    </div>
+
+    <div class="comp gold">
+      <div class="comp-content">
+        <div class="comp-name">Weekly Strategy Sessions · 52 weeks</div>
+        <div class="comp-desc">Live · with our team · every week for a full year. Content strategy · system updates · practical implementation. The 9pm Wednesday call that keeps your business compounding.</div>
+      </div>
+      <div class="comp-price">$12,000</div>
+    </div>
+
+    <div class="comp gold">
+      <div class="comp-content">
+        <div class="comp-name">All Workshops · 12 months · plus beta features</div>
+        <div class="comp-desc">Every workshop we run for the next 12 months · same format as this weekend · different topics. Plus access to beta features as we ship them.</div>
+      </div>
+      <div class="comp-price">$4,000</div>
+    </div>
+
+  </div>
+
+  <div class="promise">
+    <div class="ptitle">★ The 30-Day Money-Back Guarantee ★</div>
+    <div class="pbody">Show up to the 30-day onboarding. Build your platform live with our team. If by day 30 you don't see clear value · email us · full refund. You keep everything you built up to that point. The risk is ours.</div>
+  </div>
+
+  <div class="totals-block">
+
+    <div class="total-value">Total Real-World Value: $51,500</div>
+
+    <div class="tier-grid">
+      <div class="tier-box">
+        <div class="tname">Core</div>
+        <div class="tprice">$2,997</div>
+        <div class="tperiod">one-time · 12-month access</div>
+      </div>
+      <div class="tier-box featured">
+        <div class="tname">Pro</div>
+        <div class="tprice">$3,997</div>
+        <div class="tperiod">one-time · 12-month access</div>
+        <div class="tpick">★ Most attendees pick this</div>
+      </div>
+    </div>
+
+    <div class="urgency">$1,000 difference for $20,000 of additional Pro value. The math doesn't work to NOT pick Pro.</div>
+
+    <div class="regret">Skip this · 12 months from now you're still stitching 6 SaaS tools while a competitor's AI CEO ships your version of every post.</div>
+
+  </div>
+
+  <div class="brand-footer">
+    <div class="brand">Purely Personal · aiceo.purelypersonal.ai</div>
+    <div>AI CEO Platform · Workshop Special</div>
+  </div>
+
+</div>
+
+</body>
+</html>
