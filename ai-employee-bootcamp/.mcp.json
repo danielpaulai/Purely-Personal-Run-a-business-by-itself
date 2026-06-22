@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "canva": {
+      "type": "http",
+      "url": "https://mcp.canva.com/mcp"
+    },
+    "stripe": {
+      "type": "http",
+      "url": "https://mcp.stripe.com"
+    },
+    "apify": {
+      "type": "http",
+      "url": "https://mcp.apify.com"
+    }
+  }
+}
