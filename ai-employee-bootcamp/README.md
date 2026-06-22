@@ -8,7 +8,7 @@ The toolkit has two halves: a build surface where you make employees, and a run 
 
 **Build surface — make your employees**
 - `matchmaker` — audits any skill against your foundation documents and produces a gap report plus a Tailor Briefing. Run it first.
-- `tailor` — takes the briefing and rewrites a skill so it fits your voice, ICP, and offer. Ships an installable zip. Needs a code-execution environment (Cowork, Claude Code, or the analysis tool), not plain web chat.
+- `tailor` — takes the briefing and rewrites a skill so it fits your voice, ICP, and offer. Ships an installable zip. Runs in Claude Code.
 - `content-strategy`, `linkedin-caption-writer`, `dm-sequence-writer`, `newsletter-writer`, `sales-call-prep` — the 5 starter skills. Install them generic, then tailor them to you. This is the "customize what we gave you" path.
 - `build-your-own-employee` — the skill that builds skills, for jobs nobody gave you a starter for. Interviews you about one job, writes a new employee in your voice using the same 8-section anatomy and 9-scrub standards as the tailored skills, pressure-tests it, hands you the installable file. This is the "build from scratch" path.
 
@@ -39,9 +39,7 @@ Or add the plugin entry from `.claude-plugin/marketplace.json` to your existing 
 
 ## How to make an employee run regularly
 
-A skill does not run until you schedule it. Two ways:
-- Cowork scheduled task, runs while your laptop is open. Easiest, best for a live demo.
-- Claude Code routine, runs in the cloud day and night. The works-while-you-sleep version.
+A skill does not run until you schedule it. Set a Claude Code routine at claude.ai/code/routines, connect your business brain repo, pick a time, and write the job. It runs in the cloud day and night, even with your laptop closed. That is the works-while-you-sleep version.
 
 See the scheduling guide and the live demo script in the `bootcamp-3` folder.
 
