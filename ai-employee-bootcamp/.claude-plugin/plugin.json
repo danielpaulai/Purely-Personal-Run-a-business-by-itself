@@ -1,0 +1,23 @@
+{
+  "name": "ai-employee-bootcamp",
+  "version": "1.0.0",
+  "description": "The complete AI employee toolkit. Tailor the 5 starter skills to your business with the Matchmaker and Tailor, build brand-new employees from scratch, then run four executives on a schedule (CMO daily post, CRO weekly prospects, COO morning brief, CFO weekly revenue). Includes the connectors that let them do real work. The build surface and the run surface in one install.",
+  "author": {
+    "name": "Daniel Paul",
+    "url": "https://purelypersonal.ai"
+  },
+  "homepage": "https://purely-personal-workshop.vercel.app",
+  "license": "MIT",
+  "keywords": [
+    "ai-employees",
+    "ai-ceo",
+    "standing-jobs",
+    "build-your-own-employee",
+    "cmo",
+    "cro",
+    "coo",
+    "cfo",
+    "scheduled-tasks",
+    "purely-personal"
+  ]
+}

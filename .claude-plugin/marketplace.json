@@ -7,7 +7,7 @@
   },
   "metadata": {
     "version": "1.0.0",
-    "description": "The Purely Personal AI C-Suite plugin · 5 engines (Marketing, Sales, Operations, Cash, Leadership) + 38 frameworks + BUSINESS-BRAIN.md as the context layer"
+    "description": "The Purely Personal AI C-Suite plugin \u00b7 5 engines (Marketing, Sales, Operations, Cash, Leadership) + 38 frameworks + BUSINESS-BRAIN.md as the context layer"
   },
   "plugins": [
     {
@@ -35,6 +35,28 @@
         "purely-personal"
       ],
       "source": "./",
+      "strict": false
+    },
+    {
+      "name": "ai-employee-bootcamp",
+      "description": "The complete AI employee toolkit. Matchmaker and Tailor to fit the 5 starter skills to your business, build-your-own-employee to create new ones from scratch, four ready-to-run executives (CMO daily post, CRO weekly prospects, COO morning brief, CFO weekly revenue), four industry starter templates, and the MCP connectors that let them work on a schedule.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Daniel Paul",
+        "url": "https://purelypersonal.ai"
+      },
+      "homepage": "https://system-map-mauve.vercel.app",
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": [
+        "ai-employees",
+        "ai-ceo",
+        "standing-jobs",
+        "build-your-own-employee",
+        "scheduled-tasks",
+        "purely-personal"
+      ],
+      "source": "./ai-employee-bootcamp",
       "strict": false
     }
   ]
