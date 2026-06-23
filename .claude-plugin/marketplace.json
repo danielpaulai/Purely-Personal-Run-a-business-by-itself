@@ -40,7 +40,7 @@
     {
       "name": "ai-employee-bootcamp",
       "description": "The complete AI employee toolkit. Matchmaker and Tailor to fit the 5 starter skills to your business, build-your-own-employee to create new ones from scratch, four ready-to-run executives (CMO daily post, CRO weekly prospects, COO morning brief, CFO weekly revenue), four industry starter templates, and the MCP connectors that let them work on a schedule.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "Daniel Paul",
         "url": "https://purelypersonal.ai"
