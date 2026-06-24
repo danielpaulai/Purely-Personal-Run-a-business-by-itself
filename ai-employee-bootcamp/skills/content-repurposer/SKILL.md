@@ -9,8 +9,8 @@ category: Content
 # AI CEO Brain · Purely Personal · by Daniel Paul
 
 ## REFERENCE FILES
-- `references/li-02-content-formats.md`, format performance, best repurposing paths by content type
-- `references/li-03-hooks-copywriting.md`, hook science for repurposed content
+- `references/copywriting-frameworks.md`, format performance, best repurposing paths by content type
+- `references/human-writing-standards.md`, hook science for repurposed content
 - `references/execution-playbooks.md`, writing standards for every output format
 - `references/ai-pattern-blacklist.md`, run before every output
 - `references/human-writing-standards.md`, invisible diagnostic

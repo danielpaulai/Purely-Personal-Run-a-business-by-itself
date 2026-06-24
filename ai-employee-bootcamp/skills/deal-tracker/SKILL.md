@@ -1,5 +1,5 @@
 ---
-name: outreach-deal-tracker
+name: deal-tracker
 description: Use this skill whenever the user wants to review their pipeline, figure out what to do next with active deals, identify who to prioritize, understand what's blocking a close, manage existing clients, identify upsell opportunities, or get a next-action plan across their sales and client base. Triggers include "review my pipeline", "what should I do next?", "who should I be talking to?", "what's blocking this deal?", "prioritize my leads", "track my deals", "who's at risk of churning?", "who can I upsell?".
 ---
 
@@ -326,3 +326,13 @@ Watch list:
 
 Read `references/sell-by-chat-framework.md` before writing any message.
 Apply: serving mindset over selling mindset, LVQ rhythm, A→B gap qualification, one question per message, value before every ask, follow-up cadence, micro-commitment booking tactics.
+
+
+## Voice lock and quality gate (added v4.1.0)
+Read references/voice-dna.md before writing. Write in the user's voice. No fallback.
+Before delivering anything, run this gate:
+- Zero em dashes anywhere.
+- No banned words or AI patterns (references/ai-pattern-blacklist.md, references/human-writing-standards.md).
+- Specific to this one prospect, not a template. If you could send it to anyone, rewrite it.
+- Never invent a name, number, result, or detail. If you do not have it, ask or leave a clear placeholder.
+- Final test: would the user say "I wrote that"? If not, rebuild.

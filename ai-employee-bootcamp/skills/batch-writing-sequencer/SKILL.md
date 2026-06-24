@@ -10,7 +10,7 @@ category: Content
 
 ## REFERENCE FILES
 - `references/execution-playbooks.md`, post writing standards for every format
-- `references/li-02-content-formats.md`, time estimates per format
+- `references/copywriting-frameworks.md`, time estimates per format
 - `references/ai-pattern-blacklist.md`, run before every output
 - `references/human-writing-standards.md`, invisible diagnostic (score every post 0-4)
 - `references/voice-dna.md`, voice rules

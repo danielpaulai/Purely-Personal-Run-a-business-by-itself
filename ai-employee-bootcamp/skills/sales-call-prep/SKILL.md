@@ -17,7 +17,7 @@ description: >
 
 Read ALL reference files before building any brief:
 - `/references/discovery-call-framework.md`, full call structure, BANT+ framework, objection library
-- `/references/output-examples.md`, good vs weak examples for every section
+- `/references/sales-output-examples.md`, good vs weak examples for every section
 - `/references/voice-dna.md`, Daniel's ICP, what good looks like for this audience
 - `/references/copywriting-frameworks.md`, BAB and PAS for positioning your offer
 - `/references/human-writing-standards.md`, writing standards for all scripts
@@ -95,7 +95,7 @@ This brief goes into Section 1 of the call prep.
 ## STEP 3, BUILD THE CALL BRIEF
 
 Read `/references/discovery-call-framework.md` fully before writing any section.
-Read `/references/output-examples.md` to calibrate what good looks like.
+Read `/references/sales-output-examples.md` to calibrate what good looks like.
 
 ### SECTION 1, PRE-CALL INTELLIGENCE
 

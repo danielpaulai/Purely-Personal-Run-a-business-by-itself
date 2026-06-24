@@ -47,7 +47,7 @@ Before building any HTML output:
 
   /* TYPOGRAPHY */
   --font-display:   'Playfair Display', Georgia, serif;
-  --font-body:      'Poppins', system-ui, sans-serif;
+  --font-body:      'Rethink Sans', system-ui, sans-serif;
   --font-mono:      'DM Mono', monospace;
 
   /* RADIUS */
@@ -68,13 +68,13 @@ Before building any HTML output:
 ## Google Fonts Import
 
 ```html
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Poppins:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Rethink+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 ```
 
 | Font | Role |
 |------|------|
 | Playfair Display | Hero headings, section titles, cover numbers |
-| Poppins | All body copy, labels, action steps, UI |
+| Rethink Sans | All body copy, labels, action steps, UI |
 | DM Mono | Pillar badges, tags, metadata, code |
 
 ---
@@ -300,7 +300,7 @@ DISPLAY (Playfair Display 700–900):
   Hero titles, cover headings, score numbers, section titles
   → "This is Danny's thinking. Not generic AI advice."
 
-BODY (Poppins 300–800):
+BODY (Rethink Sans 300–800):
   All running text, labels, card content, descriptions
   → Clean, modern, highly readable at all sizes
 
@@ -331,8 +331,8 @@ Background: radial-gradient(ellipse at 60% 20%, rgba(232,41,76,0.16) 0%, transpa
 + dot grid texture overlay (rgba(255,255,255,0.015))
 
 Title: Playfair Display 900, clamp(36px, 5vw, 64px), letter-spacing -0.02em
-Badge: Poppins 700, 11px, uppercase, letter-spacing 0.12em, red pill
-Subtitle: Poppins 400, 15px, rgba(255,255,255,0.58)
+Badge: Rethink Sans 700, 11px, uppercase, letter-spacing 0.12em, red pill
+Subtitle: Rethink Sans 400, 15px, rgba(255,255,255,0.58)
 ```
 
 ### The One Rule

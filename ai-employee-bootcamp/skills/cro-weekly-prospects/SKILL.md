@@ -11,7 +11,7 @@ category: CRO, Sales
 ## REFERENCE FILES, READ BEFORE EVERY RUN
 
 - `references/voice-dna.md`, participant's voice for DM writing
-- `references/icp.md`, ideal client profile (pulled from participant's documents)
+- `your Business Brain icp-[name].md`, ideal client profile (pulled from participant's documents)
 - `references/human-writing-standards.md`, writing standards, AI pattern rules
 - `references/ai-pattern-blacklist.md`, patterns to kill before delivery
 - `references/copywriting-frameworks.md`, DM frameworks and opener types

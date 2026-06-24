@@ -327,3 +327,13 @@ STAGE 3 · CURIOSITY DROP · After Stage 2 reply
 
 Read `references/sell-by-chat-framework.md` before writing any message.
 Apply: serving mindset over selling mindset, LVQ rhythm, A→B gap qualification, one question per message, value before every ask, follow-up cadence, micro-commitment booking tactics.
+
+
+## Voice lock and quality gate (added v4.1.0)
+Read references/voice-dna.md before writing. Write in the user's voice. No fallback.
+Before delivering anything, run this gate:
+- Zero em dashes anywhere.
+- No banned words or AI patterns (references/ai-pattern-blacklist.md, references/human-writing-standards.md).
+- Specific to this one prospect, not a template. If you could send it to anyone, rewrite it.
+- Never invent a name, number, result, or detail. If you do not have it, ask or leave a clear placeholder.
+- Final test: would the user say "I wrote that"? If not, rebuild.

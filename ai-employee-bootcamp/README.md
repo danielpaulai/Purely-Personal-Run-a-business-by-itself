@@ -158,7 +158,7 @@ Folder: [My Business Brain] or [GitHub repo]
 | Content skills | 6 (caption writer, content strategy, pillars, calendar, batch, newsletter) |
 | Sales skills | 7 (prospector, outreach writer, closer, reactivator, deal tracker, call prep, DM writer) |
 | Build tools | 3 (matchmaker, tailor, build-your-own) |
-| **Total** | **21 skills** |
+| **Total** | **22 skills** |
 
 ---
 

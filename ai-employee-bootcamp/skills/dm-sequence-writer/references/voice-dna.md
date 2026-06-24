@@ -26,7 +26,7 @@ Most sentences under 12 words. Kill adverbs.
 One idea per sentence. Period. Move on.
 
 **Rule 3, Never start with "I".**
-Rotate openers: "Here's the thing.", "Most [X] do Y.", "The real problem is."
+Rotate openers: "Here is what most people miss.", "Most [X] do Y.", "The real problem is."
 Starting with "I" signals ego before value.
 
 **Rule 4, Write for one person.**
