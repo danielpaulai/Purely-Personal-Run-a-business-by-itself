@@ -17,6 +17,15 @@ Before writing a single line of HTML, set the brand color.
 3. **If no hex is found:** default to Purely Personal red `--primary:#E8294C; --primary-light:#F5607A`.
 4. Never hardcode a different accent. The whole document adapts to the one brand color, so every client's output looks like THEIR company.
 
+### Theme choice (STANDARD or LIGHT)
+
+Two themes ship in the CORE SHELL, switched by the `data-theme` attribute on `<body>`:
+
+- **STANDARD** (`<body data-theme="standard">`, the default): bold, branded. A solid brand-color header band, white cards with a colored left accent, a dark closing note. High-impact, presentation-ready.
+- **LIGHT** (`<body data-theme="light">`): airy, editorial. White background, no color band (the brand color drops to a small kicker and accents), hairline borders, a soft brand-tinted note. Calmer, lighter, closer to a Notion or Linear document.
+
+Default to STANDARD. Use LIGHT when the user asks for a light, minimal, or airy version, when the output is a long read, or when the brand notes lean understated. Both use the exact same BODY templates, only the `data-theme` value changes.
+
 ---
 
 ## GUARDRAILS (non-negotiable for every file)
@@ -104,10 +113,23 @@ Every executive file is the CORE SHELL below with one department BODY (Section f
 
   footer{text-align:center;padding:30px 22px 10px;color:var(--gray-text);font-size:13px;}
   footer b{color:var(--ink);}
+
+  /* LIGHT THEME, airy editorial variant. Activate by setting <body data-theme="light">. */
+  body[data-theme=light]{background:#fff;}
+  [data-theme=light] .ohead{background:#fff;color:var(--ink);border-bottom:1px solid var(--gray);border-radius:0;padding:4px 2px 18px;margin-bottom:24px;}
+  [data-theme=light] .ohead .k{color:var(--primary);opacity:1;}
+  [data-theme=light] .ohead h1{color:var(--ink);}
+  [data-theme=light] .ohead .d{color:var(--gray-text);opacity:1;}
+  [data-theme=light] .card,[data-theme=light] .stat,[data-theme=light] .pcard,[data-theme=light] .lipost{box-shadow:none;border:1px solid #ECEBE8;}
+  [data-theme=light] .card{border-left:1px solid #ECEBE8;}
+  [data-theme=light] .note{background:color-mix(in srgb,var(--primary) 7%,#fff);color:var(--ink);}
+  [data-theme=light] .note b{color:var(--primary);}
+  [data-theme=light] .qbox{background:#fff;}
+
   @media(max-width:640px){.grid2,.grid3{grid-template-columns:1fr;}}
 </style>
 </head>
-<body>
+<body data-theme="standard">
   <div class="doc">
     <!-- BODY -->
     <footer>The brain thinks. The team works. You approve. · <b>Built by Daniel Paul · Purely Personal</b></footer>
