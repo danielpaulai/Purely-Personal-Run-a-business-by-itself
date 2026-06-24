@@ -82,29 +82,11 @@ One or two things that need the participant's action this week:
 
 ### Step 3, HTML dashboard output
 
-Read `references/html-output-templates.md` and `references/design-system.md`.
+Read `references/html-output-templates.md` in full first. Run **STEP 0 brand color detection**, then build the file as the **CORE SHELL** with the **"BODY, CFO weekly revenue"** template pasted in. It is one self-contained `.html` file (inline CSS, Rethink Sans, GSAP from CDN). Do not invent a different layout.
 
 **File name:** `cfo-report-[YYYY-MM-DD].html`
 
-**Dashboard layout:**
-
-**Header card:** "Week of [Date]" · Revenue summary in one line
-
-**Metric row (4 cards):**
-- This week's revenue (green if up, amber if flat, red if down)
-- Pipeline value
-- Unpaid invoices total
-- Monthly run rate vs target
-
-**Pipeline card:** List of active deals with value and last-contact date. Status indicator per deal.
-
-**Unpaid invoices card:** Table, Client / Invoice date / Amount / Days outstanding. Any 7+ days = amber. Any 14+ days = red.
-
-**Attention flags card:** Prominent, red-accented. Maximum 3 flags. Each flag includes the specific action to take.
-
-**Follow-up DM (if applicable):** For the most overdue invoice, write an exact, professional follow-up message ready to copy and send.
-
-**Footer:** Purely Personal · AI Employee Bootcamp · [Date]
+**Fill the template with:** the three headline metrics (this week, this month, pipeline) as animated count-ups, the monthly-goal progress bar, and a flags card (max 3 flags, each with the specific action, amber at 7+ days, red at 14+). For the most overdue invoice, include an exact follow-up message marked as a draft to copy and send, never sent automatically. Read-only on money: never move funds. Obey every guardrail in the templates file (no em dashes, no invented numbers, empty states where data is missing).
 
 ---
 

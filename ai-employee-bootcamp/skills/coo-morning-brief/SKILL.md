@@ -109,20 +109,11 @@ Metric: The one number that tells the participant how their week is trending.
 
 ### Step 5, HTML output
 
-Read `references/html-output-templates.md` and `references/design-system.md`.
+Read `references/html-output-templates.md` in full first. Run **STEP 0 brand color detection**, then build the file as the **CORE SHELL** with the **"BODY, COO morning brief"** template pasted in. It is one self-contained `.html` file (inline CSS, Rethink Sans, GSAP from CDN). Do not invent a different layout.
 
 **File name:** `coo-brief-[YYYY-MM-DD].html`
 
-**HTML layout:**
-- Dark background. Participant's brand color as primary accent.
-- Cover header: "Good morning, [Name]" + date in Playfair Display
-- Card grid: Schedule / Inbox / Tasks / Content / Metric, each as a distinct card
-- Status indicators: green (on track) / amber (attention needed) / red (overdue or urgent)
-- Footer: Purely Personal · AI Employee Bootcamp · [Date]
-
-**Must include animations:**
-- Fade-up on each card (staggered, 0.08s delay between cards)
-- Cards use `var(--bg-card)` as background, `var(--primary)` as accent
+**Fill the template with:** the one-line framing, today's calendar rows, the inbox split (reply / decide / fyi), any overdue item, and one key metric as an animated count-up. Use empty states for any section with no data. Obey every guardrail in the templates file (no em dashes, never auto-send, no invented numbers). The count-up and staggered card reveals are already wired in the shell.
 
 ---
 

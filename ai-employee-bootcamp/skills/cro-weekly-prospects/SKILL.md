@@ -122,16 +122,11 @@ If no existing pipeline: skip this step.
 
 ### Step 6, HTML output
 
-Read `references/html-output-templates.md` and `references/design-system.md`.
+Read `references/html-output-templates.md` in full first. Run **STEP 0 brand color detection**, then build the file as the **CORE SHELL** with the **"BODY, CRO weekly prospect pack"** template pasted in. It is one self-contained `.html` file (inline CSS, Rethink Sans, GSAP from CDN). Do not invent a different layout.
 
 **File name:** `cro-prospects-[YYYY-MM-DD].html`
 
-**Structure of the HTML output:**
-- Header: date, ICP summary, total prospects found
-- For each prospect: fit score, temperature, style, hook, opener recommendation
-- Full 5-message sequence per prospect (clearly labelled, with timing)
-- Pipeline review section (if applicable) with Priority levels and next-action messages
-- Summary: today's 3 most important outreach actions
+**Fill the template with:** the summary stats (prospects, hot, DMs drafted) as animated count-ups, then one prospect card per lead (name, role, signal, temperature tag, and the drafted first DM). Surface the highest-signal prospect in the closing note. Every DM is a draft for approval, never sent. Obey every guardrail in the templates file (no em dashes, no generic DMs, no invented data).
 
 ---
 

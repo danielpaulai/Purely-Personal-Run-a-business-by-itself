@@ -153,17 +153,11 @@ Rules:
 
 ### Step 6, HTML output
 
-Read `references/html-output-templates.md` → Template A.
-Read `references/design-system.md` → use participant's brand colors if provided, otherwise Purely Personal red `#E8294C`.
+Read `references/html-output-templates.md` in full first. Run **STEP 0 brand color detection**, then build the file as the **CORE SHELL** with the **"BODY, CMO daily post"** template pasted in. It is one self-contained `.html` file (inline CSS, Rethink Sans, GSAP from CDN). Do not invent a different layout.
 
 **File name:** `cmo-post-[YYYY-MM-DD].html`
 
-Include in the HTML:
-- Today's date
-- The selected hook (highlighted)
-- The full post (formatted, with line breaks matching the original)
-- Invisibility Diagnostic score
-- 3 pinned comment options
+**Fill the template with:** the full post rendered in a LinkedIn-style card (line breaks preserved), the chosen hook plus alternates, the publish check, the Invisibility Diagnostic score, and 3 pinned comment options. Obey every guardrail in the templates file (no em dashes, never auto-send, human voice). Card reveals are already wired in the shell.
 
 ---
 
