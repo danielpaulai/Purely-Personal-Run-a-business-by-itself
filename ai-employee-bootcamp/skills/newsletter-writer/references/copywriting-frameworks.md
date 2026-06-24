@@ -1,4 +1,4 @@
-# Copywriting Frameworks — Purely Personal Reference
+# Copywriting Frameworks, Purely Personal Reference
 # by Daniel Paul · Purely Personal
 
 ---
@@ -6,14 +6,14 @@
 ## WHY FRAMEWORKS MATTER
 
 A framework is a reusable structure that makes writing faster and output more reliable.
-The best writers don't write from scratch — they select the right vehicle and fill it with specific content.
+The best writers don't write from scratch, they select the right vehicle and fill it with specific content.
 
 These are the 8 frameworks used across all Purely Personal content.
 Each has a primary use case. Select one before writing anything.
 
 ---
 
-## FRAMEWORK 1 — PAS (Problem → Agitate → Solution)
+## FRAMEWORK 1, PAS (Problem → Agitate → Solution)
 
 **Best for:** LinkedIn posts targeting a specific pain · Email hooks · Cold opener openers
 
@@ -21,7 +21,7 @@ Each has a primary use case. Select one before writing anything.
 ```
 Problem:   Name the exact problem the reader has right now (1–2 sentences)
 Agitate:   Make the cost of that problem feel real and urgent (2–3 sentences)
-Solution:  Introduce the solution — yours or a concept (1–2 sentences)
+Solution:  Introduce the solution, yours or a concept (1–2 sentences)
 ```
 
 **Example:**
@@ -33,20 +33,20 @@ Solution: The problem isn't your content. It's your profile. Here's what to fix 
 ```
 
 **Rules:**
-- The Problem must be stated in the reader's language — not yours
+- The Problem must be stated in the reader's language, not yours
 - The Agitate section should make them think "yes, that's exactly how it feels"
 - Never solve the problem before the reader feels the pain
 
 ---
 
-## FRAMEWORK 2 — BEFORE-AFTER-BRIDGE (BAB)
+## FRAMEWORK 2, BEFORE-AFTER-BRIDGE (BAB)
 
 **Best for:** Transformation stories · Client wins · Newsletter wins section · Case studies
 
 **Structure:**
 ```
 Before:   Describe the specific situation before the change (2–3 sentences)
-After:    Paint the specific result after the change — numbers where possible (2–3 sentences)
+After:    Paint the specific result after the change, numbers where possible (2–3 sentences)
 Bridge:   The one thing that made the difference (what you/they did) (2–3 sentences)
 ```
 
@@ -60,12 +60,12 @@ Bridge:  He changed one thing. Not his posting frequency. His profile headline.
 
 **Rules:**
 - The Before must feel specific enough to be someone's real situation
-- The After must have a number — not "significantly better" but "3 clients in 60 days"
+- The After must have a number, not "significantly better" but "3 clients in 60 days"
 - The Bridge should feel counterintuitive or unexpected
 
 ---
 
-## FRAMEWORK 3 — 4 Ps (Promise → Picture → Proof → Push)
+## FRAMEWORK 3, 4 Ps (Promise → Picture → Proof → Push)
 
 **Best for:** Conversion-focused posts · Newsletter CTAs · Profile about sections
 
@@ -80,7 +80,7 @@ Push:     Tell them exactly what to do next (1 sentence)
 **Example:**
 ```
 Promise:  You can get 5+ inbound leads per month from LinkedIn without paid ads.
-Picture:  Imagine opening your calendar on Monday and having 3 calls already booked —
+Picture:  Imagine opening your calendar on Monday and having 3 calls already booked, 
           all from people who found your profile, read your content, and reached out first.
           No cold outreach. No follow-up anxiety. Just conversations with people who want help.
 Proof:    This is what happened for 7 of my clients after we optimised their profile and
@@ -89,20 +89,20 @@ Push:     DM me LEADS and I'll send you the exact 3-step process.
 ```
 
 **Rules:**
-- The Promise must be specific and achievable — not "transform your life"
-- The Picture section uses sensory language — what does it look, feel, sound like?
-- The Proof must be verifiable — real numbers, real clients, real timeframes
+- The Promise must be specific and achievable, not "transform your life"
+- The Picture section uses sensory language, what does it look, feel, sound like?
+- The Proof must be verifiable, real numbers, real clients, real timeframes
 
 ---
 
-## FRAMEWORK 4 — THE TEACHABLE MOMENT
+## FRAMEWORK 4, THE TEACHABLE MOMENT
 
 **Best for:** Lesson-based posts · Newsletter main body · Podcast/call repurposing
 
 **Structure:**
 ```
 Setup:    The moment when the lesson was learned (unexpected situation or result) (2–3 sentences)
-Mistake:  What was being done wrong — or what the common assumption was (1–2 sentences)
+Mistake:  What was being done wrong, or what the common assumption was (1–2 sentences)
 Lesson:   The specific insight that changed everything (2–3 sentences)
 Apply:    How the reader applies this today (2–3 sentences)
 ```
@@ -122,25 +122,25 @@ Lesson:  Engagement tells you your content is interesting.
 
 Apply:   Every post I write now answers one question first:
          "Would the person who needs to hire me specifically save this?"
-         If no — I rewrite it before publishing.
+         If no, I rewrite it before publishing.
 ```
 
 **Rules:**
-- The Setup must include a specific moment — not a general pattern
+- The Setup must include a specific moment, not a general pattern
 - The Mistake must be something the reader is probably doing too
 - The Lesson must challenge a belief they currently hold
 
 ---
 
-## FRAMEWORK 5 — THE CONTRARIAN TAKE
+## FRAMEWORK 5, THE CONTRARIAN TAKE
 
 **Best for:** Bold opinion posts · Thought leadership · Newsletter hooks · Viral hook openers
 
 **Structure:**
 ```
-Claim:    State the contrarian position as a fact — no hedging (1 sentence)
-Evidence: Why the conventional wisdom is wrong — with a specific example (3–4 sentences)
-Reframe:  What should be done instead — and why it works (3–4 sentences)
+Claim:    State the contrarian position as a fact, no hedging (1 sentence)
+Evidence: Why the conventional wisdom is wrong, with a specific example (3–4 sentences)
+Reframe:  What should be done instead, and why it works (3–4 sentences)
 Invite:   Invite disagreement or reflection (1 sentence)
 ```
 
@@ -148,7 +148,7 @@ Invite:   Invite disagreement or reflection (1 sentence)
 ```
 Claim:    Consistency is the worst LinkedIn advice for anyone under 10,000 followers.
 
-Evidence: "Post every day" works when you have distribution — when your posts already reach
+Evidence: "Post every day" works when you have distribution, when your posts already reach
           thousands of people. When you have 800 followers, daily posting is 800 people
           seeing the same mediocre content repeatedly. Consistency of bad content just
           means consistently bad results.
@@ -158,25 +158,25 @@ Reframe:  What actually builds a following early: one exceptional post per week 
           people with large audiences, or saved 200+ times. That's one post doing more
           than 30 consistent ones.
 
-Invite:   Disagree? Tell me why — I'm genuinely open to the counterargument.
+Invite:   Disagree? Tell me why, I'm genuinely open to the counterargument.
 ```
 
 **Rules:**
-- The Claim must be genuinely contrarian — not "here's a slightly different take"
+- The Claim must be genuinely contrarian, not "here's a slightly different take"
 - Evidence must include a specific example that proves conventional wisdom breaks down
-- Never hedge the Claim with "but it depends" — that kills the entire framework
+- Never hedge the Claim with "but it depends", that kills the entire framework
 
 ---
 
-## FRAMEWORK 6 — THE CASE STUDY
+## FRAMEWORK 6, THE CASE STUDY
 
 **Best for:** Proof posts · Newsletter wins · Sales call prep · Profile experience section
 
 **Structure:**
 ```
 Subject:   Who the client is (without naming them) + their specific situation (1–2 sentences)
-Problem:   The exact problem they came with — in their words where possible (2–3 sentences)
-Process:   What was done and why — the specific steps (3–5 sentences)
+Problem:   The exact problem they came with, in their words where possible (2–3 sentences)
+Process:   What was done and why, the specific steps (3–5 sentences)
 Result:    The specific, measurable outcome (1–2 sentences)
 Takeaway:  What this proves or teaches (1–2 sentences)
 ```
@@ -201,39 +201,39 @@ Takeaway: Your title is irrelevant to your buyer. The problem you solve is every
 ```
 
 **Rules:**
-- Never use the client's name without permission — describe them specifically instead
+- Never use the client's name without permission, describe them specifically instead
 - The Problem section must include their exact words if possible
-- The Result must have a number — percentage, units, timeframe, revenue
+- The Result must have a number, percentage, units, timeframe, revenue
 
 ---
 
-## FRAMEWORK 7 — THE NUMBERED FRAMEWORK (for carousels and lists)
+## FRAMEWORK 7, THE NUMBERED FRAMEWORK (for carousels and lists)
 
 **Best for:** Carousel briefs · Cheatsheet content · How-to posts · Newsletter framework section
 
 **Structure:**
 ```
 Title:    [Number] [Specific thing] to [Outcome] (under 8 words)
-Intro:    One sentence that makes the list feel necessary — not obvious (1 sentence)
+Intro:    One sentence that makes the list feel necessary, not obvious (1 sentence)
 Steps:    Each point: one specific action + one reason why (2 sentences per point)
-Close:    The thing they should do first — right now (1 sentence)
+Close:    The thing they should do first, right now (1 sentence)
 ```
 
 **Rules:**
-- Every step must be actionable — not "think about your audience"
+- Every step must be actionable, not "think about your audience"
 - Odd numbers perform better than even: 3, 5, 7 outperform 4, 6, 8
-- The most unexpected step goes second or third — not last
+- The most unexpected step goes second or third, not last
 - Never lead with the most obvious step
 
 ---
 
-## FRAMEWORK 8 — THE STORY LOOP (for newsletters and longer-form posts)
+## FRAMEWORK 8, THE STORY LOOP (for newsletters and longer-form posts)
 
 **Best for:** Newsletter main body · Story-driven LinkedIn posts · Repurposed podcast content
 
 **Structure:**
 ```
-Open loop:   Introduce a story mid-action — never from the beginning (2 sentences)
+Open loop:   Introduce a story mid-action, never from the beginning (2 sentences)
 Context:     Enough background to understand the stakes (3–4 sentences)
 Tension:     The moment it almost went wrong or didn't make sense (3–4 sentences)
 Resolution:  What happened and what it revealed (3–4 sentences)
@@ -247,31 +247,31 @@ Right: "Sarah was on the phone with her third dream client in 30 days. She'd cha
 ```
 
 **Rules:**
-- Always start in the middle of the story — skip the setup
-- The Tension must be real — not manufactured drama
+- Always start in the middle of the story, skip the setup
+- The Tension must be real, not manufactured drama
 - The Close Loop must make the reader think "that could be me"
 
 ---
 
 ## SUBJECT LINE FORMULAS (for newsletters + email)
 
-**Formula 1 — The Specific Number:**
+**Formula 1, The Specific Number:**
 "[N] [thing] that [did something]"
 "The 3 posts that made me £18k" / "1 change, 4x profile views"
 
-**Formula 2 — The Curiosity Gap:**
+**Formula 2, The Curiosity Gap:**
 "Why I [unexpected thing]" / "The [thing] that changed [outcome]"
 "Why I deleted my best-performing post" / "The email that booked 8 calls in 10 days"
 
-**Formula 3 — The Direct Question:**
+**Formula 3, The Direct Question:**
 "Are you [doing the thing that's hurting them]?"
 "Are you optimising for the wrong metric?" / "Is your headline losing you clients?"
 
-**Formula 4 — The Contrarian Label:**
+**Formula 4, The Contrarian Label:**
 "[Common belief] is [strong reframe]"
 "Consistency is overrated" / "Your engagement rate is a vanity metric"
 
-**Formula 5 — The Specific Timeframe:**
+**Formula 5, The Specific Timeframe:**
 "[Specific result] in [specific timeframe]"
 "3 inbound calls in 72 hours" / "From 0 to 12k followers in 8 months"
 

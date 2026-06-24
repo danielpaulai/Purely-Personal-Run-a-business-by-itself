@@ -1,47 +1,182 @@
-# AI Employee Bootcamp
+# AI Employee Bootcamp Plugin
+## Purely Personal · by Daniel Paul
+### Complete Plugin Architecture, Updated June 2026
 
-Build your own AI employees, then run them on a schedule. This is the Bootcamp #3 system packaged so steps 2 through 6 of the workflow install in one move.
+---
 
-## What is inside
+## WHAT THIS PLUGIN IS
 
-The toolkit has two halves: a build surface where you make employees, and a run surface where they work for you on a schedule.
+One brain. Five executives. Real work, on a schedule.
 
-**Build surface — make your employees**
-- `matchmaker` — audits any skill against your foundation documents and produces a gap report plus a Tailor Briefing. Run it first.
-- `tailor` — takes the briefing and rewrites a skill so it fits your voice, ICP, and offer. Ships an installable zip. Runs in Claude Code.
-- `content-strategy`, `linkedin-caption-writer`, `dm-sequence-writer`, `newsletter-writer`, `sales-call-prep` — the 5 starter skills. Install them generic, then tailor them to you. This is the "customize what we gave you" path.
-- `build-your-own-employee` — the skill that builds skills, for jobs nobody gave you a starter for. Interviews you about one job, writes a new employee in your voice using the same 8-section anatomy and 9-scrub standards as the tailored skills, pressure-tests it, hands you the installable file. This is the "build from scratch" path.
+Install once. Your AI team runs on a schedule, drafting posts, finding prospects, briefing your morning, reporting your revenue, while you sleep.
 
-The two build paths feed each other. Build from scratch today, then run the Matchmaker and Tailor on it later to deepen it as your foundation documents sharpen.
+---
 
-**Run surface — put them to work on a schedule**
-- `cmo-daily-post` — standing job. Every morning, drafts today's post in your voice from your content pillars, scores it, stages it. Never auto-publishes.
-- `cro-weekly-prospects` — standing job. Every Monday, builds 10 ICP-matched prospects and drafts a first-touch DM for each. Drafts only.
-- `coo-morning-brief` — standing job. Every morning, briefs you on calendar, inbox, and what is overdue. Drafts safe replies only.
-- `cfo-weekly-revenue` — standing job. Every Friday, reports revenue versus last week and flags unpaid invoices. Read only, never moves money.
-
-**Employee templates** (`employee-templates/`)
-Four ready-to-personalize starters: coach (discovery call prep), consultant (proposal writer), trainer (session designer), agency (weekly client update). Fill in the brackets and install.
-
-**Connectors** (`.mcp.json`)
-Wires Canva (design), Stripe (invoices and revenue), and Apify (prospecting). Add the rest of your Starter 7 (Google Calendar, Gmail, Drive, and your social publisher) through Settings, Connectors. Your Voice DNA and revenue engine come from your own marketing-brain MCP, connect that too.
-
-## Install
-
-Drop this folder into your marketplace, then install like any plugin.
+## THE STRUCTURE
 
 ```
-claude plugin marketplace add ./ai-employee-bootcamp
-claude plugin install ai-employee-bootcamp@ai-employee-bootcamp-marketplace
+Layer 1, Your Brain
+  Your Business Brain folder (7 foundation documents)
+  Everything downstream reads from this.
+
+Layer 2, The Build Room
+  /matchmaker    → audits skills against your foundation
+  /tailor        → customises skills to your specific business
+  /build-your-own-employee → builds new employees from scratch
+
+Layer 3, The AI CEO
+  /ceo           → orchestrates all executives, one answer
+
+Layer 4, The Executives
+  /cmo-daily-post        → Marketing (daily post, hooks, pinned comments)
+  /cro-weekly-prospects  → Sales (10 prospects, sequences, pipeline review)
+  /coo-morning-brief     → Operations (calendar, inbox, tasks, content)
+  /cfo-weekly-revenue    → Finance (revenue, pipeline, unpaid invoices)
+
+Layer 5, The Skills (wired to executives)
+  CMO skills:
+    /linkedin-caption-writer     → posts in participant's voice
+    /content-strategy            → content pillars and positioning
+    /content-pillars-extractor   → builds 3–5 content territories
+    /content-calendar-generator  → 30-day posting calendar
+    /batch-writing-sequencer     → timed batch writing session plan
+    /newsletter-writer           → weekly email in participant's voice
+
+  CRO skills:
+    /outreach-prospector         → full intelligence brief per prospect
+    /outreach-writer             → 5-message sequence per prospect
+    /outreach-closer             → conversation diagnosis + next message
+    /outreach-reactivator        → re-engage gone-quiet or cold leads
+    /deal-tracker                → pipeline triage + next-action plan
+    /sales-call-prep             → discovery call brief + objection scripts
+    /dm-sequence-writer          → standalone DM sequences
+
+Layer 6, Connectors
+  Gmail · Google Calendar · Notion · Apify · Google Drive · Canva · Publisher
 ```
 
-Or add the plugin entry from `.claude-plugin/marketplace.json` to your existing `purely-personal-marketplace` and install it alongside your other plugins.
+---
 
-## How to make an employee run regularly
+## EXECUTIVES AND THEIR SKILLS
 
-A skill does not run until you schedule it. Set a Claude Code routine at claude.ai/code/routines, connect your business brain repo, pick a time, and write the job. It runs in the cloud day and night, even with your laptop closed. That is the works-while-you-sleep version.
+### CMO, Marketing
+**Runs:** Daily (weekdays, 7:30 AM)
+**Skills wired:**
+- `linkedin-caption-writer`, writes the post
+- `content-pillars-extractor`, knows what territory to post in
+- `content-calendar-generator`, knows which slot to fill today
+- `batch-writing-sequencer`, for weekly batch sessions
+- Hook generator (embedded in CMO skill)
+- Pinned comment writer (embedded in CMO skill)
 
-See the scheduling guide and the live demo script in the `bootcamp-3` folder.
+### CRO, Sales
+**Runs:** Every Monday (8:00 AM)
+**Skills wired:**
+- `outreach-prospector`, intelligence brief per prospect
+- `outreach-writer`, 5-message sequence per prospect
+- `outreach-closer`, diagnoses active conversations
+- `outreach-reactivator`, re-engages cold leads
+- `deal-tracker`, weekly pipeline triage
+- `sales-call-prep`, pre-call brief for booked calls
 
-## The rule the employees follow
-They draft and recommend. They never send email, post, send invoices, or move money on their own. A human approves every outward action. This is the design, not a limitation.
+### COO, Operations
+**Runs:** Daily (weekdays, 7:00 AM)
+**Connectors used:** Notion · Gmail · Google Calendar
+**Output:** Branded HTML morning brief
+
+### CFO, Finance
+**Runs:** Every Friday (6:00 PM)
+**Connectors used:** Notion · Gmail
+**Output:** HTML revenue dashboard
+
+---
+
+## THE 5 RECOMMENDED ROUTINES
+
+### Routine 1, COO Morning Brief
+```
+Name: COO Morning Brief
+Schedule: Weekdays at 7:00 AM
+Instructions: Run the COO morning brief. Pull from Notion, Gmail, and Google Calendar. 
+Output as HTML using my brand colors from my documents. Save the file. 
+Then create a Gmail draft with the subject "Morning Brief – [Today's Date]" 
+and paste the brief content into the email body.
+Folder: [My Business Brain] or [GitHub repo]
+```
+
+### Routine 2, CMO Daily Post
+```
+Name: CMO Daily Post
+Schedule: Weekdays at 7:30 AM
+Instructions: Run the CMO daily post skill. Check my 30-day content calendar for today's 
+slot. Generate 5 hooks, write the post in my voice using my Voice DNA document. 
+Score it on the Invisibility Diagnostic. Then create a Gmail draft with subject 
+"LinkedIn Post Draft – [Today's Date]" containing the scored post.
+Folder: [My Business Brain] or [GitHub repo]
+```
+
+### Routine 3, CRO Weekly Prospects
+```
+Name: CRO Weekly Prospects
+Schedule: Mondays at 8:00 AM
+Instructions: Run the CRO weekly prospects skill. Find 10 qualified LinkedIn prospects 
+matching my ICP using Apify. Run a full intelligence brief on each. For each one, draft 
+a personalised 5-message DM sequence in my voice. Output as an HTML prospect pack. 
+Then create a Gmail draft with subject "Weekly Prospect List – [Date]".
+Folder: [My Business Brain] or [GitHub repo]
+```
+
+### Routine 4, CFO Weekly Revenue
+```
+Name: CFO Weekly Revenue
+Schedule: Fridays at 6:00 PM
+Instructions: Run the CFO weekly revenue skill. Summarise this week's revenue activity, 
+pipeline movement, and any unpaid invoices. Flag anything that needs my attention. 
+Output as a clean HTML dashboard. Then create a Gmail draft with subject 
+"Weekly Revenue Report – [Week of Date]".
+Folder: [My Business Brain] or [GitHub repo]
+```
+
+### Routine 5, Content Planning
+```
+Name: Weekly Content Planning
+Schedule: Sundays at 9:00 AM
+Instructions: Run the content-pillars-extractor to review my content territories, 
+then run the content-calendar-generator to plan next week's posts. 
+Output as an HTML content calendar. Then create a Gmail draft with subject 
+"Content Plan – Week of [Date]".
+Folder: [My Business Brain] or [GitHub repo]
+```
+
+---
+
+## SKILL COUNT
+
+| Category | Skills |
+|----------|--------|
+| Executive layer | 5 (CEO, CMO, CRO, COO, CFO) |
+| Content skills | 6 (caption writer, content strategy, pillars, calendar, batch, newsletter) |
+| Sales skills | 7 (prospector, outreach writer, closer, reactivator, deal tracker, call prep, DM writer) |
+| Build tools | 3 (matchmaker, tailor, build-your-own) |
+| **Total** | **21 skills** |
+
+---
+
+## REQUIRED FOUNDATION DOCUMENTS
+
+Before running any skill, the participant's Business Brain folder must contain:
+
+### Personal Authority Foundation
+- `personal-story-[name].md`
+- `voice-dna-[name].md`
+
+### Business Authority Foundation
+- `icp-[name].md`
+- `messaging-[name].md`
+- `rule1-[name].md`
+- `positioning-[name].md`
+- `inbox-[name].md`
+
+---
+
+*AI Employee Bootcamp · Purely Personal · by Daniel Paul · Updated June 2026*

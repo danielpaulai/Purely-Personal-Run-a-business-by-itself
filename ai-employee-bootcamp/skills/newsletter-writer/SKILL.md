@@ -1,7 +1,7 @@
 ---
 name: newsletter-writer
 description: >
-  Writes a complete weekly newsletter in Daniel Paul's voice — or the client's exact voice
+  Writes a complete weekly newsletter in Daniel Paul's voice, or the client's exact voice
   when Voice DNA is provided. Researches the topic first if needed, then writes a full
   400–600 word email using world-class direct-response copywriting principles. 5 sections:
   Hook, This Week's Lesson, One Framework, This Week's Win, One Ask. Scores 4/4 on the
@@ -11,19 +11,19 @@ description: >
   Part of the Purely Personal 7-skill LinkedIn lead system. by Daniel Paul.
 ---
 
-# Newsletter Writer — Purely Personal
+# Newsletter Writer, Purely Personal
 # by Daniel Paul · Purely Personal
 
 Read ALL reference files before writing a single word:
-- `/references/voice-dna.md` — Daniel's voice rules, ICP, banned words, hook archetypes
-- `/references/human-writing-standards.md` — Invisibility Diagnostic, AI blacklist, structural rules
-- `/references/copywriting-frameworks.md` — direct-response frameworks, subject line formulas
-- `/references/design-system.md` — brand colors for any visual headers
+- `/references/voice-dna.md`, Daniel's voice rules, ICP, banned words, hook archetypes
+- `/references/human-writing-standards.md`, Invisibility Diagnostic, AI blacklist, structural rules
+- `/references/copywriting-frameworks.md`, direct-response frameworks, subject line formulas
+- `/references/design-system.md`, brand colors for any visual headers
 
 One job: write a weekly email so good the subscriber thinks "this is the best newsletter I read this week."
 
 Not a content dump. Not a blog post in email format.
-A conversation — from one specific human to one specific reader.
+A conversation, from one specific human to one specific reader.
 The reader should finish it and immediately want to forward it to someone.
 
 ---
@@ -36,27 +36,27 @@ Is a Voice DNA, BUSINESS-BRAIN.md, or voice profile provided?
 
 ---
 
-## STEP 1 — INTAKE
+## STEP 1, INTAKE
 
 Ask ALL in ONE message if not already provided:
 
 ```
 ╔══════════════════════════════════════════════════════╗
-║  PURELY PERSONAL — NEWSLETTER WRITER                 ║
+║  PURELY PERSONAL, NEWSLETTER WRITER                 ║
 ║  by Daniel Paul                                      ║
 ╚══════════════════════════════════════════════════════╝
 
-Before I write this week's email — 4 things:
+Before I write this week's email, 4 things:
 
 1  THIS WEEK'S TOPIC OR LESSON
    What's the main idea? A lesson learned, mistake made,
    framework that worked, thing you noticed in the market.
-   Rough notes are perfect — raw beats polished every time.
+   Rough notes are perfect, raw beats polished every time.
 
 2  THIS WEEK'S WIN (non-negotiable)
    One real result. Yours or a client's. Specific.
    "Client booked 3 calls from one post."
-   "Rewrote my headline — profile views up 4x in a week."
+   "Rewrote my headline, profile views up 4x in a week."
    This is what makes the newsletter feel alive.
 
 3  THE ACTIONABLE TAKEAWAY
@@ -66,12 +66,12 @@ Before I write this week's email — 4 things:
 4  THE ONE ASK
    What should they do after reading?
    Reply / DM you a keyword / Book a call / Click a link.
-   One ask only — more than one = none of them happen.
+   One ask only, more than one = none of them happen.
 ```
 
 ---
 
-## STEP 2 — RESEARCH DECISION ENGINE
+## STEP 2, RESEARCH DECISION ENGINE
 
 Before writing, silently run this check:
 
@@ -95,7 +95,7 @@ Trigger research if ANY of these are true:
 
 ---
 
-## STEP 3 — COPYWRITING FRAMEWORK SELECTION
+## STEP 3, COPYWRITING FRAMEWORK SELECTION
 
 Read `/references/copywriting-frameworks.md` and select the best framework for this topic:
 
@@ -112,9 +112,9 @@ Select ONE. Apply it to shape the 5 sections.
 
 ---
 
-## STEP 4 — WRITE THE 5 SECTIONS
+## STEP 4, WRITE THE 5 SECTIONS
 
-### Section 1 — THE HOOK (first sentence to end of first paragraph)
+### Section 1, THE HOOK (first sentence to end of first paragraph)
 
 **The hook is the entire newsletter.** If they don't read past the first paragraph, nothing else matters.
 
@@ -138,25 +138,25 @@ STRONG: "My client Sarah had 400 followers and zero inbound. Then she changed on
 
 ---
 
-### Section 2 — THIS WEEK'S LESSON (the main insight)
+### Section 2, THIS WEEK'S LESSON (the main insight)
 
 **Rules:**
-- Write conversationally — like telling a story to a smart peer, not explaining to a student
+- Write conversationally, like telling a story to a smart peer, not explaining to a student
 - Must contain one detail that could not have been written by anyone else (specificity test)
-- If research was done in Step 2 — weave in the best data point or insight here
-- No bullet points in this section — prose only
+- If research was done in Step 2, weave in the best data point or insight here
+- No bullet points in this section, prose only
 - The lesson must challenge something the reader currently believes or does
 - Length: 100–150 words
 
 **The specificity test:** would this lesson be equally strong if a real example were removed?
-If yes — it needs a real example. Add one.
+If yes, it needs a real example. Add one.
 
 **Transition sentence at the end:** bridge from the lesson to the framework with one sentence.
 E.g. "Here's the exact system I use to make sure it happens every week:"
 
 ---
 
-### Section 3 — ONE FRAMEWORK (the actionable section)
+### Section 3, ONE FRAMEWORK (the actionable section)
 
 **This is the section that gets saved and forwarded.**
 
@@ -165,8 +165,8 @@ Rules:
   "The 3-Layer Post Method" not "how to write better posts"
 - 3–5 steps maximum. Every step has a one-sentence explanation.
 - Every step must be actionable in under 10 minutes
-- If research surfaced a useful tool or data point — insert it here as the third or fourth step
-- This section can use a numbered list — structure helps here
+- If research surfaced a useful tool or data point, insert it here as the third or fourth step
+- This section can use a numbered list, structure helps here
 - Length: 80–120 words
 
 **Framework naming formula:**
@@ -175,13 +175,13 @@ E.g. "The 4-Line Hook Formula" / "The 3-Step Profile Fix" / "The 10-Minute Conte
 
 ---
 
-### Section 4 — THIS WEEK'S WIN (the proof)
+### Section 4, THIS WEEK'S WIN (the proof)
 
 **Rules:**
 - Real result. Real number. Real timeframe.
 - Format: [Starting point] → [What changed] → [Specific result]
 - Never vague: "amazing results" → "3 inbound DMs in 48 hours"
-- If it's a client win — protect their identity but keep the specifics
+- If it's a client win, protect their identity but keep the specifics
 - Add one sentence: what made this win possible (connects back to the lesson)
 - Length: 50–80 words
 
@@ -194,7 +194,7 @@ STRONG: "Marcus, a fractional CFO, rewrote his headline using the formula above.
 
 ---
 
-### Section 5 — ONE ASK (the CTA)
+### Section 5, ONE ASK (the CTA)
 
 **Rules:**
 - One ask. One. Not two buried in one paragraph.
@@ -207,24 +207,24 @@ STRONG: "Marcus, a fractional CFO, rewrote his headline using the formula above.
 **CTA formulas that convert:**
 "Reply to this email with [word] and I'll send you [specific thing]."
 "DM me [KEYWORD] on LinkedIn and I'll [specific action]."
-"Hit reply and tell me [specific question] — I read every reply."
+"Hit reply and tell me [specific question], I read every reply."
 
 **Sign off:** "Until next week, Daniel"
 
 ---
 
-## STEP 5 — SUBJECT LINE (produce 3 options)
+## STEP 5, SUBJECT LINE (produce 3 options)
 
 Read `/references/copywriting-frameworks.md` for subject line formulas.
 
 Rules:
 - Under 50 characters (renders fully on mobile)
-- No clickbait — specific and honest
+- No clickbait, specific and honest
 - Each option uses a different formula:
 
-Option A — **Curiosity gap:** reader knows the topic but not the angle
-Option B — **Specific result/number:** leads with proof
-Option C — **Direct question:** asks something the reader can't not answer internally
+Option A, **Curiosity gap:** reader knows the topic but not the angle
+Option B, **Specific result/number:** leads with proof
+Option C, **Direct question:** asks something the reader can't not answer internally
 
 **Strong subject line examples:**
 "The post that made me £18k" (specific result)
@@ -238,7 +238,7 @@ Option C — **Direct question:** asks something the reader can't not answer int
 
 ---
 
-## STEP 6 — INVISIBILITY DIAGNOSTIC
+## STEP 6, INVISIBILITY DIAGNOSTIC
 
 Score the full newsletter 0–4 across all 4 dimensions (from `/references/human-writing-standards.md`):
 
@@ -247,14 +247,14 @@ Score the full newsletter 0–4 across all 4 dimensions (from `/references/human
 - **Specificity (0 or 1):** Is there at least one detail only this person could have?
 - **Asking (0 or 1):** Does it ask the reader to do or feel something specific?
 
-**Target: 4/4.** If below 4 — identify failing dimension and rewrite before delivering.
+**Target: 4/4.** If below 4, identify failing dimension and rewrite before delivering.
 
 ---
 
-## STEP 7 — DE-AI-IFY
+## STEP 7, DE-AI-IFY
 
 Before delivering, scan every line:
-- Remove every em dash (—) → replace with comma or period
+- Remove every em dash (, ) → replace with comma or period
 - Remove every word from the banned list in `/references/voice-dna.md`
 - Remove every phrase from the AI blacklist in `/references/human-writing-standards.md`
 - Read aloud. If any sentence sounds assembled → rewrite it
@@ -266,24 +266,24 @@ Before delivering, scan every line:
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-PURELY PERSONAL — WEEKLY NEWSLETTER
+PURELY PERSONAL, WEEKLY NEWSLETTER
 by Daniel Paul
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 SUBJECT LINE OPTIONS
-A: [option — curiosity gap]
-B: [option — specific result]
-C: [option — direct question]
+A: [option, curiosity gap]
+B: [option, specific result]
+C: [option, direct question]
 
-RECOMMENDED: [A/B/C] — [one sentence why]
+RECOMMENDED: [A/B/C], [one sentence why]
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-[FULL NEWSLETTER — paste-ready, no section labels]
+[FULL NEWSLETTER, paste-ready, no section labels]
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Framework used: [name]
-Research conducted: [yes — sources used / no]
+Research conducted: [yes, sources used / no]
 Word count: [N] · Invisibility score: [N]/4
 Voice: [✓/✗] · POV: [✓/✗] · Specific: [✓/✗] · Asking: [✓/✗]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -294,11 +294,11 @@ After delivery, one line only:
 
 ---
 
-## QUALITY GATE — non-negotiable
+## QUALITY GATE, non-negotiable
 
 □ All reference files read before writing
 □ Voice DNA applied (Daniel's or client's)
-□ Research conducted if topic needed it — real data woven in
+□ Research conducted if topic needed it, real data woven in
 □ Copywriting framework selected and applied
 □ Hook: first sentence under 12 words, creates gap, specific detail
 □ Hook: does NOT open with greeting, "Happy Monday", or "I hope"
@@ -314,4 +314,12 @@ After delivery, one line only:
 □ Zero banned words from voice-dna.md
 □ Zero AI patterns from human-writing-standards.md
 □ Read aloud test passed
-□ Would Daniel Paul say "I wrote that"? If not — rebuild.
+□ Would Daniel Paul say "I wrote that"? If not, rebuild.
+
+
+## ━━ POST WRITING VARIATIONS ━━
+
+Read `references/post-writing-variations.md` when producing or planning LinkedIn posts.
+Apply Variation A (Framework-Heavy) for tactical/framework content optimised for saves.
+Apply Variation B (Story-Flow) for story/connection content optimised for comments and DMs.
+Always select and state the variation before writing.
