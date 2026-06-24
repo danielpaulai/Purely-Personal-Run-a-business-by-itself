@@ -61,14 +61,16 @@ Every executive file is the CORE SHELL below with one department BODY (Section f
     --good:#16A34A; --warn:#D97706; --bad:#DC2626;
     --r-md:14px; --r-lg:22px; --pill:9999px;
     --sh:0 1px 2px rgba(0,0,0,.04),0 8px 28px rgba(0,0,0,.06);
+    --grad:linear-gradient(135deg, color-mix(in srgb,var(--primary) 78%, #000) 0%, var(--primary) 48%, var(--primary-light) 100%);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
-  body{font-family:'Rethink Sans',sans-serif;background:var(--off-white);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  body{font-family:'Rethink Sans',sans-serif;background:radial-gradient(80% 60% at 96% -12%, color-mix(in srgb,var(--primary) 14%, transparent), transparent 60%), radial-gradient(60% 50% at 0% 6%, color-mix(in srgb,var(--primary-light) 10%, transparent), transparent 55%), var(--off-white);background-attachment:fixed;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
   .doc{max-width:840px;margin:0 auto;padding:34px 22px 70px;}
 
-  /* header band, takes the brand color */
-  .ohead{border-radius:var(--r-md);padding:24px 26px;margin-bottom:22px;color:#fff;background:var(--primary);}
+  /* header band, brand gradient (STANDARD theme) */
+  .ohead{border-radius:var(--r-md);padding:26px 28px;margin-bottom:22px;color:#fff;background:var(--grad);box-shadow:0 16px 42px color-mix(in srgb,var(--primary) 30%, transparent);position:relative;overflow:hidden;}
+  .ohead::after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.10);top:-120px;right:-60px;pointer-events:none;}
   .ohead .k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.82;font-weight:600;}
   .ohead h1{font-size:clamp(24px,4vw,32px);font-weight:800;letter-spacing:-.02em;margin:5px 0 3px;}
   .ohead .d{font-size:13px;opacity:.85;}
@@ -86,12 +88,13 @@ Every executive file is the CORE SHELL below with one department BODY (Section f
   .t-grey{background:var(--gray-light);color:var(--gray-text);} .t-grn{background:#e7f6ee;color:var(--good);} .t-blue{background:#e6f0fc;color:#1E6FE0;}
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
   .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-  .stat{background:#fff;border:1px solid var(--gray);border-radius:var(--r-md);box-shadow:var(--sh);padding:18px 20px;}
-  .stat .l{font-size:12px;color:var(--gray-text);} .stat .n{font-size:34px;font-weight:800;letter-spacing:-.02em;margin-top:4px;}
+  .stat{background:#fff;border:1px solid var(--gray);border-radius:var(--r-md);box-shadow:var(--sh);padding:18px 20px;position:relative;overflow:hidden;}
+  .stat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);}
+  .stat .l{font-size:12px;color:var(--gray-text);} .stat .n{font-size:34px;font-weight:800;letter-spacing:-.02em;margin-top:4px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
   .stat .delta{font-size:13px;font-weight:700;margin-top:2px;} .up{color:var(--good);} .down{color:var(--bad);}
   .bar{height:14px;border-radius:var(--pill);background:var(--gray-light);overflow:hidden;margin-top:10px;}
   .bar i{display:block;height:100%;width:0;border-radius:var(--pill);background:linear-gradient(90deg,var(--primary),var(--primary-light));}
-  .note{background:var(--ink);color:#fff;border-radius:var(--r-md);padding:16px 20px;font-size:15px;margin-top:6px;}
+  .note{background:linear-gradient(135deg, var(--ink) 0%, color-mix(in srgb,var(--primary) 26%, var(--ink)) 100%);color:#fff;border-radius:var(--r-md);padding:18px 22px;font-size:15px;margin-top:6px;box-shadow:0 14px 36px rgba(0,0,0,.16);}
   .note b{color:var(--primary-light);}
   .qbox{width:100%;border:1px dashed var(--gray);border-radius:10px;padding:12px;font-family:inherit;font-size:14px;color:var(--gray-text);background:#fff;margin-top:8px;}
 
@@ -116,7 +119,9 @@ Every executive file is the CORE SHELL below with one department BODY (Section f
 
   /* LIGHT THEME, airy editorial variant. Activate by setting <body data-theme="light">. */
   body[data-theme=light]{background:#fff;}
-  [data-theme=light] .ohead{background:#fff;color:var(--ink);border-bottom:1px solid var(--gray);border-radius:0;padding:4px 2px 18px;margin-bottom:24px;}
+  [data-theme=light] .ohead{background:#fff;color:var(--ink);border:none;border-bottom:1px solid var(--gray);border-radius:0;padding:4px 2px 18px;margin-bottom:24px;box-shadow:none;}
+  [data-theme=light] .ohead::after{display:none;}
+  [data-theme=light] .note{box-shadow:none;}
   [data-theme=light] .ohead .k{color:var(--primary);opacity:1;}
   [data-theme=light] .ohead h1{color:var(--ink);}
   [data-theme=light] .ohead .d{color:var(--gray-text);opacity:1;}
@@ -139,8 +144,9 @@ Every executive file is the CORE SHELL below with one department BODY (Section f
   <script>
     window.addEventListener('load',function(){
       if(!window.gsap)return; gsap.registerPlugin(ScrollTrigger);
-      gsap.from('.ohead',{y:24,opacity:0,duration:.6,ease:'power3.out'});
-      gsap.from('.card,.stat,.pcard,.lipost,.note,.bar',{y:18,opacity:0,duration:.5,stagger:.06,ease:'power2.out',scrollTrigger:{trigger:'.doc',start:'top 85%'}});
+      gsap.from('.ohead',{y:26,opacity:0,scale:.98,duration:.7,ease:'power3.out'});
+      gsap.from('.ohead h1',{y:14,opacity:0,duration:.7,delay:.12,ease:'power3.out'});
+      gsap.from('.card,.stat,.pcard,.lipost,.note,.bar',{y:20,opacity:0,duration:.55,stagger:.07,ease:'power2.out',scrollTrigger:{trigger:'.doc',start:'top 85%'}});
       gsap.utils.toArray('.count').forEach(function(el){
         var to=+el.dataset.to,o={v:0};
         gsap.to(o,{v:to,duration:1.4,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 92%'},onUpdate:function(){el.textContent=Math.round(o.v).toLocaleString();}});
