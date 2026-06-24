@@ -303,11 +303,3 @@ QUICK WINS, START THIS WEEK
 □ Competitor study: 3 competitors, each with gap and differentiation move
 □ 90-day plan: Month 1/2/3 with specific post topics, not just themes
 □ Quick wins: specific, actionable, executable this week
-
-
-## ━━ POST WRITING VARIATIONS ━━
-
-Read `references/post-writing-variations.md` when producing or planning LinkedIn posts.
-Apply Variation A (Framework-Heavy) for tactical/framework content optimised for saves.
-Apply Variation B (Story-Flow) for story/connection content optimised for comments and DMs.
-Always select and state the variation before writing.

@@ -17,7 +17,6 @@ Read ALL reference files before writing a single word:
 - `/references/voice-dna.md`, Daniel's 10 voice rules, ICP, 5 hook archetypes, banned words
 - `/references/human-writing-standards.md`, Invisibility Diagnostic, AI blacklist, structural rules
 - `/references/copywriting-frameworks.md`, 8 frameworks, when to use each, good/bad examples
-- `/references/post-writing-variations.md`, **Variation A (Framework-Heavy) + Variation B (Story-Flow)**: complete post structures, hook patterns, intent options, writing standards, select the right variation before writing
 - `/references/design-system.md`, brand tokens
 
 One job: produce a post the client reads and says "I could have written that, but better than I would have."

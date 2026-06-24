@@ -155,10 +155,10 @@ Folder: [My Business Brain] or [GitHub repo]
 | Category | Skills |
 |----------|--------|
 | Executive layer | 5 (CEO, CMO, CRO, COO, CFO) |
-| Content skills | 6 (caption writer, content strategy, pillars, calendar, batch, newsletter) |
+| Content skills | 8 (caption writer, viral hook generator, content strategy, pillars, calendar, batch, repurposer, newsletter) |
 | Sales skills | 7 (prospector, outreach writer, closer, reactivator, deal tracker, call prep, DM writer) |
 | Build tools | 3 (matchmaker, tailor, build-your-own) |
-| **Total** | **22 skills** |
+| **Total** | **23 skills** |
 
 ---
 
