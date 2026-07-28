@@ -153,6 +153,12 @@ as observed data.
 Never fabricate post history or engagement to fill the gap. A zero-Apify user gets the
 full strategy — just from pasted or assumed competitor data, clearly labelled.
 
+**Optional X evidence lane, only when requested:**
+
+Keep the LinkedIn Actor above as the default. If the user requests public X
+post or audience evidence, read `/references/xquik-actors.md` before any
+Actor call. It adds both Xquik routes without replacing LinkedIn research.
+
 **Search 4 — Trending angles:**
 `"[niche] [year] trends" OR "what's changing in [niche]"`
 Question to answer: What is shifting in this industry right now that most creators are ignoring?
