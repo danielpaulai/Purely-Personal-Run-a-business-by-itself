@@ -320,7 +320,9 @@ export function ratingCheck(r) {
   const min = Math.min(...vals);
   const others = [...vals]; others.splice(vals.indexOf(min), 1);
   let max = others.every((n) => n >= 9) ? Math.min(10, min + 1) : min;
-  if (String(r.honesty) === 'fail') max = Math.min(max, 4);
+  const h = String(r.honesty);
+  if (h === 'fail' || h === 'fail-detail') max = Math.min(max, 4);
+  if (h === 'fail-proof') max = Math.min(max, 2);
   const lo = Math.min(min, max);
   const o = Number(r.overall);
   if (o < lo || o > max) return { ok: false, msg: `round ${r.round}: overall ${o} does not match the rubric (should be ${lo === max ? lo : lo + ' or ' + max})` };
@@ -344,7 +346,7 @@ export function checkEmail(e) {
   if (/[\u2014\u2013]/.test(all)) add('error', 'em dash or en dash found: use a comma or a full stop');
   if (/\s-\s/.test(e.body)) add('warn', 'a " - " used as a dash: use a comma or a full stop');
   const low = all.toLowerCase();
-  for (const w of BANNED) if (low.includes(w)) add('error', `"${w}" is on the never-use list`);
+  for (const w of BANNED) if (new RegExp('\\b' + w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i').test(all)) add('error', `"${w}" is on the never-use list`);
   if (/\bjourney\b/i.test(all)) add('warn', '"journey" only if it is real travel');
   for (const g of GURUS) if (new RegExp('\\b' + g + '\\b', 'i').test(all)) add('error', `names a guru ("${g}"): remove it`);
   if (/!!/.test(all)) add('warn', 'double exclamation marks');

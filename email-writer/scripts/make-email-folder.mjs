@@ -18,7 +18,8 @@ if (!brainDir) { console.error('Usage: node make-email-folder.mjs <second-brain-
 
 const root = path.resolve(brainDir, path.basename(path.resolve(brainDir)) === 'Email' ? '.' : 'Email');
 const summary = { email_folder: root, created: [], kept: [], notes: [] };
-const today = new Date().toISOString().slice(0, 10);
+const d = new Date();
+const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
 function write(rel, content) {
   const f = path.join(root, rel);

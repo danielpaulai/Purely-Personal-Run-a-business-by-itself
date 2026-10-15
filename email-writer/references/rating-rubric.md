@@ -36,7 +36,7 @@ If the founder's clients read a language other than English, the email must read
 # What to return
 
 - `scores`: the eight part scores.
-- `honesty`: "pass" or "fail", with `honesty_notes` naming anything invented.
+- `honesty`: "pass", "fail-proof" (invented proof, capped at 2), or "fail-detail" (invented setting detail, capped at 4), with `honesty_notes` naming anything invented.
 - `overall`: 1 to 10.
 - `fixes`: the specific changes that would raise the weakest parts, most important first, each one sentence a writer can act on ("Cut the first line, start at 'My daughter asked me…'"). At most five. Empty when overall is 10.
 - `best_line`: the strongest line in the email, so the rewrite keeps it.

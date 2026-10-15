@@ -17,7 +17,8 @@ const argv = process.argv.slice(2);
 const opt = (k) => { const i = argv.indexOf('--' + k); return i === -1 ? '' : (argv[i + 1] || ''); };
 const emailDir = path.resolve(opt('email-dir') || '.');
 const summary = { created: [], kept: [], notes: [] };
-const today = new Date().toISOString().slice(0, 10);
+const d = new Date();
+const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
 const LABEL_TO_TYPE = { 'client win': 'client_win', story: 'story', '9-word email': 'nine_word', 'how-to': 'how_to', 'event invite': 'event_invite', '8-minute email': 'eight_minute_edit' };
 const TYPE_SLUG = { client_win: 'client-win', story: 'story', nine_word: 'nine-word', how_to: 'how-to', event_invite: 'event-invite', eight_minute_edit: 'eight-minute' };
@@ -159,7 +160,7 @@ function main() {
   const brainFile = opt('brain');
   const emailsFile = opt('emails');
   let month = opt('month');
-  if (!month) { const d = new Date(); d.setMonth(d.getMonth() + 1); month = d.toISOString().slice(0, 7); }
+  if (!month) { const d = new Date(); d.setDate(1); d.setMonth(d.getMonth() + 1); month = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`; }
   fs.mkdirSync(emailDir, { recursive: true });
 
   if (brainFile) {
