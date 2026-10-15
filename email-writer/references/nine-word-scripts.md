@@ -21,19 +21,19 @@ If one of the three is missing, it isn't a 9-word email yet.
 ## The scripts
 
 1. **Work with me.** I'm looking to work with a few [who] who want [result]. Reply "[word]" if that's you.
-2. **Still looking.** Are you still looking to [result]? Reply "yes" and I'll tell you how I can help.
-3. **Small group.** I'm getting a few [who] together to [result]. Want in? Reply "in".
-4. **Event.** I'm running a free [event] on [result] on [date]. Want a seat? Reply "seat".
-5. **Free guide.** Want my free [guide] for [result]? Reply "send" and it's yours.
-6. **Quick chat.** Up for a 15 minute chat about [result]? Reply "chat" and I'll send you times.
-7. **First five.** I'm testing a new [program] for [who] next month. Want to be one of the first five? Reply "first".
+2. **Still looking.** Are you still looking for [who] who want [result]? Reply "yes" and I'll tell you how I can help.
+3. **Small group.** I'm getting a few [who] together to [result]. Want in? Reply "in". *(only if the profile has a group)*
+4. **Event.** I'm running [a/a free] [event] for [who] on [result] on [date]. Want a seat? Reply "seat". *(only if the profile has an event; say "free" only if the event is free)*
+5. **Free guide.** Want my free [guide] for [who] who want [result]? Reply "send" and it's yours. *(only if the profile has a guide)*
+6. **Quick chat.** [Who], up for a 15 minute chat about [result]? Reply "chat" and I'll send you times. *(only if the profile has a call)*
+7. **First five.** I'm testing a new [program] for [who] next month. Want to be one of the first five? Reply "first". *(only if the profile has a new program)*
 
 ## Filled examples
 
 - I'm looking to work with a few coaches who want their first three clients. Reply "yes" if that's you.
-- Are you still looking to sell out your next workshop? Reply "yes" and I'll tell you how I can help.
+- Are you still looking for coaches who want their first three clients? Reply "yes" and I'll tell you how I can help.
 - I'm getting a few cafe owners together to sort their books in 30 days. Want in? Reply "in".
-- Want my free Friday checklist for books you don't dread? Reply "send" and it's yours.
+- Want my free Friday checklist for cafe owners who want books they don't dread? Reply "send" and it's yours.
 
 ## Don't send these
 

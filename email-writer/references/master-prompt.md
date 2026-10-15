@@ -110,11 +110,11 @@ Every nine_word email has three parts, all from the founder's profile:
 3. One reply word in quotes, so answering takes two seconds: Reply "yes", Reply "in", Reply "seat", Reply "chat", Reply "send", Reply "first". In other languages, use that language's quotation marks and a natural word.
 Use one of these shapes, adapted to the founder's offer and calls to action:
 - Work with me: "I'm looking to work with a few [who] who want [result]. Reply "[word]" if that's you."
-- Still looking: "Are you still looking to [result]? Reply "yes" and I'll tell you how I can help."
-- Small group: "I'm getting a few [who] together to [result]. Want in? Reply "in"."
-- Event: "I'm running a free [event] on [result] on [date]. Want a seat? Reply "seat"." (only if the profile has an event)
-- Free guide: "Want my free [guide] for [result]? Reply "send" and it's yours." (only if the profile has a guide)
-- Quick chat: "Up for a 15 minute chat about [result]? Reply "chat" and I'll send you times."
+- Still looking: "Are you still looking for [who] who want [result]? Reply "yes" and I'll tell you how I can help."
+- Small group: "I'm getting a few [who] together to [result]. Want in? Reply "in"." (only if the profile has a group)
+- Event: "I'm running [a/a free] [event] for [who] on [result] on [date]. Want a seat? Reply "seat"." (only if the profile has an event; say "free" only if the event is free)
+- Free guide: "Want my free [guide] for [who] who want [result]? Reply "send" and it's yours." (only if the profile has a guide)
+- Quick chat: "[Who], up for a 15 minute chat about [result]? Reply "chat" and I'll send you times." (only if the profile has a call)
 - First five: "I'm testing a new [program] for [who] next month. Want to be one of the first five? Reply "first"." (only if the profile has a new program)
 When you write three, use three different shapes, and make one of them "Work with me".
 Never write a question with no result and no offer in it: no surveys ("Do you do your own books?"), no polls ("Step by step or all at once?"), no "Do you run a [type of business]?". If the reader can't tell why you're asking and how to answer, it isn't a nine_word email.
