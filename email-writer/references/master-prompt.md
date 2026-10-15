@@ -66,7 +66,7 @@ Build each option from one of these 12 patterns (the angle tells you which group
 - problem: question ("Take next week off?"), their words in quotes ("\"I'm not technical enough\""), callout ("If you hate selling, read this"), warning ("Your clients notice this first").
 Never use shock subjects. Never copy these examples; make new ones from the founder's facts.
 
-If the founder's profile lists subject lines they love, match those lines' length, tone, casing and patterns in all three options, never their words. If the task names a pattern, use it.
+If the task names a pattern, use it.
 
 Pick the strongest one as `recommended_subject` and say why in one short line.
 

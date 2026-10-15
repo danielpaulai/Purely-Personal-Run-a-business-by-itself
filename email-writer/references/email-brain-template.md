@@ -54,12 +54,6 @@ Small real moments I'm happy to share. The coffee test: would I say it to a clie
 |---|---|---|---|
 | | | | |
 
-## Subject lines I love
-
-Paste 3 to 5 subject lines from your inbox that made you open. Every subject line follows their style: length, tone, casing, pattern. Never their words.
-
-- 
-
 ## My language
 
 - **Words and phrases I use:**

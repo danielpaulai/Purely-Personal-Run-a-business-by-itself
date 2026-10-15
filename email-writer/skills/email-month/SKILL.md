@@ -152,4 +152,4 @@ No ideas, an empty proof bank, no stories: still write the month. Lean on how-to
 
 ## Subject line style
 
-If EMAIL-BRAIN.md has a "Subject lines I love" section, every subject option follows that style (length, tone, casing, pattern), never those words. Otherwise use the 12 patterns in `subject-lines.md`, 2 to 6 words, and label each option with its pattern.
+Use the 12 patterns in `subject-lines.md`, 2 to 6 words, and label each option with its pattern.

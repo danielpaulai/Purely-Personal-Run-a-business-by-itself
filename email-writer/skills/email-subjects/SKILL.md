@@ -1,6 +1,6 @@
 ---
 name: email-subjects
-description: Ten subject lines for one email across the three angles (moment, label, problem) and the 12 subject patterns, or all in one pattern they name, or matching subject lines they love, each with a character count coloured by how it shows on phones (33 or less fits, 34 to 48 cut off in the Gmail app, over 48 too long), plus a recommended pick, a preview text, and an optional rating of the subject. Updates the email file if there is one. Trigger on "give me subject lines", "subject lines like these", "make it a confession subject", "in the style of my favourite subject lines", "subject lines for this", "better subject line", "what should I call this email", "headline for my email", "is this subject line good".
+description: Ten subject lines for one email across the three angles (moment, label, problem) and the 12 subject patterns, or all in one pattern they name, each with a character count coloured by how it shows on phones (33 or less fits, 34 to 48 cut off in the Gmail app, over 48 too long), plus a recommended pick, a preview text, and an optional rating of the subject. Updates the email file if there is one. Trigger on "give me subject lines", "make it a confession subject",  "subject lines for this", "better subject line", "what should I call this email", "headline for my email", "is this subject line good".
 ---
 
 # Subject lines
@@ -13,7 +13,7 @@ A file path, "my last email" (newest in `Email/drafts/`), an email in the curren
 
 ## Step 2: write 10
 
-**Their style comes first.** If they name a pattern ("give me confession subject lines", "something like an odd pair"), write all 10 in that pattern. If they paste subject lines they love, or EMAIL-BRAIN.md has a "Subject lines I love" section, match those lines' length, tone, casing and patterns, never their words. If they say "remember these", add them to "Subject lines I love" in EMAIL-BRAIN.md so every future email uses that style.
+**Their style comes first.** If they name a pattern ("give me confession subject lines", "something like an odd pair"), write all 10 in that pattern.
 
 The 12 patterns are in `subject-lines.md`: odd pair, a character, confession, a number that stings, famous name + your business, short maxim, their words, callout, warning, life moment, question, plain label. Aim for 2 to 6 words. Label each option with its pattern.
 

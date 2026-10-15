@@ -83,6 +83,3 @@ Pick one. Each has a fill-in shape and examples.
 
 These four are Danny's real subject lines, before and after.
 
-## Make them yours
-
-Paste five subject lines from your own inbox that made you open, into the Email Room (Step 1) or your EMAIL-BRAIN.md under "Subject lines I love". From then on, every subject line follows that style: the length, the tone, the pattern. Never the exact words.
