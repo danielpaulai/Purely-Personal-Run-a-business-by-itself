@@ -127,6 +127,23 @@ The plugin works without them — you'll just be prompted to paste data manually
 
 ---
 
+## Email Writer (AI Founder Circle)
+
+Write emails that get clients, in your own voice, from your Second Brain. Install it next to the plugins above:
+
+```bash
+claude plugin marketplace add danielpaulai/Purely-Personal-Run-a-business-by-itself
+claude plugin install email-writer@purely-personal-marketplace
+```
+
+Then say **"set up my emails"**. It reads the `EMAIL-BRAIN.md` you downloaded from the Email Room, or asks you a few questions. Then try:
+- "write next month's emails"
+- "add an idea: ..."
+- "give me subject lines like these"
+- "make this email a 10"
+
+It writes markdown and copy-paste text for GoHighLevel, Mailchimp or ActiveCampaign. It never sends anything on its own. See `email-writer/QUICK-START.md`.
+
 ## Quick Start
 
 ```bash

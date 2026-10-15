@@ -58,6 +58,30 @@
       ],
       "source": "./ai-employee-bootcamp",
       "strict": false
+    },
+    {
+      "name": "email-writer",
+      "description": "Write emails that get clients, in your own voice, from your Second Brain. Five email recipes (client win, story, 9-word email, how-to, event invite), subject lines in 12 patterns or in the style of ones you love, a strict 1 to 10 rater that rewrites until it's a 10, a month of emails planned from your weekly promise, and a Gmail-style inbox preview with copy buttons for GoHighLevel, Mailchimp and ActiveCampaign. Never sends on its own. by Daniel Paul, Purely Personal.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Daniel Paul",
+        "url": "https://purelypersonal.ai"
+      },
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": [
+        "email",
+        "newsletter",
+        "subject-lines",
+        "gohighlevel",
+        "mailchimp",
+        "activecampaign",
+        "second-brain",
+        "ai-founder-circle",
+        "purely-personal"
+      ],
+      "source": "./email-writer",
+      "strict": false
     }
   ]
 }

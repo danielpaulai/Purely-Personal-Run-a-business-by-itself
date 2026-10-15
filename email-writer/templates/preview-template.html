@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__PAGE_TITLE__</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page:#F7F6F3; --ink:#17171B; --accent:#F01621; --accent-ink:#B30F18; --accent-soft:rgba(240,22,33,.08);
+  --muted:#6B6A72; --line:#E6E4DF; --card:#FFFFFF; --soft:#F1EFEB;
+  --mail-ink:#202124; --mail-grey:#5F6368; --mail-line:#ECECEC; --mail-read:#F6F7F8; --mail-hover:#F2F2F2;
+  --brand-font:"Rethink Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mail-font:Roboto, "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  --body-font:Arial, Helvetica, sans-serif;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--page);color:var(--ink)}
+body{font-family:var(--brand-font);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased;min-height:100vh}
+button{font:inherit;color:inherit;cursor:pointer}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ---------- top bar ---------- */
+.top{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding:28px 32px 18px;max-width:1440px;margin:0 auto}
+.brand{display:flex;gap:14px;align-items:flex-start;min-width:0}
+.mark{width:12px;height:12px;border-radius:50%;background:var(--accent);margin-top:7px;flex:none}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.top h1{margin:2px 0 4px;font-size:28px;line-height:1.15;font-weight:700;letter-spacing:-.01em}
+.top .meta{color:var(--muted);font-size:14px}
+.top .meta b{color:var(--ink);font-weight:600}
+.seg{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px;flex:none}
+.seg button{border:0;background:transparent;padding:8px 16px;border-radius:999px;font-weight:600;font-size:14px;color:var(--muted);display:inline-flex;gap:8px;align-items:center}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.seg svg{width:16px;height:16px}
+
+/* ---------- stage ---------- */
+.stage{max-width:1440px;margin:0 auto;padding:0 32px 48px;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}
+.stage.phone{grid-template-columns:auto 360px;justify-content:center}
+
+/* ---------- the email client ---------- */
+.client{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;font-family:var(--mail-font);color:var(--mail-ink);min-height:440px;display:flex;flex-direction:column;box-shadow:0 1px 2px rgba(23,23,27,.04),0 8px 28px rgba(23,23,27,.05)}
+.cbar{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--mail-line)}
+.cbar .ttl{font-size:18px;font-weight:500;min-width:72px}
+.search{flex:1;max-width:560px;display:flex;align-items:center;gap:10px;background:#EEF0F2;border-radius:999px;padding:9px 14px;color:var(--mail-grey);font-size:14px}
+.search svg{width:18px;height:18px;flex:none}
+.me{width:32px;height:32px;border-radius:50%;background:#D9D7D2;color:#fff;display:grid;place-items:center;font-weight:600;font-size:14px;margin-left:auto;flex:none}
+.view{flex:1;min-height:0}
+
+/* list: desktop single-line rows */
+.rows{list-style:none;margin:0;padding:0}
+.wk{padding:14px 16px 6px;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--mail-grey);border-bottom:1px solid var(--mail-line);background:#fff}
+.row{display:flex;align-items:center;gap:12px;padding:0 16px;height:48px;border-bottom:1px solid var(--mail-line);cursor:pointer;background:#fff;position:relative}
+.row.read{background:var(--mail-read)}
+.row:hover{box-shadow:inset 1px 0 0 #dadce0,inset -1px 0 0 #dadce0,0 1px 2px 0 rgba(60,64,67,.25);z-index:1}
+.row:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
+.ic{width:18px;height:18px;color:#B8BBBF;flex:none}
+.av{width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:600;font-size:13px;flex:none;font-family:var(--brand-font)}
+.r-from{width:150px;flex:none;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.r-text{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px;color:var(--mail-grey)}
+.r-text .s{color:var(--mail-ink)}
+.r-end{display:flex;align-items:center;gap:8px;flex:none}
+.r-date{font-size:12.5px;width:72px;text-align:right;white-space:nowrap}
+.row:not(.read) .r-from,.row:not(.read) .r-text .s,.row:not(.read) .r-date{font-weight:700;color:var(--mail-ink)}
+.row.read .r-date{color:var(--mail-grey)}
+.lab{display:inline-block;font-size:11.5px;line-height:1;padding:4px 7px;border-radius:5px;background:#EDEDED;color:#444;font-weight:500;margin-right:6px;vertical-align:1px;font-family:var(--mail-font)}
+.chip{font-family:var(--brand-font);font-size:11.5px;font-weight:600;line-height:1;padding:5px 8px;border-radius:999px;white-space:nowrap;border:1px solid var(--line);color:var(--ink);background:#fff}
+.chip.fill{border-color:rgba(240,22,33,.35);color:var(--accent-ink);background:var(--accent-soft)}
+.chip.score{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip.score.mid{background:#fff;color:var(--ink);border-color:var(--ink)}
+.chip.score.low{background:#fff;color:var(--accent-ink);border-color:rgba(240,22,33,.45)}
+.chip.spare{color:var(--muted)}
+
+/* list: phone three-line rows */
+.prow{display:flex;gap:14px;padding:12px 16px;cursor:pointer;background:#fff}
+.prow.read{background:#fff}
+.prow:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
+.prow .av{width:40px;height:40px;font-size:17px}
+.pm{flex:1;min-width:0}
+.pt{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.pt .f{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pt .d{font-size:12px;color:var(--mail-grey);white-space:nowrap;flex:none}
+.ps{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+.pp{font-size:14px;color:var(--mail-grey);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+.pchips{display:flex;gap:6px;margin-top:6px}
+.prow:not(.read) .f,.prow:not(.read) .ps,.prow:not(.read) .d{font-weight:700;color:var(--mail-ink)}
+.pwk{padding:14px 16px 4px;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--mail-grey)}
+
+/* reader */
+.rtool{display:flex;align-items:center;gap:6px;padding:8px 10px;border-bottom:1px solid var(--mail-line);color:var(--mail-grey);font-size:13px}
+.ib{border:0;background:transparent;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:#444}
+.ib:hover{background:#EEF0F2}
+.ib:disabled{opacity:.35;cursor:default;background:transparent}
+.ib svg{width:20px;height:20px}
+.rtool .sp{flex:1}
+.mail{padding:20px 28px 36px 28px}
+.subj{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:0 0 18px 48px}
+.subj h2{margin:0;font-size:22px;line-height:1.3;font-weight:400;color:var(--mail-ink);font-family:var(--mail-font)}
+.sender{display:flex;gap:12px;align-items:flex-start}
+.sender .av{width:40px;height:40px;font-size:17px}
+.who{flex:1;min-width:0}
+.who .n{font-size:14px;font-weight:700}
+.who .e{font-size:12.5px;color:var(--mail-grey);font-weight:400}
+.who .to{font-size:12.5px;color:var(--mail-grey);margin-top:1px}
+.when{font-size:12.5px;color:var(--mail-grey);white-space:nowrap}
+.body{margin:18px 0 0 52px;font-family:var(--body-font);font-size:14px;line-height:1.6;color:#222;max-width:660px;overflow-wrap:anywhere}
+.body p{margin:0 0 14px}
+.body a{color:#1a5dc9}
+.merge{display:inline-block;font-family:var(--brand-font);font-size:12px;line-height:1.2;padding:2px 5px;margin-right:1px;border-radius:5px;background:#EEF0F2;color:#3c4043;vertical-align:1px}
+mark.fill{background:var(--accent-soft);color:var(--accent-ink);border-bottom:1.5px dashed var(--accent);padding:0 2px;border-radius:2px}
+.acts{display:flex;gap:10px;margin:26px 0 0 52px}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid #C7C9CC;border-radius:999px;padding:8px 18px;font-size:14px;color:#3c4043;background:#fff;cursor:default}
+.pill svg{width:18px;height:18px}
+
+/* ---------- phone frame ---------- */
+.stage.phone .client{width:390px;height:800px;min-height:0;border-radius:46px;border:11px solid var(--ink);box-shadow:0 24px 60px rgba(23,23,27,.18)}
+.status{display:flex;justify-content:space-between;align-items:center;padding:12px 26px 6px;font-weight:600;font-size:14px;font-family:var(--brand-font)}
+.status .bat{display:inline-flex;gap:5px;align-items:center}
+.status .bat i{display:block;width:22px;height:11px;border:1.5px solid var(--ink);border-radius:3px;position:relative}
+.status .bat i::after{content:"";position:absolute;inset:1.5px;right:5px;background:var(--ink);border-radius:1px}
+.stage.phone .view,.narrow .view{overflow-y:auto}
+.stage.phone .cbar,.narrow .cbar{border-bottom:0;padding:8px 14px}
+.stage.phone .cbar .ttl,.narrow .cbar .ttl{display:none}
+.stage.phone .search,.narrow .search{max-width:none}
+.inboxlab{padding:6px 16px 2px;font-size:12px;color:var(--mail-grey);font-weight:500}
+.stage.phone .mail,.narrow .mail{padding:16px 16px 28px}
+.stage.phone .subj,.narrow .subj{margin-left:0}
+.stage.phone .subj h2,.narrow .subj h2{font-size:20px}
+.stage.phone .body,.narrow .body{margin-left:0;font-size:15px}
+.stage.phone .acts,.narrow .acts{margin-left:0}
+
+/* ---------- notes panel ---------- */
+.notes{display:flex;flex-direction:column;gap:14px;position:sticky;top:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.card h3{margin:0 0 10px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.card p{margin:0 0 8px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px}
+.kv dt{color:var(--muted)} .kv dd{margin:0;font-weight:500;overflow-wrap:anywhere}
+.score{display:flex;align-items:center;gap:16px}
+.big{font-size:40px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.big small{font-size:16px;color:var(--muted);font-weight:600}
+.climb{display:flex;align-items:flex-end;gap:6px;height:44px}
+.climb .b{width:22px;border-radius:5px 5px 2px 2px;background:#D9D7D2;position:relative}
+.climb .b.last{background:var(--ink)}
+.climb .b.fail{background:var(--accent)}
+.climb .b span{position:absolute;top:-17px;left:0;right:0;text-align:center;font-size:11px;font-weight:600;color:var(--muted)}
+.climb-l{font-size:13px;color:var(--muted);margin-top:10px}
+.btns{display:grid;gap:8px}
+.cbtn{display:flex;flex-direction:column;align-items:flex-start;gap:3px;width:100%;padding:11px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;font-weight:600;font-size:14px;text-align:left}
+.cbtn:hover{border-color:var(--ink)}
+.cbtn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
+.cbtn .mf{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;font-weight:500;opacity:.7}
+.plain{border:0;background:transparent;padding:4px 0;color:var(--muted);font-size:13px;text-decoration:underline;text-underline-offset:3px;justify-self:start}
+.one{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.one .lbl{font-size:13px;color:var(--muted);margin-bottom:8px}
+.one-row{display:flex;gap:6px;flex-wrap:wrap}
+.mini{border:1px solid var(--line);background:var(--soft);border-radius:8px;padding:7px 11px;font-size:13px;font-weight:600}
+.mini:hover{border-color:var(--ink)}
+.opts{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.opts li{border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14px}
+.opts li.on{border-color:var(--ink)}
+.opts .top2{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted);margin-bottom:3px;font-weight:600}
+.fit-g{color:#1E7A46}.fit-a{color:#9A5B00}.fit-r{color:var(--accent-ink)}
+.cc{font-weight:700;font-variant-numeric:tabular-nums}
+.fitnote{font-size:14px}
+.fitnote .sample{margin:10px 0 12px;border:1px solid var(--line);border-radius:10px;padding:9px 8px;font-family:var(--mail-font);background:#fff;max-width:100%;overflow:hidden}
+.fitnote .sample .m{width:282px;max-width:100%}
+.fitnote .sample .ps,.fitnote .sample .pp{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fitnote .sample .ps,.fitnote .sample .pp{font-size:14px}
+.fitnote .sample .ps{font-weight:700;color:var(--mail-ink)}
+.fitnote.cut b.h{color:var(--accent-ink)}
+.why{font-size:13px;color:var(--muted);margin-top:10px}
+.fills{margin:0;padding-left:18px;color:var(--accent-ink);font-size:14px}
+.fills li{margin:3px 0}
+.chk{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13.5px}
+.chk li{display:flex;gap:8px}
+.chk .lv{font-size:10.5px;font-weight:700;letter-spacing:.05em;padding:3px 6px;border-radius:5px;flex:none;height:fit-content;margin-top:1px}
+.lv.error{background:var(--accent);color:#fff} .lv.warn{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.ok{display:flex;gap:8px;align-items:center;font-size:14px;font-weight:500}
+.ok i{width:8px;height:8px;border-radius:50%;background:var(--ink);display:block}
+.types{display:grid;grid-template-columns:1fr auto;gap:6px 12px;font-size:14px}
+.types span:nth-child(even){font-weight:600;text-align:right}
+.hint{font-size:13px;color:var(--muted)}
+.empty{padding:48px 24px;text-align:center;color:var(--mail-grey)}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;font-weight:500;max-width:min(92vw,520px);transition:.25s ease;pointer-events:none;z-index:10;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1180px){
+  .stage,.stage.phone{grid-template-columns:minmax(0,1fr)}
+  .stage.phone{justify-items:center}
+  .notes{position:static}
+  .stage.phone .notes{width:100%;max-width:560px}
+}
+@media (max-width:760px){
+  .top{padding:20px 16px 14px;flex-direction:column;align-items:flex-start;gap:12px}
+  .top h1{font-size:23px}
+  .seg{display:none}
+  .stage{padding:0 16px 32px;gap:16px}
+  .client{min-height:0;border-radius:12px}
+  .mail{padding:16px}
+}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="mark" aria-hidden="true"></span>
+    <div>
+      <div class="eyebrow">Email preview</div>
+      <h1 id="title"></h1>
+      <div class="meta" id="meta"></div>
+    </div>
+  </div>
+  <div class="seg" role="group" aria-label="View">
+    <button type="button" data-mode="desktop" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>Desktop</button>
+    <button type="button" data-mode="phone" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg>Phone</button>
+  </div>
+</header>
+
+<main class="stage" id="stage">
+  <section class="client" id="client" aria-label="Inbox preview"></section>
+  <aside class="notes" id="notes" aria-label="About this email"></aside>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script id="email-data" type="application/json">__EMAIL_DATA__</script>
+<script>
+(function(){
+  "use strict";
+  var DATA = JSON.parse(document.getElementById('email-data').textContent);
+  var EM = DATA.emails || [];
+  var S = { mode:'desktop', open:null, read:{}, platform: DATA.platform && DATA.platform !== 'other' ? DATA.platform : 'gohighlevel' };
+  try { var m = localStorage.getItem('email-preview-mode'); if (m === 'phone' || m === 'desktop') S.mode = m; } catch(e) {}
+
+  var PLATFORMS = [
+    { key:'gohighlevel', name:'GoHighLevel', field:'{{contact.first_name}}' },
+    { key:'mailchimp', name:'Mailchimp', field:'*|FNAME|*' },
+    { key:'activecampaign', name:'ActiveCampaign', field:'%FIRSTNAME%' }
+  ];
+  var MERGE = /\{\{\s*first_name\s*\}\}/g;
+  var HAS_MERGE = /\{\{\s*first_name\s*\}\}/;
+  var PH = /\[[^\]\n]{1,80}\]/g;
+  var narrowMQ = window.matchMedia('(max-width: 760px)');
+
+  var $ = function(id){ return document.getElementById(id); };
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function layout(){ return (S.mode === 'phone' || narrowMQ.matches) ? 'phone' : 'desktop'; }
+
+  var DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function pd(iso){ var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? new Date(+m[1], +m[2]-1, +m[3]) : null; }
+  function dShort(iso){ var d = pd(iso); return d ? d.getDate() + ' ' + MON[d.getMonth()] : 'Spare'; }
+  function dDay(iso){ var d = pd(iso); return d ? DAYS[d.getDay()] + ' ' + d.getDate() + ' ' + MON[d.getMonth()] : 'Spare'; }
+  function dLong(iso, t){ var d = pd(iso); return d ? DAYS[d.getDay()] + ', ' + d.getDate() + ' ' + MON[d.getMonth()] + ' ' + d.getFullYear() + (t ? ', ' + esc(t) : '') : 'Not scheduled (spare)'; }
+  function weekStart(iso){ var d = pd(iso); if (!d) return null; var w = (d.getDay() + 6) % 7; d.setDate(d.getDate() - w); return d; }
+
+  function inline(s){
+    return esc(s).replace(MERGE, '<span class="merge" title="Merge field: the reader\'s first name">First name</span>')
+                 .replace(PH, function(p){ return '<mark class="fill" title="Fill this in before sending">' + p + '</mark>'; });
+  }
+  function plainLine(s){ return String(s || '').replace(MERGE, 'First name'); }
+  function bodyHtml(body){
+    return String(body || '').split(/\n\s*\n/).map(function(p){
+      var h = inline(p.trim()).replace(/(https?:\/\/[^\s<]+[^\s<.,;:!?)])/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+      return '<p>' + h.replace(/\n/g, '<br>') + '</p>';
+    }).join('');
+  }
+  function fitOf(n){
+    if (n <= 33) return { k:'g', s:'fits', t:'Fits every phone' };
+    if (n <= 48) return { k:'a', s:'cut in Gmail app', t:'Cut off in the Gmail app. Make sure the first 33 characters make sense alone.' };
+    return { k:'r', s:'cut on most phones', t:'Cut off on most phones' };
+  }
+  // The subject width in a phone inbox row: 390 phone, minus frame, padding and avatar.
+  var PHONE_SUBJECT_W = 282;
+  function cutOnPhone(text){
+    var m = document.createElement('div');
+    m.style.cssText = 'position:absolute;left:-9999px;top:0;white-space:nowrap;overflow:hidden;font:700 14px ' + getComputedStyle(document.body).getPropertyValue('--mail-font') + ';width:' + PHONE_SUBJECT_W + 'px';
+    m.textContent = plainLine(text);
+    document.body.appendChild(m);
+    var cut = m.scrollWidth > m.clientWidth + 1;
+    document.body.removeChild(m);
+    return cut;
+  }
+  function fitNoteHtml(e){
+    var cut = cutOnPhone(e.subject);
+    return '<div class="card fitnote' + (cut ? ' cut' : '') + '"><h3>How it looks on a phone</h3>' +
+      '<div class="sample" aria-hidden="true" title="Same width as the subject in a phone inbox"><div class="m"><div class="ps">' + inline(e.subject) + '</div><div class="pp">' + inline(e.preview_text) + '</div></div></div>' +
+      '<p>' + (cut ? '<b class="h">Your subject gets cut off.</b> Pick a shorter one, or move the best words to the front.' : '<b class="h">Your whole subject fits.</b> Good.') + '</p>' +
+      '<p class="hint">The grey line is your preview text. It should give one more reason to open. On newer iPhones, Apple may show an AI summary instead, so your first line matters most.</p></div>';
+  }
+  function scoreOf(e){ var r = e.rating_rounds; return r && r.length ? r[r.length - 1].overall : null; }
+  function scoreClass(n){ return n >= 10 ? '' : n >= 8 ? ' mid' : ' low'; }
+  function chipsHtml(e){
+    var h = '';
+    var s = scoreOf(e);
+    if (s != null) h += '<span class="chip score' + scoreClass(s) + '" title="Rating after ' + e.rating_rounds.length + ' round(s)">' + s + '/10</span>';
+    if (e.fill_in && e.fill_in.length) h += '<span class="chip fill">' + e.fill_in.length + ' to fill</span>';
+    if (e.status === 'spare') h += '<span class="chip spare">Spare</span>';
+    return h;
+  }
+
+  var ICON = {
+    search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>',
+    box:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>',
+    star:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>',
+    back:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>',
+    up:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>',
+    down:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>',
+    reply:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 6 6v4"/></svg>',
+    fwd:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"/><path d="M20 9H10a6 6 0 0 0-6 6v4"/></svg>'
+  };
+
+  /* ---------- header ---------- */
+  function renderHeader(){
+    $('title').textContent = DATA.title || 'Email preview';
+    var fills = EM.reduce(function(n, e){ return n + (e.fill_in ? e.fill_in.length : 0); }, 0);
+    var weeks = {}; EM.forEach(function(e){ var w = weekStart(e.date); if (w) weeks[w.toDateString()] = 1; });
+    var nw = Object.keys(weeks).length;
+    $('meta').innerHTML = '<b>' + EM.length + '</b> email' + (EM.length === 1 ? '' : 's') + (nw > 1 ? ' over <b>' + nw + '</b> weeks' : '') +
+      ' · from ' + esc(DATA.sender.name) + (fills ? ' · <b>' + fills + '</b> thing' + (fills === 1 ? '' : 's') + ' to fill in' : '');
+    document.querySelectorAll('.seg button').forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.mode === S.mode)); });
+  }
+
+  /* ---------- the client ---------- */
+  function renderClient(){
+    var L = layout();
+    var stage = $('stage');
+    stage.classList.toggle('phone', S.mode === 'phone' && !narrowMQ.matches);
+    stage.classList.toggle('narrow', narrowMQ.matches);
+    var h = '';
+    if (S.mode === 'phone' && !narrowMQ.matches) h += '<div class="status" aria-hidden="true"><span>9:41</span><span class="bat"><i></i></span></div>';
+    h += '<div class="cbar"><span class="ttl">Inbox</span><div class="search">' + ICON.search + '<span>Search in mail</span></div><span class="me" aria-hidden="true">Y</span></div>';
+    h += '<div class="view" id="view">' + (S.open == null ? listHtml(L) : readerHtml(EM[S.open], L)) + '</div>';
+    $('client').innerHTML = h;
+    var v = $('view'); if (v) v.scrollTop = 0;
+  }
+
+  function listHtml(L){
+    if (!EM.length) return '<div class="empty">No emails in this folder yet.</div>';
+    var h = L === 'phone' ? '<div class="inboxlab">Inbox</div>' : '';
+    h += '<ul class="rows" role="list">';
+    var lastW = '';
+    var showWeeks = EM.length > 3;
+    EM.forEach(function(e, i){
+      var w = weekStart(e.date);
+      var wk = w ? w.toDateString() : 'spare';
+      if (showWeeks && wk !== lastW){
+        var lbl = w ? 'Week of ' + DAYS[w.getDay()] + ' ' + w.getDate() + ' ' + MON[w.getMonth()] : 'Spares';
+        h += '<li class="' + (L === 'phone' ? 'pwk' : 'wk') + '">' + lbl + '</li>';
+        lastW = wk;
+      }
+      var read = S.read[i] ? ' read' : '';
+      if (L === 'phone'){
+        var ch = chipsHtml(e);
+        h += '<li class="prow' + read + '" tabindex="0" data-i="' + i + '"><span class="av">' + esc(DATA.sender.initial) + '</span><div class="pm">' +
+          '<div class="pt"><span class="f">' + esc(DATA.sender.name) + '</span><span class="d">' + dShort(e.date) + '</span></div>' +
+          '<div class="ps">' + inline(e.subject) + '</div><div class="pp">' + inline(e.preview_text) + '</div>' +
+          (ch ? '<div class="pchips">' + ch + '</div>' : '') + '</div></li>';
+      } else {
+        h += '<li class="row' + read + '" tabindex="0" data-i="' + i + '">' + ICON.box + ICON.star + '<span class="av">' + esc(DATA.sender.initial) + '</span>' +
+          '<span class="r-from">' + esc(DATA.sender.name) + '</span>' +
+          '<span class="r-text"><span class="lab">' + esc(e.typeLabel) + (e.type === 'event_invite' ? ' ' + e.sequence_step : '') + '</span><span class="s">' + inline(e.subject) + '</span> - ' + inline(e.preview_text) + '</span>' +
+          '<span class="r-end">' + chipsHtml(e) + '<span class="r-date">' + dDay(e.date) + '</span></span></li>';
+      }
+    });
+    return h + '</ul>';
+  }
+
+  function readerHtml(e, L){
+    var i = S.open;
+    var s = scoreOf(e);
+    var h = '<div class="rtool"><button class="ib" data-act="back" aria-label="Back to inbox" title="Back to inbox">' + ICON.back + '</button><span class="sp"></span>' +
+      '<span>' + (i + 1) + ' of ' + EM.length + '</span>' +
+      '<button class="ib" data-act="prev" aria-label="Previous email"' + (i === 0 ? ' disabled' : '') + '>' + ICON.up + '</button>' +
+      '<button class="ib" data-act="next" aria-label="Next email"' + (i === EM.length - 1 ? ' disabled' : '') + '>' + ICON.down + '</button></div>';
+    h += '<div class="mail"><div class="subj"><h2>' + inline(e.subject) + '</h2><span class="lab">' + esc(e.typeLabel) + (e.type === 'event_invite' ? ' ' + e.sequence_step : '') + '</span>' +
+      (s != null ? '<span class="chip score' + scoreClass(s) + '">' + s + '/10</span>' : '') + '</div>';
+    h += '<div class="sender"><span class="av">' + esc(DATA.sender.initial) + '</span><div class="who"><div class="n">' + esc(DATA.sender.name) +
+      (DATA.sender.email ? ' <span class="e">&lt;' + esc(DATA.sender.email) + '&gt;</span>' : '') + '</div><div class="to">to me</div></div>' +
+      '<div class="when">' + (L === 'phone' ? dShort(e.date) : dLong(e.date, e.time)) + '</div></div>';
+    h += '<div class="body">' + bodyHtml(e.body) + '</div>';
+    h += '<div class="acts" aria-hidden="true"><span class="pill">' + ICON.reply + 'Reply</span><span class="pill">' + ICON.fwd + 'Forward</span></div></div>';
+    return h;
+  }
+
+  /* ---------- notes ---------- */
+  function renderNotes(){
+    $('notes').innerHTML = S.open == null ? overviewHtml() : emailNotesHtml(EM[S.open]);
+  }
+
+  function overviewHtml(){
+    var counts = {};
+    EM.forEach(function(e){ counts[e.typeLabel] = (counts[e.typeLabel] || 0) + 1; });
+    var rated = EM.filter(function(e){ return scoreOf(e) != null; });
+    var fills = EM.reduce(function(n, e){ return n + (e.fill_in ? e.fill_in.length : 0); }, 0);
+    var errs = EM.reduce(function(n, e){ return n + e.checks.filter(function(c){ return c.level === 'error'; }).length; }, 0);
+    var h = '<div class="card"><h3>This folder</h3><div class="types">';
+    Object.keys(counts).forEach(function(k){ h += '<span>' + esc(k) + '</span><span>' + counts[k] + '</span>'; });
+    h += '</div></div>';
+    if (rated.length){
+      var avg = rated.reduce(function(n, e){ return n + scoreOf(e); }, 0) / rated.length;
+      var tens = rated.filter(function(e){ return scoreOf(e) >= 10; }).length;
+      h += '<div class="card"><h3>Ratings</h3><div class="score"><div class="big">' + (Math.round(avg * 10) / 10) + '<small>/10 average</small></div></div>' +
+        '<p class="climb-l">' + rated.length + ' of ' + EM.length + ' rated · ' + tens + ' scored a 10</p></div>';
+    }
+    h += '<div class="card"><h3>Before you send</h3>';
+    h += fills ? '<p><b>' + fills + '</b> thing' + (fills === 1 ? '' : 's') + ' to fill in. They are highlighted <mark class="fill">[like this]</mark>.</p>' : '<p>Nothing to fill in.</p>';
+    if (errs) h += '<p style="color:var(--accent-ink)"><b>' + errs + '</b> rule' + (errs === 1 ? '' : 's') + ' broken. Open the email to see.</p>';
+    h += '<p class="hint">Click an email to open it. Read it out loud. Switch to Phone to see how the subject line cuts off.</p></div>';
+    return h;
+  }
+
+  function emailNotesHtml(e){
+    var h = '';
+    // rating
+    var rr = e.rating_rounds || [];
+    if (rr.length){
+      var last = rr[rr.length - 1];
+      var max = 10;
+      h += '<div class="card"><h3>Rating</h3><div class="score"><div class="big">' + last.overall + '<small>/10</small></div><div class="climb" aria-label="Score by round">';
+      rr.forEach(function(r, k){ h += '<div title="Round ' + r.round + (r.honesty === 'fail' ? ': honesty fail' : '') + '" class="b' + (k === rr.length - 1 ? ' last' : '') + (r.honesty === 'fail' ? ' fail' : '') + '" style="height:' + Math.max(6, Math.round(44 * r.overall / max)) + 'px"><span>' + r.overall + '</span></div>'; });
+      h += '</div></div><p class="climb-l">' + rr.map(function(r){ return r.overall; }).join(' → ') + ' over ' + rr.length + ' round' + (rr.length === 1 ? '' : 's') +
+        (last.honesty ? ' · honesty ' + esc(last.honesty) : '') +
+        (rr.slice(0, -1).some(function(r){ return r.honesty === 'fail'; }) && last.honesty !== 'fail' ? '. An invented detail was found and removed on the way.' : '') + '</p>';
+      if (e.best_line) h += '<p class="why">Best line: "' + inline(e.best_line) + '"</p>';
+      h += '</div>';
+    } else {
+      h += '<div class="card"><h3>Rating</h3><p class="hint">Not rated (quick draft). Say "rate my email" to score it and lift it to a 10.</p></div>';
+    }
+    // how it looks on a phone
+    h += fitNoteHtml(e);
+    // copy
+    var order = PLATFORMS.slice().sort(function(a, b){ return (b.key === DATA.platform) - (a.key === DATA.platform); });
+    h += '<div class="card"><h3>Copy into your platform</h3><div class="btns">';
+    order.forEach(function(p, k){
+      h += '<button type="button" class="cbtn' + (p.key === S.platform ? ' primary' : '') + '" data-copy="all" data-p="' + p.key + '"><span>Copy for ' + p.name + '</span><span class="mf">First name becomes ' + esc(p.field) + '</span></button>';
+    });
+    h += '<button type="button" class="plain" data-copy="all" data-p="plain">Copy plain text</button></div>';
+    var pn = (PLATFORMS.filter(function(p){ return p.key === S.platform; })[0] || PLATFORMS[0]).name;
+    h += '<div class="one"><div class="lbl">One field at a time, for ' + esc(pn) + ':</div><div class="one-row">' +
+      '<button type="button" class="mini" data-copy="subject" data-p="' + S.platform + '">Subject</button>' +
+      '<button type="button" class="mini" data-copy="preview" data-p="' + S.platform + '">Preview text</button>' +
+      '<button type="button" class="mini" data-copy="body" data-p="' + S.platform + '">Body</button></div></div></div>';
+    // fill in
+    if (e.fill_in && e.fill_in.length){
+      h += '<div class="card"><h3>Fill in before sending</h3><ul class="fills">' + e.fill_in.map(function(f){ return '<li>' + esc(f) + '</li>'; }).join('') + '</ul></div>';
+    }
+    // subject lines
+    h += '<div class="card"><h3>Subject lines</h3><ul class="opts">';
+    (e.subject_options || []).forEach(function(o){
+      var f = fitOf(o.chars);
+      h += '<li class="' + (o.chosen ? 'on' : '') + '"><div class="top2"><span>' + esc(o.angle || 'option') + (o.chosen ? ' · chosen' : '') + '</span><span class="cc fit-' + f.k + '" title="' + esc(f.t) + '">' + o.chars + ' · ' + f.s + '</span></div>' + inline(o.text) + '</li>';
+    });
+    h += '</ul>' + (e.recommended_reason ? '<p class="why">' + esc(e.recommended_reason) + '</p>' : '');
+    h += '<p class="why"><span class="fit-g">Green</span> 33 or less fits every phone. <span class="fit-a">Amber</span> 34 to 48 is cut off in the Gmail app, so the first 33 characters must make sense alone. <span class="fit-r">Red</span> over 48 is cut off on most phones.</p>';
+    h += '<p class="why">Preview text: ' + (e.preview_text ? e.preview_text.length : 0) + ' characters (40 to 90 is best).</p></div>';
+    // details
+    h += '<div class="card"><h3>Details</h3><dl class="kv"><dt>Type</dt><dd>' + esc(e.typeLabel) + (e.type === 'event_invite' ? ' · email ' + e.sequence_step + ' of 3' : '') + '</dd>' +
+      '<dt>Send</dt><dd>' + dLong(e.date, e.time) + '</dd><dt>Status</dt><dd>' + esc(e.status) + '</dd>' +
+      (e.cta ? '<dt>The ask</dt><dd>' + esc(e.cta) + '</dd>' : '') +
+      (e.side_idea ? '<dt>Side idea</dt><dd>' + esc(e.side_idea) + '</dd>' : '') +
+      '<dt>File</dt><dd>' + esc(e.file) + '</dd></dl></div>';
+    // checks
+    var shown = e.checks.filter(function(c){ return c.level !== 'info'; });
+    h += '<div class="card"><h3>Checks</h3>';
+    if (!shown.length) h += '<div class="ok"><i></i>All checks pass</div>';
+    else h += '<ul class="chk">' + shown.map(function(c){ return '<li><span class="lv ' + c.level + '">' + (c.level === 'error' ? 'FIX' : 'LOOK') + '</span><span>' + esc(c.msg) + '</span></li>'; }).join('') + '</ul>';
+    h += '</div>';
+    return h;
+  }
+
+  /* ---------- copy ---------- */
+  function conv(t, p){
+    var f = { gohighlevel:'{{contact.first_name}}', mailchimp:'*|FNAME|*', activecampaign:'%FIRSTNAME%' }[p] || '{{first_name}}';
+    return String(t || '').replace(MERGE, function(){ return f; });
+  }
+  function copyText(e, part, p){
+    if (part === 'subject') return conv(e.subject, p);
+    if (part === 'preview') return conv(e.preview_text, p);
+    if (part === 'body') return conv(e.body, p);
+    return 'Subject: ' + conv(e.subject, p) + '\nPreview text: ' + conv(e.preview_text, p) + '\n\n' + conv(e.body, p) + '\n';
+  }
+  function toClipboard(text){
+    if (navigator.clipboard && window.isSecureContext !== false){
+      return navigator.clipboard.writeText(text).catch(function(){ return legacyCopy(text); });
+    }
+    return legacyCopy(text);
+  }
+  function legacyCopy(text){
+    return new Promise(function(res, rej){
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.top = '-1000px';
+      document.body.appendChild(ta); ta.select();
+      var ok = false; try { ok = document.execCommand('copy'); } catch(err) {}
+      document.body.removeChild(ta); ok ? res() : rej();
+    });
+  }
+  var tt;
+  function toast(msg, ms){ var t = $('toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(tt); tt = setTimeout(function(){ t.classList.remove('on'); }, ms || 3200); }
+  function uniq(a){ return a.filter(function(x, i){ return a.indexOf(x) === i; }); }
+  var FALLBACK_TIP = {
+    gohighlevel: 'In GoHighLevel, click the first name tag and set Default Text to "there".',
+    mailchimp: 'In Mailchimp, set a default first name ("there") in your audience fields.',
+    activecampaign: 'In ActiveCampaign, check contacts without a first name before you send.',
+    plain: "Replace {{first_name}} with your tool's first name tag."
+  };
+
+  /* ---------- events ---------- */
+  function open(i){ S.open = i; S.read[i] = true; render(); }
+  function render(){ renderHeader(); renderClient(); renderNotes(); }
+
+  document.addEventListener('click', function(ev){
+    var row = ev.target.closest('[data-i]');
+    if (row){ open(+row.dataset.i); return; }
+    var act = ev.target.closest('[data-act]');
+    if (act){
+      var a = act.dataset.act;
+      if (a === 'back'){ S.open = null; render(); }
+      if (a === 'prev' && S.open > 0) open(S.open - 1);
+      if (a === 'next' && S.open < EM.length - 1) open(S.open + 1);
+      return;
+    }
+    var cp = ev.target.closest('[data-copy]');
+    if (cp && S.open != null){
+      var e = EM[S.open], p = cp.dataset.p, part = cp.dataset.copy;
+      var raw = copyText(e, part, 'plain');
+      var left = uniq((raw.match(/\[[^\]\n]{2,80}\]/g) || []).concat(raw.match(/\{\{(?!\s*first_name\s*\}\})[^}]*\}\}/g) || []));
+      if (left.length && !confirm('This still has ' + left.join(', ') + ' to fill in. Readers will see it as it is. Copy anyway?')) return;
+      if (p !== 'plain' && part === 'all') { S.platform = p; }
+      var name = p === 'plain' ? 'plain text' : (PLATFORMS.filter(function(x){ return x.key === p; })[0] || {}).name;
+      toClipboard(copyText(e, part, p)).then(function(){
+        var what = part === 'all' ? 'Subject, preview text and email copied' : part === 'body' ? 'Email copied. Paste it into the body' : part === 'preview' ? 'Preview text copied' : 'Subject copied';
+        var tip = HAS_MERGE.test(raw) ? ' ' + FALLBACK_TIP[p] : '';
+        toast(what + (p === 'plain' ? '.' : ' for ' + name + '.') + tip, tip ? 7000 : 3200);
+      }, function(){ toast('Could not copy. Select the text in the email and copy it by hand.'); });
+      if (part === 'all') renderNotes();
+      return;
+    }
+    var seg = ev.target.closest('.seg button');
+    if (seg){ S.mode = seg.dataset.mode; try { localStorage.setItem('email-preview-mode', S.mode); } catch(e) {} render(); }
+  });
+  document.addEventListener('keydown', function(ev){
+    var row = ev.target.closest && ev.target.closest('[data-i]');
+    if (row && (ev.key === 'Enter' || ev.key === ' ')){ ev.preventDefault(); open(+row.dataset.i); return; }
+    if (S.open == null) return;
+    if (ev.key === 'Escape'){ S.open = null; render(); }
+    if (ev.key === 'j' || ev.key === 'ArrowDown'){ if (S.open < EM.length - 1){ ev.preventDefault(); open(S.open + 1); } }
+    if (ev.key === 'k' || ev.key === 'ArrowUp'){ if (S.open > 0){ ev.preventDefault(); open(S.open - 1); } }
+  });
+  if (narrowMQ.addEventListener) narrowMQ.addEventListener('change', render); else if (narrowMQ.addListener) narrowMQ.addListener(render);
+
+  // A single email opens straight away.
+  if (EM.length === 1){ S.open = 0; S.read[0] = true; }
+  var hash = /^#(\d+)$/.exec(location.hash); if (hash && EM[+hash[1]]){ S.open = +hash[1]; S.read[S.open] = true; }
+  render();
+})();
+</script>
+</body>
+</html>
