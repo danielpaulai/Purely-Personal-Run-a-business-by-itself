@@ -70,7 +70,7 @@ If the task names a pattern, use it.
 
 Pick the strongest one as `recommended_subject` and say why in one short line.
 
-Also write `preview_text`: the grey line inboxes show after the subject. 40 to 90 characters. Subject and preview read as one thought: either a short second punch that flips the angle, or one sentence that names the payoff. It adds a reason to open: it continues the subject's thought and never repeats it or the first line. Never generic ("Just one quick question for you today"). For nine_word and event_invite steps 1 and 3, make it a warm, light line that makes answering feel easy, in the founder's voice and written fresh each time, but never an instruction like "just hit reply". Never copy the example lines in this prompt word for word.
+Also write `preview_text`: the grey line inboxes show after the subject. 40 to 90 characters. Subject and preview read as one thought: either a short second punch that flips the angle, or one sentence that names the payoff. It adds a reason to open: it continues the subject's thought and never repeats it or the first line. Never generic ("Just one quick question for you today"). For nine_word, the preview is one real fact from the profile that gives a reason to open and that the subject and body do not already say: a number, a story fact, what the offer includes, or who it is for in new words. Never repeat words from the subject or the body line. Never a line about replying or answering ("a yes or no is fine", "I'd love to know where you are"): that is a second ask. For event_invite steps 1 and 3, make it a warm, light line that makes answering feel easy, in the founder's voice and written fresh each time, but never an instruction like "just hit reply". Never copy the example lines in this prompt word for word.
 
 # The PS
 
@@ -110,13 +110,13 @@ Every nine_word email has three parts, all from the founder's profile:
 3. One reply word in quotes, so answering takes two seconds: Reply "yes", Reply "in", Reply "seat", Reply "chat", Reply "send", Reply "first". In other languages, use that language's quotation marks and a natural word.
 Use one of these shapes, adapted to the founder's offer and calls to action:
 - Work with me: "I'm looking to work with a few [who] who want [result]. Reply "[word]" if that's you."
-- Still looking: "Are you still looking to [result]? Reply "yes" and I'll tell you how I can help."
+- Still looking: "Are you a [who] still looking to [result]? Reply "[word]" and I'll tell you how I can help."
 - Small group: "I'm getting a few [who] together to [result]. Want in? Reply "in"."
-- Event: "I'm running a free [event] on [result] on [date]. Want a seat? Reply "seat"." (only if the profile has an event)
-- Free guide: "Want my free [guide] for [result]? Reply "send" and it's yours." (only if the profile has a guide)
-- Quick chat: "Up for a 15 minute chat about [result]? Reply "chat" and I'll send you times."
+- Event: "I'm running a free [event] for [who] on [result], on [date]. Want a seat? Reply "seat"." (only if the profile has an event)
+- Free guide: "[Who]? Want my free [guide] for [result]? Reply "send" and it's yours." (only if the profile has a guide)
+- Quick chat: "[Who]? Up for a free 15 minute chat about [result]? Reply "chat" and I'll send you times." (only if the profile offers a call)
 - First five: "I'm testing a new [program] for [who] next month. Want to be one of the first five? Reply "first"." (only if the profile has a new program)
-When you write three, use three different shapes, and make one of them "Work with me".
+Every shape names the who, even the questions. Use the profile's exact words for who in every email of the batch (keep "solo", "freelance", the city, every kind of business they name). The result must be a result from the profile, never a topic ("a chat about your books" is a topic). When you write three, use three different shapes, make one of them "Work with me", use three different reply words, and never reuse the same result phrase twice in the batch.
 Never write a question with no result and no offer in it: no surveys ("Do you do your own books?"), no polls ("Step by step or all at once?"), no "Do you run a [type of business]?". If the reader can't tell why you're asking and how to answer, it isn't a nine_word email.
 
 ## how_to

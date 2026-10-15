@@ -71,7 +71,8 @@ Five shapes. Fill the slots, read it out loud, send it. Every example below is r
 
 **The shape: who, result, reply**
 - Subject: their first name, or one plain word.
-- Who you want to hear from, and the result they want.
+- Who you want to hear from, and the result they want. Every script names the who, even the questions.
+- Preview text: one real fact that gives a reason to open, never a line about replying.
 - One word to reply with, in quotes.
 - Your first name.
 
