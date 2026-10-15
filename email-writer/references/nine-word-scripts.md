@@ -1,38 +1,51 @@
 # The 9-Word Scripts
 
-One short question. The whole email. Fill the brackets from your offer.
+A tiny email that starts conversations. One or two short lines, and the reader knows exactly how to answer.
+
+## The shape: who, result, reply
+
+Every 9-word email has the same three parts:
+
+1. **Who.** The kind of person you want to hear from: "a few coaches", "three cafe owners", "founders".
+2. **The result.** What they want, in their words, from your offer: "their first $8,000", "books they don't dread".
+3. **The reply.** One word to reply with, in quotes: Reply "yes". Reply "seat". Reply "chat".
+
+If one of the three is missing, it isn't a 9-word email yet.
 
 **Subject:** their first name, or one plain word.
 **Sign off:** your first name.
 **No link, no PS.** The reply is the ask.
+**Length:** 10 to 25 words. Short enough to read in three seconds.
 **Send:** Monday morning, every 2 to 3 weeks. Change the script each time.
 
 ## The scripts
 
-1. Are you still looking for [result]?
-2. Are you after [option A], or something more [option B]?
-3. I'm running a workshop on [topic] in [month]. Want to join us?
-4. I'm getting a few [people] together to work on [problem]. Want in?
-5. I'm putting together a small group for [result]. Would you like to work with me?
-6. Would you like a free copy of my [guide]? I'll send the link.
-7. Do you [work with / run] [type of business]?
-8. Would you like to work with me to go from [here] to [there]?
-9. Would you be up for a 15 minute chat about [problem]?
-10. I'm starting a [podcast / video series] on [topic]. Want the first one?
-11. I'm testing a new [program] next month. Want to be one of the first five?
-12. Quick question: is [problem] still on your mind?
+1. **Work with me.** I'm looking to work with a few [who] who want [result]. Reply "[word]" if that's you.
+2. **Still looking.** Are you still looking to [result]? Reply "yes" and I'll tell you how I can help.
+3. **Small group.** I'm getting a few [who] together to [result]. Want in? Reply "in".
+4. **Event.** I'm running a free [event] on [result] on [date]. Want a seat? Reply "seat".
+5. **Free guide.** Want my free [guide] for [result]? Reply "send" and it's yours.
+6. **Quick chat.** Up for a 15 minute chat about [result]? Reply "chat" and I'll send you times.
+7. **First five.** I'm testing a new [program] for [who] next month. Want to be one of the first five? Reply "first".
 
 ## Filled examples
 
-- Are you still looking for your first three clients?
-- Are you after more one to one clients, or something more leveraged?
-- I'm running a free workshop on AI content in November. Want to join us?
-- I'm getting a few coaches together to fix our sales calls. Want in?
-- Would you like a free copy of my pricing checklist? I'll send the link.
+- I'm looking to work with a few coaches who want their first three clients. Reply "yes" if that's you.
+- Are you still looking to sell out your next workshop? Reply "yes" and I'll tell you how I can help.
+- I'm getting a few cafe owners together to sort their books in 30 days. Want in? Reply "in".
+- Want my free Friday checklist for books you don't dread? Reply "send" and it's yours.
+
+## Don't send these
+
+They get no replies, because there's no result and no clear way to answer:
+
+- "Do you run a solo business?" (no result, no offer)
+- "Do you do your own books?" (a survey, not a conversation)
+- "Step by step or all at once?" (a poll that goes nowhere)
 
 ## When the replies come in
 
-- **"Yes" or "tell me more":** reply like a person, give the details, invite them to a short call.
+- **"Yes" or the reply word:** reply like a person, give the details, invite them to a short call.
 - **"Not right now":** thank them. "No problem at all, I'll keep you posted."
 - **No reply:** that's fine. Don't chase with the same question.
 

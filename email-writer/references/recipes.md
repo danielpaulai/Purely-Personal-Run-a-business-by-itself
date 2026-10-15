@@ -65,24 +65,27 @@ Five shapes. Fill the slots, read it out loud, send it. Every example below is r
 
 ## 3. The 9-Word Email
 
-**What it does:** one short question that gets replies. It wakes up a quiet list and tells you who is ready to talk.
+**What it does:** a tiny email that gets replies. It wakes up a quiet list and tells you who is ready to talk.
 **How often:** every 2 to 3 weeks. Send it on a Monday morning so replies land on working days. Change the script each time.
-**Length:** about nine words. Never more than 25.
+**Length:** 10 to 25 words. Short enough to read in three seconds.
 
-**The shape**
+**The shape: who, result, reply**
 - Subject: their first name, or one plain word.
-- One question.
+- Who you want to hear from, and the result they want.
+- One word to reply with, in quotes.
 - Your first name.
 
-No link. No PS. The reply is the ask. See `nine-word-scripts.md` for the full bank.
+No link. No PS. The reply is the ask. See `nine-word-scripts.md` for the seven scripts.
 
 **Example**
 
 > **Subject:** {{first_name}}
 >
-> Are you still looking for your first three clients?
+> I'm looking to work with a few founders who want their first $8,000 from their business. Reply "yes" if that's you.
 >
 > Danny
+
+**Never:** a question with no result in it ("Do you run a solo business?"). Nobody knows why you're asking, so nobody replies.
 
 **When they reply:** answer like a person, then invite them to a short call.
 

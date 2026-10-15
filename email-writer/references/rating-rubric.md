@@ -11,7 +11,7 @@ A busy reader on a phone opens it because of the subject line, reads to the last
 3. `opening`: Does the first line start at the most interesting moment, the result or the reader's problem? Any warm up ("I hope", "I wanted to share", "In today's email") caps this at 4.
 4. `one_idea`: One main idea and a clear payoff line the reader will remember. Two competing ideas caps this at 5.
 5. `voice`: Sounds like this founder (their samples, their Voice DNA, their language), warm and human. Any AI tell caps this at 5: em dashes, "delve", "unlock", "game-changer", "elevate", "seamless", "leverage", "Here's the thing", stacked triplets, "it's not X, it's Y" more than once, generic filler.
-6. `shape`: Follows its recipe (client_win, story, nine_word, how_to, event_invite step 1/2/3, eight_minute_edit) and its length range.
+6. `shape`: Follows its recipe (client_win, story, nine_word, how_to, event_invite step 1/2/3, eight_minute_edit) and its length range. A nine_word email must name who it is for, the result they want, and one reply word in quotes ("Reply "yes""); missing any of the three caps `shape` and `ask` at 4. A survey or poll question with no result in it ("Do you do your own books?") caps both at 3.
 7. `ask`: One clear, easy next step that fits the email. Two competing asks in the body, or no ask at all, caps this at 4. A PS listing the founder's real ways to work with them is not a second ask; never mark it down for that. A PS that adds its own "reply with…" instruction is a second ask.
 8. `phone`: Short paragraphs (one to three sentences), easy to read on a phone, no walls of text.
 

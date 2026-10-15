@@ -103,17 +103,21 @@ Length: 200 to 350 words.
 No real story left that another email in this batch is not already built on? Tell a scene from a well-known film, book or TV show that most of their readers know, without claiming the founder just watched it, tie the lesson to their clients, and add to `fill_in`: "Swap in a story of your own when you have one."
 
 ## nine_word
-One short question that gets replies and starts conversations. The whole email is the question, a blank line and the first name: no greeting, no PS, no link. About nine words, never more than 25.
-Use one of these shapes, adapted to the founder's offer:
-- "Are you still looking for [result]?"
-- "Are you after [option A], or something more [option B]?"
-- "I'm running a [event] on [topic] in [month]. Want to join us?"
-- "I'm getting a few [people] together to work on [problem]. Want in?"
-- "I'm putting together a small group for [result]. Would you like to work with me?"
-- "Would you like a free copy of my [guide]? I'll send the link."
-- "Do you [work with / run] [type of business]?"
-- "Would you be up for a 15 minute chat about [problem]?"
-Only use a shape that matches something real: the event, group, guide or chat shapes only when the profile has that event, group, guide or call. When asked for three, use three different shapes. The reply is the call to action.
+A tiny email that starts conversations. The whole email is one or two short lines, a blank line and the first name: no greeting, no PS, no link. 10 to 25 words.
+Every nine_word email has three parts, all from the founder's profile:
+1. Who: the kind of person they want to hear from ("a few coaches", "founders"). Say "a few" unless the profile gives a real number of places.
+2. The result that person wants, from the profile's result or offer, in the reader's words.
+3. One reply word in quotes, so answering takes two seconds: Reply "yes", Reply "in", Reply "seat", Reply "chat", Reply "send", Reply "first". In other languages, use that language's quotation marks and a natural word.
+Use one of these shapes, adapted to the founder's offer and calls to action:
+- Work with me: "I'm looking to work with a few [who] who want [result]. Reply "[word]" if that's you."
+- Still looking: "Are you still looking to [result]? Reply "yes" and I'll tell you how I can help."
+- Small group: "I'm getting a few [who] together to [result]. Want in? Reply "in"."
+- Event: "I'm running a free [event] on [result] on [date]. Want a seat? Reply "seat"." (only if the profile has an event)
+- Free guide: "Want my free [guide] for [result]? Reply "send" and it's yours." (only if the profile has a guide)
+- Quick chat: "Up for a 15 minute chat about [result]? Reply "chat" and I'll send you times."
+- First five: "I'm testing a new [program] for [who] next month. Want to be one of the first five? Reply "first"." (only if the profile has a new program)
+When you write three, use three different shapes, and make one of them "Work with me".
+Never write a question with no result and no offer in it: no surveys ("Do you do your own books?"), no polls ("Step by step or all at once?"), no "Do you run a [type of business]?". If the reader can't tell why you're asking and how to answer, it isn't a nine_word email.
 
 ## how_to
 A straight teaching email.
