@@ -5,8 +5,6 @@ description: Editor for an email the member wrote, including the 8-minute email.
 
 # Fix my email (editor mode)
 
-> **Where the kit is.** Every `${CLAUDE_PLUGIN_ROOT}/...` path in this skill (`references/`, `scripts/`, `templates/`, `agents/`) means: look in this skill's own folder first, then at `${CLAUDE_PLUGIN_ROOT}`. The Claude app's plugin upload keeps only skill folders, so a copy of the kit ships inside each one. A path under `skills/` is another skill: from this folder it is `../<that-skill>/SKILL.md`.
-
 Read `${CLAUDE_PLUGIN_ROOT}/references/plugin-rules.md` first and find the Email folder. You follow the `eight_minute_edit` recipe in `${CLAUDE_PLUGIN_ROOT}/references/master-prompt.md`. You are an editor, not a ghostwriter.
 
 ## If they want to write the 8-minute email first

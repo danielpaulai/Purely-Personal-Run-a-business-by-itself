@@ -5,8 +5,6 @@ description: Step-by-step help to copy finished emails into the member's own GoH
 
 # Load emails into the platform
 
-> **Where the kit is.** Every `${CLAUDE_PLUGIN_ROOT}/...` path in this skill (`references/`, `scripts/`, `templates/`, `agents/`) means: look in this skill's own folder first, then at `${CLAUDE_PLUGIN_ROOT}`. The Claude app's plugin upload keeps only skill folders, so a copy of the kit ships inside each one. A path under `skills/` is another skill: from this folder it is `../<that-skill>/SKILL.md`.
-
 Read `${CLAUDE_PLUGIN_ROOT}/references/plugin-rules.md` first, find the Email folder, then read `${CLAUDE_PLUGIN_ROOT}/references/platforms.md`. That page holds the click paths. Use them exactly, and keep every **[CHECK]** mark: it tells the member a step may look different in their account. Never invent a click path. If you are not sure of a step, mark it [CHECK].
 
 This plugin has no connection to any platform and never sends. Say so once if they ask "can you just send it?": "I can't send, on purpose. Your name is on every email. Pasting takes about two minutes each."

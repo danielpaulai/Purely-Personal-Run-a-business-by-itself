@@ -5,8 +5,6 @@ description: Catch and find email ideas. "Add an idea: ..." saves it to Email/id
 
 # Email ideas
 
-> **Where the kit is.** Every `${CLAUDE_PLUGIN_ROOT}/...` path in this skill (`references/`, `scripts/`, `templates/`, `agents/`) means: look in this skill's own folder first, then at `${CLAUDE_PLUGIN_ROOT}`. The Claude app's plugin upload keeps only skill folders, so a copy of the kit ships inside each one. A path under `skills/` is another skill: from this folder it is `../<that-skill>/SKILL.md`.
-
 Read `${CLAUDE_PLUGIN_ROOT}/references/plugin-rules.md` first, then find the Email folder. Background for you: `${CLAUDE_PLUGIN_ROOT}/references/ideas.md` (the places ideas pile up and "something you saw + your business = an email").
 
 ## The ideas.md line format

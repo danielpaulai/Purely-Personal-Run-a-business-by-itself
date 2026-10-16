@@ -5,8 +5,6 @@ description: Ten subject lines for one email across three angles (moment, label,
 
 # Subject lines
 
-> **Where the kit is.** Every `${CLAUDE_PLUGIN_ROOT}/...` path in this skill (`references/`, `scripts/`, `templates/`, `agents/`) means: look in this skill's own folder first, then at `${CLAUDE_PLUGIN_ROOT}`. The Claude app's plugin upload keeps only skill folders, so a copy of the kit ships inside each one. A path under `skills/` is another skill: from this folder it is `../<that-skill>/SKILL.md`.
-
 Read `${CLAUDE_PLUGIN_ROOT}/references/plugin-rules.md` first, then `${CLAUDE_PLUGIN_ROOT}/references/subject-lines.md` (the three angles, the rules and 30 examples) and the subject rules in `master-prompt.md`.
 
 ## Step 1: get the email

@@ -5,8 +5,6 @@ description: Writes next month's emails in one go: 4 weeks from the member's wee
 
 # A month of emails
 
-> **Where the kit is.** Every `${CLAUDE_PLUGIN_ROOT}/...` path in this skill (`references/`, `scripts/`, `templates/`, `agents/`) means: look in this skill's own folder first, then at `${CLAUDE_PLUGIN_ROOT}`. The Claude app's plugin upload keeps only skill folders, so a copy of the kit ships inside each one. A path under `skills/` is another skill: from this folder it is `../<that-skill>/SKILL.md`.
-
 This is the skill members use most. It must feel like sitting down with a good editor who already knows their business: three quick questions, then a finished month they can read, fill in and schedule in one sitting.
 
 Read `${CLAUDE_PLUGIN_ROOT}/references/plugin-rules.md` first, find the Email folder, then read, in this order:

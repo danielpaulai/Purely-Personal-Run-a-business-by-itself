@@ -5,8 +5,6 @@ description: Writes one email (or the three-email event invite) from the member'
 
 # Write one email
 
-> **Where the kit is.** Every `${CLAUDE_PLUGIN_ROOT}/...` path in this skill (`references/`, `scripts/`, `templates/`, `agents/`) means: look in this skill's own folder first, then at `${CLAUDE_PLUGIN_ROOT}`. The Claude app's plugin upload keeps only skill folders, so a copy of the kit ships inside each one. A path under `skills/` is another skill: from this folder it is `../<that-skill>/SKILL.md`.
-
 Read `${CLAUDE_PLUGIN_ROOT}/references/plugin-rules.md` first, find the Email folder, and read everything it says to read before writing (EMAIL-BRAIN.md, the linked Voice DNA, `master-prompt.md`, the recipe in `recipes.md`). The file format is `${CLAUDE_PLUGIN_ROOT}/references/email-file-format.md`.
 
 ## Step 1: what kind of email

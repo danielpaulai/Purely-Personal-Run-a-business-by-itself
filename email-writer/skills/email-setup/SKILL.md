@@ -5,8 +5,6 @@ description: Sets up the member's Email folder in their Second Brain (or ~/Docum
 
 # Email setup
 
-> **Where the kit is.** Every `${CLAUDE_PLUGIN_ROOT}/...` path in this skill (`references/`, `scripts/`, `templates/`, `agents/`) means: look in this skill's own folder first, then at `${CLAUDE_PLUGIN_ROOT}`. The Claude app's plugin upload keeps only skill folders, so a copy of the kit ships inside each one. A path under `skills/` is another skill: from this folder it is `../<that-skill>/SKILL.md`.
-
 Read `${CLAUDE_PLUGIN_ROOT}/references/plugin-rules.md` first. The file this skill fills is `${CLAUDE_PLUGIN_ROOT}/references/email-brain-template.md`. Takes about 5 minutes. Ask one short question at a time, in plain words.
 
 ## Step 1: find their Second Brain

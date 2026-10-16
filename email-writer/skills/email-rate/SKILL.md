@@ -5,8 +5,6 @@ description: The rating loop. A separate rater scores an email 1 to 10 (eight pa
 
 # Email rate: lift an email to a 10, honestly
 
-> **Where the kit is.** Every `${CLAUDE_PLUGIN_ROOT}/...` path in this skill (`references/`, `scripts/`, `templates/`, `agents/`) means: look in this skill's own folder first, then at `${CLAUDE_PLUGIN_ROOT}`. The Claude app's plugin upload keeps only skill folders, so a copy of the kit ships inside each one. A path under `skills/` is another skill: from this folder it is `../<that-skill>/SKILL.md`.
-
 Read `${CLAUDE_PLUGIN_ROOT}/references/plugin-rules.md` first. The standard is `${CLAUDE_PLUGIN_ROOT}/references/rating-rubric.md`. The rater is the plugin agent `email-rater` (`${CLAUDE_PLUGIN_ROOT}/agents/email-rater.md`). The writer is you, following `${CLAUDE_PLUGIN_ROOT}/references/master-prompt.md`.
 
 **The one rule that makes this work:** the writer never grades its own work. Every score comes from a fresh `email-rater` run that did not write the email.
