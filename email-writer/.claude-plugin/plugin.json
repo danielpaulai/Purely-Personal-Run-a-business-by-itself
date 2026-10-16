@@ -1,0 +1,26 @@
+{
+  "name": "email-writer",
+  "version": "1.0.0",
+  "description": "The AI Founder Circle email writer. Lives next to your Second Brain: set up your Email folder, catch ideas, write one email or a whole month, fix a fast draft, get subject lines, rate every email up to a 10, preview it like a real inbox and copy it into GoHighLevel, Mailchimp or ActiveCampaign. Markdown in, copy-paste out. It never sends.",
+  "author": {
+    "name": "Danny Paul",
+    "email": "danny@danielpaul.ai",
+    "url": "https://purelypersonal.ai"
+  },
+  "license": "MIT",
+  "homepage": "https://purelypersonal.ai",
+  "keywords": [
+    "email",
+    "newsletter",
+    "founder-circle",
+    "second-brain",
+    "email-month",
+    "nine-word-email",
+    "client-win",
+    "subject-lines",
+    "gohighlevel",
+    "mailchimp",
+    "activecampaign",
+    "purely-personal"
+  ]
+}
