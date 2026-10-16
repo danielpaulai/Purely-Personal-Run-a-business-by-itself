@@ -1,9 +1,11 @@
 ---
 name: email-fix
-description: Editor mode for an email the member wrote themselves, including the 8-minute email. Keeps their words, jokes and stories, gives three kind specific notes on what changed and why, the polished version, and three subject lines. Never rewrites silently. Saves both versions in Email/drafts/. Also coaches the 8-minute habit. Trigger on "fix my email", "edit my email", "polish this email", "check my draft", "here's my 8-minute email", "the 8-minute email", "help me write the 8-minute email", "make this better but keep it mine".
+description: Editor for an email the member wrote, including the 8-minute email. Keeps their words and stories, gives three kind notes on what changed, the polished version and three subject lines. Saves both versions in Email/drafts/. Trigger on "fix my email", "edit my email", "polish this email", "check my draft", "here's my 8-minute email", "make this better but keep it mine".
 ---
 
 # Fix my email (editor mode)
+
+> **Where the kit is.** Every `${CLAUDE_PLUGIN_ROOT}/...` path in this skill (`references/`, `scripts/`, `templates/`, `agents/`) means: look in this skill's own folder first, then at `${CLAUDE_PLUGIN_ROOT}`. The Claude app's plugin upload keeps only skill folders, so a copy of the kit ships inside each one. A path under `skills/` is another skill: from this folder it is `../<that-skill>/SKILL.md`.
 
 Read `${CLAUDE_PLUGIN_ROOT}/references/plugin-rules.md` first and find the Email folder. You follow the `eight_minute_edit` recipe in `${CLAUDE_PLUGIN_ROOT}/references/master-prompt.md`. You are an editor, not a ghostwriter.
 

@@ -1,9 +1,11 @@
 ---
 name: email-month
-description: The hero skill. Plans and writes next month's emails in one go: 4 weeks from the cadence and the member's weekly promise, about 10 emails across the five Email Room recipes (client win, story, 9-word, how-to, event invite) built only from their ideas.md, proof bank and story bank, each rated by the separate rater up to a 10, saved as Email/months/<YYYY-MM>/ with one file per email plus calendar.md, then rendered as an inbox preview. Trigger on "write next month's emails", "write my emails for November", "plan my month of emails", "a month of emails", "fill my email calendar", "next 4 weeks of emails". Say "quick draft" to skip the rating.
+description: Writes next month's emails in one go: 4 weeks from the member's weekly promise, about 10 emails across the five recipes, built only from their ideas, proof and stories, each rated up to a 10, saved in Email/months/<YYYY-MM>/ with calendar.md and an inbox preview. Trigger on "write next month's emails", "plan my month of emails", "a month of emails", "fill my email calendar". Say "quick draft" to skip rating.
 ---
 
 # A month of emails
+
+> **Where the kit is.** Every `${CLAUDE_PLUGIN_ROOT}/...` path in this skill (`references/`, `scripts/`, `templates/`, `agents/`) means: look in this skill's own folder first, then at `${CLAUDE_PLUGIN_ROOT}`. The Claude app's plugin upload keeps only skill folders, so a copy of the kit ships inside each one. A path under `skills/` is another skill: from this folder it is `../<that-skill>/SKILL.md`.
 
 This is the skill members use most. It must feel like sitting down with a good editor who already knows their business: three quick questions, then a finished month they can read, fill in and schedule in one sitting.
 

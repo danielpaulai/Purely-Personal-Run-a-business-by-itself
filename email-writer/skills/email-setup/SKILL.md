@@ -1,9 +1,11 @@
 ---
 name: email-setup
-description: Set up the member's Email folder inside their Second Brain (or ~/Documents/Email if they have none): EMAIL-BRAIN.md with who they help, offer, call to action, the Three Ways PS, proof bank with a "may I name them" column, story bank, language, weekly promise and platform, plus ideas.md, drafts/, months/, sent/ and the email kit. Imports the EMAIL-BRAIN.md downloaded from the Email Room and links to existing Second Brain files instead of copying them. Trigger on "set up my emails", "set up the email plugin", "start my email folder", "import my email brain", "update my email brain".
+description: Sets up the member's Email folder in their Second Brain (or ~/Documents/Email): EMAIL-BRAIN.md with who they help, offer, call to action, proof, stories, language, weekly promise and platform, plus ideas.md, drafts/, months/ and sent/. Imports the Email Brain and emails downloaded from the Email Room. Trigger on "set up my emails", "set up the email plugin", "import my email brain", "update my email brain".
 ---
 
 # Email setup
+
+> **Where the kit is.** Every `${CLAUDE_PLUGIN_ROOT}/...` path in this skill (`references/`, `scripts/`, `templates/`, `agents/`) means: look in this skill's own folder first, then at `${CLAUDE_PLUGIN_ROOT}`. The Claude app's plugin upload keeps only skill folders, so a copy of the kit ships inside each one. A path under `skills/` is another skill: from this folder it is `../<that-skill>/SKILL.md`.
 
 Read `${CLAUDE_PLUGIN_ROOT}/references/plugin-rules.md` first. The file this skill fills is `${CLAUDE_PLUGIN_ROOT}/references/email-brain-template.md`. Takes about 5 minutes. Ask one short question at a time, in plain words.
 

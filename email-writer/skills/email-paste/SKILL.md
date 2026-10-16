@@ -1,9 +1,11 @@
 ---
 name: email-paste
-description: Step-by-step help to load finished emails into the member's own GoHighLevel, Mailchimp or ActiveCampaign account by copy and paste, with the right first-name tag and fallback, the newsletter tag, a test to themselves and scheduling. Never connects to the platform and never sends. Marks any click path not confirmed with [CHECK]. Trigger on "help me load this into GoHighLevel", "load my emails", "paste into Mailchimp", "put these in ActiveCampaign", "how do I schedule this", "load them", "how do I send this".
+description: Step-by-step help to copy finished emails into the member's own GoHighLevel, Mailchimp or ActiveCampaign: the right first-name tag, the newsletter tag, a test to themselves and scheduling. Never connects to the platform and never sends. Trigger on "help me load this into GoHighLevel", "load my emails", "paste into Mailchimp", "put these in ActiveCampaign", "how do I schedule this".
 ---
 
 # Load emails into the platform
+
+> **Where the kit is.** Every `${CLAUDE_PLUGIN_ROOT}/...` path in this skill (`references/`, `scripts/`, `templates/`, `agents/`) means: look in this skill's own folder first, then at `${CLAUDE_PLUGIN_ROOT}`. The Claude app's plugin upload keeps only skill folders, so a copy of the kit ships inside each one. A path under `skills/` is another skill: from this folder it is `../<that-skill>/SKILL.md`.
 
 Read `${CLAUDE_PLUGIN_ROOT}/references/plugin-rules.md` first, find the Email folder, then read `${CLAUDE_PLUGIN_ROOT}/references/platforms.md`. That page holds the click paths. Use them exactly, and keep every **[CHECK]** mark: it tells the member a step may look different in their account. Never invent a click path. If you are not sure of a step, mark it [CHECK].
 

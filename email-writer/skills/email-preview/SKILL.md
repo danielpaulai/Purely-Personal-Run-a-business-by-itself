@@ -1,9 +1,11 @@
 ---
 name: email-preview
-description: Render any email file, or a whole month folder, into one self-contained HTML page that looks like a real inbox and open it: an inbox list (avatar, sender, bold subject, grey preview text, day), click to read the full plain-text email, a Phone view that shows how subjects cut off, the rating badge and climb, and per-email copy buttons for GoHighLevel, Mailchimp and ActiveCampaign that convert the first-name merge field. Trigger on "show me my emails", "preview my emails", "preview this email", "how does it look in the inbox", "open my month", "show it on a phone".
+description: Turns an email file or a month folder into one HTML page that looks like a real inbox: subjects, grey preview text, the full email, a phone view showing where subjects cut off, rating badges, and copy buttons for GoHighLevel, Mailchimp and ActiveCampaign. Trigger on "show me my emails", "preview my emails", "how does it look in the inbox", "open my month", "show it on a phone".
 ---
 
 # Email preview
+
+> **Where the kit is.** Every `${CLAUDE_PLUGIN_ROOT}/...` path in this skill (`references/`, `scripts/`, `templates/`, `agents/`) means: look in this skill's own folder first, then at `${CLAUDE_PLUGIN_ROOT}`. The Claude app's plugin upload keeps only skill folders, so a copy of the kit ships inside each one. A path under `skills/` is another skill: from this folder it is `../<that-skill>/SKILL.md`.
 
 Read `${CLAUDE_PLUGIN_ROOT}/references/plugin-rules.md` first and find the Email folder.
 

@@ -1,9 +1,11 @@
 ---
 name: email-write
-description: Write one email (or the three-email event invite) from the member's EMAIL-BRAIN.md, following the Email Room master prompt and recipes exactly: client win, story, 9-word email, how-to or event invite. Three subject lines (moment, label, problem) with character counts, preview text, never invents facts (placeholders plus a fill-in list), runs the rating loop, saves to Email/drafts/ and renders the inbox preview. Trigger on "write a client win", "write a story email", "write a 9-word email", "nine word email", "write a how-to email", "write an event invite", "invite people to my workshop", "write an email about ...", "turn this idea into an email". Say "quick draft" to skip the rating.
+description: Writes one email (or the three-email event invite) from the member's EMAIL-BRAIN.md: client win, story, 9-word email, how-to or event invite. Three subject lines, preview text, never invents facts, rates it up to a 10 and saves it to Email/drafts/ with an inbox preview. Trigger on "write a client win", "write a story email", "write a 9-word email", "write a how-to email", "write an event invite", "write an email about ...".
 ---
 
 # Write one email
+
+> **Where the kit is.** Every `${CLAUDE_PLUGIN_ROOT}/...` path in this skill (`references/`, `scripts/`, `templates/`, `agents/`) means: look in this skill's own folder first, then at `${CLAUDE_PLUGIN_ROOT}`. The Claude app's plugin upload keeps only skill folders, so a copy of the kit ships inside each one. A path under `skills/` is another skill: from this folder it is `../<that-skill>/SKILL.md`.
 
 Read `${CLAUDE_PLUGIN_ROOT}/references/plugin-rules.md` first, find the Email folder, and read everything it says to read before writing (EMAIL-BRAIN.md, the linked Voice DNA, `master-prompt.md`, the recipe in `recipes.md`). The file format is `${CLAUDE_PLUGIN_ROOT}/references/email-file-format.md`.
 

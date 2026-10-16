@@ -1,9 +1,11 @@
 ---
 name: email-scoreboard
-description: The Friday scoreboard. Asks for four numbers (emails sent, replies, new subscribers, calls booked), appends them to Email/scoreboard.md, moves the emails that went out into Email/sent/, and gives one upgrade for next week. Never says "missed". Trigger on "Friday scoreboard", "log my numbers", "how did my emails do", "my email numbers", "scoreboard", "weekly email check-in".
+description: The Friday scoreboard. Asks for four numbers (emails sent, replies, new subscribers, calls booked), adds them to Email/scoreboard.md, moves sent emails into Email/sent/, and gives one upgrade for next week. Trigger on "Friday scoreboard", "log my numbers", "how did my emails do", "my email numbers", "weekly email check-in".
 ---
 
 # Friday scoreboard
+
+> **Where the kit is.** Every `${CLAUDE_PLUGIN_ROOT}/...` path in this skill (`references/`, `scripts/`, `templates/`, `agents/`) means: look in this skill's own folder first, then at `${CLAUDE_PLUGIN_ROOT}`. The Claude app's plugin upload keeps only skill folders, so a copy of the kit ships inside each one. A path under `skills/` is another skill: from this folder it is `../<that-skill>/SKILL.md`.
 
 Read `${CLAUDE_PLUGIN_ROOT}/references/plugin-rules.md` first and find the Email folder. Read `Email/scoreboard.md` (create it with the header from `scripts/make-email-folder.mjs` if it is missing), EMAIL-BRAIN.md (`emails_per_week`), and this week's emails (files dated Monday to Sunday of this week in `Email/months/` and `Email/drafts/`).
 

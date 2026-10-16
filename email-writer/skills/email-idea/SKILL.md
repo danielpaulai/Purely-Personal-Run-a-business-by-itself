@@ -1,9 +1,11 @@
 ---
 name: email-idea
-description: Catch and find email ideas. "Add an idea: ..." appends it to Email/ideas.md with the date and a suggested email type. "Find me ideas" reads the places it can reach (ideas.md, recent Second Brain notes, the proof and story banks, the calendar if a calendar connector is on) and suggests 10 ideas, each linked to the member's business. Trigger on "add an idea", "idea:", "save this idea", "email idea", "find me ideas", "I have nothing to write about", "give me email ideas", "Monday sweep".
+description: Catch and find email ideas. "Add an idea: ..." saves it to Email/ideas.md with the date and an email type. "Find me ideas" reads ideas.md, Second Brain notes and the proof and story banks, and suggests 10 ideas tied to the member's business. Trigger on "add an idea", "save this idea", "email idea", "find me ideas", "I have nothing to write about".
 ---
 
 # Email ideas
+
+> **Where the kit is.** Every `${CLAUDE_PLUGIN_ROOT}/...` path in this skill (`references/`, `scripts/`, `templates/`, `agents/`) means: look in this skill's own folder first, then at `${CLAUDE_PLUGIN_ROOT}`. The Claude app's plugin upload keeps only skill folders, so a copy of the kit ships inside each one. A path under `skills/` is another skill: from this folder it is `../<that-skill>/SKILL.md`.
 
 Read `${CLAUDE_PLUGIN_ROOT}/references/plugin-rules.md` first, then find the Email folder. Background for you: `${CLAUDE_PLUGIN_ROOT}/references/ideas.md` (the places ideas pile up and "something you saw + your business = an email").
 

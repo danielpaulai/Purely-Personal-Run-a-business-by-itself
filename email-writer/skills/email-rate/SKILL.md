@@ -1,9 +1,11 @@
 ---
 name: email-rate
-description: The rating loop. A separate rater scores an email 1 to 10 (eight part scores, an honesty gate, fixes, the best line), the writer rewrites using only those fixes, the rater scores again, up to 3 rounds or until it is a 10, never inventing facts to raise the score. Saves the score history in the email file. Trigger on "rate my email", "score this email", "make it a 10", "how good is this email", "rate my month". Also run by email-write and email-month on every email unless the member says "quick draft".
+description: The rating loop. A separate rater scores an email 1 to 10 (eight parts, an honesty gate, fixes), the writer rewrites from those fixes only, and the rater scores again, up to 3 rounds or a 10. Never invents facts to raise a score. Trigger on "rate my email", "score this email", "make it a 10", "how good is this email", "rate my month". Also used by email-write and email-month.
 ---
 
 # Email rate: lift an email to a 10, honestly
+
+> **Where the kit is.** Every `${CLAUDE_PLUGIN_ROOT}/...` path in this skill (`references/`, `scripts/`, `templates/`, `agents/`) means: look in this skill's own folder first, then at `${CLAUDE_PLUGIN_ROOT}`. The Claude app's plugin upload keeps only skill folders, so a copy of the kit ships inside each one. A path under `skills/` is another skill: from this folder it is `../<that-skill>/SKILL.md`.
 
 Read `${CLAUDE_PLUGIN_ROOT}/references/plugin-rules.md` first. The standard is `${CLAUDE_PLUGIN_ROOT}/references/rating-rubric.md`. The rater is the plugin agent `email-rater` (`${CLAUDE_PLUGIN_ROOT}/agents/email-rater.md`). The writer is you, following `${CLAUDE_PLUGIN_ROOT}/references/master-prompt.md`.
 
@@ -25,7 +27,7 @@ Run `node "${CLAUDE_PLUGIN_ROOT}/scripts/check-emails.mjs" <file> --json`. Keep 
 
 ## Step 2: rate (round 1)
 
-Start the `email-rater` agent (subagent type `email-writer:email-rater`) with a prompt that gives it:
+Start the `email-rater` agent (subagent type `email-writer:email-rater`). If that agent isn't available (an app upload keeps only skills), start a fresh general-purpose subagent instead and give it the whole of `agents/email-rater.md` from the kit as its instructions; it must not be the one that wrote the email. Give it a prompt with:
 - the email file path
 - the rubric path: `${CLAUDE_PLUGIN_ROOT}/references/rating-rubric.md`
 - the EMAIL-BRAIN.md path (it reads the linked Voice DNA itself)
