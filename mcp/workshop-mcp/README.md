@@ -12,13 +12,13 @@ Use it for:
 
 ## What it exposes
 
-### 10 tools
+### 15 tools
 
 | Tool | What it does |
 |------|--------------|
-| `scaffold_workshop` | Generate a complete new workshop launch folder (16+ files) from 14 inputs. |
-| `validate_voice` | Check any text for em-dashes + banned phrases + AI tells. Returns PASS or line-numbered issues. |
-| `score_post_against_brain` | AI-slop score 0-100 for any draft. Includes voice violation list + ship/revise/rewrite verdict. |
+| `scaffold_workshop` | Generate a complete new workshop launch folder (16+ files) from 14 inputs. Every Workshop 01 date moves with your new dates, weekdays included. |
+| `validate_voice` | Check any text for em-dashes + banned phrases + AI tells. Uses your Brain's banned list plus `extra_banned_phrases` (any language). Returns PASS or line-numbered issues. |
+| `score_post_against_brain` | AI-slop score 0-100 for any draft. Includes voice violation list + ship/revise/rewrite verdict. Takes `extra_banned_phrases` too. |
 | `prep_post_in_voice` | Returns voice context + hook pattern + platform spec for Claude to draft a post. |
 | `prep_meeting_brief` | Returns research framework + format template for a 3-min meeting brief on any LinkedIn URL. |
 | `prep_prospect_research` | Returns BANT scoring + 3-step outreach template for any prospect. |
@@ -26,12 +26,56 @@ Use it for:
 | `prep_morning_brief` | Returns the daily 60-second brief format across all 5 engines. |
 | `prep_pipeline_report` | Returns the Sunday pipeline report template (Marketing + Sales + Cash). |
 | `list_workshops` | Scans a directory and lists every workshop folder found. |
+| `prep_routine` | One entry point for the 6 weekly routines (Mon content drop to Sun pipeline). |
+| `quick_install_check` | Punch list of what's missing in a student's install (Claude Code, plugin, Desktop config, Brain). |
+| `health_check` | Install check + git status + key files on one screen. |
+| `render_install_video` | Render an install-guide phase video via Hyperframes. |
+| `deploy_landing_page` | Deploy `landing-page/` to Vercel production. Does nothing unless called with `confirm=True`. |
 
 ### 3 resources
 
 | URI | Content |
 |-----|---------|
-| `brain://current` | Your `BUSINESS-BRAIN.md` (read by tools that need voice context) |
+| `brain://current` | Your `BUSINESS-BRAIN.md` (same lookup as the tools, see below) |
+
+---
+
+## Make it yours (every student)
+
+Every voice tool reads **your** `BUSINESS-BRAIN.md`, never someone else's. It looks in this order:
+
+1. `brain_path="..."` passed to the tool
+2. The `PP_BRAIN_PATH` environment variable in your MCP config (set it once, recommended)
+3. `BUSINESS-BRAIN.md` in the plugin root
+4. `BUSINESS-BRAIN.md` in the current folder
+
+If none exists the tool says so and stops. It never falls back to the sample Brain, because that is Daniel's voice and ICP.
+
+Set it once at install time:
+
+```bash
+PP_BRAIN_PATH="$HOME/Desktop/my-business/BUSINESS-BRAIN.md" bash mcp/workshop-mcp/install.sh
+```
+
+or add it by hand to the config entry:
+
+```json
+"purely-personal-workshop": {
+  "command": "python3",
+  "args": ["/absolute/path/to/mcp/workshop-mcp/server.py"],
+  "env": { "PP_BRAIN_PATH": "/absolute/path/to/BUSINESS-BRAIN.md" }
+}
+```
+
+**Your banned words.** Put them under a `## Banned phrases` (or `## Banned words`) heading in your Brain as a bullet list. Any language works:
+
+```markdown
+## Banned phrases
+- modernste Technik
+- Potenziale heben
+```
+
+For a one-off check, pass them straight in: `validate_voice(text, extra_banned_phrases="modernste Technik, Potenziale heben")`.
 | `voice://rules` | Full voice rules document (banned phrases, hook patterns, etc.) |
 | `params://inventory` | Parameter inventory (which tokens live where in Workshop 01) |
 
@@ -53,12 +97,14 @@ Or directly from the web (works for fresh installs with no repo clone):
 curl -fsSL https://raw.githubusercontent.com/danielpaulai/Purely-Personal-Run-a-business-by-itself/main/mcp/workshop-mcp/install.sh | bash
 ```
 
+When piped from the web, the installer clones the repo to `~/.purely-personal/` first (the server needs the workshop templates around it), and updates that copy on later runs. Needs `git`.
+
 The installer:
 1. Verifies Python 3.10+
-2. Installs the `mcp` package
+2. Installs the `mcp` package (pinned to 1.x: the 2.x SDK removed the API this server uses)
 3. Auto-detects your Claude Desktop config location (Mac/Linux/Windows)
 4. Adds the `purely-personal-workshop` entry to `claude_desktop_config.json`
-5. Verifies the server imports cleanly
+5. Verifies the server imports cleanly (stops with the error if it doesn't)
 6. Tells you to restart Claude Desktop
 
 Then fully quit Claude Desktop (Cmd+Q on Mac, right-click tray on Windows) and reopen.
@@ -69,7 +115,7 @@ Then fully quit Claude Desktop (Cmd+Q on Mac, right-click tray on Windows) and r
 pip install purely-personal-workshop-mcp
 ```
 
-(Coming soon · package is built but not yet published to PyPI. For now use Path 1 or Path 3.)
+(Not supported yet · the server reads workshop templates from the repo around it, so a pip-installed copy can't scaffold. Use Path 1 or Path 3.)
 
 Then add to `~/Library/Application Support/Claude/claude_desktop_config.json` (Mac) or equivalent:
 
@@ -85,9 +131,9 @@ Then add to `~/Library/Application Support/Claude/claude_desktop_config.json` (M
 
 ### Path 3 · Manual config (for full control)
 
-1. Install the SDK:
+1. Install the SDK (1.x only):
    ```bash
-   pip3 install mcp
+   pip3 install "mcp>=1.27.0,<2"
    ```
 
 2. Find your Claude Desktop config:
@@ -138,12 +184,12 @@ You:  Score this post: "Imagine a world where AI handles your sales for you.
 
 Claude: *calls score_post_against_brain*
 
-        AI-SLOP SCORE: 84/100  ·  FULL REWRITE
+        AI-SLOP SCORE: 86/100  ·  FULL REWRITE
         
         Voice analysis:
           Em-dashes: 1
-          Banned phrases: 3 (Imagine a world, dive into, unlock, game-changing)
-          AI-tell patterns: 2
+          Banned phrases: 2 (unlock, as "unlocked"; dive into)
+          AI-tell patterns: 3 (Imagine a world, A world where, game-changing)
           ...
         
         Want me to rewrite it in your voice?
@@ -221,16 +267,15 @@ Use the slash command when you live in Claude Code. Use the MCP when you want it
 
 ### `score_post_against_brain` says BUSINESS-BRAIN.md not found
 
-The tool looks in:
-1. `purely-personal/BUSINESS-BRAIN.md` (the plugin root)
-2. The current working directory's `BUSINESS-BRAIN.md`
-3. A custom path if you pass `brain_path="..."`
+Every tool uses the same lookup: `brain_path`, then `PP_BRAIN_PATH`, then the plugin root, then the current folder. The error message lists each path it tried. Set `PP_BRAIN_PATH` once (see [Make it yours](#make-it-yours-every-student)) and every tool picks it up.
 
-If your Brain is somewhere else, pass the absolute path.
+### `ModuleNotFoundError: No module named 'mcp.server.fastmcp'`
+
+You have the 2.x MCP SDK. Run `pip3 install "mcp>=1.27.0,<2"` (or re-run `install.sh`), then restart Claude Desktop.
 
 ### Validate flags too aggressively
 
-The banned phrase list is in `UNIVERSAL_BANNED_PHRASES` in `server.py`. Edit the list to your taste, then restart Claude Desktop.
+The universal list is `UNIVERSAL_BANNED_PHRASES` in `server.py`. Your own additions belong in your Brain's `## Banned phrases` section, so they survive updates to this repo.
 
 ---
 
@@ -238,10 +283,10 @@ The banned phrase list is in `UNIVERSAL_BANNED_PHRASES` in `server.py`. Edit the
 
 ```
 mcp/workshop-mcp/
-├── server.py            ← the MCP server (~870 lines, 10 tools, 3 resources)
+├── server.py            ← the MCP server (15 tools, 3 resources)
 ├── pyproject.toml       ← pip-installable package metadata
 ├── install.sh           ← one-line installer (Path 1)
-├── requirements.txt     ← just `mcp>=1.27.0`
+├── requirements.txt     ← just `mcp>=1.27.0,<2`
 └── README.md            ← you are here
 ```
 

@@ -24,7 +24,7 @@ classifiers = [
     "Topic :: Office/Business",
 ]
 dependencies = [
-    "mcp>=1.27.0",
+    "mcp>=1.27.0,<2",
 ]
 
 [project.scripts]

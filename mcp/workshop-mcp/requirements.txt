@@ -1,1 +1,1 @@
-mcp>=1.27.0
+mcp>=1.27.0,<2  # 2.x renamed FastMCP; server.py targets the 1.x API

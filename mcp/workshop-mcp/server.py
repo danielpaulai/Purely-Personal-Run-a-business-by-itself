@@ -34,6 +34,7 @@ import json
 import os
 import re
 import shutil
+import sys
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -45,6 +46,41 @@ PLUGIN_ROOT = SERVER_DIR.parent.parent  # purely-personal/
 
 mcp = FastMCP("purely-personal-workshop")
 
+SAMPLE_BRAIN = PLUGIN_ROOT / "examples" / "BUSINESS-BRAIN.sample.md"
+
+
+def _brain_candidates(brain_path: str = "") -> list[Path]:
+    """Where each student's BUSINESS-BRAIN.md can live, in priority order:
+    the tool argument, the PP_BRAIN_PATH env var (set once in the MCP config),
+    the plugin root, then the cwd. The sample Brain is never used silently:
+    it is someone else's voice and ICP."""
+    paths = []
+    if brain_path:
+        paths.append(Path(brain_path).expanduser())
+    if os.environ.get("PP_BRAIN_PATH"):
+        paths.append(Path(os.environ["PP_BRAIN_PATH"]).expanduser())
+    paths += [PLUGIN_ROOT / "BUSINESS-BRAIN.md", Path.cwd() / "BUSINESS-BRAIN.md"]
+    return paths
+
+
+def _find_brain(brain_path: str = "") -> Path | None:
+    return next((p for p in _brain_candidates(brain_path) if p.is_file()), None)
+
+
+def _read_brain(brain_path: str = "") -> str:
+    p = _find_brain(brain_path)
+    return p.read_text(encoding="utf-8") if p else ""
+
+
+def _brain_not_found(brain_path: str = "") -> str:
+    return (
+        "ERROR: BUSINESS-BRAIN.md not found. Run /build-my-brain first, pass "
+        "brain_path, or set PP_BRAIN_PATH in your MCP config.\n\n"
+        "Looked in:\n"
+        + "\n".join(f"  - {p}" for p in _brain_candidates(brain_path))
+        + f"\n\nFormat reference (not your voice): {SAMPLE_BRAIN}"
+    )
+
 
 # ============================================================
 # RESOURCES
@@ -52,24 +88,12 @@ mcp = FastMCP("purely-personal-workshop")
 
 @mcp.resource("brain://current")
 def read_business_brain() -> str:
-    """Read the current project's BUSINESS-BRAIN.md.
+    """Read the current student's BUSINESS-BRAIN.md.
 
     Used by Claude as voice + brand context when generating workshop copy.
-    Looks in the plugin root first, then the cwd.
+    Same lookup as every tool: PP_BRAIN_PATH, plugin root, then cwd.
     """
-    candidates = [
-        PLUGIN_ROOT / "BUSINESS-BRAIN.md",
-        Path.cwd() / "BUSINESS-BRAIN.md",
-        PLUGIN_ROOT / "examples" / "BUSINESS-BRAIN.sample.md",
-    ]
-    for p in candidates:
-        if p.exists():
-            return p.read_text()
-    return (
-        "BUSINESS-BRAIN.md not found.\n\n"
-        "Run /build-my-brain in Claude Code first, then run scaffold_workshop again.\n\n"
-        "Looked in:\n" + "\n".join(f"  - {p}" for p in candidates)
-    )
+    return _read_brain() or _brain_not_found()
 
 
 @mcp.resource("voice://rules")
@@ -148,6 +172,55 @@ UNIVERSAL_BANNED_PHRASES = [
     "cutting-edge", "state of the art", "revolutionize",
 ]
 
+AI_TELL_PATTERNS = [
+    (r"\bImagine a world\b", "Imagine a world"),
+    (r"\bWhat if I told you\b", "What if I told you"),
+    (r"\bHere's the thing\b", "Here's the thing"),
+    (r"\bThe truth is\b", "The truth is"),
+    (r"\bgame[-\s]?chang(?:ing|er)\b", "game-changing"),
+    (r"\bIn today's fast-paced\b", "In today's fast-paced"),
+    (r"\bA world where\b", "A world where"),
+]
+
+
+def _phrase_re(phrase: str) -> re.Pattern:
+    """Whole-word, case-insensitive. Single words also catch their common
+    forms, so "unlock" flags "unlocked" and "unlocking"."""
+    p = phrase.strip()
+    if re.fullmatch(r"[A-Za-z]+", p):
+        stem = re.escape(p[:-1]) + "(?:e|ing|ed|es)" if p.endswith("e") else None
+        body = re.escape(p) + r"(?:s|es|ed|d|ing)?"
+        if stem:
+            body = f"(?:{body}|{stem})"
+        return re.compile(rf"\b{body}\b", re.IGNORECASE)
+    return re.compile(rf"(?<!\w){re.escape(p)}(?!\w)", re.IGNORECASE)
+
+
+def _personal_banned(brain_text: str) -> list[str]:
+    """List items under any "Banned phrases" heading in the Brain."""
+    found: list[str] = []
+    in_section = False
+    for line in brain_text.split("\n"):
+        if re.match(r"^#{1,4}\s", line):
+            in_section = bool(re.search(r"banned\s+(phrases?|words?)", line, re.IGNORECASE))
+            continue
+        if in_section:
+            m = re.match(r"^\s*[-*]\s+[`\"']?([^`\"'\n]+?)[`\"']?\s*$", line)
+            if m and 2 <= len(m.group(1).strip()) <= 40:
+                found.append(m.group(1).strip())
+    return found
+
+
+def _split_phrases(raw: str) -> list[str]:
+    """extra_banned_phrases arrives as one string: comma- or newline-separated."""
+    return [p.strip() for p in re.split(r"[,\n]", raw or "") if p.strip()]
+
+
+def _banned_list(brain_text: str, extra: str) -> tuple[list[str], list[str]]:
+    personal = _personal_banned(brain_text) + _split_phrases(extra)
+    merged = list(dict.fromkeys(UNIVERSAL_BANNED_PHRASES + personal))
+    return merged, personal
+
 
 def _slugify(text: str) -> str:
     """Convert text to kebab-case slug."""
@@ -193,14 +266,14 @@ def _build_substitutions(
         "WORKSHOP_NAME_PROJECT": workshop_name,
         "WORKSHOP_LABEL_PADDED": f"Workshop {workshop_number:02d}",
         "WORKSHOP_LABEL_NUM": f"Workshop {workshop_number}",
-        "DAY_1_DATE_FULL": day_1.strftime("%A %B %-d, %Y"),
-        "DAY_2_DATE_FULL": day_2.strftime("%A %B %-d, %Y"),
-        "DAY_1_DATE_DAYNAME": day_1.strftime("%A %B %-d"),
-        "DAY_2_DATE_DAYNAME": day_2.strftime("%A %B %-d"),
-        "DAY_1_DATE_SHORT": day_1.strftime("%a %b %-d"),
-        "DAY_2_DATE_SHORT": day_2.strftime("%a %b %-d"),
-        "DATE_RANGE_EN": f"{day_1.strftime('%B %-d')}\u2013{day_2.strftime('%-d')}, {day_1.year}",
-        "DATE_RANGE_HYPHEN": f"{day_1.strftime('%B %-d')}-{day_2.strftime('%-d')}, {day_1.year}",
+        "DAY_1_DATE_FULL": _strf(day_1, "%A %B %-d, %Y"),
+        "DAY_2_DATE_FULL": _strf(day_2, "%A %B %-d, %Y"),
+        "DAY_1_DATE_DAYNAME": _strf(day_1, "%A %B %-d"),
+        "DAY_2_DATE_DAYNAME": _strf(day_2, "%A %B %-d"),
+        "DAY_1_DATE_SHORT": _strf(day_1, "%a %b %-d"),
+        "DAY_2_DATE_SHORT": _strf(day_2, "%a %b %-d"),
+        "DATE_RANGE_EN": _date_range(day_1, day_2, "\u2013"),
+        "DATE_RANGE_HYPHEN": _date_range(day_1, day_2, "-"),
         "PRICE_DOLLAR": f"${price}",
         "PRICE_DOLLARS_WORD": f"{price} dollars",
         "SEAT_COUNT_LABEL": f"{seat_count} seats",
@@ -214,11 +287,86 @@ def _build_substitutions(
     return {token: (WORKSHOP_01_DEFAULTS[token], new_values[token]) for token in new_values}
 
 
-def _apply_substitutions(text: str, subs: dict[str, tuple[str, str]]) -> str:
+def _strf(dt: datetime, fmt: str) -> str:
+    """strftime with portable `%-d` (glibc-only; crashes on Windows)."""
+    return dt.strftime(fmt.replace("%-d", str(dt.day)))
+
+
+def _date_range(day_1: datetime, day_2: datetime, sep: str) -> str:
+    """"May 2-3, 2026", or "June 30-July 1, 2026" when the month changes."""
+    if day_1.month == day_2.month:
+        return f"{_strf(day_1, '%B %-d')}{sep}{day_2.day}, {day_1.year}"
+    return f"{_strf(day_1, '%B %-d')}{sep}{_strf(day_2, '%B %-d')}, {day_2.year}"
+
+
+def _ordinal(n: int) -> str:
+    if 11 <= n % 100 <= 13:
+        return f"{n}th"
+    return f"{n}{ {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th') }"
+
+
+WORKSHOP_01_DAY_1 = datetime(2026, 5, 2)
+
+_WEEKDAYS = "Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|Mon|Tue|Wed|Thu|Fri|Sat|Sun"
+
+# Every "May N" left after token substitution: reminders ("1 day before May 2"),
+# follow-ups ("May 10"), ranges ("May 2nd and 3rd", "May 2-3"), with an optional
+# weekday in front and an optional year after.
+_W01_DATE_RE = re.compile(
+    rf"(?:(?P<wd>{_WEEKDAYS}),?\s+)?"
+    r"\bMay\s+(?P<d1>\d{1,2})(?P<o1>st|nd|rd|th)?\b"
+    r"(?:(?P<sep>\s+and\s+|\s*[-–]\s*)(?P<d2>\d{1,2})(?P<o2>st|nd|rd|th)?\b)?"
+    r"(?P<yr>,\s*2026\b)?"
+)
+
+
+def _shift_workshop_01_dates(text: str, day_1: datetime) -> str:
+    """Move every remaining Workshop 01 May date by the same offset as Day 1,
+    recomputing weekday names and keeping the original ordinal style."""
+    delta = day_1 - WORKSHOP_01_DAY_1
+
+    def fmt_day(d: datetime, ordinal: bool) -> str:
+        return _ordinal(d.day) if ordinal else str(d.day)
+
+    def repl(m: re.Match) -> str:
+        d1 = datetime(2026, 5, int(m["d1"])) + delta
+        out = f"{d1.strftime('%B')} {fmt_day(d1, bool(m['o1']))}"
+        if m["wd"]:
+            wd = d1.strftime("%A") if len(m["wd"]) > 3 else d1.strftime("%a")
+            out = f"{wd} {out}"
+        if m["d2"]:
+            d2 = datetime(2026, 5, int(m["d2"])) + delta
+            second = fmt_day(d2, bool(m["o2"]))
+            if d2.month != d1.month:
+                second = f"{d2.strftime('%B')} {second}"
+            out += m["sep"] + second
+        if m["yr"]:
+            out += f", {d1.year}"
+        return out
+
+    return _W01_DATE_RE.sub(repl, text)
+
+
+def _token_pattern(old: str) -> re.Pattern:
+    """Match `old` only as a whole token, so "$49" never hits "$490"."""
+    pat = re.escape(old)
+    if old[:1].isalnum():
+        pat = r"(?<!\w)" + pat
+    if old[-1:].isalnum():
+        pat += r"(?!\w)"
+    return re.compile(pat)
+
+
+def _apply_substitutions(
+    text: str,
+    subs: dict[str, tuple[str, str]],
+    day_1: datetime | None = None,
+) -> str:
     """Apply find-replace substitutions to text using a two-pass placeholder
     strategy so that NEW values can't accidentally match OLD patterns.
 
     Pass 1: replace each old value with a unique placeholder (`@@TOKEN@@`)
+    Pass 1b: shift any remaining Workshop 01 dates (when day_1 is given)
     Pass 2: replace each placeholder with the new value
 
     Longer old values are processed first to avoid partial substring matches.
@@ -226,7 +374,11 @@ def _apply_substitutions(text: str, subs: dict[str, tuple[str, str]]) -> str:
     # Pass 1: old -> placeholder (longest first)
     items = sorted(subs.items(), key=lambda kv: len(kv[1][0]), reverse=True)
     for token, (old, _new) in items:
-        text = text.replace(old, f"@@{token}@@")
+        if old:
+            text = _token_pattern(old).sub(f"@@{token}@@", text)
+
+    if day_1 is not None:
+        text = _shift_workshop_01_dates(text, day_1)
 
     # Pass 2: placeholder -> new
     for token, (_old, new) in items:
@@ -235,12 +387,14 @@ def _apply_substitutions(text: str, subs: dict[str, tuple[str, str]]) -> str:
     return text
 
 
-def _copy_with_subs(src: Path, dst: Path, subs: dict[str, tuple[str, str]]) -> None:
-    """Copy a file, applying token substitutions."""
+def _copy_with_subs(
+    src: Path, dst: Path, subs: dict[str, tuple[str, str]], day_1: datetime
+) -> None:
+    """Copy a file, applying token substitutions and the date shift."""
     dst.parent.mkdir(parents=True, exist_ok=True)
     if src.suffix in {".md", ".html", ".json", ".txt", ".sh"}:
-        text = src.read_text()
-        dst.write_text(_apply_substitutions(text, subs))
+        text = src.read_text(encoding="utf-8")
+        dst.write_text(_apply_substitutions(text, subs, day_1), encoding="utf-8")
     else:
         shutil.copy2(src, dst)
 
@@ -321,8 +475,8 @@ def scaffold_workshop(
 
     output_root = Path(output_dir).expanduser().resolve()
     if workshop_number == 0:
-        # Find next available
-        existing = [p for p in output_root.glob("workshop-*") if p.is_dir()]
+        # Next available: count scaffolded workshops (same detection as list_workshops)
+        existing = list(output_root.glob("*/landing-page/index.html"))
         workshop_number = len(existing) + 2  # +2 because Workshop 01 already exists elsewhere
 
     # Parse dates
@@ -396,17 +550,16 @@ def scaffold_workshop(
             files_skipped.append(rel_path)
             continue
         dst = target / rel_path
-        _copy_with_subs(src, dst, subs)
+        _copy_with_subs(src, dst, subs, d1)
         files_written.append(rel_path)
 
     # Copy workshop folder (worksheets + agenda xlsx)
     src_workshop = PLUGIN_ROOT / "workshop"
     if src_workshop.exists():
-        dst_workshop = target / "workshop"
         for item in src_workshop.rglob("*"):
             if item.is_file() and "install-guide" not in item.parts:
                 rel = item.relative_to(PLUGIN_ROOT)
-                _copy_with_subs(item, target / rel, subs)
+                _copy_with_subs(item, target / rel, subs, d1)
                 files_written.append(str(rel))
 
     # Generate REWRITE-NEEDED.md so Claude knows what to fill in
@@ -429,6 +582,7 @@ def scaffold_workshop(
         day_1=d1,
         day_2=d2,
         price=price,
+        seat_count=seat_count,
     ))
 
     # Build summary
@@ -452,46 +606,44 @@ def scaffold_workshop(
 
 
 @mcp.tool()
-def validate_voice(text: str) -> str:
+def validate_voice(text: str, extra_banned_phrases: str = "", brain_path: str = "") -> str:
     """Check copy against the voice rules.
 
     Returns a list of issues found:
       - Em-dashes (Unicode U+2014)
       - Universal banned phrases (unlock, delve, supercharge, etc.)
+      - Your own banned phrases: the "Banned phrases" section of your
+        BUSINESS-BRAIN.md plus anything passed in extra_banned_phrases
+        (any language, e.g. "modernste Technik, Potenziale heben")
       - AI-tell patterns (Imagine a world, What if I told you, etc.)
 
     Returns "PASS" if no issues found.
 
     Args:
         text: The copy to validate.
+        extra_banned_phrases: Optional comma- or newline-separated phrases to flag.
+        brain_path: Optional path to BUSINESS-BRAIN.md.
 
     Returns:
         "PASS" or a multi-line list of issues with line numbers.
     """
+    banned, _personal = _banned_list(_read_brain(brain_path), extra_banned_phrases)
     issues = []
     lines = text.split("\n")
 
     for i, line in enumerate(lines, start=1):
         # Em-dash check
-        if "\u2014" in line:
-            count = line.count("\u2014")
+        if "—" in line:
+            count = line.count("—")
             issues.append(f"  Line {i}: {count} em-dash(es) found. Replace with period or middle-dot.")
 
-        # Banned phrases (case-insensitive word boundary)
-        for phrase in UNIVERSAL_BANNED_PHRASES:
-            if re.search(r"\b" + re.escape(phrase) + r"\b", line, re.IGNORECASE):
+        for phrase in banned:
+            if _phrase_re(phrase).search(line):
                 issues.append(f"  Line {i}: banned phrase {phrase!r}")
 
-        # AI-tell patterns
-        for pattern, description in [
-            (r"\bImagine a world\b", "AI-tell: 'Imagine a world'"),
-            (r"\bWhat if I told you\b", "AI-tell: 'What if I told you'"),
-            (r"\bHere's the thing\b", "AI-tell: 'Here's the thing'"),
-            (r"\bThe truth is\b", "AI-tell: 'The truth is'"),
-            (r"\bgame[-]?changing\b", "AI-tell: 'game-changing'"),
-        ]:
+        for pattern, description in AI_TELL_PATTERNS:
             if re.search(pattern, line, re.IGNORECASE):
-                issues.append(f"  Line {i}: {description}")
+                issues.append(f"  Line {i}: AI-tell: {description!r}")
 
     if not issues:
         return f"PASS · {len(lines)} lines, 0 issues."
@@ -500,7 +652,7 @@ def validate_voice(text: str) -> str:
 
 
 @mcp.tool()
-def score_post_against_brain(text: str, brain_path: str = "") -> str:
+def score_post_against_brain(text: str, brain_path: str = "", extra_banned_phrases: str = "") -> str:
     """Score a piece of copy (LinkedIn post, email, VSL, etc.) against the
     user's BUSINESS-BRAIN.md voice rules. Returns:
       - AI-slop score 0 to 100 (lower = more like the user's voice)
@@ -512,71 +664,34 @@ def score_post_against_brain(text: str, brain_path: str = "") -> str:
 
     Args:
         text: The copy to score.
-        brain_path: Optional path to BUSINESS-BRAIN.md. If empty, looks in
-                    plugin root then cwd.
+        brain_path: Optional path to BUSINESS-BRAIN.md. If empty, uses
+                    PP_BRAIN_PATH, then plugin root, then cwd.
+        extra_banned_phrases: Optional comma- or newline-separated phrases
+                    to flag on top of the Brain's list (any language).
 
     Returns:
         Multi-line score report.
     """
-    # Read the Brain for personal banned phrases + hook patterns
-    brain_text = ""
-    if brain_path:
-        p = Path(brain_path).expanduser()
-    else:
-        for cand in [PLUGIN_ROOT / "BUSINESS-BRAIN.md", Path.cwd() / "BUSINESS-BRAIN.md"]:
-            if cand.exists():
-                p = cand
-                break
-        else:
-            p = None
-    if p and p.exists():
-        brain_text = p.read_text()
-
-    # Extract personal banned phrases from Brain (looks for "banned phrases" section)
-    personal_banned: list[str] = []
-    in_banned_section = False
-    for line in brain_text.split("\n"):
-        if re.search(r"banned\s+phrases?", line, re.IGNORECASE):
-            in_banned_section = True
-            continue
-        if in_banned_section and re.match(r"^#{1,3}\s", line):
-            in_banned_section = False
-        if in_banned_section:
-            # Pull list items
-            m = re.match(r"^[-*]\s+`?([^`\n]+?)`?\s*$", line)
-            if m:
-                phrase = m.group(1).strip()
-                if 2 <= len(phrase) <= 40:
-                    personal_banned.append(phrase)
-
-    all_banned = list(set(UNIVERSAL_BANNED_PHRASES + personal_banned))
+    all_banned, personal_banned = _banned_list(_read_brain(brain_path), extra_banned_phrases)
 
     # Score components
-    em_dashes = text.count("\u2014")
+    em_dashes = text.count("—")
     banned_hits: list[tuple[int, str]] = []
     ai_tells: list[tuple[int, str]] = []
     long_sentences = 0
     sentences_total = 0
     has_specifics = bool(re.search(r"\d", text[:300]))  # numbers in first 300 chars
-    has_named_thing = bool(re.search(r"\b[A-Z][a-z]+(?:\.[a-z]+)?\b", text))
+    # A capitalised word mid-sentence (after a lowercase word or comma), so
+    # ordinary sentence-initial capitals don't count as a named thing.
+    has_named_thing = bool(re.search(r"(?<=[a-z0-9,;:]\s)[A-Z][A-Za-z0-9]+", text))
 
     lines = text.split("\n")
     for i, line in enumerate(lines, start=1):
-        # Banned phrases (case-insensitive word boundary)
         for phrase in all_banned:
-            if re.search(r"\b" + re.escape(phrase) + r"\b", line, re.IGNORECASE):
+            if _phrase_re(phrase).search(line):
                 banned_hits.append((i, phrase))
 
-        # AI-tell patterns
-        for pattern, description in [
-            (r"\bImagine a world\b", "Imagine a world"),
-            (r"\bWhat if I told you\b", "What if I told you"),
-            (r"\bHere's the thing\b", "Here's the thing"),
-            (r"\bThe truth is\b", "The truth is"),
-            (r"\bgame[-]?changing\b", "game-changing"),
-            (r"\bIn today's fast-paced\b", "In today's fast-paced"),
-            (r"\bA world where\b", "A world where"),
-        ]:
+        for pattern, description in AI_TELL_PATTERNS:
             if re.search(pattern, line, re.IGNORECASE):
                 ai_tells.append((i, description))
 
@@ -616,7 +731,7 @@ def score_post_against_brain(text: str, brain_path: str = "") -> str:
         f"  Specifics in first 300 chars: {'yes' if has_specifics else 'NO (add numbers/dates)'}",
         f"  Proper nouns present: {'yes' if has_named_thing else 'NO (name a tool/place/person)'}",
         "",
-        f"Personal banned phrases loaded from Brain: {len(personal_banned)}",
+        f"Personal banned phrases (Brain + extra): {len(personal_banned)}",
         f"Universal banned phrases: {len(UNIVERSAL_BANNED_PHRASES)}",
     ]
 
@@ -667,21 +782,9 @@ def prep_post_in_voice(
     Returns:
         Structured context block. Pass this to Claude with "Draft the post."
     """
-    # Read the Brain
-    brain_text = ""
-    if brain_path:
-        p = Path(brain_path).expanduser()
-    else:
-        for cand in [PLUGIN_ROOT / "BUSINESS-BRAIN.md", Path.cwd() / "BUSINESS-BRAIN.md"]:
-            if cand.exists():
-                p = cand
-                break
-        else:
-            p = None
-    if p and p.exists():
-        brain_text = p.read_text()
-    else:
-        return "ERROR: BUSINESS-BRAIN.md not found. Run /build-my-brain first or pass brain_path."
+    brain_text = _read_brain(brain_path)
+    if not brain_text:
+        return _brain_not_found(brain_path)
 
     # Extract Voice section (looks for "## Voice" or "# Voice")
     voice_section = ""
@@ -828,20 +931,17 @@ def prep_prospect_research(
     """
     # Load ICP from Brain if available
     brain_icp = ""
-    if brain_path or PLUGIN_ROOT.joinpath("BUSINESS-BRAIN.md").exists():
-        p = Path(brain_path).expanduser() if brain_path else PLUGIN_ROOT / "BUSINESS-BRAIN.md"
-        if p.exists():
-            brain_text = p.read_text()
+    brain_text = _read_brain(brain_path)
+    in_icp = False
+    for line in brain_text.split("\n"):
+        if re.match(r"^#{1,3}\s+(Ideal\s+Client|ICP|Your\s+One\s+Client|Audience)", line, re.IGNORECASE):
+            in_icp = True
+            brain_icp += line + "\n"
+            continue
+        if in_icp and re.match(r"^#{1,3}\s", line):
             in_icp = False
-            for line in brain_text.split("\n"):
-                if re.match(r"^#{1,3}\s+(Ideal\s+Client|ICP|Your\s+One\s+Client|Audience)", line, re.IGNORECASE):
-                    in_icp = True
-                    brain_icp += line + "\n"
-                    continue
-                if in_icp and re.match(r"^#{1,3}\s", line):
-                    in_icp = False
-                if in_icp:
-                    brain_icp += line + "\n"
+        if in_icp:
+            brain_icp += line + "\n"
 
     icp = icp_description or brain_icp or "(no ICP provided · ask user for ideal client description)"
 
@@ -902,12 +1002,9 @@ def prep_marketing_drop(brain_path: str = "") -> str:
       - Topic suggestions derived from Brain (competitor gaps + pain themes)
       - Output format template (3 LinkedIn posts + thread + newsletter)
     """
-    brain_text = ""
-    p = Path(brain_path).expanduser() if brain_path else PLUGIN_ROOT / "BUSINESS-BRAIN.md"
-    if p.exists():
-        brain_text = p.read_text()
+    brain_text = _read_brain(brain_path)
     if not brain_text:
-        return "ERROR: BUSINESS-BRAIN.md not found. Run /build-my-brain first."
+        return _brain_not_found(brain_path)
 
     return f"""MARKETING DROP · CONTEXT
 =========================
@@ -920,7 +1017,7 @@ BUSINESS BRAIN (full context):
 
 OUTPUT FORMAT:
 
-# Monday Content Drop · Week of {datetime.now().strftime('%B %-d')}
+# Monday Content Drop · Week of {_strf(datetime.now(), '%B %-d')}
 
 ## LinkedIn Post A (Personal Proof hook)
 [140-280 words, narrative, ends with question]
@@ -971,12 +1068,9 @@ def prep_morning_brief(brain_path: str = "") -> str:
     Returns:
         Morning brief context block.
     """
-    brain_text = ""
-    p = Path(brain_path).expanduser() if brain_path else PLUGIN_ROOT / "BUSINESS-BRAIN.md"
-    if p.exists():
-        brain_text = p.read_text()
+    brain_text = _read_brain(brain_path)
 
-    today = datetime.now().strftime("%A, %B %-d")
+    today = _strf(datetime.now(), "%A, %B %-d")
 
     return f"""MORNING BRIEF · CONTEXT
 ========================
@@ -1038,7 +1132,7 @@ def prep_pipeline_report(period: str = "weekly", brain_path: str = "") -> str:
     """
     today = datetime.now()
     if period == "weekly":
-        period_label = f"Week of {(today - timedelta(days=today.weekday())).strftime('%B %-d')}"
+        period_label = f"Week of {_strf((today - timedelta(days=today.weekday())), '%B %-d')}"
     else:
         period_label = today.strftime("%B %Y")
 
@@ -1209,13 +1303,14 @@ def _build_readme(
     day_1: datetime,
     day_2: datetime,
     price: int,
+    seat_count: int,
 ) -> str:
     today = datetime.now().date()
     t_minus = (day_1.date() - today).days
 
     return f"""# {workshop_name}
 
-Workshop {workshop_number:02d} · {day_1.strftime('%B %-d')}-{day_2.strftime('%-d')}, {day_1.year}
+Workshop {workshop_number:02d} · {_date_range(day_1, day_2, "-")}
 
 ## What this folder is
 
@@ -1246,8 +1341,8 @@ A complete launch package generated by the Purely Personal Workshop MCP. Mechani
 
 ## Timeline
 
-- Day 1: {day_1.strftime('%A %B %-d, %Y')}
-- Day 2: {day_2.strftime('%A %B %-d, %Y')}
+- Day 1: {_strf(day_1, '%A %B %-d, %Y')}
+- Day 2: {_strf(day_2, '%A %B %-d, %Y')}
 - Today: {today}
 - T-minus: {t_minus} days
 
@@ -1264,7 +1359,7 @@ The email campaign is timed for a 9-day pre-launch. If you have less time, compr
 ## Pricing
 
 - Workshop price: ${price}
-- Estimated revenue at full capacity (40 seats): ${price * 40}
+- Estimated revenue at full capacity ({seat_count} seats): ${price * seat_count:,}
 
 ## Plugin
 
@@ -1275,6 +1370,17 @@ This workshop reuses the `purely-personal` plugin. No copy needed. The plugin li
 # ============================================================
 # v2 TOOLS · Setup, Health, Routines, Site & Video Pipeline
 # ============================================================
+
+def _desktop_config_path() -> Path:
+    """claude_desktop_config.json location, matching install.sh."""
+    if sys.platform == "darwin":
+        base = Path.home() / "Library" / "Application Support" / "Claude"
+    elif sys.platform.startswith("win"):
+        base = Path(os.environ.get("APPDATA") or Path.home() / "AppData" / "Roaming") / "Claude"
+    else:
+        base = Path(os.environ.get("XDG_CONFIG_HOME") or Path.home() / ".config") / "Claude"
+    return base / "claude_desktop_config.json"
+
 
 @mcp.tool()
 def quick_install_check(business_dir: str = "") -> str:
@@ -1294,9 +1400,7 @@ def quick_install_check(business_dir: str = "") -> str:
     Args:
         business_dir: optional path to your business folder (defaults to ~/Desktop search)
     """
-    import os
     import subprocess
-    from pathlib import Path
 
     out = ["# Purely Personal · Install Health Check", ""]
     fails = 0
@@ -1348,11 +1452,7 @@ def quick_install_check(business_dir: str = "") -> str:
             out.append(f"⚠ Slash commands directory missing at {cmd_dir}")
 
     # 4. Claude Desktop config + Apify
-    cd_config = (
-        Path.home() / "Library" / "Application Support" / "Claude" / "claude_desktop_config.json"
-        if os.uname().sysname == "Darwin"
-        else Path(os.environ.get("APPDATA", "")) / "Claude" / "claude_desktop_config.json"
-    )
+    cd_config = _desktop_config_path()
     if cd_config.exists():
         try:
             cfg = json.loads(cd_config.read_text())
@@ -1496,8 +1596,7 @@ def prep_routine(
     elif delegate == "prep_meeting_brief":
         out.append("Run `prep_meeting_brief(linkedin_url=<each-attendee>)` for each external meeting today.")
     elif delegate == "prep_pipeline_report":
-        period = "weekly" if routine == "fri-wrap" else "weekly"
-        out.append(prep_pipeline_report(period=period, brain_path=brain_path))
+        out.append(prep_pipeline_report(period="weekly", brain_path=brain_path))
     return "\n".join(out)
 
 
@@ -1553,15 +1652,29 @@ def render_install_video(phase: int, quality: str = "draft") -> str:
 
 
 @mcp.tool()
-def deploy_landing_page() -> str:
-    """Deploy the landing page (and install guide) to Vercel production.
+def deploy_landing_page(confirm: bool = False) -> str:
+    """Deploy the landing page (and install guide) to Vercel PRODUCTION.
+
+    This replaces the live site. Only call with confirm=True after the user
+    has explicitly said to deploy; without it the tool only explains what
+    would happen.
 
     Wraps `cd landing-page && vercel --prod --yes`. Requires:
     - vercel CLI installed (`npm i -g vercel`)
     - Logged in once (`vercel login`)
     - Project linked (`vercel link`)
+
+    Args:
+        confirm: Must be True to actually deploy.
     """
     import subprocess
+
+    if not confirm:
+        return (
+            "Not deployed. This pushes landing-page/ to Vercel production and "
+            "replaces the live site. Ask the user to confirm, then call again "
+            "with confirm=True."
+        )
 
     landing = PLUGIN_ROOT / "landing-page"
     if not landing.exists():
