@@ -13,8 +13,8 @@ FILES = sorted(p for p in ROOT.rglob("*.md") if p.parts[-3:-1] != ("newsletter-w
 
 
 def body(p: Path) -> str:
-    t = p.read_text()
-    return re.sub(r"\A---\n.*?\n---\n", "", t, flags=re.S)  # ignore frontmatter metadata (author tag)
+    """The whole file including frontmatter (list_skills serves the description and tags), minus only the `author:` metadata line."""
+    return re.sub(r"(?m)^author:.*\n", "", p.read_text())
 
 
 def served_text(name: str) -> str:
@@ -171,3 +171,24 @@ def test_work_orders_contain_none_of_the_defects(maya):
         out = maya.call(tool, **args)
         m = leak.search(out)
         assert not m, (tool, m.group(0), out[max(0, m.start() - 80): m.end() + 80])
+
+
+def test_frontmatter_descriptions_and_tags_are_clean_too():
+    for p in ROOT.glob("*/SKILL.md"):
+        if "newsletter" in str(p):
+            continue
+        fm = re.match(r"---\n(.*?)\n---", p.read_text(), re.S).group(1)
+        for bad in ("2,000+", "Challenge", "challenge", "cohort", "Game 1", "Day 1", "Day 2"):
+            assert bad not in fm, (p.parent.name, bad)
+
+
+def test_frontmatter_tags_are_well_formed_kebab_lists():
+    for p in ROOT.glob("*/SKILL.md"):
+        if "newsletter" in str(p):
+            continue
+        fm = re.match(r"---\n(.*?)\n---", p.read_text(), re.S).group(1)
+        m = re.search(r"(?m)^tags: \[(.*)\]$", fm)
+        assert m, p
+        tags = [x.strip() for x in m.group(1).split(",")]
+        assert all(re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", x) for x in tags), (p.parent.name, tags)
+        assert len(tags) == len(set(tags)), (p.parent.name, tags)

@@ -3,7 +3,7 @@ name: ai-marketing-employee
 description: Set up a personal AI Marketing Employee in Claude Projects. generates customized Project Instructions from a Voice Profile + industry context, produces a 3-step manual install guide, and validates the setup with a test post. Use when someone wants to build their own AI Marketing Employee for a Claude Project, has just completed voice-profile-builder, or wants to refresh their existing Project Instructions. Triggers on "build my AI Marketing Employee", "set up my marketing AI", "install my AI Employee", "create my Claude Project for content", "Project Instructions for my marketing AI".
 version: 1.0.0
 author: daniel-paul
-tags: [ai-employee-challenge, claude-projects, content-automation, voice, install]
+tags: [claude-projects, content-automation, voice, install]
 ---
 
 # AI Marketing Employee · Installer

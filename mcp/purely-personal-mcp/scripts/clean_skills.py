@@ -342,7 +342,7 @@ def fix_cohort() -> None:
 
 HOMEWORK = '''---
 name: homework-reviewer
-description: Bulk-score a batch of posts (a cohort's homework, a team's drafts, a content backlog), rank them with the Invisibility Diagnostic, and produce a shortlist with industry coverage, a shout-out list and a private coaching list. Use when asked to review the homework, rank the posts, find the best 10, or grade a batch. Triggers on "review the homework", "rank the posts", "find the best posts", "grade this batch", "compile the shortlist".
+description: Bulk-score a batch of posts (a group's homework, a team's drafts, a content backlog), rank them with the Invisibility Diagnostic, and produce a shortlist with industry coverage, a shout-out list and a private coaching list. Use when asked to review the homework, rank the posts, find the best 10, or grade a batch. Triggers on "review the homework", "rank the posts", "find the best posts", "grade this batch", "compile the shortlist".
 version: 1.1.0
 author: daniel-paul
 tags: [review, scoring, batch, invisibility-diagnostic]
@@ -350,7 +350,7 @@ tags: [review, scoring, batch, invisibility-diagnostic]
 
 # Homework Reviewer
 
-Scores every post in a batch with the Invisibility Diagnostic (Voice, POV, Specificity, Asking), ranks them, and builds a shortlist a facilitator can use straight away. Works for any batch: a workshop's homework, a team's drafts, a backlog of old posts.
+Scores every post in a batch with the Invisibility Diagnostic (Voice, POV, Specificity, Asking), ranks them, and builds a shortlist a facilitator can use straight away. Works for any batch: a group's homework, a team's drafts, a backlog of old posts.
 
 ## Why not just paste 50 posts into a chat?
 Pasted batches get inconsistent picks, no check that the shortlist covers different industries, and no list of who needs help. This skill scores every post the same way, ranks by score, and checks coverage.
@@ -449,6 +449,18 @@ def fix_residuals() -> None:
               "1. **Real scraped data**. uses Apify (`harvestapi/linkedin-profile-posts` for people, `harvestapi/linkedin-company-posts` for company pages, plus `harvestapi/linkedin-profile-scraper` / `harvestapi/linkedin-company` for profile and page details) to pull actual data + recent posts for each competitor")
     edit_line("competitor-x-ray/SKILL.md", "call `harvestapi/linkedin-profile-scraper` to pull profile + posts",
               "For each URL: a `linkedin.com/company/...` URL is a COMPANY PAGE (use `harvestapi/linkedin-company` for the page and `harvestapi/linkedin-company-posts` for its posts); a `linkedin.com/in/...` URL is a PERSON (use `harvestapi/linkedin-profile-scraper` for the profile and `harvestapi/linkedin-profile-posts` for the posts). Last 30 days for `standard`, 90 days for `deep`.")
+    # frontmatter: descriptions and tags are served by list_skills, so they must be clean too
+    for f in ROOT.glob("*/SKILL.md"):
+        if f.parent.name == "newsletter-writer":
+            continue
+        s = read(f)
+        s = re.sub(r" Built from analyzing 2,000\+[^\n]*?cohorts\.", "", s)
+        s = s.replace("taught in the AI Employee Challenge ", "")
+        s = s.replace('"extract my voice for the challenge", ', "")
+        s = s.replace(", ai-employee-challenge,", ",")
+        s = s.replace("[ai-employee-challenge, ", "[").replace(", ai-employee-challenge]", "]").replace(", ai-employee-challenge,", ",")
+        s = s.replace("(a cohort's homework,", "(a group's homework,")
+        write(f, s)
     # intro paragraphs that describe a live course
     edit_line("ai-marketing-employee/SKILL.md", "taught in Day 1 / Lesson 2",
               "The setup-helper for the AI Marketing Employee Project. Takes a Voice Profile + business context, generates personalized Project Instructions, and produces a 3-step manual install guide.")

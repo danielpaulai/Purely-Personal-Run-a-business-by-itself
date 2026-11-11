@@ -1,6 +1,6 @@
 ---
 name: homework-reviewer
-description: Bulk-score a batch of posts (a cohort's homework, a team's drafts, a content backlog), rank them with the Invisibility Diagnostic, and produce a shortlist with industry coverage, a shout-out list and a private coaching list. Use when asked to review the homework, rank the posts, find the best 10, or grade a batch. Triggers on "review the homework", "rank the posts", "find the best posts", "grade this batch", "compile the shortlist".
+description: Bulk-score a batch of posts (a group's homework, a team's drafts, a content backlog), rank them with the Invisibility Diagnostic, and produce a shortlist with industry coverage, a shout-out list and a private coaching list. Use when asked to review the homework, rank the posts, find the best 10, or grade a batch. Triggers on "review the homework", "rank the posts", "find the best posts", "grade this batch", "compile the shortlist".
 version: 1.1.0
 author: daniel-paul
 tags: [review, scoring, batch, invisibility-diagnostic]

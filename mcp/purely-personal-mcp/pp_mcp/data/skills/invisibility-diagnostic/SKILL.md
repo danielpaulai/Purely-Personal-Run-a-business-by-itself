@@ -1,9 +1,9 @@
 ---
 name: invisibility-diagnostic
-description: Score any social post 0-4 on the Invisibility Diagnostic (Voice, POV, Specificity, Asking) and return a one-line fix per missing dimension. Use when scoring social posts, auditing content, before publishing anything, or grading another writer's work. Triggers on "score this post", "is this invisible", "diagnose my post", "rate my content", "why isn't this getting engagement", or pasted social copy with "what do you think?". Built from analyzing 2,000+ LinkedIn / X / Instagram posts across the AI Employee Challenge cohorts.
+description: Score any social post 0-4 on the Invisibility Diagnostic (Voice, POV, Specificity, Asking) and return a one-line fix per missing dimension. Use when scoring social posts, auditing content, before publishing anything, or grading another writer's work. Triggers on "score this post", "is this invisible", "diagnose my post", "rate my content", "why isn't this getting engagement", or pasted social copy with "what do you think?".
 version: 1.0.0
 author: daniel-paul
-tags: [content, audit, voice, scoring, social-media, ai-employee-challenge]
+tags: [content, audit, voice, scoring, social-media]
 ---
 
 # Invisibility Diagnostic

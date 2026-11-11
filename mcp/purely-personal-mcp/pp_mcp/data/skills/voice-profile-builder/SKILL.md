@@ -1,9 +1,9 @@
 ---
 name: voice-profile-builder
-description: Build a Voice Profile from the 4 named inputs taught in the AI Employee Challenge (past posts, voice notes, DM/email replies, FAQ). Outputs a structured, paste-ready profile for Claude Projects Knowledge. Use when building or training the AI Marketing Employee, after collecting the 4 inputs, or when a thinner voice extraction needs to be hardened into a Project-ready format. Triggers on "build my voice profile", "AI Marketing Employee voice", "voice profile for Claude Projects", "extract my voice for the challenge", "4-input voice extraction".
+description: Build a Voice Profile from the 4 named inputs (past posts, voice notes, DM/email replies, FAQ). Outputs a structured, paste-ready profile for Claude Projects Knowledge. Use when building or training the AI Marketing Employee, after collecting the 4 inputs, or when a thinner voice extraction needs to be hardened into a Project-ready format. Triggers on "build my voice profile", "AI Marketing Employee voice", "voice profile for Claude Projects", "4-input voice extraction".
 version: 1.0.0
 author: daniel-paul
-tags: [voice, ai-employee-challenge, claude-projects, content, branding]
+tags: [voice, claude-projects, content, branding]
 ---
 
 # Voice Profile Builder
