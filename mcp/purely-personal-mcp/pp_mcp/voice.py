@@ -96,6 +96,90 @@ def _clean_term(t: str) -> str:
     return _norm(t).strip().strip("`*_\"' ").lower()
 
 
+# ----------------------------------------------------------------------------
+# German (DACH) rules. Used when the text is German: English lists must never touch German prose.
+# ----------------------------------------------------------------------------
+DE_BANNED_STEMS = [
+    "ganzheitlich", "nahtlos", "synerg", "game-changer", "gamechanger", "revolutionär", "wegweisend", "zukunftsweisend",
+    "bahnbrechend", "maßgeschneidert", "massgeschneidert", "rundum-sorglos", "state-of-the-art", "cutting-edge", "disruptiv",
+    "skalierbar", "impactvoll", "innovationsgetrieben", "lösungsorientiert", "kundenzentriert",
+]
+DE_BANNED_PHRASES = [
+    "in der heutigen schnelllebigen", "in der heutigen digitalen", "in der heutigen dynamischen", "in der heutigen zeit",
+    "es ist kein geheimnis", "haben sie sich jemals gefragt", "tauchen sie ein", "lassen sie uns eintauchen",
+    "zusammenfassend lässt sich sagen", "es ist wichtig zu beachten", "es ist wichtig zu betonen", "am ende des tages",
+    "auf das nächste level", "potenziale heben", "potenziale ausschöpfen", "potenziale entfesseln", "next level",
+    "ein game-changer", "den nagel auf den kopf", "in einer welt, in der", "stellen sie sich vor",
+    "lassen sie uns darüber sprechen", "ich freue mich auf den austausch",
+]
+DE_TRANSITIONS = ["darüber hinaus", "des weiteren", "nichtsdestotrotz", "letztendlich", "abschließend", "zusammenfassend", "ferner"]
+DE_CLOSINGS = ["was denken sie?", "was meinen sie?", "teilen sie ihre gedanken", "hinterlassen sie einen kommentar",
+               "vielen dank fürs lesen", "ich hoffe, das hilft", "ich hoffe, das hilft ihnen weiter", "folgen sie mir für mehr"]
+DE_MORAL = ("fazit:", "die lektion", "die moral", "merke:", "take-away", "takeaway")
+DE_SWAPS = [  # (regex, replacement with \1 = inflection ending)
+    (r"\binnovativ(e|en|er|es|em)?\b", "neu"), (r"\bnahtlos(e|en|er|es|em)?\b", "reibungslos"),
+    (r"\bganzheitlich(e|en|er|es|em)?\b", "umfassend"), (r"\bzukunftsweisend(e|en|er|es|em)?\b", "neu"),
+]
+_DE_STRUCT = [
+    ("contrast-frame", re.compile(r"\bnicht nur\b[^.\n!?]{1,80}?,?\s*sondern\b", re.I),
+     "Gegensatz-Schema ('nicht nur X, sondern auch Y'). Sag direkt, was zählt."),
+    ("contrast-frame", re.compile(r"\bes geht (?:nicht|nicht mehr) (?:um|darum)\b[^.\n!?]{1,80}?[,;.]\s*(?:es geht|sondern)", re.I),
+     "Gegensatz-Schema ('es geht nicht um X, sondern um Y'). Einmal klar sagen."),
+    ("contrast-frame", re.compile(r"\b(?:das ist|dies ist|es ist) kein\w*\b[^.\n!?]{1,60}[.,;]\s*(?:das ist|dies ist|es ist)\b", re.I),
+     "Gegensatz-Schema ('das ist kein X, das ist Y'). Einmal klar sagen."),
+    ("contrast-frame", re.compile(r"\bweniger\b [^.,\n]{1,30}, mehr\b", re.I), "'Weniger X, mehr Y'-Schema. Das Konkrete nennen."),
+]
+
+_DE_WORDS = set("""der die das und ist nicht mit für ein eine wir ich sie zu auf den dem von bei auch sich werden haben wenn aber oder
+als wie im um es nach mehr sind wird kann können muss noch nur schon dass wo was wer warum immer jede jeden zum zur beim vom
+unsere unser ihre ihr mein meine dann durch über unter ohne bis gegen""".split())
+_EN_WORDS = set("""the and is of to in that for with you are it this was we our your they have has not but or as be at by on from can will
+what when how why more about""".split())
+
+
+def detect_language(text: str) -> str:
+    """'de' or 'en'. German wins only on clear evidence, so English text never loses its English rules."""
+    toks = re.findall(r"[A-Za-zÄÖÜäöüß']+", (text or "").lower())
+    if not toks:
+        return "en"
+    de = sum(1 for t in toks if t in _DE_WORDS)
+    en = sum(1 for t in toks if t in _EN_WORDS)
+    umlauts = len(re.findall(r"[äöüß]", (text or "").lower()))
+    return "de" if (de >= 3 and de > en) or (de >= 2 and de > en and umlauts >= 2) else "en"
+
+
+def resolve_lang(text: str, lang: str = "") -> str:
+    l = (lang or "").lower()[:2]
+    if l in ("de", "en"):
+        return l
+    return detect_language(text)
+
+
+def _stem(word: str) -> str:
+    """Light German/English stem for matching inflected forms of the participant's own words."""
+    w = word.lower().strip()
+    for suf in ("sten", "ster", "stes", "stem", "ste", "en", "er", "es", "em", "e", "n", "s", "t"):
+        if len(w) >= 5 and w.endswith(suf) and len(w) - len(suf) >= 3:
+            return w[: -len(suf)]
+    return w
+
+
+def _user_regex(term: str) -> re.Pattern:
+    """A banned word or phrase -> a regex that also catches inflections ('Potenziale heben' ~ 'Potenzial hebt',
+    'Potenziale gehoben'), up to two filler words inside a phrase, and the reversed word order ('hebt Potenziale')."""
+    words = [w for w in re.split(r"[\s]+", _clean_term(term)) if w]
+    if len(words) == 1:
+        return re.compile(r"\b" + re.escape(_stem(words[0])) + r"\w*", re.I)
+    glue = r"\W+(?:\w+\W+){0,2}?"
+
+    def part(w: str) -> str:
+        return r"\b(?:ge|be|ver|er|ent|zer)?" + re.escape(_stem(w)) + r"\w*"
+
+    fwd = glue.join(part(w) for w in words)
+    rev = glue.join(part(w) for w in reversed(words)) if len(words) == 2 else None
+    return re.compile(fwd if not rev else f"(?:{fwd})|(?:{rev})", re.I)
+
+
 def user_terms(banned: list[str] | None) -> tuple[list[str], list[str]]:
     """Split a participant's banned list into (words, phrases)."""
     words, phrases = [], []
@@ -107,54 +191,62 @@ def user_terms(banned: list[str] | None) -> tuple[list[str], list[str]]:
     return words, phrases
 
 
-def find_tells(text: str, extra_banned: list[str] | None = None) -> list[Tell]:
-    """Every AI tell and banned item in the text, with line numbers."""
+def find_tells(text: str, extra_banned: list[str] | None = None, lang: str = "") -> list[Tell]:
+    """Every AI tell and banned item in the text, with line numbers. Language-aware: German text is checked against
+    German rules only (English word lists never fire on German prose); the participant's own list always applies."""
     text = _norm(text)
+    lang = resolve_lang(text, lang)
     tells: list[Tell] = []
     lines = text.split("\n")
-    xwords, xphrases = user_terms(extra_banned)
+    mine = []
+    for raw in extra_banned or []:
+        t = _clean_term(raw)
+        if t and len(t) <= 70:
+            mine.append((t, _user_regex(t)))
+    stems = DE_BANNED_STEMS if lang == "de" else BANNED_STEMS
+    phrases = DE_BANNED_PHRASES if lang == "de" else BANNED_PHRASES
+    transitions = DE_TRANSITIONS if lang == "de" else BANNED_TRANSITIONS
+    closings = DE_CLOSINGS if lang == "de" else BANNED_CLOSINGS
+    morals = DE_MORAL if lang == "de" else MORAL_OPENERS
+    de = lang == "de"
 
     for i, line in enumerate(lines, 1):
         low = line.lower()
         if "—" in line:
-            tells.append(Tell("em-dash", i, "—", "Em dash. Replace with a period or comma."))
+            tells.append(Tell("em-dash", i, "—", "Gedankenstrich (Em dash). Durch Punkt oder Komma ersetzen." if de else "Em dash. Replace with a period or comma."))
         for m in re.finditer(r"\s–\s", line):
             tells.append(Tell("em-dash", i, "–", "Spaced en dash used as a dash. Use a period or comma."))
-        for stem in BANNED_STEMS:
+        for stem in stems:
             for m in re.finditer(r"\b" + re.escape(stem) + r"\w*", low):
-                tells.append(Tell("banned-word", i, line[m.start():m.end()], "Corporate/AI filler. Use the plain word."))
-        for ph in BANNED_PHRASES:
+                tells.append(Tell("banned-word", i, line[m.start():m.end()], "KI-/Floskelwort. Das einfache Wort nehmen." if de else "Corporate/AI filler. Use the plain word."))
+        for ph in phrases:
             if ph in low:
-                tells.append(Tell("banned-phrase", i, ph, "AI-pattern phrase. Cut or say it plainly."))
-        for tr in BANNED_TRANSITIONS:
+                tells.append(Tell("banned-phrase", i, ph, "KI-Phrase. Streichen oder schlicht sagen." if de else "AI-pattern phrase. Cut or say it plainly."))
+        for tr in transitions:
             if re.search(r"(?:^|[.!?]\s+|\n)" + re.escape(tr) + r"\b", low) or low.startswith(tr):
-                tells.append(Tell("banned-transition", i, tr, "Filler bridge. Use a hard stop instead."))
+                tells.append(Tell("banned-transition", i, tr, "Füllbrücke. Harter Punkt statt Übergang." if de else "Filler bridge. Use a hard stop instead."))
         stripped = low.strip()
-        for cl in BANNED_CLOSINGS:
+        for cl in closings:
             if stripped == cl or stripped.endswith(cl):
-                tells.append(Tell("banned-closing", i, cl, "Generic closer. End on a specific line."))
-        if stripped.startswith(MORAL_OPENERS):
-            tells.append(Tell("tidy-moral", i, stripped[:30], "Stated moral. Let the story carry the lesson."))
-        for w in xwords:
-            for m in re.finditer(r"\b" + re.escape(w) + r"\w*", low):
-                tells.append(Tell("your-banned-word", i, line[m.start():m.end()], "On YOUR never-use list."))
-        for p in xphrases:
-            if p in low:
-                tells.append(Tell("your-banned-phrase", i, p, "On YOUR never-use list."))
+                tells.append(Tell("banned-closing", i, cl, "Floskel-Schluss. Mit etwas Konkretem enden." if de else "Generic closer. End on a specific line."))
+        if stripped.startswith(morals):
+            tells.append(Tell("tidy-moral", i, stripped[:30], "Ausgesprochene Moral. Die Geschichte trägt die Lehre." if de else "Stated moral. Let the story carry the lesson."))
+        for term, rx in mine:
+            m = rx.search(line)
+            if m:
+                tells.append(Tell("your-banned-phrase" if " " in term else "your-banned-word", i, m.group(0),
+                                  "Steht auf DEINER Nie-Liste." if de else "On YOUR never-use list."))
 
-    flat = text
-    for kind, rx, advice in _STRUCT:
-        for m in rx.finditer(flat):
-            ln = flat.count("\n", 0, m.start()) + 1
+    for kind, rx, advice in (_DE_STRUCT if de else _STRUCT):
+        for m in rx.finditer(text):
+            ln = text.count("\n", 0, m.start()) + 1
             tells.append(Tell(kind, ln, m.group(0).strip()[:80], advice))
 
-    # Rhetorical question as the opening line
     first = next(((i, l) for i, l in enumerate(lines, 1) if l.strip()), None)
     if first and first[1].strip().endswith("?"):
         tells.append(Tell("question-opener", first[0], first[1].strip()[:80],
-                          "Opens on a question. Open on the position or the moment."))
+                          "Beginnt mit einer Frage. Mit Position oder Moment beginnen." if de else "Opens on a question. Open on the position or the moment."))
 
-    # Triple staccato: three or more consecutive tiny single-line paragraphs
     paras = [(i, l.strip()) for i, l in enumerate(lines, 1)]
     run: list[tuple[int, str]] = []
     for i, l in paras + [(len(lines) + 1, "")]:
@@ -163,10 +255,9 @@ def find_tells(text: str, extra_banned: list[str] | None = None) -> list[Tell]:
         else:
             if len(run) >= 3:
                 tells.append(Tell("staccato-run", run[0][0], " / ".join(r[1] for r in run[:3]),
-                                  "Three+ tiny lines stacked for drama. Merge or vary the rhythm."))
+                                  "Drei+ Mini-Zeilen für Drama gestapelt. Zusammenführen." if de else "Three+ tiny lines stacked for drama. Merge or vary the rhythm."))
             run = []
 
-    # de-duplicate on (line, match); prefer the participant's own rule over the universal one
     seen, out = set(), []
     for t in sorted(tells, key=lambda t: (not t.kind.startswith("your-"),)):
         k = (t.line, t.match.lower()) if t.kind in ("banned-word", "banned-phrase", "your-banned-word", "your-banned-phrase") else (t.kind, t.line, t.match.lower())
@@ -184,48 +275,72 @@ def _match_case(src: str, repl: str) -> str:
     return repl
 
 
-def mechanical_clean(text: str, extra_banned: list[str] | None = None) -> tuple[str, list[str]]:
-    """Deterministic clean-up. Returns (new_text, change_log). Never invents content."""
+def fix_dashes(text: str, lang: str = "en") -> tuple[str, int]:
+    """Em dashes (and spaced en dashes) -> clean punctuation with correct spacing. Ranges like 2-3 are left alone."""
+    n = 0
+    out = []
+    for line in text.split("\n"):
+        if "—" not in line and not re.search(r"\s–\s", line):
+            out.append(line)
+            continue
+        parts = [p.strip() for p in re.split(r"\s*(?:—|\s–\s)\s*", line)]
+        parts = [p for p in parts if p]
+        if not parts:
+            out.append("")
+            continue
+        s = parts[0]
+        for nxt in parts[1:]:
+            n += 1
+            if lang == "de" or len(s.split()) < 3:
+                s = s.rstrip(",;:") + ", " + nxt
+            else:
+                s = s.rstrip(".,;:") + ". " + nxt[:1].upper() + nxt[1:]
+        out.append(s)
+    return "\n".join(out), n
+
+
+def mechanical_clean(text: str, extra_banned: list[str] | None = None, lang: str = "") -> tuple[str, list[str]]:
+    """Deterministic clean-up. Returns (new_text, change_log). Never invents content and never changes the
+    language of the text: English swaps are applied to English text only."""
     changes: list[str] = []
     t = _norm(text)
+    lang = resolve_lang(t, lang)
 
-    # 1. Em dashes -> period (new sentence) or comma for short asides
-    def dash(m: re.Match) -> str:
-        before, after = m.group(1), m.group(2)
-        changes.append("em dash replaced")
-        if len(before.split()) < 3:
-            return before + ", " + after
-        return before + ". " + after[:1].upper() + after[1:]
+    t, n = fix_dashes(t, lang)
+    changes += ["Gedankenstrich ersetzt" if lang == "de" else "em dash replaced"] * n
 
-    t = re.sub(r"([^\s—][^\n—]*?)\s*—\s*([^\n]+?)(?=—|\n|$)", dash, t) if "—" in t else t
-    t = t.replace("—", ", ") if "—" in t else t
-    t = re.sub(r"\s–\s", ". ", t)
+    if lang == "de":
+        for rx, repl in DE_SWAPS:
+            r = re.compile(rx, re.I)
+            if r.search(t):
+                t = r.sub(lambda m: _match_case(m.group(0), repl + (m.group(1) or "")), t)
+                changes.append(f"'{rx.split('(')[0].strip(chr(92) + 'b')}' -> '{repl}'")
+        transitions, closings = DE_TRANSITIONS, DE_CLOSINGS
+    else:
+        for key in sorted(SWAPS, key=len, reverse=True):
+            rx = re.compile(r"\b" + re.escape(key) + r"\b", re.I)
+            if rx.search(t):
+                t = rx.sub(lambda m: _match_case(m.group(0), SWAPS[key]), t)
+                changes.append(f"'{key}' -> '{SWAPS[key]}'")
+        transitions, closings = BANNED_TRANSITIONS, BANNED_CLOSINGS
 
-    # 2. Plain-word swaps (longest key first)
-    for key in sorted(SWAPS, key=len, reverse=True):
-        rx = re.compile(r"\b" + re.escape(key) + r"\b", re.I)
-        if rx.search(t):
-            t = rx.sub(lambda m: _match_case(m.group(0), SWAPS[key]), t)
-            changes.append(f"'{key}' -> '{SWAPS[key]}'")
-
-    # 3. Strip leading banned transitions
-    for tr in BANNED_TRANSITIONS:
-        rx = re.compile(r"(^|[.!?]\s+|\n)" + re.escape(tr) + r",?\s+([a-z])", re.I)
+    for tr in ([] if lang == "de" else transitions):  # German: flag only; dropping 'Darüber hinaus' breaks verb-second order
+        rx = re.compile(r"(^|[.!?]\s+|\n)" + re.escape(tr) + r",?\s+(\w)", re.I)
         if rx.search(t):
             t = rx.sub(lambda m: m.group(1) + m.group(2).upper(), t)
-            changes.append(f"transition '{tr}' removed")
+            changes.append(f"Übergang '{tr}' entfernt" if lang == "de" else f"transition '{tr}' removed")
 
-    # 4. Drop lines that are only a banned closing
     kept = []
     for line in t.split("\n"):
-        if _clean_term(line) in BANNED_CLOSINGS:
-            changes.append(f"closing '{line.strip()}' removed")
+        if _clean_term(line) in closings:
+            changes.append(f"Schluss '{line.strip()}' entfernt" if lang == "de" else f"closing '{line.strip()}' removed")
             continue
         kept.append(line)
     t = "\n".join(kept)
 
-    # 5. Whitespace hygiene
     t = re.sub(r"[ \t]+\n", "\n", t)
+    t = re.sub(r"[ \t]{2,}", " ", t)
+    t = re.sub(r"\s+([,.;:!?])", r"\1", t)  # no space before punctuation
     t = re.sub(r"\n{3,}", "\n\n", t).strip()
     return t, changes
 
@@ -247,14 +362,16 @@ PLATFORMS = {
 
 def _kw_cta(text: str) -> bool:
     tail = "\n".join([l for l in text.strip().split("\n") if l.strip()][-3:])
-    return bool(re.search(r"\b(?:dm|message|comment|reply)\b[^\n]{0,30}?[\"'“”‘’]?\b[A-Z][A-Z0-9]{2,}\b", tail)
-                or re.search(r"\b(?:dm|comment|reply)\s+(?:me\s+)?[\"“']([^\"”']{2,20})[\"”']", tail, re.I))
+    verbs = r"(?:dm|message|comment|reply|nachricht|schreib\w*|schick\w*|kommentier\w*|antwort\w*|meld\w*)"
+    return bool(re.search(r"\b" + verbs + r"\b[^\n]{0,40}?[\"'„“”‘’]?\b[A-ZÄÖÜ][A-ZÄÖÜ0-9]{2,}\b", tail)
+                or re.search(r"\b" + verbs + r"\b[^\n]{0,40}?[\"„“'‚‘]([^\"”“'’‘\n]{2,24})[\"”“'’‘]", tail, re.I))
 
 
-def polish(text: str, platform: str = "linkedin", extra_banned: list[str] | None = None) -> dict:
+def polish(text: str, platform: str = "linkedin", extra_banned: list[str] | None = None, lang: str = "") -> dict:
     platform = (platform or "linkedin").lower().replace("twitter", "x")
     lo, hi, cap, hook_win = PLATFORMS.get(platform, PLATFORMS["linkedin"])
-    cleaned, changes = mechanical_clean(text, extra_banned)
+    lang = resolve_lang(text, lang)
+    cleaned, changes = mechanical_clean(text, extra_banned, lang)
     n = len(cleaned)
     issues: list[str] = []
 
@@ -293,8 +410,8 @@ def polish(text: str, platform: str = "linkedin", extra_banned: list[str] | None
     if not (has_kw or ends_q) and platform in ("linkedin", "instagram", "threads", "facebook"):
         issues.append("No ask at the end. Add a keyword DM invitation or a specific question.")
 
-    tells = find_tells(cleaned, extra_banned)
-    return {
+    tells = find_tells(cleaned, extra_banned, lang)
+    return {"language": lang, 
         "platform": platform, "chars": n, "target": f"{lo}-{hi}", "polished": cleaned,
         "mechanical_changes": changes, "structure_issues": issues,
         "remaining_tells": [t.render() for t in tells], "has_keyword_cta": has_kw, "ends_on_question": ends_q,

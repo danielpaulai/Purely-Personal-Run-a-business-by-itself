@@ -423,44 +423,103 @@ If the Brain, ICP and Voice DNA disagree, the Brain wins."""
     # ====================================================================
     # 4. RESEARCH
     # ====================================================================
-    @tool()
-    def analyze_competitor(competitor_urls: str = "", mode: str = "standard", brain: str = "", icp: str = "", voice_dna: str = "", profile_url: str = "", max_posts: int = 30) -> str:
-        """Run the competitor-x-ray skill: given 3 competitor LinkedIn URLs (one per line) and YOUR ICP, scrape each profile and
-        their recent posts with the Apify connector, compare them on 8 dimensions, find content gaps and give you a strategic content
-        direction. mode: quick | standard | deep. Needs the Apify connector on. Returns a work order."""
-        p = load(brain, icp, voice_dna)
-        urls = [u.strip() for u in re.split(r"[\n,\s]+", competitor_urls + " " + profile_url) if u.strip().startswith("http")]
-        if not urls:
-            return "Give me the competitor LinkedIn profile URLs (up to 3, one per line)."
-        m = pick(mode, {"quick": "quick", "deep": "deep", "standard": "standard"}, "standard")
-        return skills.work_order(
-            title=f"Competitor X-Ray · {m}", skill="competitor-x-ray", p=p,
-            method=skills.skill_sections("competitor-x-ray", "Mode", "The 8 Dimensions", "Process", "Output Structure (`standard`"),
-            inputs={"mode": m, "competitor URLs": " | ".join(urls[:3]), "posts to read per competitor": max_posts, "data source": "Use the Apify connector (search the store for a LinkedIn profile and post scraper). If Apify is unavailable, say so; never guess their posts."},
-            task="Scrape, analyse each competitor on the 8 dimensions, synthesise, then write the Strategic Content Direction for ME using my Customer Lock and Voice Lock.",
-            contract="The skill's standard output: per-competitor cards, side-by-side matrix, 3-5 content gaps vs my ICP, and the Strategic Content Direction.",
-            checks=["Every claim about a competitor must cite a scraped post or profile field.", "No em dashes."])
+    APIFY_RULES = """\
+APIFY RULES (this work uses the participant's OWN Apify connector, their account and their credit, never anyone else's):
+- Check what a run costs before you start it (the prices in this order are the Apify Store FREE-tier prices checked on 2026-11-11; the actor page is authoritative).
+  Start with a tiny test run (maxItems / maxPosts of 3). Only then run the real size.
+- A free Apify plan has a small monthly credit that ALL their runs share, including scheduled tasks. Keep runs small and say what you spent.
+- If Apify answers 403, "platform-feature-disabled" or "Monthly usage hard limit exceeded": STOP. Do not retry and do not loop. Tell the user in one plain
+  sentence that their Apify monthly limit is used up (Apify Console > Settings > Billing / Usage limits, or wait for the monthly reset), then offer the
+  no-Apify route: they paste the posts / profile list themselves and you call this tool again with pasted_posts= / candidates=.
+- Zero results is a signal to widen the search by ONE step, not a conclusion. Say which queries you ran. Never invent a post, a profile or a number."""
+
+    def _split_entries(raw: str) -> list[str]:
+        return [e.strip() for e in re.split(r"[\n;,]+", raw or "") if e.strip()]
+
+    def _classify(entry: str) -> dict:
+        e = entry.strip()
+        low = e.lower()
+        if "linkedin.com/company/" in low or "linkedin.com/showcase/" in low:
+            return {"entry": e, "type": "company page", "actor": "harvestapi/linkedin-company-posts", "input": "targetUrls=[url], maxPosts, postedLimit",
+                    "details_actor": "harvestapi/linkedin-company (targetUrl -> about, followers, employees, specialties)", "post_price": 0.002, "details_price": 0.004}
+        if "linkedin.com/in/" in low:
+            return {"entry": e, "type": "personal profile", "actor": "harvestapi/linkedin-profile-posts", "input": "targetUrls=[url], maxPosts, postedLimit",
+                    "details_actor": "harvestapi/linkedin-profile-scraper", "post_price": 0.002, "details_price": 0.004}
+        if "linkedin.com/school/" in low:
+            return {"entry": e, "type": "school page", "actor": "harvestapi/linkedin-company-posts", "input": "targetUrls=[url], maxPosts", "details_actor": "", "post_price": 0.002, "details_price": 0}
+        if low.startswith("http"):
+            return {"entry": e, "type": "other URL (not a LinkedIn page)", "actor": "", "input": "", "details_actor": "", "post_price": 0, "details_price": 0}
+        return {"entry": e, "type": "company or person NAME (no URL)", "actor": "harvestapi/linkedin-company (searches=[name]) to find the LinkedIn URL first, then as for a company page",
+                "input": "searches=[name]", "details_actor": "", "post_price": 0.002, "details_price": 0.004}
 
     @tool()
-    def find_prospects(post: str = "", limit: int = 10, mode: str = "standard", brain: str = "", icp: str = "", voice_dna: str = "", keywords: str = "", location: str = "") -> str:
-        """Run the prospect-magnet skill: turn YOUR ICP into a LinkedIn search (derived for you here), find real matching people with
-        the Apify connector, score each 0-10 against your ICP and write a personalised first message per person in YOUR voice,
-        referencing the post you pass. Needs the Apify connector on. Returns a work order."""
+    def analyze_competitor(competitor_urls: str = "", mode: str = "standard", brain: str = "", icp: str = "", voice_dna: str = "",
+                           profile_url: str = "", max_posts: int = 30, pasted_posts: str = "", budget_usd: float = 0) -> str:
+        """Run the competitor-x-ray skill against YOUR ICP: compare competitors on 8 dimensions, find content gaps and give you a strategic content direction.
+        competitor_urls: up to 3 LinkedIn COMPANY pages (linkedin.com/company/...), personal profiles (linkedin.com/in/...) or plain names, one per line.
+        Company pages are handled as company pages (company scraper), people as people. Uses YOUR Apify connector and credit; shows the estimated cost first.
+        No Apify (or limit reached)? Paste their posts into pasted_posts and the analysis runs without scraping. mode: quick | standard | deep."""
+        p = load(brain, icp, voice_dna)
+        entries = _split_entries(competitor_urls + "\n" + profile_url)
+        if not entries and not pasted_posts.strip():
+            return "Give me the competitors: up to 3 LinkedIn company page URLs, profile URLs or plain company names (one per line), or paste their recent posts into pasted_posts."
+        m = pick(mode, {"quick": "quick", "deep": "deep", "standard": "standard"}, "standard")
+        entries = entries[:3]
+        rows = [_classify(e) for e in entries]
+        per = max_posts if m != "deep" else max(max_posts, 60)
+        if budget_usd and rows:
+            while per > 5 and sum(r["details_price"] + per * r["post_price"] for r in rows) > budget_usd:
+                per -= 5
+        est = round(sum(r["details_price"] + per * r["post_price"] for r in rows), 3)
+        listing = "\n".join(f"  - {r['entry']}  [{r['type']}]  actor: {r['actor'] or 'n/a'}  input: {r['input'] or 'n/a'}" for r in rows) or "  (none: analysing pasted posts only)"
+        has_company = any(r["type"].startswith(("company", "school")) for r in rows)
+        adapt = ("\nCOMPANY PAGES: apply the 8 dimensions to the page as a brand. Headline = tagline + specialties; About = company description, "
+                 "employee count, followers, locations; Cadence and Hooks come from the company's own posts (the voice is the brand's or its social media person's, "
+                 "say which); Engagement = reactions/comments per post relative to follower count. Also note which posts show people from the company "
+                 "(employee-led content usually out-performs logo posts). Machine builders and other B2B manufacturers often post product news, trade-fair "
+                 "stands and customer installations: classify posts that way and compare.\n" if has_company else "")
+        src = ("Posts pasted by the user (analyse these; do not scrape):\n" + pasted_posts[:30000]) if pasted_posts.strip() else \
+            "Scrape with the Apify connector as listed above; this run is estimated at about $" + f"{est} for {per} posts per competitor."
+        return skills.work_order(
+            title=f"Competitor X-Ray · {m}", skill="competitor-x-ray", p=p,
+            method=skills.skill_sections("competitor-x-ray", "Mode", "The 8 Dimensions", "Process", "Output Structure (`standard`") + adapt + "\n" + APIFY_RULES,
+            inputs={"mode": m, "competitors (classified)": "\n" + listing, "posts per competitor": per, "data": src,
+                    "language of analysis": p.language, "gaps are measured against": "THIS participant's ICP (the Customer Lock above), nobody else's"},
+            task="Get the competitors' posts (scrape or use the pasted posts), analyse each on the 8 dimensions, synthesise, then write the Strategic Content Direction for ME "
+                 "using my Customer Lock and Voice Lock, in " + p.language + ".",
+            contract="The skill's standard output: per-competitor cards, side-by-side matrix, 3-5 content gaps vs MY ICP, and the Strategic Content Direction. State which URLs were company pages and which were people, and what the run cost.",
+            checks=["Every claim about a competitor must cite a scraped or pasted post or profile field.", "No em dashes."])
+
+    @tool()
+    def find_prospects(post: str = "", limit: int = 10, mode: str = "standard", brain: str = "", icp: str = "", voice_dna: str = "",
+                       keywords: str = "", location: str = "", candidates: str = "", budget_usd: float = 0) -> str:
+        """Run the prospect-magnet skill: turn YOUR ICP into a LinkedIn search (German or English titles and DACH/other locations are derived from the ICP in its own
+        language), find matching people with YOUR Apify connector and credit, score each 0-10 against your ICP and write a personalised first message per person in YOUR
+        voice and language. Shows the estimated Apify cost first and widens a zero-result search step by step. keywords / location replace the derived search.
+        No Apify (or limit reached)? Paste people into candidates (name, headline, company, URL per line) and it only scores and writes."""
         p = load(brain, icp, voice_dna)
         q = library.prospect_query(p, limit)
         if keywords.strip():
-            q["keywords"], q["confidence"] = keywords.strip(), "operator-specified"
+            q["searchQuery"], q["confidence"] = keywords.strip(), "operator-specified"
         if location.strip():
-            q["geography"] = [location.strip()]
+            q["locations"] = [x.strip() for x in re.split(r"[;,]", location) if x.strip()]
+        if budget_usd and budget_usd > 0:
+            while q["maxItems"] > 1 and library.apify_cost(q["maxItems"]) > budget_usd:
+                q["maxItems"] -= 1
+            q["estimated_apify_cost_usd"] = library.apify_cost(q["maxItems"])
+        src = ("Candidates pasted by the user (do NOT search; score and write for these):\n" + candidates[:30000]) if candidates.strip() else \
+            "Search with the Apify connector using the starting query below and the ladder in it. Estimated cost for " + f"{q['maxItems']} prospects: about ${q['estimated_apify_cost_usd']}."
         return skills.work_order(
             title="Prospect Magnet", skill="prospect-magnet", p=p,
             method=skills.prompt_file("prospect-magnet", "prospect-search.md") + "\n\n" + skills.prompt_file("prospect-magnet", "personalized-dm.md") + "\n\n" +
-                   skills.skill_sections("prospect-magnet", "Mode", "Process", "Output Structure (`standard`", "Self-Critique"),
-            inputs={"mode": mode, "number of prospects": limit, "post to reference": post or "(none given: reference a theme from my Brain instead)",
-                    "starting search query (derived from my ICP, confidence " + q["confidence"] + ")": json.dumps(q, indent=2)},
-            task="Refine the starting query, run the search and enrichment through the Apify connector, score ICP fit 0-10, then draft one message per prospect.",
-            contract="A ranked table (name, headline, fit score, why) then one first message per prospect, 4-line structure, in my voice. No placeholders.",
-            checks=["Never invent a detail about a person; use only scraped fields.", "Run de_ai_ify on every message."])
+                   skills.skill_sections("prospect-magnet", "Mode", "Process", "Output Structure (`standard`", "Self-Critique") +
+                   "\n\nACTORS: use the verified actors named in the starting query (harvestapi/*). If this method names a different actor, prefer the verified one.\n" + APIFY_RULES,
+            inputs={"mode": mode, "number of prospects": q["maxItems"], "post to reference": post or "(none given: reference a theme from my Brain instead)",
+                    "language of the messages": p.language, "data": src,
+                    f"starting search (confidence {q['confidence']})": json.dumps(q, indent=2, ensure_ascii=False)},
+            task="Refine the starting query, run the ladder through the Apify connector (or use the pasted candidates), score ICP fit 0-10, then draft one message per prospect in " + p.language + ".",
+            contract="A ranked table (name, headline, company, fit score, why), the queries you ran with result counts, the Apify cost, then one first message per prospect, 4-line structure, in my voice and language. No placeholders.",
+            checks=["Never invent a detail about a person; use only fields you actually retrieved or were given.", "Run de_ai_ify on every message."])
 
     @tool()
     def get_daily_prompt(brain: str = "", icp: str = "", voice_dna: str = "", date: str = "", records: str = "") -> str:
@@ -495,7 +554,7 @@ If the Brain, ICP and Voice DNA disagree, the Brain wins."""
     # 5. QUALITY (deterministic)
     # ====================================================================
     @tool()
-    def score_post(text: str = "", mode: str = "score-with-fix", strict_asking: bool = False, brain: str = "", icp: str = "", voice_dna: str = "", post: str = "") -> str:
+    def score_post(text: str = "", mode: str = "score-with-fix", strict_asking: bool = False, brain: str = "", icp: str = "", voice_dna: str = "", post: str = "", language: str = "") -> str:
         """Score a post 0-4 on the Invisibility Diagnostic: Voice (uses YOUR words), POV, Specificity (real name + number in the first half),
         Asking (keyword DM invitation or direct closing question in the last 2 lines). Returns a one-line fix per missing dimension and the
         AI tells found. mode: score-only | score-with-fix. strict_asking=true accepts only a keyword invitation. Aim for 4/4."""
@@ -503,17 +562,17 @@ If the Brain, ICP and Voice DNA disagree, the Brain wins."""
         if not text.strip():
             return "Pass the post text (text= or post=)."
         p = load(brain, icp, voice_dna, need=False)
-        return scoring.render(scoring.diagnose(text, p, strict_asking), mode)
+        return scoring.render(scoring.diagnose(text, p, strict_asking, language), mode)
 
     @tool()
-    def polish_post(text: str = "", platform: str = "linkedin", brain: str = "", icp: str = "", voice_dna: str = "", post: str = "") -> str:
+    def polish_post(text: str = "", platform: str = "linkedin", brain: str = "", icp: str = "", voice_dna: str = "", post: str = "", language: str = "") -> str:
         """Platform polish: applies mechanical fixes (whitespace, em dashes, plain-word swaps) and reports length vs target, hook length vs the
         fold, paragraph density, hashtags, missing ask and remaining AI tells. platform: linkedin | instagram | x | threads | facebook | newsletter."""
         text = text or post
         if not text.strip():
             return "Pass the post text (text= or post=)."
         p = load(brain, icp, voice_dna, need=False)
-        r = voice.polish(text, platform, banned_for(p))
+        r = voice.polish(text, platform, banned_for(p), language)
         out = [f"POLISH · {r['platform']} · {r['chars']} chars (target {r['target']})", ""]
         out += ["MECHANICAL FIXES APPLIED: " + (", ".join(sorted(set(r["mechanical_changes"]))) or "none")]
         out += ["", "STRUCTURE ISSUES:"] + ([f"  - {x}" for x in r["structure_issues"]] or ["  none"])
@@ -522,7 +581,7 @@ If the Brain, ICP and Voice DNA disagree, the Brain wins."""
         return "\n".join(out)
 
     @tool()
-    def de_ai_ify(text: str = "", brain: str = "", icp: str = "", voice_dna: str = "", post: str = "") -> str:
+    def de_ai_ify(text: str = "", brain: str = "", icp: str = "", voice_dna: str = "", post: str = "", language: str = "") -> str:
         """Strip AI tells from a draft. Mechanically fixes em dashes, corporate filler words and filler transitions, then lists every
         remaining tell (contrast frames, banned openers/closers, question openers, staccato runs, YOUR banned words) with line numbers
         for you to rewrite in your own words. Never invents content."""
@@ -530,9 +589,10 @@ If the Brain, ICP and Voice DNA disagree, the Brain wins."""
         if not text.strip():
             return "Pass the text (text= or post=)."
         p = load(brain, icp, voice_dna, need=False)
-        cleaned, changes = voice.mechanical_clean(text, banned_for(p))
-        left = voice.find_tells(cleaned, banned_for(p))
-        lines = [f"DE-AI-IFY · {len(changes)} mechanical fixes · {len(left)} tells left for you to rewrite", ""]
+        lang = voice.resolve_lang(text, language)
+        cleaned, changes = voice.mechanical_clean(text, banned_for(p), lang)
+        left = voice.find_tells(cleaned, banned_for(p), lang)
+        lines = [f"DE-AI-IFY · language: {'Deutsch' if lang == 'de' else 'English'} · {len(changes)} mechanical fixes · {len(left)} tells left for you to rewrite", ""]
         if changes:
             lines += ["FIXED: " + ", ".join(sorted(set(changes))), ""]
         if left:

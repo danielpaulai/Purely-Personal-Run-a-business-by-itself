@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import re
 
-from .voice import find_tells
+from .voice import find_tells, resolve_lang
 
 TIERS = {0: "Invisible", 1: "Invisible", 2: "Background noise", 3: "Visible", 4: "Magnetic"}
 TIER_ACTION = {
@@ -26,6 +26,13 @@ _STANCE = re.compile(
     r"should(?:n'?t)?|bad advice|scam|waste|ignore|quit|kill|nobody tells|the real reason)\b",
     re.I,
 )
+_STANCE_DE = re.compile(
+    r"\b(falsch|mythos|stopp\w*|nie|niemals|überschätzt|unterschätzt|lüge|kaputt|fehler|unpopulär|widerspreche|ehrlich gesagt|"
+    r"niemand|alle|wahrheit|eigentlich|stattdessen|verzichte|sollte(?:n)? nicht|schlechter rat|verschwendung|vergiss|hör auf|"
+    r"die wahre ursache|unsinn|blödsinn|trugschluss|irrtum)\b", re.I)
+_EXPLAINERS_DE = re.compile(r"^(?:hier sind|ein leitfaden|tipps für|wege zu|\d+ (?:tipps|wege|dinge))", re.I)
+_PERSON_DE = re.compile(r"\b(kunde|kundin|kunden|hersteller|produktionsleiter\w*|betrieb|firma|werk|anlage|linie|gmbh|ag|kg|herr|frau|"
+                        r"geschäftsführer\w*|leiter\w*|feinkost\w*|abfüller)\b", re.I)
 _EXPLAINERS = re.compile(r"^(?:here are|here's a guide|a guide to|tips for|ways to|\d+ (?:tips|ways|things))", re.I)
 _NUM = re.compile(r"(?:\$|£|€)?\d[\d,.]*\s?(?:%|k|m|x|hours?|hrs?|days?|weeks?|months?|years?|clients?|people|calls?|dms?|posts?)?", re.I)
 _NAME = re.compile(r"(?<![.!?]\s)(?<!^)\b[A-Z][a-z]{2,}\b")
@@ -44,8 +51,9 @@ def _tail_lines(text: str, n: int = 2) -> str:
 
 def _asking(text: str, strict: bool) -> tuple[bool, str]:
     tail = _tail_lines(text, 2)
-    kw = re.search(r"\b(?:dm|message|comment|reply|type)\b[^\n]{0,40}?[\"'“”‘’]([^\"'“”‘’\n]{2,24})[\"'“”‘’]", tail, re.I) or \
-        re.search(r"\b(?:dm|message|comment|reply|type)\s+(?:me\s+)?([A-Z][A-Z0-9]{2,})\b", tail)
+    verbs = r"(?:dm|message|comment|reply|type|nachricht|schreib\w*|schick\w*|kommentier\w*|antwort\w*|meld\w*|tipp\w*)"
+    kw = re.search(r"\b" + verbs + r"\b[^\n]{0,40}?[\"'„“”‚‘’]([^\"'„“”‚‘’\n]{2,24})[\"'“”‘’]", tail, re.I) or \
+        re.search(r"\b" + verbs + r"\b(?:\s+(?:me|mir|uns))?\s+([A-ZÄÖÜ][A-ZÄÖÜ0-9]{2,})\b", tail)
     if kw:
         return True, f"keyword invitation ('{kw.group(1)}')"
     if not strict and tail.strip().endswith("?") and len(tail.split()) >= 6:
@@ -53,14 +61,16 @@ def _asking(text: str, strict: bool) -> tuple[bool, str]:
     return False, "no keyword DM/comment invitation in the last 2 lines" + ("" if strict else " and no direct closing question")
 
 
-def diagnose(text: str, profile=None, strict_asking: bool = False) -> dict:
+def diagnose(text: str, profile=None, strict_asking: bool = False, lang: str = "") -> dict:
     t = (text or "").strip()
     if not t:
         return {"score": 0, "tier": "Invisible", "dimensions": {}, "fixes": ["Nothing to score."], "chars": 0}
 
     first, second = _split_halves(t)
     banned = profile.voice["banned"] if profile else []
-    tells = find_tells(t, banned)
+    lang = resolve_lang(t, lang)
+    de = lang == "de"
+    tells = find_tells(t, banned, lang)
     hard_tells = [x for x in tells if x.kind not in ("staccato-run",)]
 
     # ---- Voice -----------------------------------------------------------
@@ -72,7 +82,7 @@ def diagnose(text: str, profile=None, strict_asking: bool = False) -> dict:
         low = t.lower()
         hit = {x for x in bank + sig + cust if len(x) > 2 and re.search(r"\b" + re.escape(x) + r"\b", low)}
         own = sorted(x for x in hit if not any(x != y and x in y for y in hit))  # drop items contained in a longer hit
-    first_person = bool(re.search(r"\b(i|i'm|i've|my|we|our)\b", t, re.I))
+    first_person = bool(re.search(r"\b(ich|mein\w*|wir|unser\w*)\b" if de else r"\b(i|i'm|i've|my|we|our)\b", t, re.I))
     if profile and (profile.voice["word_bank"] or profile.voice["signature_phrases"]):
         voice_ok = len(own) >= 2 and len(hard_tells) <= 1
         voice_why = (f"uses {len(own)} of your own words/phrases ({', '.join(own[:4])})" if voice_ok else
@@ -83,15 +93,19 @@ def diagnose(text: str, profile=None, strict_asking: bool = False) -> dict:
                      "no personal markers or AI tells present (load your Voice DNA for a real voice check)")
 
     # ---- POV -------------------------------------------------------------
-    stance_hits = _STANCE.findall(first[:600] + " " + second[:300])
-    pov_ok = len(stance_hits) >= 2 and not _EXPLAINERS.match(t)
+    stance_hits = (_STANCE_DE if de else _STANCE).findall(first[:600] + " " + second[:300])
+    pov_ok = len(stance_hits) >= 2 and not (_EXPLAINERS_DE if de else _EXPLAINERS).match(t)
     pov_why = ("takes a side (" + ", ".join(sorted({s.lower() for s in stance_hits})[:4]) + ")" if pov_ok else
                "reads as explanation: no clear side taken in the opening")
 
     # ---- Specificity -----------------------------------------------------
     has_num = bool(_NUM.search(first)) and bool(re.search(r"\d", first))
     names = [n for n in _NAME.findall(first) if n not in ("The", "This", "That", "When", "What", "Most", "Last", "And", "But", "Then", "Here", "Not", "Why", "How")]
-    spec_ok = has_num and (len(names) >= 1 or bool(re.search(r"\b(client|customer|founder|coach|member)\b", first, re.I)))
+    if de:  # German capitalises every noun, so "capitalised word" says nothing; look for a named person/company or a customer marker
+        names = re.findall(r"\b(?:Herr|Frau|Dr\.)\s+[A-ZÄÖÜ]\w+|\b[A-ZÄÖÜ]\w+\s+(?:GmbH|AG|KG|SE)\b|\b[A-ZÄÖÜ][a-zäöüß]{2,}\s+aus\s+[A-ZÄÖÜ]\w+", first)
+        spec_ok = has_num and (len(names) >= 1 or bool(_PERSON_DE.search(first)))
+    else:
+        spec_ok = has_num and (len(names) >= 1 or bool(re.search(r"\b(client|customer|founder|coach|member)\b", first, re.I)))
     spec_why = ("number and a real person/entity in the first half" if spec_ok else
                 ("a number but no named person/entity" if has_num else "no real number" if not names else "a name but no number") + " in the first half")
 

@@ -81,7 +81,7 @@ def test_skill_methods_are_actually_inlined(maya):
 
 
 def test_competitor_without_urls_asks_for_them(maya):
-    assert "competitor LinkedIn profile URLs" in maya.call("analyze_competitor", competitor_urls="nothing")
+    assert "Give me the competitors" in maya.call("analyze_competitor", competitor_urls="")
 
 
 def test_score_polish_deai_use_the_participants_banned_list(maya):

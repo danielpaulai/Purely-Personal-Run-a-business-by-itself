@@ -43,6 +43,14 @@ The checks are real code, not prompts: scoring (Invisibility Diagnostic, persona
 
 26 of the 29 v1 tool names are kept, so the Day 2 and Day 3 playbook prompts keep working. The three removed are the token tools (`set_my_context`, `get_my_context`, `clear_my_context`). Three prompts (slash commands) are added: `monday_content_drop`, `wednesday_market_scan`, `friday_prospect_run`. Each skill is also a resource at `pp://skills/{name}`.
 
+## Languages
+
+Works in English and German. Documents written in German parse completely (German section titles, German banned-list markers, `Niemals …` rules, `Sprache: Deutsch`). The writing tools write in the language in the Business Brain; `de_ai_ify`, `polish_post` and `score_post` detect German automatically (or take `language="de"`), apply German rules only, and match the participant's own banned phrases in inflected form. Other languages get the universal checks plus the participant's own banned list.
+
+## Apify (prospecting and competitor analysis)
+
+`find_prospects` and `analyze_competitor` use the **participant's own Apify connector** (their account, their credit). Each shows an estimated cost first (free-tier prices checked 2026-11-11: about $0.16 for 15 prospects, about $0.06 per competitor for 30 posts), accepts `budget_usd`, runs a 3-item test first, and stops cleanly on an Apify limit instead of retrying. With no Apify at all, paste the material instead: `candidates=` for prospects, `pasted_posts=` for competitors. Company pages (`linkedin.com/company/...`) use the company scrapers.
+
 ## Participant flow (what to tell them)
 
 Nothing to set up beyond Day 1. In the project, the instructions say once:
@@ -58,7 +66,7 @@ Post history and revenue reports live in the participant's own Notion / CRM (Day
 ```bash
 cd mcp/purely-personal-mcp
 pip install -r requirements.txt
-python -m pytest -q                 # 43 tests: parsing, every tool, isolation, HTTP, stdio
+python -m pytest -q                 # 64 tests: parsing, every tool, isolation, HTTP, stdio
 python -m pp_mcp                    # stdio, for Claude Desktop / Claude Code
 python -m pp_mcp --http 8000        # http://localhost:8000/mcp
 ```
@@ -105,7 +113,7 @@ pp_mcp/library.py    templates, daily angle, prospect query, revenue + attributi
 pp_mcp/ledger.py     optional local ledger (stdio install only)
 pp_mcp/data/         the 12 skills (+ newsletter-writer), blacklist
 api/index.py         Vercel entry · vercel.json
-tests/               43 tests, fixture participant (Maya Okafor)
+tests/               64 tests, fixture participant (Maya Okafor)
 ```
 
 ## Updating a skill

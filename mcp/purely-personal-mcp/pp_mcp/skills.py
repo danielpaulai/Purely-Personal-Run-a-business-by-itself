@@ -170,6 +170,11 @@ def lock_blocks(p: Profile, depth: str = "standard") -> str:
         "Universal blacklist always applies: no contrast frames ('not X, but Y'), no negative stacks, no rhetorical-question openers, no tidy moral at the end, no 'Moreover/Furthermore', no corporate filler (leverage, unlock, delve, seamless...).",
         "If the Brain, ICP and Voice DNA disagree: the Brain wins; say so in one line.",
     ]
+    if (p.language or "").strip() and not (p.language or "").lower().startswith(("en", "eng")):
+        rules.insert(0, f"WRITE EVERYTHING IN {p.language.upper()} (the operator's publishing language). Do not mix in English words except established technical terms the customer "
+                        f"uses in English. Do not translate the operator's banned phrases into English to get around them: they apply in {p.language}. "
+                        "The universal AI-pattern blacklist applies in that language too (no stacked contrast frames, no corporate filler, no formal-brochure phrasing); "
+                        "write the way the operator talks to a colleague.")
     if p.guard_rails:
         rules.insert(1, "NEVER CLAIM (hard guard rails from the operator's own documents):\n  " + "\n  ".join(f"- {g}" for g in p.guard_rails))
     parts.append(_box("5. HARD RULES", "\n".join(f"- {r}" for r in rules)))

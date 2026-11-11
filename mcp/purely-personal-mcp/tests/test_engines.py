@@ -77,6 +77,20 @@ def test_daily_prompt_is_rotating_personal_and_avoids_recent(docs):
 
 def test_prospect_query_comes_from_the_icp(docs):
     from pp_mcp import library
-    q = library.prospect_query(Profile.from_docs(**docs))
-    assert "United Kingdom" in q["geography"] or "UK" in q["geography"] or "London" in q["geography"]
-    assert q["confidence"] in ("medium", "high") and "harvestapi/linkedin-profile-search" in q["apify_actors"]
+    q = library.prospect_query(Profile.from_docs(**docs), 12)
+    assert "United Kingdom" in q["locations"] or "London" in q["locations"] or "Ireland" in q["locations"]
+    assert q["confidence"] in ("medium", "high") and q["actors"]["people search"] == "harvestapi/linkedin-profile-search"
+    assert q["maxItems"] == 12 and q["profileLanguages"] == []
+
+
+def test_prospect_query_for_a_german_dach_icp_is_german_and_clean():
+    from pp_mcp import library
+    from conftest import read_docs_de
+    q = library.prospect_query(Profile.from_docs(**read_docs_de()), 15)
+    assert q["language"] == "de" and q["profileLanguages"] == ["de"]
+    assert {"Produktionsleiter", "Leiter Produktion", "Production Manager"} <= set(q["currentJobTitles"])
+    assert set(q["locations"]) == {"Germany", "Austria", "Switzerland", "Baden-Württemberg, Germany"} or set(q["locations"]) >= {"Germany", "Austria", "Switzerland"}
+    assert "Italy" not in q["locations"]  # "Ersatzteile aus Italien" is a supplier, not the customer's location
+    assert not any("Marketing" in x for x in q["currentJobTitles"])
+    assert q["searchQuery"] == "" and q["estimated_apify_cost_usd"] < 0.5
+    assert any("company-employees" in step or "company first" in step for step in q["ladder"])

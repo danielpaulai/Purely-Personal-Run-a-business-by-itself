@@ -16,6 +16,11 @@ def read_docs():
     return {k: (FIX / f).read_text() for k, f in (("brain", "BUSINESS-BRAIN.md"), ("icp", "ICP.md"), ("voice_dna", "VOICE-DNA.md"))}
 
 
+def read_docs_de():
+    d = FIX.parent / "fixtures_de"
+    return {k: (d / f).read_text() for k, f in (("brain", "BUSINESS-BRAIN.md"), ("icp", "ICP.md"), ("voice_dna", "VOICE-DNA.md"))}
+
+
 class Client:
     """In-process caller that goes through FastMCP's real argument validation.
     With docs set it behaves like Claude does: it attaches the participant's documents to tools that take them."""
@@ -60,3 +65,9 @@ def local(tmp_path):
     for f, n in (("BUSINESS-BRAIN.md", "BUSINESS-BRAIN.md"), ("ICP.md", "ICP.md"), ("VOICE-DNA.md", "VOICE-DNA.md")):
         (home / n).write_text((FIX / f).read_text())
     return Client(build_server(local_dir=home, ledger=Ledger(home / "ledger.jsonl"))), home
+
+
+@pytest.fixture()
+def ewa():
+    """A German DACH machinery business: German documents attached to every call."""
+    return Client(build_server(), read_docs_de())

@@ -82,32 +82,93 @@ def daily_prompt(p: Profile, today: dt.date | None = None, recent_topics: list[s
 
 
 # ----------------------------------------------------------------------------
-# Prospect search (prospect-magnet Phase 2, from the ICP)
+# Prospect search (prospect-magnet Phase 2, from the ICP). Language-aware: a German ICP gets German job titles,
+# DACH locations and German profile language, because English titles return nothing for German-language profiles.
 # ----------------------------------------------------------------------------
-_ROLES = ["founder", "owner", "ceo", "coach", "consultant", "agency owner", "freelancer", "director",
-          "head of", "manager", "partner", "lawyer", "solicitor", "accountant", "therapist", "designer",
-          "developer", "engineer", "marketer", "recruiter", "trainer", "author", "creator", "solopreneur"]
-_REGIONS = ["United States", "United Kingdom", "UK", "Ireland", "Canada", "Australia", "Germany", "France",
-            "Spain", "Netherlands", "Singapore", "India", "Indonesia", "Vietnam", "UAE", "London", "New York",
-            "Europe", "North America", "Asia", "Worldwide"]
+TITLE_GROUPS = {  # trigger words found in the ICP -> titles to search (German and English)
+    ("produktionsleiter", "leiter produktion", "production manager", "head of production", "produktionsleitung"):
+        ["Produktionsleiter", "Leiter Produktion", "Produktionsleitung", "Production Manager", "Head of Production"],
+    ("werksleiter", "plant manager", "betriebsleiter", "werkleiter"):
+        ["Werksleiter", "Betriebsleiter", "Plant Manager", "Operations Manager"],
+    ("technischer leiter", "technical director", "technischer direktor", "head of technical"):
+        ["Technischer Leiter", "Technischer Direktor", "Head of Engineering"],
+    ("geschäftsführer", "geschaeftsführer", "managing director", "inhaber", "gesellschafter", "owner", "ceo", "founder", "gründer"):
+        ["Geschäftsführer", "Inhaber", "Managing Director", "Owner", "CEO"],
+    ("instandhaltung", "maintenance", "wartung"): ["Leiter Instandhaltung", "Maintenance Manager", "Technischer Leiter"],
+    ("einkauf", "purchasing", "procurement"): ["Einkaufsleiter", "Leiter Einkauf", "Head of Procurement"],
+    ("qualitätsmanagement", "qualitätssicherung", "quality manager", "qm-leiter"): ["Qualitätsleiter", "Leiter Qualitätssicherung", "Quality Manager"],
+    ("coach", "berater", "consultant", "freelancer", "solopreneur", "selbstständig"): ["Coach", "Berater", "Consultant", "Founder"],
+}
+LOCATIONS = {  # trigger -> canonical LinkedIn location names
+    "deutschland": ["Germany"], "germany": ["Germany"], "österreich": ["Austria"], "austria": ["Austria"],
+    "schweiz": ["Switzerland"], "switzerland": ["Switzerland"], "dach": ["Germany", "Austria", "Switzerland"],
+    "united states": ["United States"], "usa": ["United States"], "united kingdom": ["United Kingdom"], "uk": ["United Kingdom"],
+    "ireland": ["Ireland"], "irland": ["Ireland"], "canada": ["Canada"], "kanada": ["Canada"], "australia": ["Australia"],
+    "frankreich": ["France"], "france": ["France"], "niederlande": ["Netherlands"], "netherlands": ["Netherlands"],
+    "spanien": ["Spain"], "spain": ["Spain"], "italien": ["Italy"], "italy": ["Italy"], "polen": ["Poland"], "poland": ["Poland"],
+    "singapore": ["Singapore"], "india": ["India"], "indonesia": ["Indonesia"], "vietnam": ["Vietnam"], "uae": ["United Arab Emirates"],
+    "london": ["London"], "new york": ["New York"], "baden-württemberg": ["Baden-Württemberg, Germany"], "bayern": ["Bavaria, Germany"],
+}
+
+
+def _hit(term: str, text: str) -> bool:
+    return bool(re.search(r"(?<!\w)" + re.escape(term) + r"(?!\w)", text))
+
+
+def _customer_location(term: str, text: str) -> bool:
+    """A place counts only when it is where the customer is, not where parts or competitors come from
+    ('Ersatzteile aus Italien', 'imported from China')."""
+    for m in re.finditer(r"(?<!\w)" + re.escape(term) + r"(?!\w)", text):
+        before = text[max(0, m.start() - 14):m.start()]
+        if not re.search(r"\b(?:aus|from|importiert aus|made in|lieferanten? in|bezogen aus)\s*$", before):
+            return True
+    return False
+
+
+def apify_cost(n_prospects: int) -> float:
+    """Verified FREE-tier prices (Apify Store, 2026-11-11): profile search $0.10 per page of <=25, full profile $0.004."""
+    pages = max(1, -(-int(n_prospects) // 25))
+    return round(0.10 * pages + 0.004 * int(n_prospects), 3)
 
 
 def prospect_query(p: Profile, limit: int = 10) -> dict:
-    text = " ".join([p.customer["persona"], p.icp[:2500], p.brain[:2500]]).lower()
-    roles = [r for r in _ROLES if re.search(r"\b" + re.escape(r), text)]
-    regions = [r for r in _REGIONS if re.search(r"\b" + re.escape(r.lower()) + r"\b", text)]
-    kw_terms = roles[:4] or ["founder"]
-    topic_terms = [re.sub(r"[^a-z0-9 ]", "", x.lower()).strip() for x in p.customer["themes"][:3]]
-    topic_terms = [t for t in topic_terms if t][:3]
-    keywords = " OR ".join(f'"{t}"' for t in kw_terms)
-    if topic_terms:
-        keywords = f"({keywords}) AND (" + " OR ".join(f'"{t}"' for t in topic_terms) + ")"
+    from .voice import detect_language
+    text = " ".join([p.customer["persona"], p.icp[:3000], p.brain[:3000]]).lower()
+    lang = detect_language(text)
+    titles: list[str] = []
+    for triggers, group in TITLE_GROUPS.items():
+        if any(_hit(t, text) for t in triggers):
+            titles += [g for g in group if g not in titles]
+    locs: list[str] = []
+    for trig, vals in LOCATIONS.items():
+        if _customer_location(trig, text):
+            locs += [v for v in vals if v not in locs]
+    if len({"Germany", "Austria", "Switzerland"} & set(locs)) >= 2:  # DACH customer: do not let stray mentions widen it
+        locs = [x for x in locs if x in ("Germany", "Austria", "Switzerland") or x.endswith("Germany")]
+    titles = titles[:8] or (["Geschäftsführer", "Founder"] if lang == "de" else ["Founder"])
     return {
-        "keywords": keywords, "roles_detected": roles[:8], "geography": regions[:5] or ["(not found in ICP: ask or leave global)"],
-        "limit": limit,
-        "apify_actors": ["harvestapi/linkedin-profile-search", "supreme_coder/linkedin-profile-scraper"],
-        "confidence": "high" if roles and regions else "medium" if roles else "low",
-        "note": "Starting query derived from your ICP. Refine with the Prospect Search Query Builder method in the work order.",
+        "language": lang,
+        "currentJobTitles": titles,
+        "locations": locs[:6] or ["(not found in the ICP: ask the user, or leave global)"],
+        "profileLanguages": ["de"] if lang == "de" else [],
+        "searchQuery": "",
+        "industry_hint": re.sub(r"\s+", " ", p.customer["persona"])[:220] or "(read the industry off the Business Brain)",
+        "maxItems": limit,
+        "confidence": "high" if titles and locs else "medium" if titles else "low",
+        "estimated_apify_cost_usd": apify_cost(limit),
+        "actors": {
+            "people search": "harvestapi/linkedin-profile-search",
+            "company search": "harvestapi/linkedin-company-search",
+            "people at companies": "harvestapi/linkedin-company-employees",
+            "profile details": "harvestapi/linkedin-profile-scraper",
+        },
+        "ladder": [
+            "1. harvestapi/linkedin-profile-search with currentJobTitles + locations" + (" + profileLanguages ['de']" if lang == "de" else "") + ", maxItems=3 as a test run.",
+            "2. If 0 results: drop searchQuery and profileLanguages, keep titles + locations. German and English titles are both in the list on purpose.",
+            "3. If still 0: company first. harvestapi/linkedin-company-search (industry term in the ICP's language + locations), then harvestapi/linkedin-company-employees with those companies and the same titles.",
+            "4. If still 0: report exactly which three queries you ran and what each returned. Stop. Never invent prospects.",
+        ],
+        "note": "Starting query derived from the ICP in the ICP's own language. Refine it, run the ladder, and widen only one step at a time.",
     }
 
 
