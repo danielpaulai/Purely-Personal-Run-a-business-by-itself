@@ -146,9 +146,9 @@ P.S. [One clear idea]
 
 - **Length:** 1300-1500 characters exactly
 - **Paragraph Structure:** Ultra-short (1-3 sentences max); frequent line breaks; single-sentence paragraphs for emphasis
-- **Sentence Rhythm:** Mix ultra-short (1-5 words) with medium (8-15 words); "I know." "Beautiful." "Real talk:" "Here's the thing:"
+- **Sentence Rhythm:** Mix ultra-short (1-5 words) with medium (8-15 words); "I know." "Beautiful." "Here's the thing:"
 - **Story Flow:** Chronological or problem → solution; natural transitions ("And that's where...", "The result?", "Here's what changed:")
-- **Conversational Markers:** "Here's the unexpected part:" / "Real talk:" / "Listen..." / "Oh well..." / "Anyhow..." / "Quick one:" / Client's natural transitions
+- **Conversational Markers:** "Here's the unexpected part:" / / "Listen..." / "Oh well..." / "Anyhow..." / "Quick one:" / Client's natural transitions
 - **P.S. Section:** Always one P.S. (8-15 words); can add P.P.S. if client uses
 - **Authenticity Signals:** ✓ Named specifics from documented stories ✓ Emotional vulnerability ✓ Natural pauses ✓ Client signature transitions
 

@@ -22,7 +22,7 @@ Every DM must follow this structure exactly:
 LINE 1: Specific reference to ONE thing from prospect's profile
 LINE 2: One-line bridge to the user's published post
 LINE 3: ONE specific ask (keyword OR question OR resource offer)
-LINE 4: [optional] Sign-off — only if it fits the user's voice (e.g. "— Daniel")
+LINE 4: [optional] Sign-off — only if it fits the user's voice (e.g. "— <first name>")
 ```
 
 ## RULES
@@ -98,7 +98,7 @@ If profile data is thin: write a shorter DM with less specificity, lower the mat
 "I told a wellness coach last week to stop posting daily. She'd been posting for 6 months. 11 likes total..."
 
 **User's Voice Snapshot. signature phrase:** "Pause the [thing]"
-**User's banned words:** "use, open up, path, go deep"
+**User's banned words:** "leverage, unlock, journey, dive deep"
 
 **DM Output:**
 ```

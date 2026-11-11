@@ -1,6 +1,6 @@
 ---
 name: linkedin-cheatsheet-builder
-description: Build LinkedIn cheatsheets using one of 3 production-tested Purely Personal templates. Listicles (6 main points × 4 takeaways, intent-driven), Comparison (X vs Y / Bad vs Good / Think vs Reality tables), or Dos-and-Don'ts (Classic / Side-by-Side / Numbered Countdown). Every cheatsheet is voice-matched, save-worthy, and designer-ready. Use when creating saveable LinkedIn reference content, building comparison tables, listing best practices, or producing high-utility content that earns repeated saves. Triggers on "build a cheatsheet", "cheatsheet about", "make a comparison table", "dos and don'ts", "listicle for LinkedIn", "reference graphic".
+description: Build LinkedIn cheatsheets using one of 3 Purely Personal templates. Listicles (6 main points × 4 takeaways, intent-driven), Comparison (X vs Y / Bad vs Good / Think vs Reality tables), or Dos-and-Don'ts (Classic / Side-by-Side / Numbered Countdown). Every cheatsheet is voice-matched, save-worthy, and designer-ready. Use when creating saveable LinkedIn reference content, building comparison tables, listing best practices, or producing high-utility content that earns repeated saves. Triggers on "build a cheatsheet", "cheatsheet about", "make a comparison table", "dos and don'ts", "listicle for LinkedIn", "reference graphic".
 version: 1.0.0
 author: daniel-paul
 tags: [linkedin, cheatsheet, content, voice, ai-marketing-employee, comparison, dos-donts]
@@ -8,7 +8,7 @@ tags: [linkedin, cheatsheet, content, voice, ai-marketing-employee, comparison, 
 
 # LinkedIn Cheatsheet Builder
 
-Three production-tested templates for LinkedIn cheatsheets, sourced from Purely Personal's Content Prompts library. Every cheatsheet is intent-driven, voice-matched, and built for one specific reader behavior: **save + reference + share**.
+Three templates for LinkedIn cheatsheets, sourced from Purely Personal's Content Prompts library. Every cheatsheet is intent-driven, voice-matched, and built for one specific reader behavior: **save + reference + share**.
 
 This skill runs inside the AI Marketing Employee Project. Voice Profile auto-loads from Project Knowledge.
 
@@ -47,10 +47,9 @@ This skill runs inside the AI Marketing Employee Project. Voice Profile auto-loa
 
 | Mode | Bundled prompt | Best for |
 |------|-------------|----------|
-| `listicles` (default) | `scripts/prompts/listicles.md` | Standard 6-point cheatsheet with intent-driven progression. Most common format. |
-| `comparison` | `scripts/prompts/comparison.md` | Comparison table. 3 sub-variants: X vs Y / Bad vs Good / Think vs Reality |
-| `dos-and-donts` | `scripts/prompts/dos-and-donts.md` | Right vs wrong practices. 3 sub-variants: Classic / Side-by-Side / Numbered Countdown |
-| `visual` ★ | Renders the cheatsheet as a brand-styled HTML preview matching the eventual Canva design | Demos, screenshots, designer handoff |
+| `listicles` (default) | `prompts/listicles.md` | Standard 6-point cheatsheet with intent-driven progression. Most common format. |
+| `comparison` | `prompts/comparison.md` | Comparison table. 3 sub-variants: X vs Y / Bad vs Good / Think vs Reality |
+| `dos-and-donts` | `prompts/dos-and-donts.md` | Right vs wrong practices. 3 sub-variants: Classic / Side-by-Side / Numbered Countdown |
 
 **Default: `listicles`**. works for 60% of topics. Switch when:
 - Topic is a comparison → `comparison` mode
@@ -71,22 +70,6 @@ Run before picking a mode:
 
 ---
 
-## Usage
-
-```
-/linkedin-cheatsheet-builder
-  --topic "Why most personal brand advice is wrong"
-  --mode comparison
-  --sub-variant "think-vs-reality"
-```
-
-Or natural language:
-```
-"Build a Listicles cheatsheet on the 6-step process to install an AI Marketing Employee. Intent: Educating."
-```
-
----
-
 ## Process
 
 ### Phase 1. Validate inputs
@@ -96,9 +79,9 @@ Or natural language:
 4. Sub-variant picked (Comparison / Dos-Don'ts only)?
 
 ### Phase 2. Load bundled prompt
-- `listicles` → `scripts/prompts/listicles.md`
-- `comparison` → `scripts/prompts/comparison.md`
-- `dos-and-donts` → `scripts/prompts/dos-and-donts.md`
+- `listicles` → `prompts/listicles.md`
+- `comparison` → `prompts/comparison.md`
+- `dos-and-donts` → `prompts/dos-and-donts.md`
 
 ### Phase 3. Apply prompt template
 Follow the bundled prompt exactly:
@@ -118,7 +101,6 @@ Key universal checks:
 ### Phase 5. Deliver
 Markdown-formatted cheatsheet, designer-ready.
 
-If `visual` mode: render brand-styled HTML preview.
 
 ---
 
@@ -173,6 +155,8 @@ MAIN POINT 2: [...]
 
 ## Examples
 
+> **Illustrative only.** The names, numbers and results in the examples below are invented to show the format. Never reuse them. In real output use only facts from the operator's Business Brain or from the request, and leave a detail out rather than make one up.
+
 ### Example 1. Listicles · Educating intent
 
 **Input:** Topic: "The 6-step process to install an AI Marketing Employee." Intent: Educating.
@@ -204,24 +188,6 @@ MAIN POINT 2: [...]
 **Input:** Topic: "5 LinkedIn voice mistakes killing your inbound." Format 3.
 
 **Output:** 5-row priority table with The Mistake / Why / What Instead / Result + 🎯 Wake-Up Call.
-
----
-
-## Chains With Other Skills
-
-| Upstream | How |
-|---|---|
-| `voice-profile-builder` | Required |
-| `ai-marketing-employee` | Required (runs in Project) |
-| `linkedin-post-writer` | Story from a 4/4 post → could become a cheatsheet |
-| `linkedin-carousel-builder` | Carousel insights → expand into deeper cheatsheet |
-
-| Downstream | How |
-|---|---|
-| `invisibility-diagnostic` | Score the Head + main point headlines for voice match |
-
-**Suggested chain after output:**
-> *"Cheatsheet built. Next: hand to designer for Canva (markdown ready), OR run `linkedin-carousel-builder` to turn this into a swipeable carousel, OR run `linkedin-post-writer` to draft the LinkedIn post that announces the cheatsheet."*
 
 ---
 
@@ -261,7 +227,7 @@ MAIN POINT 2: [...]
 
 ## Canva AI handoff
 
-After generating the cheatsheet content, append the Canva AI design prompt from `scripts/prompts/canva-cheatsheet.md` to the output. The user copies the cheatsheet copy into the `[PASTE CHEATSHEET COPY HERE]` block, pastes the whole prompt into Canva AI, and gets a polished editorial-style cheatsheet in under 5 minutes.
+After generating the cheatsheet content, append the Canva AI design prompt from `prompts/canva-cheatsheet.md` to the output. The user copies the cheatsheet copy into the `[PASTE CHEATSHEET COPY HERE]` block, pastes the whole prompt into Canva AI, and gets a polished editorial-style cheatsheet in under 5 minutes.
 
 The Canva prompt is brand-locked to Purely Personal (red #e90d41, off-white #f7f7f8, near-black #0a0a0a, Rethink Sans + Inter + JetBrains Mono). It produces:
 - Vertical 1080x1350 format (LinkedIn-optimal)
@@ -273,20 +239,7 @@ The Canva prompt is brand-locked to Purely Personal (red #e90d41, off-white #f7f
 Always emit this prompt as a separate "Copy Canva AI prompt" block at the bottom of the cheatsheet output. Same pattern as `weekly-content-engine`.
 
 ---
+## Use in the Purely Personal connector
 
-## Bundled Files
 
-```
-~/.claude/skills/linkedin-cheatsheet-builder/
-├── SKILL.md
-└── scripts/
-    └── prompts/
-        ├── listicles.md          (canonical Notion prompt 8)
-        ├── comparison.md         (canonical Notion prompt 9)
-        ├── dos-and-donts.md      (canonical Notion prompt 10)
-        └── canva-cheatsheet.md   (premium designer prompt for Canva AI handoff)
-```
-
----
-
-*Built from Purely Personal's Content Prompts library. Production-tested across 7 industries. The cheatsheet patterns that consistently earn saves + shares in the AI Employee Challenge cohorts. Canva AI handoff shared with `weekly-content-engine`.*
+After the draft: Write the matching post with write_post. Run the whole week at once with weekly_content_drop.

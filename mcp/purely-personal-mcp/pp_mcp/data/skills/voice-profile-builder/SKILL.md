@@ -8,28 +8,7 @@ tags: [voice, ai-employee-challenge, claude-projects, content, branding]
 
 # Voice Profile Builder
 
-The specific 4-input voice extraction method taught in Day 1 / Lesson 2 of the AI Employee Challenge. Built to feed straight into a Claude Project as Knowledge, no reformatting required.
-
----
-
-## Why This vs `voice-extractor`?
-
-Both extract voice. The differences:
-
-| Aspect | `voice-extractor` (general) | `voice-profile-builder` (this) |
-|---|---|---|
-| **Inputs accepted** | Any writing samples | Strict 4-input schema (past posts, voice notes, DMs, FAQ) |
-| **Output** | Voice Guide (descriptive) | Voice Profile (structured + paste-ready for Claude Projects Knowledge) |
-| **Use case** | Brand voice docs, ghostwriter onboarding, team alignment | Powering the AI Marketing Employee Project specifically |
-| **Mode default** | `standard` (descriptive guide) | `standard` (Project-ready profile) |
-| **Validation** | "Does Version A sound like you?" | Score-test against `invisibility-diagnostic` on a generated sample post |
-| **Chains with** | Anything | `ai-marketing-employee`, `first-post-coach`, `invisibility-diagnostic` |
-
-**Use `voice-extractor` when:** building a brand voice guide for a writer / team / agency.
-
-**Use `voice-profile-builder` when:** the user is in the AI Employee Challenge funnel and the output will become Project Knowledge inside Claude.
-
-If unclear, ask: *"Is this voice going into a Claude Project (use voice-profile-builder) or a brand voice document for a team (use voice-extractor)?"*
+The 4-input voice extraction method. Built to feed straight into a Claude Project as Knowledge, no reformatting required.
 
 ---
 
@@ -67,7 +46,7 @@ Detect from context or ask: *"Quick v1, full Project-ready profile, or full + sa
 
 | Mode | What you get | Best for |
 |------|-------------|----------|
-| `quick` | Vocabulary section only (10 words + 5 banned + 5 phrases). 5-min build. | First pass during Lesson 2 live build |
+| `quick` | Vocabulary section only (10 words + 5 banned + 5 phrases). 5-min build. | First pass, built live |
 | `standard` | Full 4-section profile (Vocabulary / Beliefs / Rhythm / Format) | Ready to paste into Claude Projects |
 | `validated` (default) | Standard + generates 1 sample post → scores via `invisibility-diagnostic` → confirms 4/4 or flags gap | Production use, the version that earns its keep |
 
@@ -75,11 +54,9 @@ Detect from context or ask: *"Quick v1, full Project-ready profile, or full + sa
 
 | Mode | What you get | Best for |
 |---|---|---|
-| `visual` ★ | top-tier HTML profile: animated word cloud (most-used + banned), belief cards, sentence-rhythm patterns, signature-phrase ticker (marquee), validation badge with sample post | Post-extraction deliverable. Attendees screenshot ("this is my voice captured") and share. Coordinator hands to founder as the final asset. |
 
 **Visual mode usage:**
 ```bash
-python ~/.claude/skills/voice-profile-builder/scripts/render.py \
   --in voice-profile-data.json \
   --out /tmp/voice-profile.html && open /tmp/voice-profile.html
 ```
@@ -93,29 +70,6 @@ The artifact features:
 - Validation card with sample post + 4/4 badge (if validated mode)
 - Thinness flags as warning chips
 
-See `scripts/template.html` for the full implementation.
-
----
-
-## Usage
-
-```
-/voice-profile-builder
-  --name "Sarah Chen"
-  --industry "coach"
-  --input1 "[past posts pasted here]"
-  --input2 "[voice note transcript]"
-  --input3 "[DM replies]"
-  --input4 "[FAQ + answers]"
-```
-
-Or with mode:
-```
-/voice-profile-builder --mode quick
-/voice-profile-builder --mode validated
-```
-
-If inputs come through chat as a single paste (the common case in the workbook), parse the section headers (`═══ INPUT 1 ═══` etc) automatically.
 
 ---
 
@@ -156,7 +110,7 @@ Output audit summary:
 
 From Inputs 1 + 3 (highest signal):
 - **Most-used words**. top 10 content words (exclude common stop words). Include rough frequency: "use (6×), engine (4×), build (12×)"
-- **Banned words**. AI tells the user *naturally avoids* across all inputs. Default screen: `use, open up, big, help, path, go deep, handle, improve, solid, whole, fit, brainstorm, model, ecosystem, use, unleash`. If user never used any of these. list them as banned.
+- **Banned words**. AI tells the user *naturally avoids* across all inputs. Default screen: `leverage, unlock, game-changing, empower, journey, dive deep, navigate, optimize, robust, holistic, synergy, ideate, paradigm, ecosystem, harness, unleash`. If user never used any of these. list them as banned.
 - **Signature phrases**. 5 phrases that appear 2+ times across inputs OR are clearly distinctive. Quote the source post number.
 
 ### Phase 3. Beliefs Extraction
@@ -183,7 +137,7 @@ From Input 1 only (post format is post-specific):
 
 ### Phase 6. Validation (`validated` mode only)
 
-1. Compose a sample 150-word LinkedIn post using the extracted profile + a generic topic appropriate to the industry
+1. Compose a sample 1300-1500 character LinkedIn post using the extracted profile + a generic topic appropriate to the industry
 2. Score the sample against `invisibility-diagnostic`
 3. If score ≥ 3/4 → profile is valid, output normally
 4. If score < 3/4 → profile is thin. Flag which dimensions failed and recommend specific input additions
@@ -268,7 +222,7 @@ finally said the price out loud."
 ## VALIDATION (if validated mode)
 
 Sample post generated using this profile:
-> "[150-word sample post]"
+> "[1300-1500 character sample post]"
 
 Scored against invisibility-diagnostic:
 - Voice: 1
@@ -303,6 +257,8 @@ Re-run this skill when you have more inputs.
 ---
 
 ## Examples
+
+> **Illustrative only.** The names, numbers and results in the examples below are invented to show the format. Never reuse them. In real output use only facts from the operator's Business Brain or from the request, and leave a detail out rather than make one up.
 
 ### Example 1 · Strong Inputs (Coach)
 
@@ -378,7 +334,7 @@ Validation score on sample post: 2/4 (Voice ✓, POV ✓, Specificity ✗, Askin
 Re-run this skill in 24 hours when you've added the missing inputs.
 ```
 
-### Example 3 · `quick` mode (live build during Lesson 2)
+### Example 3 · `quick` mode (built live)
 
 **Inputs provided:** 5 LinkedIn posts only (1,300 words)
 
@@ -405,23 +361,6 @@ vocabulary-only.
 
 ---
 
-## Chains With Other Skills
-
-| Upstream | How |
-|---|---|
-| User input via `workbook` | Workbook collects the 4 inputs and passes them as a single paste to this skill |
-
-| Downstream | How |
-|---|---|
-| `ai-marketing-employee` | Uses this profile as Project Knowledge during the 3-step install |
-| `invisibility-diagnostic` | Validated mode uses this skill to score the sample post |
-| `first-post-coach` | Loads this profile to coach the user toward 4/4 posts in their voice |
-
-**Suggested chain after output:**
-> *"Profile built. Next: run `ai-marketing-employee` to install it as a Claude Project, or paste the profile into your existing Project Knowledge."*
-
----
-
 ## Limitations
 
 - **Won't fix bad input.** Garbage in = generic profile out. The minimum-input gate exists for a reason.
@@ -440,5 +379,7 @@ vocabulary-only.
 5. **Don't edit the output before pasting into Claude.** The structure is calibrated. Editing weakens it.
 
 ---
+## Use in the Purely Personal connector
 
-*Built for Day 1 / Lesson 2 of the AI Employee Challenge. Differentiated from voice-extractor by output format and Claude Projects integration.*
+
+After the draft: Check the result with check_my_brain. Everything else (write_post, score_post ...) reads it.

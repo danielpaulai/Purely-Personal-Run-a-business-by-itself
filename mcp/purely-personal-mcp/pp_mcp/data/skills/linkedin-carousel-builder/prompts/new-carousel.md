@@ -27,7 +27,7 @@ AUTHENTICITY TEST: If the client saw these slides, would they say "Yes, this is 
 
 **Formula 1. Personal Achievement + Time:**
 "I [Did X] in [Y Minutes/Hours] (Here's How)"
-Example: "I Trained Claude to Write Like Me (5+ Calls Booked in 1 Week)"
+Example: "I Trained Claude to Write Like Me (What Changed in 1 Week)"
 
 **Formula 2. Outcome Without Expected Input:**
 "How to [Achieve X] Without [Expected Requirement]"
@@ -79,8 +79,8 @@ Example: "The 6-Step Process to Make AI Sound Exactly Like You"
 
 ```
 Slide [Number]:
-Title: [6-8 words maximum - must hook attention]
-Content: [2-3 sentences maximum, 10-15 words each]
+Title: [6 words maximum - must hook attention]
+Content: [1-2 short sentences, 20 words maximum in total]
 Visual Idea: [ONE clear, specific image suggestion]
 ```
 
@@ -131,8 +131,8 @@ Visual Idea: [ONE clear, specific image suggestion]
 
 ## AI PATTERN AVOIDANCE
 
-- ✗ "use", "open up", "help", "improve", "handle"
-- ✗ "today"
+- ✗ "leverage", "unlock", "empower", "elevate", "navigate"
+- ✗ "In today's fast-paced world"
 - ✗ Listicle padding
 - ✗ Generic transitions ("Moreover", "Furthermore")
 - ✗ Multi-clause meandering sentences
@@ -194,7 +194,7 @@ Visual Idea: [...]
 1. Could the client ONLY have created this?
 2. Does the cover stop scroll in <1 second?
 3. Is every slide title 6-8 words?
-4. Does every body slide have 2-3 sentences max?
+4. Does every body slide have 1-2 short sentences (20 words max)?
 5. Does the carousel follow ONE of the 4 flow patterns consistently?
 6. Is the CTA ONE clear ask with a specific keyword?
 7. Are all technical terms preserved as client uses them?

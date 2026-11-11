@@ -50,17 +50,11 @@ BANNED_CLOSINGS = [
 MORAL_OPENERS = ("the lesson", "the takeaway", "the moral", "remember:", "key takeaway", "moral of the story")
 
 # Plain-word swaps used by the mechanical clean-up. Anything not here is flagged only.
-SWAPS = {
-    "leverage": "use", "leveraging": "using", "leveraged": "used", "utilize": "use",
-    "utilise": "use", "utilizing": "using", "unlock": "open up", "unlocking": "opening up",
-    "delve into": "look at", "delve": "dig", "seamless": "smooth", "seamlessly": "smoothly",
-    "empower": "help", "empowers": "helps", "empowering": "helping", "elevate": "raise",
-    "elevates": "raises", "streamline": "simplify", "optimize": "improve", "optimise": "improve",
-    "game-changer": "big shift", "game-changing": "big", "cutting-edge": "new",
-    "robust": "solid", "holistic": "whole", "actionable": "usable", "impactful": "strong",
-    "transformative": "big", "innovative": "new", "supercharge": "speed up",
-    "harness": "use", "tapestry": "mix", "ecosystem": "setup", "paradigm": "model",
-    "navigate": "work through", "dive deep into": "look closely at", "dive into": "look at",
+SWAPS = {  # context-free swaps only. Verbs whose replacement depends on the sentence (unlock, empower, elevate, navigate, harness, delve,
+    # streamline, optimize) are flagged for a human rewrite instead: no swap target may itself be a banned word or a garbled plain word.
+    "leverage": "use", "leveraging": "using", "leveraged": "used", "utilize": "use", "utilise": "use", "utilizing": "using",
+    "seamless": "smooth", "seamlessly": "smoothly", "cutting-edge": "new", "robust": "solid", "actionable": "usable",
+    "innovative": "new", "impactful": "strong", "supercharge": "speed up", "holistic": "whole",
 }
 
 _STRUCT = [
@@ -367,9 +361,10 @@ def _kw_cta(text: str) -> bool:
                 or re.search(r"\b" + verbs + r"\b[^\n]{0,40}?[\"„“'‚‘]([^\"”“'’‘\n]{2,24})[\"”“'’‘]", tail, re.I))
 
 
-def polish(text: str, platform: str = "linkedin", extra_banned: list[str] | None = None, lang: str = "") -> dict:
+def polish(text: str, platform: str = "linkedin", extra_banned: list[str] | None = None, lang: str = "", min_chars: int = 0, max_chars: int = 0) -> dict:
     platform = (platform or "linkedin").lower().replace("twitter", "x")
     lo, hi, cap, hook_win = PLATFORMS.get(platform, PLATFORMS["linkedin"])
+    lo, hi = (min_chars or lo), (max_chars or hi)  # a task may set its own range (e.g. a 1100-1400 story post)
     lang = resolve_lang(text, lang)
     cleaned, changes = mechanical_clean(text, extra_banned, lang)
     n = len(cleaned)

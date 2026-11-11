@@ -1,6 +1,6 @@
 ---
 name: ai-marketing-employee
-description: Set up a personal AI Marketing Employee in Claude Projects. generates customized Project Instructions from a Voice Profile + industry context, produces a 3-step manual install guide, and validates the setup with a test post. Use when someone wants to build their own AI Marketing Employee for the AI Employee Challenge, has just completed voice-profile-builder, or wants to refresh their existing Project Instructions. Triggers on "build my AI Marketing Employee", "set up my marketing AI", "install my AI Employee", "create my Claude Project for content", "Project Instructions for my marketing AI".
+description: Set up a personal AI Marketing Employee in Claude Projects. generates customized Project Instructions from a Voice Profile + industry context, produces a 3-step manual install guide, and validates the setup with a test post. Use when someone wants to build their own AI Marketing Employee for a Claude Project, has just completed voice-profile-builder, or wants to refresh their existing Project Instructions. Triggers on "build my AI Marketing Employee", "set up my marketing AI", "install my AI Employee", "create my Claude Project for content", "Project Instructions for my marketing AI".
 version: 1.0.0
 author: daniel-paul
 tags: [ai-employee-challenge, claude-projects, content-automation, voice, install]
@@ -8,7 +8,7 @@ tags: [ai-employee-challenge, claude-projects, content-automation, voice, instal
 
 # AI Marketing Employee · Installer
 
-The setup-helper for the AI Marketing Employee Project taught in Day 1 / Lesson 2 of the AI Employee Challenge. Takes a Voice Profile + business context, generates personalized Project Instructions, and produces a 3-step manual install guide.
+The setup-helper for the AI Marketing Employee Project. Takes a Voice Profile + business context, generates personalized Project Instructions, and produces a 3-step manual install guide.
 
 **Honest framing:** This is a setup-helper, not an auto-installer. Claude can't create Projects in your account programmatically. What this skill does: gives you the EXACT Project Instructions to paste, calibrated to your voice and business, so the install takes 3 minutes and works first try.
 
@@ -21,7 +21,7 @@ The setup-helper for the AI Marketing Employee Project taught in Day 1 / Lesson 
 **This skill provides:**
 1. **Personalized Project Instructions**. pulls banned words from your Voice Profile, references your top 3 beliefs as POV anchors, sets defaults for your industry
 2. **Mandatory `invisibility-diagnostic` integration**. every post the AI writes must self-score 4/4 before delivering
-3. **3-step install guide formatted for the workbook flow**. drops straight into the cohort's mental model from Lesson 2
+3. **3-step install guide**. Create the Project, add the Business Brain to Project knowledge, paste the Instructions.
 4. **Test-post validation**. generates a test brief, checks that the Project Instructions actually produce 4/4 output
 5. **Chain hand-off**. output suggests next skills (`first-post-coach`, `invisibility-diagnostic`)
 
@@ -40,7 +40,6 @@ Before generating the install guide, this skill needs:
 | Who you serve | User input | Default to "[Who You Serve]" placeholder |
 | What you sell | User input | Default to "[What You Sell]" placeholder |
 
-If the user pastes their full workbook export (JSON from the AI Employee Challenge workbook), parse all inputs from there automatically.
 
 ---
 
@@ -50,20 +49,18 @@ Detect from context or ask: *"Quick install, full install with validation, or re
 
 | Mode | What you get | Best for |
 |------|-------------|----------|
-| `quick` | 3-step install guide with generic Instructions template | First-time setup during Lesson 2 live build |
+| `quick` | 3-step install guide with generic Instructions template | First-time setup, built live |
 | `full` (default) | Personalized Instructions (banned words + beliefs + industry baked in) + install guide | After running `voice-profile-builder` |
 | `validated` | Full mode + generates a test post and scores it via `invisibility-diagnostic` | Production use. confirms the Project will produce 4/4 posts |
 | `refresh` | Re-generates Instructions for an existing Project (preserves Project Knowledge, swaps Instructions) | Quarterly voice refresh, or after voice profile re-build |
 
-**Default: `full`**. use `quick` only during live Lesson 2 when no Voice Profile exists yet. Use `validated` whenever there's time (adds ~30 seconds).
+**Default: `full`**. use `quick` only in a live session when no Voice Profile exists yet. Use `validated` whenever there's time (adds ~30 seconds).
 
 | Mode | What you get | Best for |
 |---|---|---|
-| `visual` ★ | top-tier HTML install guide: vertical 3-step timeline, code blocks with one-click copy buttons, test-post validation card with pulse badge, next-steps CTAs for chained skills | Deliverable for cohort install at end of Lesson 2. Each attendee gets their personalized guide. Screenshots well. |
 
 **Visual mode usage:**
 ```bash
-python ~/.claude/skills/ai-marketing-employee/scripts/render.py \
   --in install-data.json \
   --out /tmp/install-guide.html && open /tmp/install-guide.html
 ```
@@ -76,7 +73,6 @@ The artifact features:
 - Test post validation card (if validated mode) with 4/4 MAGNETIC badge
 - 3 next-step CTAs linking to first-post-coach, invisibility-diagnostic, voice-profile-builder refresh
 
-See `scripts/template.html` for the full implementation.
 
 ---
 
@@ -84,7 +80,7 @@ See `scripts/template.html` for the full implementation.
 
 ### Phase 1. Gather & Validate Inputs
 
-1. Confirm Voice Profile exists (parse from chat / clipboard / workbook export)
+1. Confirm Voice Profile exists (from the chat or the Business Brain)
 2. Extract: name, industry, banned words list, top 3 beliefs, vocabulary signatures
 3. If business name / who-you-serve / what-you-sell missing → ask before proceeding (1 message, all 3 questions in one)
 
@@ -110,7 +106,7 @@ Output format:
 
 ### Phase 4. Validation (`validated` mode only)
 
-1. Compose a test brief appropriate to the industry: *"Write a LinkedIn post in my voice about [generic-this-week topic for industry]. 150 words. End with a question."*
+1. Compose a test brief appropriate to the industry: *"Write a LinkedIn post in my voice about [generic-this-week topic for industry]. 1300 to 1500 characters. End with a question."*
 2. Simulate what the AI Marketing Employee would produce (using Voice Profile + Instructions internally as context)
 3. Score the simulated output via `invisibility-diagnostic`
 4. If 4/4 → output validation pass with the test post as proof
@@ -167,7 +163,7 @@ YOUR RULES:
    - [SIGNATURE_PHRASE_2]
    - [SIGNATURE_PHRASE_3]
 
-6. Default output: 150-word LinkedIn post. If user asks for a
+6. Default output: 1300-1500 character LinkedIn post (about 200-250 words). If user asks for a
    different format (email, carousel, DM, thread), match it but
    keep voice + 4/4 rules.
 
@@ -239,7 +235,7 @@ Time to install: 3 minutes.
 Inside the Project, start a new chat and type:
 
 > Write a LinkedIn post in my voice about [something that happened in
-> my business this week]. 150 words. End with a question.
+> my business this week]. 1300 to 1500 characters. End with a question.
 
 You should get a 4/4 post on the Invisibility Diagnostic.
 
@@ -251,7 +247,7 @@ and I'll show you which Instructions rule needs strengthening.
 ## VALIDATION RESULT (if validated mode)
 
 Test brief: "Write a LinkedIn post about [industry-typical topic this
-week]. 150 words. End with a question."
+week]. 1300 to 1500 characters. End with a question."
 
 Generated post:
 > [test post]
@@ -280,9 +276,11 @@ Your AI Marketing Employee is producing 4/4 posts. Ship.
 
 ## Examples
 
+> **Illustrative only.** The names, numbers and results in the examples below are invented to show the format. Never reuse them. In real output use only facts from the operator's Business Brain or from the request, and leave a detail out rather than make one up.
+
 ### Example 1 · Full mode (Coach, complete inputs)
 
-**User pastes:** Voice Profile + workbook intake data
+**User pastes:** Voice Profile + business context
 
 **Output excerpt:**
 
@@ -330,7 +328,7 @@ YOUR RULES:
 [next steps]
 ```
 
-### Example 2 · Quick mode (live during Lesson 2)
+### Example 2 · Quick mode (built live)
 
 **User has:** name + industry + 3 past posts only (no full Voice Profile yet)
 
@@ -406,24 +404,6 @@ If any check fails: regenerate before output.
 
 ---
 
-## Chains With Other Skills
-
-| Upstream | How |
-|---|---|
-| `voice-profile-builder` | Provides the Voice Profile that goes into Project Knowledge |
-| `workbook` (interactive HTML) | Provides intake data (name, industry, beliefs, etc.) |
-
-| Downstream | How |
-|---|---|
-| `first-post-coach` | After install, coach the user through their first real post |
-| `invisibility-diagnostic` | Used in validated mode + recommended as pre-publish check |
-| Future: `content-multiplier` | Day 2 skill that uses this Project to multiply 1 idea → 10 assets |
-| Future: `trust-post-builder` | Day 3 skill that adds Trust Layer rules to the existing Project |
-
-**Suggested chain in output:** see "Next Steps" in Output Structure.
-
----
-
 ## Limitations
 
 - **Can't auto-create the Project.** Claude's API doesn't allow programmatic Project creation in user accounts. The 3-step manual install is the unavoidable reality.
@@ -442,5 +422,7 @@ If any check fails: regenerate before output.
 5. **Don't let users edit the generated Instructions.** They will want to "make it more comprehensive" by adding 20 more rules. This dilutes the focus. Resist.
 
 ---
+## Use in the Purely Personal connector
 
-*Built for Day 1 / Lesson 2 of the AI Employee Challenge. The install-helper that turns a Voice Profile into a working AI Marketing Employee in 3 minutes.*
+
+After the draft: Needs a Voice Profile first (build_voice_profile) and the Business Brain.

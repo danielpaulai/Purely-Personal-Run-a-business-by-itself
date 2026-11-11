@@ -1,14 +1,14 @@
 ---
 name: first-post-coach
-description: Coach a user from blank page to published 4/4 post in 10 minutes using their AI Marketing Employee. Provides the brief template, real-time invisibility-diagnostic scoring, one-line edit suggestions, and a "ship it" gate. Use during Game 1 of the AI Employee Challenge, when someone is writing their first AI-assisted post, or any first-attempt content session where the goal is to finish, not perfect. Triggers on "help me write my first post", "coach me through Game 1", "first post help", "I'm stuck on a post", "I have 10 minutes to write a post".
+description: Coach a user from blank page to a published 4/4 post in 10 minutes. Provides the brief template, real-time invisibility-diagnostic scoring, one-line edit suggestions, and a ship-it gate. Use when someone is writing their first AI-assisted post, or any first-attempt content session where the goal is to finish, not perfect. Triggers on "help me write my first post", "first post help", "I'm stuck on a post", "I have 10 minutes to write a post".
 version: 1.0.0
 author: daniel-paul
-tags: [game-1, coaching, content, voice, first-post, ai-employee-challenge]
+tags: [coaching, content, voice, first-post]
 ---
 
 # First Post Coach
 
-The 10-minute coaching skill for Game 1 of the AI Employee Challenge. Walks the user from "blank cursor" to "published 4/4 post" through a structured 3-phase coach.
+The 10-minute coaching skill for a first AI-assisted post. Walks the user from "blank cursor" to "published 4/4 post" through a structured 3-phase coach.
 
 The coach is opinionated, time-boxed, and refuses to let the user perfectionism their way out of shipping.
 
@@ -33,7 +33,7 @@ The coach is opinionated, time-boxed, and refuses to let the user perfectionism 
 | Input | Source | If missing |
 |---|---|---|
 | AI Marketing Employee Project | Must already exist (output of `ai-marketing-employee`) | STOP. run `ai-marketing-employee` first |
-| Industry | User input or from workbook | Ask in Gather phase |
+| Industry | User input or the Business Brain | Ask in Gather phase |
 | Topic (what happened in business this week) | User input | Ask in Gather phase |
 | Who the post is for | User input or default to "my ideal customer" | Default if missing |
 
@@ -46,11 +46,11 @@ The coach is opinionated, time-boxed, and refuses to let the user perfectionism 
 
 ## Mode
 
-Detect from context or ask: *"Live coach (Game 1 style), guided coach (no time pressure), or audit mode (you wrote it, I score it)?"*
+Detect from context or ask: *"Live coach (timed), guided coach (no time pressure), or audit mode (you wrote it, I score it)?"*
 
 | Mode | What you get | Best for |
 |------|-------------|----------|
-| `live` (default) | 3-phase, 8-min target / 10-min hard cap, ship-it gate enforced | Game 1 of the Challenge, deadline-driven |
+| `live` (default) | 3-phase, 8-min target / 10-min hard cap, ship-it gate enforced | A first post under a time box |
 | `guided` | Same 3 phases but no time pressure, more depth on each fix | Practice runs, post-Challenge work |
 | `audit` | User pastes a draft, I score + coach but don't generate | Post-publish audit, peer review prep |
 
@@ -58,11 +58,9 @@ Detect from context or ask: *"Live coach (Game 1 style), guided coach (no time p
 
 | Mode | What you get | Best for |
 |---|---|---|
-| `visual` ★ | Session result HTML: time-elapsed bar, animated score-progression SVG chart across attempts, attempt-by-attempt timeline with fix lines, ship-it button morph with confetti on 4/4 shipped | Post-session deliverable for attendees. Screenshot for social ("just shipped my first 4/4 post"). Coach review of how the session went. |
 
 **Visual mode usage:**
 ```bash
-python ~/.claude/skills/first-post-coach/scripts/render.py \
   --in session-data.json \
   --out /tmp/coaching-result.html && open /tmp/coaching-result.html
 ```
@@ -75,7 +73,6 @@ The artifact features:
 - Ship-it button morph (green pulse for 4/4 shipped, amber for 3/4 ship-gate fired)
 - Confetti on 4/4 shipped reveal
 
-See `scripts/template.html` for the full implementation.
 
 ---
 
@@ -104,7 +101,7 @@ For: [audience from Q3]
 Industry: [industry from Q1]
 DM keyword: [keyword from Q4, or "skip if none"]
 
-150 words. Use my Voice Profile (in Project Knowledge).
+1300 to 1500 characters (about 200-250 words). Use my Voice Profile (in Project Knowledge).
 End with either a question or a "DM me '[keyword]' for [thing]" line.
 
 Score 4/4 on the Invisibility Diagnostic before delivering.
@@ -146,7 +143,6 @@ If the user stalls ("but I want to tweak..."):
 | User pastes a fully-formed post in Phase 1 | Switch to `audit` mode automatically. Score + coach, don't re-generate. |
 | AI Marketing Employee output is < 3/4 on first attempt | Check if Voice Profile is in Knowledge. If yes. Voice Profile is thin. If no, that's the fix. |
 | User keeps saying "but the AI got it wrong" | They're trying to perfectionism. Remind them: edit ONE line. Don't rewrite. |
-| User wants to write 5 posts in 10 minutes | Stop. Game 1 is ONE post. Five posts is a Day 2 lesson (`content-multiplier`). Hard pivot. |
 | 8 minutes elapsed, still on score cycle 2 | Override. Ship the current version, even if 3/4. Explain why: deadline trains the muscle. |
 | User says "I don't know what happened in my business this week" | Prompt: "Last frustration? Last client win? Last DM you sent? Last decision you regretted?" One of these works. |
 | User keeps editing the AI output instead of the post | Refocus: "Stop editing the AI output. Take it as-is. Edit ONE line. Ship." |
@@ -195,7 +191,7 @@ DIAGNOSIS:
 
 ONE-LINE FIX (Specificity):
 In your AI Marketing Employee Project, ask:
-> "Rewrite line 2 to include a real (or real-feeling) client name + the number of months they'd been stuck."
+> "Rewrite line 2 to include the client's first name from your own notes (never invent one) and how many months they had been stuck. No real client story? Say what you did yourself."
 
 Re-paste the updated output here. Cycle 1 of 3.
 ```
@@ -216,8 +212,6 @@ Screenshot when done.
 
 You owe nothing to perfect. You owe everything to shipped.
 
-[If in Challenge cohort:] Drop the screenshot in Day 2 chat at 14:00 CET
-sharp tomorrow. First 10 in get read aloud on stage.
 ```
 
 ### Phase 4 output (8-min override):
@@ -241,6 +235,8 @@ Coaching ends here. Next: ship + report back.
 
 ## Examples
 
+> **Illustrative only.** The names, numbers and results in the examples below are invented to show the format. Never reuse them. In real output use only facts from the operator's Business Brain or from the request, and leave a detail out rather than make one up.
+
 ### Example 1. Live mode, 3-cycle hit (Coach)
 
 **Phase 1. Gather (user reply):**
@@ -251,7 +247,7 @@ Coaching ends here. Next: ship + report back.
 > For: Coaches doing $5K-$15K months
 > Industry: coaching
 > DM keyword: voice
-> 150 words. End with either a question or "DM me 'voice' for [thing]" line.
+> 1300 to 1500 characters. End with either a question or "DM me 'voice' for [thing]" line.
 > Score 4/4 on Invisibility Diagnostic before delivering.
 
 **Cycle 1 (user pastes AI output, scores 3/4):**
@@ -279,7 +275,7 @@ Coaching ends here. Next: ship + report back.
 
 **Cycle 4 attempt → 8-min override fires:**
 - Coach: "Ship the 3/4. Open LinkedIn. Paste. Publish."
-- User ships at 3/4. Result: 47 likes, 8 DMs, 1 booked call in 24 hours.
+- User ships at 3/4 and tracks their own results over the next 24 hours.
 
 ### Example 3. Audit mode (user pastes a draft they wrote themselves)
 
@@ -320,24 +316,6 @@ If any check fails: regenerate before output.
 
 ---
 
-## Chains With Other Skills
-
-| Upstream | How |
-|---|---|
-| `ai-marketing-employee` | Required prereq. user must have a Project set up |
-| `voice-profile-builder` | Improves voice fidelity in coaching suggestions |
-| `workbook` (interactive HTML) | Workbook Step 5 collects the topic/keyword/question. feeds directly into Phase 1 |
-
-| Downstream | How |
-|---|---|
-| `invisibility-diagnostic` | Called every cycle in Phase 3 to score drafts |
-| `homework-reviewer` | The shipped post becomes input to homework-reviewer for Day 2 prep |
-
-**Suggested chain after ship-it:**
-> *"Shipped at 4/4. Done. Next: Day 2 (we multiply that one post into 5). Or run `invisibility-diagnostic` weekly to keep yourself sharp."*
-
----
-
 ## Limitations
 
 - **Won't help if the AI Marketing Employee is broken.** If the Project produces 0/4 or 1/4 on every cycle, the issue is Voice Profile thinness or missing Project Instructions. fix that first.
@@ -349,12 +327,14 @@ If any check fails: regenerate before output.
 
 ## Pro Tips
 
-1. **Run during Game 1 of the Challenge.** That's the original use case. The 10-min cap is calibrated to Game 1.
-2. **Use `audit` mode for peer review.** If a cohort member asks another to look at a draft, both can run `audit` mode on it. produces consistent feedback.
+1. **Use it for a first post.** The 10-minute cap exists to stop perfectionism eating shipping.
+2. **Use `audit` mode for a colleague's draft.** Both of you can run it on the same post and compare scores.
 3. **Coach yourself weekly.** Pick one post a week. Run yourself through `live` mode. The reps build the muscle.
 4. **If you're scoring 3/4 → 3/4 → 3/4 across cycles**. that's a Voice Profile problem, not a writing problem. Re-run `voice-profile-builder`.
 5. **The ship-it gate is the most important rule.** Don't override it for any user, ever. The user needs the deadline.
 
 ---
+## Use in the Purely Personal connector
 
-*Built for Game 1 of the AI Employee Challenge. Refuses to let perfectionism eat shipping.*
+
+After the draft: Score every draft with score_post. Afterwards use weekly_content_drop for a full week.

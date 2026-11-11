@@ -38,6 +38,84 @@ _NUM = re.compile(r"(?:\$|£|€)?\d[\d,.]*\s?(?:%|k|m|x|hours?|hrs?|days?|weeks
 _NAME = re.compile(r"(?<![.!?]\s)(?<!^)\b[A-Z][a-z]{2,}\b")
 
 
+_STOP_CAPS = {
+    "I", "A", "An", "The", "This", "That", "These", "Those", "When", "What", "Where", "Why", "How", "Who", "Which", "While", "If", "In", "On", "At", "By", "For",
+    "To", "Of", "It", "He", "She", "We", "They", "You", "My", "Our", "Your", "Their", "His", "Her", "Its", "Most", "Last", "Next", "And", "But", "Or", "So", "Then",
+    "Here", "There", "Not", "No", "Yes", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "January", "February", "March", "April",
+    "May", "June", "July", "August", "September", "October", "November", "December", "AI", "LinkedIn", "ChatGPT", "Claude", "Google", "Instagram", "Facebook",
+    "YouTube", "TikTok", "Twitter", "Notion", "Canva", "Zoom", "Slack", "Apify", "GPT", "CEO", "ICP", "DM", "DMs", "PS", "P.S", "Voice", "Today", "Yesterday",
+    "Day", "Week", "Month", "Year", "Mr", "Mrs", "Ms", "Dr", "Every", "Each", "Some", "Many", "Any", "All", "One", "Two", "Three", "Fix", "Stop", "Start", "Read",
+    "Count", "Ask", "Try", "Let", "Use", "Make", "Take", "Get", "Give", "Keep", "Drop", "Cut", "Add", "Send", "Write", "Think", "Look", "Imagine", "Remember",
+}
+_PERSON_CUE = re.compile(r"\b(?:called|named|name was|client|customer|member|founder|coach|colleague|friend|mentor|boss|manager|student|user|buyer|prospect)\s+"
+                         r"(?:called |named |of mine |I know )?([A-Z][a-z]{2,}(?:\s+[A-Z][a-z]{2,})?)\b")
+_TITLE = re.compile(r"\b(?:Mr|Mrs|Ms|Dr|Prof)\.?\s+([A-Z][a-z]{2,})\b")
+_COMPANY = re.compile(r"\b([A-Z][\w&.\-]{2,}(?:\s+[A-Z][\w&.\-]{2,}){0,2})\s+(?:Ltd|Limited|Inc|LLC|GmbH|AG|KG|SE|Corp|Co\.|BV|SA|Pty)\b")
+
+
+def _numbers(text: str) -> list[str]:
+    """Real figures: digits that are not list markers or part of a date-less ordinal."""
+    out = []
+    for line in text.split("\n"):
+        line = re.sub(r"^\s*(?:\d+[.)]\s+|[-*•]\s+)", "", line)
+        out += [m.group(0).strip() for m in re.finditer(
+            r"(?<![\w.])[$£€]?\d[\d.,]*(?:\s?(?:%|[kKmMxX]\b|hours?|hrs?|minutes?|days?|weeks?|months?|years?|calls?|clients?|customers?|likes?|DMs?|people|posts?|leads?|"
+            r"Stunden|Tage[n]?|Wochen|Monate[n]?|Jahre[n]?|Euro|EUR|Kunden|Gläser|Prozent))?", line)]
+    return [n for n in out if re.search(r"\d", n)]
+
+
+def _find_name(text: str, de: bool = False) -> str:
+    """A real person or company name: cued by 'called/named/client X', a title (Mr/Dr X), a legal-form company, or a capitalised
+    word in mid-sentence that is not a day, month, tool or ordinary word. Generic roles ('a client', 'a founder') never count."""
+    for rx in (_PERSON_CUE, _TITLE, _COMPANY):
+        m = rx.search(text)
+        if m and m.group(1) not in _STOP_CAPS:
+            return m.group(1)
+    if de:  # German capitalises every noun; only explicit cues count
+        m = re.search(r"\b(?:Herr|Frau|Dr\.)\s+([A-ZÄÖÜ][a-zäöüß]{2,})|\b([A-ZÄÖÜ][\wäöüß&.\-]+(?:\s+[A-ZÄÖÜ][\wäöüß&.\-]+){0,2})\s+(?:GmbH|AG|KG|SE|UG|e\.K\.)\b"
+                      r"|\b(?:Kunde|Kundin|Kunden|Firma|Betrieb|Herr|Frau)\s+([A-ZÄÖÜ][a-zäöüß]{2,})\b|\b([A-ZÄÖÜ][a-zäöüß]{2,})\s+aus\s+[A-ZÄÖÜ]", text)
+        return next((g for g in (m.groups() if m else ()) if g and g not in _STOP_CAPS), "")
+    for m in re.finditer(r"(?<=[a-z,;:])\s+([A-Z][a-z]{2,}(?:\s+[A-Z][a-z]{2,})?)\b", text):  # mid-sentence capitalised word
+        cand = m.group(1)
+        if cand.split()[0] not in _STOP_CAPS:
+            return cand
+    return ""
+
+
+_POV_STRONG = [
+    (r"\b(?:is|are|was|were|isn'?t|aren'?t|wasn'?t|weren'?t)(?: not|n'?t)? (?:the |a |an )?(?:problem|issue|point|answer|reason|goal|fix|solution)\b[^.\n]{0,40}[,;.]\s*\w+ (?:is|are|was)\b", "names the real cause"),
+    (r"\b\w+ (?:is|are|was|were) not (?:the |a |an )?(?:problem|issue|point|answer|reason|goal)\b", "says what is NOT the problem"),
+    (r"\bI (?:told|asked|advised|begged|urged) \w+(?: \w+)? to (?:stop|quit|pause|drop|cut|skip|ignore|delete|delay|say no)\b", "tells someone to stop"),
+    (r"\b(?:stop|quit|never|avoid|ignore|forget|skip|delete)\s+(?:\w+ing|\w+)\b", "a direct instruction"),
+    (r"\b(?:wrong|myth|mistake|overrated|underrated|lie|lies|scam|waste|broken|unpopular|disagree|bad advice|backwards|nonsense)\b", "calls something wrong"),
+    (r"\bthe real (?:problem|reason|issue|cost|reason)\b", "names the real cause"),
+    (r"\b(?:don'?t|do not|should(?:n'?t| not)|must(?:n'?t)?) \w+", "says what to do or not do"),
+    (r"\b(?:costs?|matters?|pays?|is worth|are worth|is more important|beats?) (?:you )?(?:far )?more than\b", "makes a comparative claim"),
+    (r"\bthe (?:one |biggest |worst |only )?(?:mistake|error) (?:\w+ ){0,4}(?:make|made|makes)\b", "names the mistake"),
+]
+_POV_WEAK = [(r"\b(?:actually|instead|truth|always|nobody|everyone|honestly|rather than)\b", "absolute or contrast word")]
+_POV_STRONG_DE = [
+    (r"\b(?:ist|sind|war|waren) (?:nicht|kein\w*) (?:das |der |die )?(?:problem|thema|punkt|ursache|grund|lösung)\b", "sagt, was NICHT das Problem ist"),
+    (r"\b(?:falsch|mythos|unsinn|blödsinn|trugschluss|irrtum|lüge|kaputt|überschätzt|schlechter rat|verschwendung)\b", "nennt etwas falsch"),
+    (r"\b(?:hör(?:t|en)? auf|stopp\w*|vergiss\w*|niemals|lass(?:t|en)? (?:das|es)|verzicht\w*)\b", "klare Anweisung"),
+    (r"\bich (?:habe|hab) (?:ihr|ihm|ihnen|ihn|sie)\b[^.\n]{0,40}\b(?:geraten|empfohlen|gesagt)\b[^.\n]{0,30}\b(?:aufzuhören|zu lassen|zu stoppen)", "rät zum Aufhören"),
+    (r"\bdie (?:wahre|eigentliche) (?:ursache|grund|problem)\b", "nennt die wahre Ursache"),
+    (r"\b(?:kostet|ist|bringt|zählt|wiegt) (?:oft |meist |viel |deutlich )?(?:mehr|wichtiger|teurer|schlimmer) als\b", "behauptet einen Vergleich"),
+    (r"\b(?:der|ein|größte[rn]?|häufigste[rn]?|teuerste[rn]?) fehler\b", "benennt den Fehler"),
+]
+_POV_WEAK_DE = [(r"\b(?:eigentlich|stattdessen|wahrheit|immer|niemand|alle|ehrlich gesagt)\b", "Absolut- oder Kontrastwort")]
+
+
+def _pov_signals(text: str, de: bool) -> dict:
+    strong, weak = [], []
+    for pats, bucket in (((_POV_STRONG_DE if de else _POV_STRONG), strong), ((_POV_WEAK_DE if de else _POV_WEAK), weak)):
+        for rx, label in pats:
+            m = re.search(rx, text, re.I)
+            if m:
+                bucket.append(f'"{m.group(0).strip()[:40]}" ({label})')
+    return {"strong": strong, "weak": weak}
+
+
 def _split_halves(text: str) -> tuple[str, str]:
     t = text.strip()
     mid = len(t) // 2
@@ -92,22 +170,21 @@ def diagnose(text: str, profile=None, strict_asking: bool = False, lang: str = "
         voice_why = ("first-person and clean of AI tells (no Voice DNA loaded, so this is a weak proxy)" if voice_ok else
                      "no personal markers or AI tells present (load your Voice DNA for a real voice check)")
 
-    # ---- POV -------------------------------------------------------------
-    stance_hits = (_STANCE_DE if de else _STANCE).findall(first[:600] + " " + second[:300])
-    pov_ok = len(stance_hits) >= 2 and not (_EXPLAINERS_DE if de else _EXPLAINERS).match(t)
-    pov_why = ("takes a side (" + ", ".join(sorted({s.lower() for s in stance_hits})[:4]) + ")" if pov_ok else
-               "reads as explanation: no clear side taken in the opening")
+    # ---- POV: does it take a side? ---------------------------------------------------------------------------------
+    sides = _pov_signals(t, de)
+    explainer = bool((_EXPLAINERS_DE if de else _EXPLAINERS).match(t))
+    pov_ok = (len(sides["strong"]) >= 1 or len(sides["weak"]) >= 2) and not explainer
+    shown = sides["strong"][:3] + sides["weak"][:2]
+    pov_why = ("takes a side (" + "; ".join(shown) + ")" if pov_ok else
+               "reads as explanation: no clear side taken" if not shown else f"only a hint of a side ({'; '.join(shown)}): state the position outright")
 
-    # ---- Specificity -----------------------------------------------------
-    has_num = bool(_NUM.search(first)) and bool(re.search(r"\d", first))
-    names = [n for n in _NAME.findall(first) if n not in ("The", "This", "That", "When", "What", "Most", "Last", "And", "But", "Then", "Here", "Not", "Why", "How")]
-    if de:  # German capitalises every noun, so "capitalised word" says nothing; look for a named person/company or a customer marker
-        names = re.findall(r"\b(?:Herr|Frau|Dr\.)\s+[A-ZÄÖÜ]\w+|\b[A-ZÄÖÜ]\w+\s+(?:GmbH|AG|KG|SE)\b|\b[A-ZÄÖÜ][a-zäöüß]{2,}\s+aus\s+[A-ZÄÖÜ]\w+", first)
-        spec_ok = has_num and (len(names) >= 1 or bool(_PERSON_DE.search(first)))
-    else:
-        spec_ok = has_num and (len(names) >= 1 or bool(re.search(r"\b(client|customer|founder|coach|member)\b", first, re.I)))
-    spec_why = ("number and a real person/entity in the first half" if spec_ok else
-                ("a number but no named person/entity" if has_num else "no real number" if not names else "a name but no number") + " in the first half")
+    # ---- Specificity: a real NAME and a real NUMBER in the first half ---------------------------------------------
+    nums = _numbers(first)
+    name = _find_name(first, de)
+    spec_ok = bool(nums) and bool(name)
+    spec_why = (f"a number ({nums[0]}) and a name ({name}) in the first half" if spec_ok else
+                f"a number ({nums[0]}) but no real name (a role like 'a client' or 'a founder' does not count)" if nums else
+                f"a name ({name}) but no number" if name else "no real name and no number in the first half")
 
     # ---- Asking ----------------------------------------------------------
     ask_ok, ask_why = _asking(t, strict_asking)

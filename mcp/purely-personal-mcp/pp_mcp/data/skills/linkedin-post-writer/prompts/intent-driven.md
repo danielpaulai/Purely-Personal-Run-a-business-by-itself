@@ -99,11 +99,11 @@ Hook (controversial/quoted criticism) / Context / Numbered list or breakdown / R
 ## AI PATTERN AVOIDANCE
 
 **Forbidden phrases:**
-- ✗ "use", "open up", "help", "improve"
-- ✗ "today"
-- ✗ "big", "change"
-- ✗ "go deep", "handle"
-- ✗ "whole", "fit"
+- ✗ "leverage", "unlock", "empower", "elevate"
+- ✗ "In today's fast-paced world"
+- ✗ "game-changer", "transformative"
+- ✗ "dive deep", "navigate"
+- ✗ "holistic", "seamless"
 - ✗ "It's no secret that"
 - ✗ "At the end of the day"
 - ✗ "Moreover", "Furthermore"

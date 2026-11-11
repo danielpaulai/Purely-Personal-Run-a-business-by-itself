@@ -148,7 +148,7 @@ def test_german_transitions_are_flagged_not_deleted_because_deleting_breaks_word
 
 
 def test_polish_and_score_work_on_german_posts(ewa):
-    post = ("Letzten Dienstag stand die Abfülllinie bei einem Feinkostbetrieb in Baden-Württemberg 3 Stunden still. Ein Kunde, 2.400 Euro Verlust.\n\n"
+    post = ("Letzten Dienstag stand die Abfülllinie bei Feinkost Meier GmbH in Baden-Württemberg 3 Stunden still. 2.400 Euro Verlust.\n\n"
             "Ehrlich gesagt: Stillstand kostet mehr als die Maschine. Das ist der Fehler, den fast alle machen. Erst messen, dann kaufen.\n\n"
             "Schreiben Sie mir \"LINIE\" und ich schicke Ihnen die Checkliste für das Verschlussdrehmoment.")
     s = ewa.call("score_post", text=post)
@@ -166,3 +166,11 @@ def test_there_is_no_token_to_ask_for(ewa):
     assert "set_my_context" not in names
     for t in ewa.tools():
         assert "token" not in str(t.inputSchema).lower()
+
+
+def test_german_specificity_also_needs_a_named_customer_not_just_a_role(ewa):
+    generic = ("Letzten Dienstag stand die Abfülllinie bei einem Kunden 3 Stunden still. 2.400 Euro Verlust.\n\nEhrlich gesagt: Stillstand kostet mehr als die Maschine. "
+               "Das ist der Fehler, den fast alle machen.\n\nSchreiben Sie mir \"LINIE\".")
+    named = generic.replace("bei einem Kunden", "bei Feinkost Meier GmbH")
+    assert "Specificity: no real name" in ewa.call("score_post", text=generic) or "no real name" in ewa.call("score_post", text=generic)
+    assert "4/4" in ewa.call("score_post", text=named)

@@ -565,14 +565,15 @@ APIFY RULES (this work uses the participant's OWN Apify connector, their account
         return scoring.render(scoring.diagnose(text, p, strict_asking, language), mode)
 
     @tool()
-    def polish_post(text: str = "", platform: str = "linkedin", brain: str = "", icp: str = "", voice_dna: str = "", post: str = "", language: str = "") -> str:
+    def polish_post(text: str = "", platform: str = "linkedin", brain: str = "", icp: str = "", voice_dna: str = "", post: str = "", language: str = "", min_chars: int = 0, max_chars: int = 0) -> str:
         """Platform polish: applies mechanical fixes (whitespace, em dashes, plain-word swaps) and reports length vs target, hook length vs the
-        fold, paragraph density, hashtags, missing ask and remaining AI tells. platform: linkedin | instagram | x | threads | facebook | newsletter."""
+        fold, paragraph density, hashtags, missing ask and remaining AI tells. platform: linkedin | instagram | x | threads | facebook | newsletter. The LinkedIn
+        standard is 1300-1500 characters (about 200-250 words); pass min_chars / max_chars when a task sets its own range (e.g. a 1100-1400 story post)."""
         text = text or post
         if not text.strip():
             return "Pass the post text (text= or post=)."
         p = load(brain, icp, voice_dna, need=False)
-        r = voice.polish(text, platform, banned_for(p), language)
+        r = voice.polish(text, platform, banned_for(p), language, min_chars, max_chars)
         out = [f"POLISH · {r['platform']} · {r['chars']} chars (target {r['target']})", ""]
         out += ["MECHANICAL FIXES APPLIED: " + (", ".join(sorted(set(r["mechanical_changes"]))) or "none")]
         out += ["", "STRUCTURE ISSUES:"] + ([f"  - {x}" for x in r["structure_issues"]] or ["  none"])

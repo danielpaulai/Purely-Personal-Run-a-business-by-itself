@@ -66,7 +66,7 @@ Post history and revenue reports live in the participant's own Notion / CRM (Day
 ```bash
 cd mcp/purely-personal-mcp
 pip install -r requirements.txt
-python -m pytest -q                 # 64 tests: parsing, every tool, isolation, HTTP, stdio
+python -m pytest -q                 # 100 tests: parsing, every tool, isolation, HTTP, stdio
 python -m pp_mcp                    # stdio, for Claude Desktop / Claude Code
 python -m pp_mcp --http 8000        # http://localhost:8000/mcp
 ```
@@ -113,9 +113,17 @@ pp_mcp/library.py    templates, daily angle, prospect query, revenue + attributi
 pp_mcp/ledger.py     optional local ledger (stdio install only)
 pp_mcp/data/         the 12 skills (+ newsletter-writer), blacklist
 api/index.py         Vercel entry · vercel.json
-tests/               64 tests, fixture participant (Maya Okafor)
+tests/               100 tests, fixture participant (Maya Okafor)
 ```
 
 ## Updating a skill
 
-The skills are copied from the Drive folder into `pp_mcp/data/skills/<name>/` (`SKILL.md` plus `prompts/`). To update one, replace those files and run the tests. The server picks them up on next start. Author names and the creator's own examples are stripped from every work order automatically (`depersonalize` in `skills.py`), so a participant's order never carries someone else's voice.
+The skills are copied from the Drive folder into `pp_mcp/data/skills/<name>/` (`SKILL.md` plus `prompts/`) and then cleaned. To update one:
+
+```bash
+# replace pp_mcp/data/skills/<name>/ with the new files, then
+python scripts/clean_skills.py     # re-applies every fix (idempotent; non-zero exit if an upstream change breaks one)
+python -m pytest -q                # tests/test_skill_bundle_quality.py lints the bundle
+```
+
+What the cleaner fixes, and why, is in [`AUDIT.md`](./AUDIT.md) ("Skill bundle review") and [`pp_mcp/data/SKILLS-CHANGES.md`](./pp_mcp/data/SKILLS-CHANGES.md). The creator's name and examples are also stripped from every work order at serve time (`depersonalize` in `skills.py`).

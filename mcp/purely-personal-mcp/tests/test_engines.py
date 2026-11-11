@@ -94,3 +94,49 @@ def test_prospect_query_for_a_german_dach_icp_is_german_and_clean():
     assert not any("Marketing" in x for x in q["currentJobTitles"])
     assert q["searchQuery"] == "" and q["estimated_apify_cost_usd"] < 0.5
     assert any("company-employees" in step or "company first" in step for step in q["ladder"])
+
+
+# --- scorer strictness (skill: "Real name + real number in the first half"; POV = "does it take a side") -----------------------
+def _dims(text):
+    return {k: v["point"] for k, v in scoring.diagnose(text)["dimensions"].items()}
+
+
+def test_specificity_needs_a_real_name_not_a_generic_role():
+    assert _dims('Last year a client of mine paid 4,000 after 6 calls. Most coaches still discount, which is a mistake. DM me "PRICE".')["Specificity"] == 0
+    assert _dims('A founder I work with tripled her inbound in 8 weeks. Nobody tells you the truth. DM me "voice".')["Specificity"] == 0
+    assert _dims('A coach, a founder and a member each paid 4,000. DM me "PRICE".')["Specificity"] == 0
+    assert _dims('Last year a client called Priya paid 4,000 after 6 calls. Most coaches discount, which is a mistake. DM me "PRICE".')["Specificity"] == 1
+    assert _dims('Acme Ltd paid 4,000 after 6 calls. Most agencies discount, which is a mistake. DM me "PRICE".')["Specificity"] == 1
+    assert _dims('Priya Nair told me she lost 12 hours a week to email. DM me "EMAIL".')["Specificity"] == 1
+
+
+def test_specificity_needs_a_number_too_and_ignores_list_numbers_days_and_months():
+    assert _dims('A client called Priya paid me last March. DM me "PRICE".')["Specificity"] == 0
+    assert _dims("On Monday in March a client of mine said hello.\n1. First point\n2. Second point\nDM me \"X\".")["Specificity"] == 0
+    d = scoring.diagnose('A client called Priya paid 4,000 after 6 calls. ' + 'More words follow here to fill the second half of the post. ' * 3)["dimensions"]["Specificity"]["why"]
+    assert "4,000" in d and "Priya" in d and "after" not in d
+
+
+def test_pov_recognises_a_side_that_is_not_in_a_word_list():
+    assert _dims("I told her to stop. Volume is not the problem, voice is.")["POV"] == 1
+    assert _dims("Discounting is not the problem. Your offer is.")["POV"] == 1
+    assert _dims("Most advice here is wrong. Skip the daily post.")["POV"] == 1
+
+
+def test_pov_still_fails_a_plain_explainer():
+    assert _dims("Here are 5 tips for better posts. Tip 1 is to write clearly. Tip 2 is to post often.")["POV"] == 0
+    assert _dims("LinkedIn is a social network. People post on it. Many use it for work.")["POV"] == 0
+
+
+def test_a_post_with_no_name_can_no_longer_reach_four_out_of_four():
+    d = scoring.diagnose('Last year a client of mine paid 4,000 after 6 calls. Stop discounting, it is a mistake. DM me "PRICE" for the sheet.')
+    assert d["score"] <= 3 and any(f.startswith("Specificity") for f in d["fixes"])
+
+
+def test_polish_uses_one_length_standard_and_accepts_a_task_specific_range():
+    story = ("Letzten Dienstag " + "x" * 5)  # content irrelevant; length drives the check
+    body = "Short opening line here for the hook.\n\n" + ("A sentence that adds a concrete detail. " * 3 + "\n\n") * 9 + 'DM me "STORY".'
+    n = len(body)
+    assert 1100 <= n <= 1400, n
+    assert any("under the linkedin target (1300-1500)" in i for i in voice.polish(body, "linkedin")["structure_issues"])
+    assert not any("target" in i for i in voice.polish(body, "linkedin", min_chars=1100, max_chars=1400)["structure_issues"])

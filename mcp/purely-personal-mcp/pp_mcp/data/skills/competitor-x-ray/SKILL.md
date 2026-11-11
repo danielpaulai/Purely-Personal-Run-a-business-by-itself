@@ -17,11 +17,10 @@ The skill that gives the AI Marketing Employee strategic intelligence. Scrape 3 
 **Problem with raw ChatGPT:** Ask "analyze my competitor [URL]" and ChatGPT either (a) refuses because it can't browse, or (b) hallucinates a generic SWOT analysis with no real data. Either way, you can't make positioning decisions from it.
 
 **This skill provides:**
-1. **Real scraped data**. uses Apify `supreme_coder/linkedin-profile-scraper` to pull actual profile data + last 30 days of posts for each competitor
+1. **Real scraped data**. uses Apify (`harvestapi/linkedin-profile-posts` for people, `harvestapi/linkedin-company-posts` for company pages, plus `harvestapi/linkedin-profile-scraper` / `harvestapi/linkedin-company` for profile and page details) to pull actual data + recent posts for each competitor
 2. **Structured comparison**. 8-dimensional analysis (headline · positioning · post cadence · top topics · hook patterns · CTA patterns · engagement signals · content gaps)
 3. **ICP-aware**. uses the user's ICP from Project Knowledge to flag where competitors are winning the user's ideal customer (or missing them)
 4. **Strategic output**. not just data, but a 5-bullet "Strategic Content Direction" the user can hand to their AI Marketing Employee
-5. **Visual side-by-side artifact**. 3 competitor cards + comparison table + content gap map · screenshot-able for team strategy meetings
 
 **You can replicate this with ChatGPT if you:** scrape each competitor manually, build a comparison framework, identify content gaps yourself, write up a strategic direction. Takes 3-4 hours per competitor batch. This skill does it in 2 minutes.
 
@@ -32,9 +31,9 @@ The skill that gives the AI Marketing Employee strategic intelligence. Scrape 3 
 | Input | Source | If missing |
 |---|---|---|
 | 3 competitor LinkedIn URLs | User input | Ask: "Drop the 3 competitor LinkedIn URLs (one per line)" |
-| User's ICP | AI Marketing Employee Project Knowledge | STOP. run ICP Builder first |
+| User's ICP | AI Marketing Employee Project Knowledge | STOP. ask the operator for their ICP (ICP.md or the Business Brain) |
 | User's Voice Snapshot (optional) | Project Knowledge | Used for the "Strategic Content Direction" output |
-| Apify token | Env var `APIFY_TOKEN` | STOP. guide user to set up Apify |
+| Apify | The operator's own Apify connector (their account and credit) | STOP. ask them to connect Apify first |
 
 ---
 
@@ -45,7 +44,6 @@ The skill that gives the AI Marketing Employee strategic intelligence. Scrape 3 
 | `quick` | Headlines + top 3 topics each + 1 content gap | Fast pre-call prep |
 | `standard` (default) | Full 8-dimensional comparison + 3-5 content gaps + Strategic Content Direction | Quarterly intel refresh |
 | `deep` | Standard + scrape last 90 days of posts + engagement pattern analysis | Pre-launch competitive positioning |
-| `visual` ★ | Standard + HTML side-by-side comparison artifact (3 cards + gap map) | Strategy meetings · screenshots · team handoff |
 
 **Default: `standard`.**
 
@@ -71,10 +69,9 @@ For each competitor, scrape and analyze:
 ### Phase 1. Validate inputs
 1. 3 URLs provided?
 2. ICP in Project Knowledge?
-3. Apify token set?
 
 ### Phase 2. Scrape (Apify)
-For each URL: call `supreme_coder/linkedin-profile-scraper` to pull profile + posts (last 30 days for `standard`, 90 days for `deep`).
+For each URL: a `linkedin.com/company/...` URL is a COMPANY PAGE (use `harvestapi/linkedin-company` for the page and `harvestapi/linkedin-company-posts` for its posts); a `linkedin.com/in/...` URL is a PERSON (use `harvestapi/linkedin-profile-scraper` for the profile and `harvestapi/linkedin-profile-posts` for the posts). Last 30 days for `standard`, 90 days for `deep`.
 
 ### Phase 3. Per-competitor analysis (8 dimensions)
 Run all 8 dimensions on each scraped competitor.
@@ -95,7 +92,6 @@ Output 5 bullets the user (or their AI Marketing Employee) acts on:
 
 ### Phase 6. Render output
 `standard` → markdown comparison table + Strategic Direction
-`visual` → HTML artifact (see template.html)
 
 ---
 
@@ -143,22 +139,9 @@ STRATEGIC CONTENT DIRECTION (your AI Marketing Employee acts on this)
 5. FORMAT: [carousel / cheatsheet / story]
 ```
 
-## Output Structure (`visual` mode)
-
-HTML artifact with:
-- Hero: "Competitor X-Ray · 3 profiles analyzed"
-- KPIs: total posts analyzed · content gaps found · saturation rate · top engagement
-- 3 competitor cards (avatar · headline · key metrics · top topics · top hooks)
-- Side-by-side comparison table
-- Content gap map (visual: ICP topics vs competitor coverage)
-- Strategic Content Direction box (5 bullets)
-- "Run prospect-magnet on the top gap" + "Run linkedin-post-writer on the top gap topic" suggested next steps
-
-See `scripts/render.py` + `scripts/template.html`.
-
----
-
 ## Examples
+
+> **Illustrative only.** The names, numbers and results in the examples below are invented to show the format. Never reuse them. In real output use only facts from the operator's Business Brain or from the request, and leave a detail out rather than make one up.
 
 ### Example 1: Coach niche · standard mode
 
@@ -187,27 +170,8 @@ STRATEGIC DIRECTION:
 
 ---
 
-## Chains With Other Skills
-
-| Upstream | How |
-|---|---|
-| ICP Builder | Required |
-| `voice-profile-builder` | Optional · used in Strategic Content Direction output |
-
-| Downstream | How |
-|---|---|
-| `linkedin-post-writer` | Take the "topic to own" → write a post on it immediately |
-| `prospect-magnet` | Find prospects who follow the competitors but aren't being served on the gap topic |
-| `multi-platform-amplifier` | Amplify the gap-topic post across 4 platforms |
-
-**Suggested chain after output:**
-> *"X-Ray complete. Next: run `linkedin-post-writer` on the #1 gap topic ('5-hat solo coach problem' for example). Then `prospect-magnet` to find prospects engaging with the competitors but missing the gap. That's the full intelligence → execution loop."*
-
----
-
 ## Limitations
 
-- **Won't scrape without Apify token.** ~$1/competitor for the standard mode scrape.
 - **Public LinkedIn data only.** Won't analyze private profiles or paywalled content.
 - **Engagement metrics are approximations.** LinkedIn API doesn't expose exact engagement; this skill uses public proxies.
 - **Won't predict competitor moves.** Surfaces patterns, doesn't forecast.
@@ -223,25 +187,7 @@ STRATEGIC DIRECTION:
 5. **Don't copy hooks verbatim.** Steal the structure, adapt the voice. Your Voice Snapshot handles the adaptation.
 
 ---
+## Use in the Purely Personal connector
 
-## GitHub References
 
-- [**Comperator** (Procycons)](https://github.com/Procycons/Comperator). open-source automated competitor analysis · informs the 8-dimensional comparison structure
-- [**openclaw/skills/aaron-he-zhu/competitor-analysis**](https://github.com/openclaw/skills/blob/main/skills/aaron-he-zhu/competitor-analysis/SKILL.md). community Claude skill · this skill extends with Apify integration + ICP awareness
-- [**rankcraft-ai** (steve2700)](https://github.com/steve2700/rankcraft-ai). keyword research → competitor analysis → content generation pipeline · informs the Strategic Direction output format
-
----
-
-## Bundled Files
-
-```
-~/.claude/skills/competitor-x-ray/
-├── SKILL.md                          (this file)
-└── scripts/
-    ├── render.py                     (JSON → HTML side-by-side artifact)
-    └── template.html                 (visual comparison template)
-```
-
----
-
-*Built for the AI Marketing Employee's strategic intelligence layer. Quarterly intel refresh that informs the next 90 days of content.*
+After the draft: Turn the content gaps into posts with write_post, and find who to talk to with find_prospects.

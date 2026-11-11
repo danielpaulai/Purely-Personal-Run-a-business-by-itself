@@ -23,7 +23,6 @@ This is the second highest-use skill in the AI Marketing Employee toolkit (after
 2. **Voice preservation across formats**. pulls from the user's Voice Snapshot + ICP so vocabulary, beliefs, and rhythm stay consistent even when the structure changes
 3. **4 platform-specific frameworks**. each based on the high-performing content patterns for 2026
 4. **Cross-platform CTA strategy**. same DM keyword + same offer across all 4 platforms so inbound is consolidated, not fragmented
-5. **Visual side-by-side artifact**. 4-column comparison so the user can SEE how the same idea adapts to each platform's culture
 6. **Hashtag intelligence**. Instagram + Threads versions include hashtag mixes (3 niche + 3 medium + 3 broad) improved for 2026 algorithm
 
 **You can replicate this with ChatGPT if you:** memorize 4 platform-specific format guides, hashtag strategy, hook patterns per platform, length constraints, native CTA formats, and visual cue conventions for video. Then apply consistently while preserving voice. Takes 60-90 min per multi-platform set. This skill does it in 45 seconds.
@@ -36,7 +35,7 @@ This is the second highest-use skill in the AI Marketing Employee toolkit (after
 |---|---|---|
 | The LinkedIn post | User input. ideally from `linkedin-post-writer` output | Ask: "Paste the LinkedIn post you want to amplify" |
 | Voice Snapshot or Voice DNA | AI Marketing Employee Project Knowledge | STOP. run `voice-profile-builder` first |
-| ICP (for CTA + hashtag targeting) | Project Knowledge | STOP. run ICP Builder first |
+| ICP (for CTA + hashtag targeting) | Project Knowledge | STOP. ask the operator for their ICP (ICP.md or the Business Brain) |
 | DM keyword | Pulled from the LinkedIn post automatically | If not detected in post: ask "What DM keyword should the CTAs use?" |
 
 ---
@@ -48,7 +47,6 @@ This is the second highest-use skill in the AI Marketing Employee toolkit (after
 | `core` (default) | X thread + Instagram caption + Reels script · 3 platforms | Daily content amplification |
 | `full` | Core + Threads version · 4 platforms | Full cross-platform week from one post |
 | `video-first` | Reels/TikTok script + visual storyboard + voiceover script | When the content is video-native (talking head, screen recording) |
-| `visual` ★ | Full mode + HTML 4-column side-by-side artifact with all platforms rendered as platform mockups (LinkedIn, X, Instagram, Reels) | Demos · screenshots · designer handoff · daily preview |
 
 **Default: `core`**. covers 80% of use cases. Switch to `full` when launching a campaign, `video-first` when content is video-native.
 
@@ -57,7 +55,7 @@ This is the second highest-use skill in the AI Marketing Employee toolkit (after
 ## Platform Adaptation Rules
 
 ### LinkedIn (source. already exists, used as anchor)
-- 150-word post · framework/story/intent-driven
+- 1300-1500 character post · framework/story/intent-driven
 - Voice + POV + Specificity + Asking (4/4 on Invisibility Diagnostic)
 - DM keyword in last 2 lines
 
@@ -98,7 +96,7 @@ This is the second highest-use skill in the AI Marketing Employee toolkit (after
 ### Phase 1. Validate inputs
 1. LinkedIn post provided? If not → ask.
 2. Voice Snapshot in Project Knowledge? If not → STOP, run `voice-profile-builder`.
-3. ICP in Project Knowledge? If not → STOP, run ICP Builder.
+3. ICP in Project Knowledge? If not → STOP, ask for the operator's ICP (ICP.md or the Business Brain).
 4. Extract DM keyword from LinkedIn post (look for "DM me 'X'" pattern). If not found → ask.
 
 ### Phase 2. Extract the core idea
@@ -123,21 +121,20 @@ For each platform, verify:
 - [ ] Platform-native CTA (consistent DM keyword across all)
 - [ ] Length within platform sweet spot
 - [ ] No banned words from Voice Snapshot
-- [ ] No AI tells (use, open up, handle, etc.)
+- [ ] No AI tells (leverage, unlock, navigate, etc.)
 
 ### Phase 5. Render output
 
 **Text mode:** 4 platforms in markdown with clear separators.
-**Visual mode:** HTML artifact with 4 mockup cards (LinkedIn / X / Instagram / Reels) side-by-side.
 
 ### Phase 6. Suggest next steps
 
 > *"Multi-platform set ready. Suggested deployment cadence:*
-> *Day 0 (Monday): publish LinkedIn original*
-> *Day 1 (Tuesday): publish X thread*
-> *Day 2 (Wednesday): publish Instagram caption*
-> *Day 3 (Thursday): publish Threads version*
-> *Day 4 (Friday): publish Reels (highest production cost → end of week)*
+> *Monday: publish LinkedIn original*
+> *Tuesday: publish X thread*
+> *Wednesday: publish Instagram caption*
+> *Thursday: publish Threads version*
+> *Friday: publish Reels (highest production cost → end of week)*
 > *Same DM keyword across all 4 = consolidated inbound."*
 
 ---
@@ -218,20 +215,14 @@ NEXT MOVES:
 - Run prospect-magnet on the LinkedIn version to add outbound layer
 ```
 
-## Output Structure (`visual` mode)
-
-HTML artifact: 4 platform mockup cards (LinkedIn / X / Instagram / Reels) side-by-side with the rewritten content rendered in platform-native styling. Each card has a "Copy" button. KPI strip at top showing reach multiplier (1 → 4 platforms = ~4× audience reach for same content effort).
-
-See `scripts/render.py` + `scripts/template.html`.
-
----
-
 ## Examples
+
+> **Illustrative only.** The names, numbers and results in the examples below are invented to show the format. Never reuse them. In real output use only facts from the operator's Business Brain or from the request, and leave a detail out rather than make one up.
 
 ### Example 1: Coach niche, core mode
 
 **Input LinkedIn post:**
-> "I told a coaching client to stop posting daily. She'd been posting for 6 months. 11 likes total. The problem wasn't her schedule. it was that nothing she wrote sounded like her. DM 'voice' for the worksheet."
+> "I told a coaching client to stop posting daily. She'd been posting for 6 months. 11 likes total. Her schedule was fine. Nothing she wrote sounded like her. DM 'voice' for the worksheet."
 
 **Output (X thread, 6 tweets):**
 ```
@@ -272,25 +263,6 @@ Follow for more on AI Marketing Employees → @danielpaulai
 
 ---
 
-## Chains With Other Skills
-
-| Upstream | How |
-|---|---|
-| `linkedin-post-writer` | Provides the source LinkedIn post |
-| `voice-profile-builder` (or Voice Snapshot) | Required. provides voice consistency across platforms |
-| ICP Builder | Required. provides CTA + hashtag targeting context |
-
-| Downstream | How |
-|---|---|
-| `prospect-magnet` | Run on the LinkedIn version → 10 prospects + DMs (closes content → pipeline loop) |
-| `invisibility-diagnostic` | Score the LinkedIn version (other platforms have different scoring rubrics) |
-| Day 2 Writing Assistant (deployed) | Run weekly to auto-amplify your Monday post across all 4 platforms on a schedule |
-
-**Suggested chain after output:**
-> *"Multi-platform set ready. Next: run `prospect-magnet` on the LinkedIn version to add the outbound layer. Deploy across 5 days (LinkedIn Mon → Reels Fri). Same DM keyword across all = consolidated inbound."*
-
----
-
 ## Limitations
 
 - **Won't generate the actual Reels video.** Output is the script + storyboard + overlay text. User shoots/edits.
@@ -309,25 +281,7 @@ Follow for more on AI Marketing Employees → @danielpaulai
 5. **Quarterly platform refresh.** Re-read this SKILL.md every 90 days. platform algorithms shift. 2027 hashtag strategy will differ from 2026.
 
 ---
+## Use in the Purely Personal connector
 
-## GitHub References
 
-- [**social-media-content-repurposer** (onewave-ai/claude-skills)](https://agentskills.so/skills/onewave-ai-claude-skills-social-media-content-repurposer). community Claude skill that handles cross-platform repurposing · this skill extends with voice/ICP integration
-- [**ai-video-repurposing-tools** (jevb51)](https://github.com/jevb51/ai-video-repurposing-tools). survey of 18 AI video tools · informs Reels script structure
-- [**Repurpose** (yongliang-wu · AAAI 2025)](https://github.com/yongliang-wu/Repurpose). academic dataset + benchmark for video repurposing · informs platform-native adaptation rules
-
----
-
-## Bundled Files
-
-```
-~/.claude/skills/multi-platform-amplifier/
-├── SKILL.md                          (this file)
-└── scripts/
-    ├── render.py                     (JSON → HTML 4-platform mockup)
-    └── template.html                 (visual artifact template)
-```
-
----
-
-*Built for the AI Marketing Employee's content multiplier loop. The skill that turns 1 post into 4× reach without 4× the writing time.*
+After the draft: Start from a post scored 4/4 with score_post.

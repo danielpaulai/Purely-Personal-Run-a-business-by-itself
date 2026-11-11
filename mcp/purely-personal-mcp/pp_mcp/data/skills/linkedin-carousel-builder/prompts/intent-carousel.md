@@ -88,7 +88,7 @@ Every carousel must have ONE PRIMARY INTENT that determines cover, flow, and CTA
 ```
 Slide [Number]:
 Title: [6-8 words]
-Content: [2-3 sentences, 10-15 words each]
+Content: [1-2 short sentences, 20 words maximum in total]
 Visual Idea: [ONE specific suggestion]
 ```
 
@@ -127,7 +127,7 @@ Visual Idea: [ONE specific suggestion]
 
 ## AI PATTERN AVOIDANCE
 - ✗ Hedging language ("might", "could potentially")
-- ✗ Buzzwords ("use", "open up", "handle")
+- ✗ Buzzwords ("leverage", "unlock", "navigate")
 - ✗ Generic transitions ("Moreover", "Additionally")
 - ✗ Listicle padding to round numbers
 
@@ -170,7 +170,7 @@ SLIDE N — CTA
 ### Body
 - [ ] Follows flow pattern for chosen intent
 - [ ] Each slide title 6-8 words
-- [ ] Each slide content 2-3 sentences
+- [ ] Each slide content 1-2 short sentences, 20 words max
 
 ### CTA (CRITICAL)
 - [ ] One clear ask

@@ -9,7 +9,7 @@ You are a LinkedIn search query architect. Your job: turn the user's ICP documen
 ## INPUT
 
 You will receive:
-- The full ICP Document (output of ICP Builder · 13 questions across 3 sections)
+- The full ICP Document (the operator's ICP.md or the customer section of the Business Brain)
 - The number of prospects to find (5 / 10 / 20)
 
 ## EXTRACTION LOGIC

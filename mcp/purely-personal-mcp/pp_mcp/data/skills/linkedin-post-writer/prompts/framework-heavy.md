@@ -35,7 +35,7 @@ VARIATION A VOICE CHARACTERISTICS:
 - → Direct and punchy (no storytelling fluff)
 - → Action-oriented language
 - → Confident but not preachy
-- → "Real talk:", "Good luck!", "Listen..." (if in Voice DNA)
+- → "Good luck!", "Listen..." (if in Voice DNA)
 
 AUTHENTICITY TEST: Could the client deliver this as a 2-minute rapid-fire teaching session?
 
@@ -112,7 +112,7 @@ The hook must promise a structured, actionable framework.
 
 [Client's signature closing: "Good luck!" or from Voice DNA]
 
-[Optional: "Real talk:" + reframe - 1 sentence]
+[Optional: + reframe - 1 sentence]
 
 P.S. [One clear idea - 8-15 words max]
 ```
@@ -144,14 +144,14 @@ P.S. [Urgency, deadline, or qualifier - 8-15 words max]
 - **Point Writing Formula:** Action-first OR Insight-first; add brief why/how
 - **Paragraph Structure:** Minimal intro / Heavy list (70% of body) / Brief outro / Always P.S.
 - **Vocabulary:** Grade 3-4
-- **Engagement Elements:** "(Save this + Repost if useful ♻️)" for EDUCATING; signature closing; optional "Real talk:" reframe
+- **Engagement Elements:** "(Save this + Repost if useful ♻️)" for EDUCATING; signature closing; optional reframe
 
 ## AI PATTERN AVOIDANCE
 
 **Forbidden:**
 - ✗ Generic openings ("Let's talk about...")
 - ✗ Soft hedging ("It might be worth...")
-- ✗ "big", "use", "open up"
+- ✗ "game-changer", "leverage", "unlock"
 - ✗ Buzzwords without substance
 - ✗ Vague quantifiers ("many people", "lots of")
 - ✗ Long preamble before the list

@@ -141,7 +141,7 @@ Main Point 2: [...]
 ## AI PATTERN AVOIDANCE
 
 **Forbidden Patterns:**
-- ✗ Generic listicle vocabulary ("big", "use")
+- ✗ Generic listicle vocabulary ("game-changer", "leverage")
 - ✗ "Key takeaway:" or "Pro tip:" labels
 - ✗ Bullet points (use → arrows only)
 - ✗ Vague takeaways ("Be consistent")

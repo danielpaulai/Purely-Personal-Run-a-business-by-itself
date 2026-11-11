@@ -10,7 +10,7 @@ tags: [content, audit, voice, scoring, social-media, ai-employee-challenge]
 
 Score any social post on 4 dimensions in 30 seconds. Return total, tier, and a one-line fix per missing dimension.
 
-This is the diagnostic taught in Day 1 / Lesson 1 of the AI Employee Challenge. It's the test attendees run on every post before they publish.
+Run it on every post before you publish. The point is the pre-publish edit.
 
 ---
 
@@ -22,8 +22,8 @@ This is the diagnostic taught in Day 1 / Lesson 1 of the AI Employee Challenge. 
 1. **Single deterministic scoring system**. 4 dimensions, 1 point each, max 4. Same post = same score every time.
 2. **One-line fixes, not 15 suggestions**. exactly what to change in one line to add the missing point.
 3. **Tier labeling that maps to outcomes**. 0-1 invisible, 2 noise, 3 visible, 4 magnetic. You know if it's worth publishing.
-4. **Pattern-matched against 2,000+ scored posts**. the dimensions are evidence-based, not opinion.
-5. **Industry-aware examples**. coach, agency, e-com, B2B, SaaS, fitness, real estate all have calibrated reference posts.
+4. **Four fixed binary tests**. Voice, POV, Specificity and Asking each score 0 or 1, so results are repeatable, not opinion.
+5. **Worked examples** across industries show what a pass and a fail look like.
 
 **You can replicate this with ChatGPT if you:** Memorize the 4 dimensions, train yourself to score consistently across 200+ reps, build a fix library per dimension × industry, and never let yourself drift toward subjective "I liked it." This skill enforces the discipline.
 
@@ -51,64 +51,15 @@ This is the diagnostic taught in Day 1 / Lesson 1 of the AI Employee Challenge. 
 
 ## Mode
 
-Detect from context or ask: *"Score-only, score-with-fix, score-rewrite-rescore, or visual artifact?"*
 
 | Mode | What you get | Best for |
 |------|-------------|----------|
 | `score-only` | Numerical score + tier label. No suggestions. | Bulk scoring (homework review across 50+ posts) |
 | `score-with-fix` (default) | Full score breakdown + one-line fix per missing dimension | Pre-publish check on a single post |
 | `score-rewrite-rescore` | Score → rewrite to 4/4 → score the rewrite to confirm | When the user wants the finished post, not just feedback |
-| `visual` ★ | top-tier HTML artifact: animated score gauge, dimension cards, confetti on 4/4, before/after comparison if rewrite present | Demos, social proof screenshots, attendee deliverables, anything that needs to land emotionally |
 
 **Default: `score-with-fix`**. fastest path from "draft I'm not sure about" to "draft I can ship.**
 
-**Use `visual` when:** demoing on stage, generating a result attendees will screenshot and share, or any moment where the score deserves emotional weight beyond text.
-
----
-
-## Usage
-
-Direct invocation:
-```
-/invisibility-diagnostic <pasted post>
-```
-
-With mode:
-```
-/invisibility-diagnostic <pasted post> --mode score-only
-/invisibility-diagnostic <pasted post> --mode score-rewrite-rescore
-/invisibility-diagnostic <pasted post> --mode visual
-```
-
-Visual mode (calls bundled script. produces HTML artifact):
-```bash
-# After scoring, run the renderer:
-python ~/.claude/skills/invisibility-diagnostic/scripts/render.py \
-  --json '{"author":"Sarah Chen","industry":"coach","post":"...","scores":{"voice":1,"pov":1,"specificity":0,"asking":1},"reasons":{...},"fixes":{...}}' \
-  --out /tmp/score.html && open /tmp/score.html
-```
-
-The HTML output features:
-- Animated SVG score gauge that counts 0 → score with eased fill
-- 4 dimension cards in 2×2 grid with staggered reveal + glowing pass/fail top borders
-- Tier name in gradient text (INVISIBLE / BACKGROUND NOISE / VISIBLE / MAGNETIC)
-- Confetti burst on 4/4 reveal (canvas-confetti)
-- Mouse-parallax on dimension cards
-- Ambient floating particles
-- Before/after side-by-side comparison if `rewritten_post` is in the JSON
-- Brand-locked: Purely Personal red on near-black with paper-grid texture
-- Mobile responsive, print-friendly
-
-With industry context (improves fix specificity):
-```
-/invisibility-diagnostic <pasted post> --industry coach
-/invisibility-diagnostic <pasted post> --industry agency
-/invisibility-diagnostic <pasted post> --industry e-commerce
-/invisibility-diagnostic <pasted post> --industry b2b-sales
-/invisibility-diagnostic <pasted post> --industry saas
-/invisibility-diagnostic <pasted post> --industry fitness
-/invisibility-diagnostic <pasted post> --industry real-estate
-```
 
 ---
 
@@ -201,6 +152,8 @@ CHANGES MADE:
 ---
 
 ## Examples
+
+> **Illustrative only.** The names, numbers and results in the examples below are invented to show the format. Never reuse them. In real output use only facts from the operator's Business Brain or from the request, and leave a detail out rather than make one up.
 
 ### Example 1: Coach. Invisible (0/4)
 
@@ -335,45 +288,6 @@ If any check fails: regenerate that section before output.
 
 ---
 
-## Bundled Scripts
-
-This skill ships with executable scripts inside `scripts/`:
-
-```
-~/.claude/skills/invisibility-diagnostic/
-├── SKILL.md
-└── scripts/
-    ├── render.py      # JSON → HTML artifact (visual mode)
-    └── template.html  # Self-contained HTML template (vanilla JS + canvas-confetti)
-```
-
-The `render.py` script takes a JSON payload with score data and produces a single-file HTML artifact (~23 KB). The artifact runs anywhere, no build step, no dependencies beyond a single CDN import for canvas-confetti.
-
-To use in `visual` mode, the agent should:
-1. Score the post normally (Phase 1-4)
-2. Build the JSON payload (author, industry, post, scores, reasons, fixes, optional rewritten_post + rewritten_scores)
-3. Call `python scripts/render.py --json '<json>' --out <output.html>`
-4. Open the output, or attach to the conversation
-
-## Chains With Other Skills
-
-This skill is designed to chain with:
-
-| Upstream skill | How it chains |
-|---|---|
-| `voice-profile-builder` | Use the voice profile output to refine the VOICE fix line (so suggested rewrite matches their captured voice) |
-| `first-post-coach` | First-Post Coach runs this skill after every draft to provide real-time scoring |
-| `homework-reviewer` | Homework Reviewer runs this skill in `score-only` mode across 50+ posts to rank the cohort |
-
-| Downstream | How it chains |
-|---|---|
-| `ai-marketing-employee` | The AI Marketing Employee instructions reference this diagnostic as the mandatory pre-publish check |
-
-When chained, suggest the next skill in the output:
-> *"Score is now 4/4. Next: run `first-post-coach` to ship it, or `homework-reviewer` to grade a batch of posts."*
-
----
-
 ## Limitations
 
 **This skill does NOT:**
@@ -388,9 +302,9 @@ When chained, suggest the next skill in the output:
 
 ## Pro Tips
 
-1. **Run it BEFORE publishing, not after**. most attendees run it after and feel bad. The point is the pre-publish edit.
+1. **Run it BEFORE publishing, not after**. most people run it after and feel bad. The point is the pre-publish edit.
 2. **Score your last 10 posts in one batch**. find your weakest dimension. That's your training focus for the next month.
-3. **Track your average over time**. aim to move from 1.8 average → 3.2 average over 90 days. That's typical for cohort attendees.
+3. **Track your average over time**. A rising average across your last 20 posts shows the voice work is landing.
 4. **The Asking dimension is the cheapest to fix**. most invisible posts gain 1 point just by adding a specific DM keyword.
 5. **The Voice dimension is the hardest to fix without a voice profile**. if you keep scoring 0 on voice, run `voice-profile-builder` first.
 
@@ -403,9 +317,11 @@ When chained, suggest the next skill in the output:
 - [ ] One real name + one real number in the first half
 - [ ] Takes a side a competitor in the room might disagree with
 - [ ] Ends with a specific keyword + a specific deliverable
-- [ ] No AI tells (use, open up, big, help, path, go deep)
-- [ ] Under 220 words (sweet spot for LinkedIn)
+- [ ] No AI tells (leverage, unlock, game-changing, empower, journey, dive deep)
+- [ ] 1300-1500 characters (the program standard for LinkedIn text posts, about 200-250 words)
 
 ---
+## Use in the Purely Personal connector
 
-*Built for the AI Employee Challenge. Calibrated against 2,000+ scored posts across 7 industries.*
+
+After the draft: Fix gaps with polish_post and de_ai_ify; review a batch with review_homework.
