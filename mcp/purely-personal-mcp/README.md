@@ -4,6 +4,14 @@ The connector behind **Build Your 1st AI Employee**. It turns the program's 12 s
 
 > v1 returned Daniel Paul's ICP and voice to everyone. v2 never does. No documents means a request for them, not someone else's voice. See [AUDIT.md](./AUDIT.md) for what changed and why.
 
+## Add it to Claude (no sign-in)
+
+**Connector address: `https://mcp-purelypersonal.vercel.app/mcp`**
+
+Claude → Customize → Connectors → **Add custom connector** → paste the address → Add. There is no login, API key or OAuth step: the server advertises no authentication, so Claude connects straight away. Switch it on in the chat's connector menu and choose "Always allow".
+
+Check it from a terminal any time: `curl https://mcp-purelypersonal.vercel.app/health`, or `python -m pp_mcp.smoke https://mcp-purelypersonal.vercel.app`.
+
 ## How it works
 
 ```

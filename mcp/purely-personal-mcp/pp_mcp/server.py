@@ -742,10 +742,19 @@ async def app(scope, receive, send):
         orig = parse_qs(scope.get("query_string", b"").decode()).get("__p", [""])[0]
         path = "/" + orig.strip("/") if orig.strip("/") else "/"
 
-    async def reply(status: int, body: dict | str, ctype: str = "application/json"):
+    CORS = [(b"access-control-allow-origin", b"*"), (b"access-control-allow-methods", b"POST, GET, OPTIONS"),
+            (b"access-control-allow-headers", b"content-type, accept, authorization, mcp-protocol-version, mcp-session-id, last-event-id"),
+            (b"access-control-expose-headers", b"mcp-session-id, mcp-protocol-version"), (b"access-control-max-age", b"86400")]
+
+    async def reply(status: int, body: dict | str, ctype: str = "application/json", extra: list | None = None):
         raw = (json.dumps(body) if isinstance(body, dict) else body).encode()
-        await send({"type": "http.response.start", "status": status, "headers": [(b"content-type", ctype.encode()), (b"cache-control", b"no-store")]})
+        await send({"type": "http.response.start", "status": status,
+                    "headers": [(b"content-type", ctype.encode()), (b"cache-control", b"no-store")] + CORS + (extra or [])})
         await send({"type": "http.response.body", "body": raw})
+
+    method = scope.get("method", "GET").upper()
+    if method == "OPTIONS":  # CORS preflight from browser-based clients (MCP Inspector, web connectors)
+        return await reply(204, "")
 
     if path in ("/", "/health", "/api/health"):
         srv = get_server()
@@ -754,11 +763,23 @@ async def app(scope, receive, send):
                                  "stores_data": False})
     if path not in ("/mcp", "/api/mcp"):
         return await reply(404, {"error": "not found", "mcp_endpoint": "/mcp"})
+    if method != "POST":
+        # Stateless server: there is no session to stream to. 405 is the spec-correct answer to a GET/DELETE and
+        # tells clients to carry on with POST only, instead of holding an idle stream open until the function times out.
+        return await reply(405, {"jsonrpc": "2.0", "id": "server-error", "error": {"code": -32600, "message": "Method Not Allowed: use POST"}},
+                           extra=[(b"allow", b"POST, OPTIONS")])
     mgr = StreamableHTTPSessionManager(app=get_server()._mcp_server, json_response=True, stateless=True,
                                        security_settings=TransportSecuritySettings(enable_dns_rebinding_protection=False))
     scope = dict(scope, path="/mcp")
+
+    async def send_cors(message):
+        if message["type"] == "http.response.start":
+            have = {k.lower() for k, _ in message.get("headers", [])}
+            message = dict(message, headers=list(message.get("headers", [])) + [h for h in CORS if h[0] not in have])
+        await send(message)
+
     async with mgr.run():
-        await mgr.handle_request(scope, receive, send)
+        await mgr.handle_request(scope, receive, send_cors)
 
 
 def main() -> None:

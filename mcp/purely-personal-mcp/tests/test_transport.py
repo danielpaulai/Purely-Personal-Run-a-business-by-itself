@@ -136,3 +136,17 @@ def test_routing_survives_vercels_rewrite_to_api_index():
         "protocolVersion": "2025-03-26", "capabilities": {}, "clientInfo": {"name": "t", "version": "1"}}}).encode()
     m = asyncio.run(call(b"__p=mcp", "POST", rpc))
     assert m["status"] == 200 and b"purely-personal" in m["body"]
+
+
+def test_cors_preflight_and_get_behave_for_browser_and_claude_clients(http_server):
+    r = httpx.options(http_server + "/mcp", headers={"origin": "https://claude.ai", "access-control-request-method": "POST",
+                                                      "access-control-request-headers": "content-type,mcp-protocol-version"})
+    assert r.status_code == 204 and r.headers["access-control-allow-origin"] == "*"
+    assert "mcp-protocol-version" in r.headers["access-control-allow-headers"]
+    g = httpx.get(http_server + "/mcp", headers={"accept": "text/event-stream"}, timeout=5)  # must answer at once, not hang
+    assert g.status_code == 405 and g.headers["allow"].startswith("POST")
+    rpc = {"jsonrpc": "2.0", "id": 1, "method": "tools/list"}
+    p = httpx.post(http_server + "/mcp", json=rpc, headers={"accept": "application/json, text/event-stream", "origin": "https://x.example"})
+    assert p.status_code == 200 and p.headers["access-control-allow-origin"] == "*"
+    assert httpx.get(http_server + "/.well-known/oauth-protected-resource").status_code == 404  # no sign-in advertised
+    assert httpx.get(http_server + "/health").headers["access-control-allow-origin"] == "*"
