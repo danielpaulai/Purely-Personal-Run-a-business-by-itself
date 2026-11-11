@@ -113,6 +113,10 @@ Open Claude Code in any project and run:
 
 If you see the 4-act intake description, you're good.
 
+### Purely Personal MCP v2 (Claude Desktop / claude.ai connector)
+
+`mcp/purely-personal-mcp/` is the connector used in Build Your 1st AI Employee: 40 tools that run the program's 12 skills locked to each participant's own Business Brain, ICP and Voice DNA. See its [README](./mcp/purely-personal-mcp/README.md) and [AUDIT](./mcp/purely-personal-mcp/AUDIT.md). The older `mcp/workshop-mcp/` is the separate workshop-scaffolding server.
+
 ### Optional — Install connectors
 
 For the full `/build-my-brain` experience you need these [MCP connectors](https://modelcontextprotocol.io):
