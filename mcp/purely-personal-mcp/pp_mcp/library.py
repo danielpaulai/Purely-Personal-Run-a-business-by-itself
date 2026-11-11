@@ -62,7 +62,7 @@ def daily_prompt(p: Profile, today: dt.date | None = None, recent_topics: list[s
         seeds = [("brain", (p.name or "your work") + " and who it is for")]
     recent = " ".join(recent_topics or []).lower()
     picks = []
-    base = int(hashlib.sha256(f"{today.isoformat()}|{p.token}".encode()).hexdigest(), 16)
+    base = int(hashlib.sha256(f"{today.isoformat()}|{p.name}".encode()).hexdigest(), 16)
     for i in range(len(seeds) * len(_ANGLES)):
         kind, seed = seeds[(base + i) % len(seeds)]
         name, how, tmpl = _ANGLES[(base // 7 + i) % len(_ANGLES)]

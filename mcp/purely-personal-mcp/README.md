@@ -2,51 +2,55 @@
 
 The connector behind **Build Your 1st AI Employee**. It turns the program's 12 skills into tools, and locks every one of them to the participant's **own** Business Brain, ICP and Voice DNA.
 
-> v1 returned Daniel Paul's ICP and voice to everyone. v2 never does. No profile means a setup message, not someone else's voice. See [AUDIT.md](./AUDIT.md) for what changed and why.
+> v1 returned Daniel Paul's ICP and voice to everyone. v2 never does. No documents means a request for them, not someone else's voice. See [AUDIT.md](./AUDIT.md) for what changed and why.
 
 ## How it works
 
 ```
-Day 1                       Day 2 / Day 3
-ICP.md ─┐                   Claude ──► write_post(topic, user_token) ──► WORK ORDER
-VOICE-DNA.md ─┼─► set_my_context ─► pp_ token              skill method + YOUR brain + YOUR voice lock
-BUSINESS-BRAIN.md ┘                                         + YOUR customer lock + hard rules
-                                    Claude executes it ──► score_post / polish_post / de_ai_ify (run in code)
+Claude Project knowledge                 every call
+BUSINESS-BRAIN.md ─┐                     write_post(topic, brain=<full text>, icp=…, voice_dna=…)
+ICP.md ────────────┼─ Claude reads them ─►          │
+VOICE-DNA.md ──────┘  and passes them in            ▼
+                                         WORK ORDER = skill method + YOUR voice lock + YOUR customer lock + hard rules
+                                                       │  Claude writes it, then calls score_post / polish_post / de_ai_ify
 ```
 
-A **work order** is the skill's method plus the participant's Brain, a parsed Voice Lock (word bank, signature phrases, banned list, writing rules, the test), a Customer Lock (the person, their words, objections, themes), their never-claim guard rail, the output contract, and the exact quality calls to make before delivering. The calling Claude does the writing. The server never calls a language model, so it costs nothing to run and nothing can drift between what a skill says and what the tool does.
+**There are no tokens, accounts or stored profiles.** The participant's three Day 1 documents already live in their Claude Project, so Claude passes their full text in `brain` (and `icp`, `voice_dna` when it has them) on each call. The server reads them, answers, and keeps nothing. With no documents it asks for them; it has no default voice and no default customer.
 
-The checks are real code, not prompts: scoring (Invisibility Diagnostic, personalised to the participant's own words), AI-tell detection, mechanical clean-up, platform polish, homework ranking, daily angle, prospect query, post history, revenue and attribution reports.
+A **work order** is the skill's method plus a parsed Voice Lock (word bank, signature phrases, banned list, writing rules, the test), a Customer Lock (the person, their words, objections, themes), the never-claim rules found in their own Brain, the output contract, and the exact quality calls to make before delivering. The calling Claude does the writing. The server never calls a language model, so it costs nothing to run.
 
-## The 40 tools
+The checks are real code, not prompts: scoring (Invisibility Diagnostic, personalised to the participant's own words), AI-tell detection, mechanical clean-up, platform polish, homework ranking, daily angle, prospect query, revenue and attribution reports.
+
+## The 36 tools
 
 | Family | Tools |
 |---|---|
-| **Brain** | `set_my_context` · `get_my_context` · `check_my_brain` · `clear_my_context` · `get_icp` · `get_voice_dna` · `get_business_brain` · `get_setup_guide` |
+| **Your documents** | `check_my_brain` (readiness + exactly what is thin) · `get_icp` · `get_voice_dna` (read back what was understood, to reconcile with ICP.md / VOICE-DNA.md) · `get_setup_guide` |
 | **12 skills** | `list_skills` · `get_skill` · `setup_marketing_employee` (ai-marketing-employee) · `build_voice_profile` (voice-profile-builder) · `write_post` (linkedin-post-writer) · `first_post_coach` · `write_carousel` (linkedin-carousel-builder) · `write_cheatsheet` (linkedin-cheatsheet-builder) · `weekly_content_drop` (weekly-content-engine) · `amplify_post` · `write_tweet` · `write_ig_caption` · `write_reel_script` (multi-platform-amplifier) · `analyze_competitor` (competitor-x-ray) · `find_prospects` (prospect-magnet) · `score_post` (invisibility-diagnostic) · `review_homework` (homework-reviewer) |
 | **Also** | `write_newsletter` (newsletter-writer) |
 | **Quality** (deterministic) | `score_post` · `polish_post` · `de_ai_ify` · `review_homework` |
 | **Research** | `get_daily_prompt` · `list_post_templates` · `get_my_post_history` |
 | **Design** | `get_brand_colours` · `generate_image` (renders with `OPENAI_API_KEY`, else returns a brief) |
-| **Track** | `log_published_post` · `track_post_published` · `log_dm_received` · `log_call_booked` · `log_revenue_event` · `get_weekly_revenue_report` · `get_attribution_report` |
+| **Track** | `get_my_post_history` · `get_weekly_revenue_report` · `get_attribution_report` take `records=` (JSON rows from Notion / your CRM). `log_published_post` · `track_post_published` · `log_dm_received` · `log_call_booked` · `log_revenue_event` write to a private ledger on the **local install only** |
 
-All 29 tool names from v1 are kept, so every Day 2 and Day 3 playbook prompt keeps working unchanged. Three prompts (slash commands) are added: `monday_content_drop`, `wednesday_market_scan`, `friday_prospect_run`. Each skill is also a resource at `pp://skills/{name}`.
+26 of the 29 v1 tool names are kept, so the Day 2 and Day 3 playbook prompts keep working. The three removed are the token tools (`set_my_context`, `get_my_context`, `clear_my_context`). Three prompts (slash commands) are added: `monday_content_drop`, `wednesday_market_scan`, `friday_prospect_run`. Each skill is also a resource at `pp://skills/{name}`.
 
 ## Participant flow (what to tell them)
 
-1. After Day 1, in the project: *"Call set_my_context with my BUSINESS-BRAIN.md, ICP.md and VOICE-DNA.md. My name is …, I publish in …, never claim …"*
-2. Claude returns a `pp_…` token and a **readiness score** with exactly what is thin (e.g. "Found 6 word-bank items, need 20+").
-3. Save the token in the project instructions: *"Always pass user_token pp_… to the Purely Personal connector."*
-4. `check_my_brain` any time output feels generic. A thin brain is the usual cause.
+Nothing to set up beyond Day 1. In the project, the instructions say once:
 
-One-off use without saving anything: every writing tool also takes `brain_override`, `icp_override`, `voice_override`. `user_token="demo"` loads the sample brain read-only.
+> When you use the Purely Personal connector, read BUSINESS-BRAIN.md (and ICP.md, VOICE-DNA.md) from project knowledge and pass their full text in `brain`, `icp` and `voice_dna`. Never shorten them.
+
+Then `check_my_brain` any time output feels generic. A thin brain is the usual cause. Put your never-claim rules, name, publishing language (`Language: …`) and brand colours (`Accent #xxxxxx`) in the Brain itself; the server reads them from there.
+
+Post history and revenue reports live in the participant's own Notion / CRM (Day 3 already files every post there). Claude reads the rows and passes them as `records=`. The hosted connector cannot log anything because it cannot know who is calling.
 
 ## Run locally
 
 ```bash
 cd mcp/purely-personal-mcp
 pip install -r requirements.txt
-python -m pytest -q                 # 43 tests: parsing, every tool, HTTP, stdio, Supabase store
+python -m pytest -q                 # 43 tests: parsing, every tool, isolation, HTTP, stdio
 python -m pp_mcp                    # stdio, for Claude Desktop / Claude Code
 python -m pp_mcp --http 8000        # http://localhost:8000/mcp
 ```
@@ -57,28 +61,27 @@ Claude Desktop (stdio), `claude_desktop_config.json`:
 { "mcpServers": { "purely-personal": { "command": "python3", "args": ["-m", "pp_mcp"], "cwd": "/abs/path/to/mcp/purely-personal-mcp" } } }
 ```
 
-Profiles are stored in SQLite at `~/.purely-personal/pp.db` (override with `PP_DB_PATH`).
+The local install is single-user, so it can keep your documents in a folder instead of being handed them each call: put `BUSINESS-BRAIN.md`, `ICP.md` and `VOICE-DNA.md` in `~/.purely-personal/` (or `PP_HOME`). It also keeps a private ledger there (`ledger.jsonl`) for the `log_*` tools. Documents passed on a call always win over the folder.
 
-## Deploy (Vercel + Supabase)
+## Deploy (Vercel)
 
-Serverless disks are ephemeral, so the hosted server stores profiles in Supabase. The handler is stateless (a fresh MCP session manager per request), so it needs no lifespan, no sticky sessions and no shared event loop.
+There is no database and no secret to configure. The handler is stateless (a fresh MCP session manager per request), so it needs no lifespan, no sticky sessions and no shared event loop.
 
-1. **Supabase**: create a project, run [`supabase/schema.sql`](./supabase/schema.sql) in the SQL editor. Tables are RLS-enabled with no policies; only the service-role key (server side) can touch them. Only `sha256(token)` is stored.
-2. **Vercel**: new project from this repo, **Root Directory = `mcp/purely-personal-mcp`**. Environment variables: `SUPABASE_URL`, `SUPABASE_SERVICE_KEY` (see `.env.example`). Deploy to a **preview** first.
-3. **Verify** the preview exactly as Claude would use it:
+1. **Vercel**: new project from this repo, **Root Directory = `mcp/purely-personal-mcp`**. Deploy to a **preview** first.
+2. **Verify** the preview exactly as Claude would use it:
    ```bash
    python -m pp_mcp.smoke https://YOUR-PREVIEW.vercel.app
    ```
-   It saves a throwaway profile, checks a fresh connection finds it, checks the work order is locked to it and not to anyone else, then deletes it. `HEALTHY` and exit code 0 means go.
-4. **Cut over**: attach the production domain (`purely-personal-mcp.vercel.app`) to the new deployment, or ship it under a new name and update the connector address on the Day 2 playbook and the Command Page.
-5. Participants who already connected keep the same address. Anyone using the old `get_icp`/`get_voice_dna` now gets their own (or the setup message).
+   It passes a made-up participant's documents and checks every answer is built from that participant and contains no trace of anyone else. `HEALTHY` and exit code 0 means go.
+3. **Cut over**: attach the production domain (`purely-personal-mcp.vercel.app`) to the new deployment. The connector address participants already added does not change.
+4. Optional: set `OPENAI_API_KEY` so `generate_image` renders pictures (otherwise it returns an image brief).
 
-Health: `GET /health` returns tool count and storage backend.
+Health: `GET /health` returns the tool count and `"stores_data": false`.
 
 ## Security and privacy
 
-- The `pp_` token (128-bit random) is the only credential. Treat it like a password; `clear_my_context` revokes it and deletes the profile and every event.
-- The database holds `sha256(token)`, never the token. Profile text is stored as provided.
+- Hosted, the server stores nothing: no profiles, no logs of documents, no accounts. A participant's Brain exists only for the length of the request.
+- There is no credential to leak because there is no credential. Anyone can call the connector, and each call is answered only from the documents in that call.
 - Only `generate_image` touches the network, and only when you set `OPENAI_API_KEY`. No tool calls a language model. Errors return a one-line message, never a stack trace.
 - Inputs are capped at 200k characters per document.
 
@@ -91,9 +94,9 @@ pp_mcp/skills.py     bundled skills, work-order compiler, depersonalise pass
 pp_mcp/voice.py      AI Pattern Blacklist, tell detection, clean-up, platform polish
 pp_mcp/scoring.py    Invisibility Diagnostic
 pp_mcp/library.py    templates, daily angle, prospect query, revenue + attribution
-pp_mcp/store.py      SQLite and Supabase stores
-pp_mcp/data/         the 12 skills (+ newsletter-writer), blacklist, demo brain
-api/index.py         Vercel entry · vercel.json · supabase/schema.sql
+pp_mcp/ledger.py     optional local ledger (stdio install only)
+pp_mcp/data/         the 12 skills (+ newsletter-writer), blacklist
+api/index.py         Vercel entry · vercel.json
 tests/               43 tests, fixture participant (Maya Okafor)
 ```
 

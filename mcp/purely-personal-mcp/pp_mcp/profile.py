@@ -216,23 +216,52 @@ def extract_name(brain: str, icp: str, voice: str) -> str:
 # ----------------------------------------------------------------------------
 # Profile model
 # ----------------------------------------------------------------------------
+_NEVER = re.compile(r"[^\n.]*\b(?:never|do not|don't)\s+(?:claim|name|quote|say|promise|invent|guarantee)\b[^\n.]*\.?", re.I)
+
+
+def extract_never_claims(*docs: str) -> list[str]:
+    out = []
+    for d in docs:
+        for m in _NEVER.finditer(d or ""):
+            s = _strip(m.group(0)).strip("-*• ")
+            if 8 < len(s) < 220:
+                out.append(s)
+    return _dedupe(out, 12)
+
+
+def extract_language(*docs: str) -> str:
+    for d in docs:
+        m = re.search(r"(?im)^[\s>*\-]*(?:the )?language(?: i publish in)?\s*:\s*(.+)$", d or "")
+        if m:
+            return _strip(m.group(1))[:80]
+    return ""
+
+
 @dataclass
 class Profile:
-    token: str = ""
+    """One participant's documents, as passed in on the call. Nothing is stored."""
     name: str = ""
     brain: str = ""
     icp: str = ""
     voice_dna: str = ""
-    language: str = "English"
+    language: str = ""
     never_claim: str = ""
     platform: str = "linkedin"
     handle: str = ""
-    brand: dict = field(default_factory=dict)
-    demo: bool = False
-    created: str = ""
-    updated: str = ""
 
-    # -- parsed (computed on demand, cheap) -----------------------------
+    @classmethod
+    def from_docs(cls, brain: str = "", icp: str = "", voice_dna: str = "", language: str = "", name: str = "",
+                  platform: str = "linkedin", handle: str = "", never_claim: str = "") -> "Profile":
+        p = cls(brain=(brain or "")[:MAX_DOC], icp=(icp or "")[:MAX_DOC], voice_dna=(voice_dna or "")[:MAX_DOC],
+                platform=platform or "linkedin", handle=handle, never_claim=never_claim)
+        p.name = name or extract_name(p.brain, p.icp, p.voice_dna)
+        p.language = language or extract_language(p.brain, p.voice_dna, p.icp) or "English"
+        return p
+
+    @property
+    def present(self) -> bool:
+        return bool(self.brain.strip() or self.icp.strip() or self.voice_dna.strip())
+
     @property
     def voice(self) -> dict:
         return extract_voice(self.voice_dna, self.brain)
@@ -242,33 +271,25 @@ class Profile:
         return extract_icp(self.icp, self.brain)
 
     @property
+    def guard_rails(self) -> list[str]:
+        rails = [x.strip() for x in (self.never_claim or "").split("\n") if x.strip()]
+        return _dedupe(rails + extract_never_claims(self.brain, self.voice_dna, self.icp), 12)
+
+    @property
     def colours(self) -> dict:
         out = dict(DEFAULT_BRAND)
         out.update(extract_brand(self.brain, self.voice_dna, self.icp))
-        out.update({k: v for k, v in (self.brand or {}).items() if v})
         return out
-
-    def to_dict(self) -> dict:
-        return {
-            "name": self.name, "brain": self.brain, "icp": self.icp, "voice_dna": self.voice_dna,
-            "language": self.language, "never_claim": self.never_claim, "platform": self.platform,
-            "handle": self.handle, "brand": self.brand, "created": self.created, "updated": self.updated,
-        }
-
-    @classmethod
-    def from_dict(cls, token: str, d: dict) -> "Profile":
-        keys = {"name", "brain", "icp", "voice_dna", "language", "never_claim", "platform", "handle", "brand", "created", "updated"}
-        return cls(token=token, **{k: v for k, v in d.items() if k in keys})
 
     # -- readiness ------------------------------------------------------
     def audit(self) -> dict:
         v, c = self.voice, self.customer
         checks: list[tuple[str, bool, str, int]] = [
-            ("Business Brain present", len(self.brain) > 300, "Paste BUSINESS-BRAIN.md (Day 1, Step 3).", 20),
-            ("ICP present", len(self.icp) > 300 or len(c["persona"]) > 100,
-             "Paste ICP.md (Day 1, Step 1) or make sure the Brain has the customer section.", 15),
-            ("Voice DNA present", len(self.voice_dna) > 300 or bool(v["word_bank"]),
-             "Paste VOICE-DNA.md (Day 1, Step 2).", 15),
+            ("Business Brain present", len(self.brain) > 300, "Pass the full text of BUSINESS-BRAIN.md (Day 1, Step 3) as brain=.", 20),
+            ("Customer described", len(self.icp) > 300 or len(c["persona"]) > 100,
+             "Pass ICP.md as icp=, or make sure the Brain has the customer section.", 15),
+            ("Voice described", len(self.voice_dna) > 300 or bool(v["word_bank"]),
+             "Pass VOICE-DNA.md as voice_dna=, or make sure the Brain has the voice section.", 15),
             ("Word bank (20+ words)", len(v["word_bank"]) >= 20,
              f"Found {len(v['word_bank'])}. The voice check needs 20+ of your own words.", 10),
             ("Signature phrases (5+)", len(v["signature_phrases"]) >= 5,
@@ -277,9 +298,9 @@ class Profile:
             ("Customer phrases (8+)", len(c["their_words"]) >= 8,
              f"Found {len(c['their_words'])}. Hooks are built from these, so thin = generic.", 10),
             ("Objections (3+)", len(c["objections"]) >= 3, f"Found {len(c['objections'])}.", 7),
-            ("Never-claim guard rail", bool(self.never_claim.strip()),
-             "Add what the employee must never claim (results, clients, numbers).", 5),
-            ("Name known", bool(self.name), "Pass name= to set_my_context.", 3),
+            ("Never-claim guard rail", bool(self.guard_rails),
+             "Add a line to the Brain such as 'Never claim I guarantee a result. Never name a client.'", 5),
+            ("Name known", bool(self.name), "Add 'Name: …' near the top of the Brain.", 3),
         ]
         score = sum(w for _, ok, _, w in checks if ok)
         return {
@@ -293,8 +314,3 @@ class Profile:
                 "themes": len(c["themes"]),
             },
         }
-
-    def clipped(self) -> "Profile":
-        for f in ("brain", "icp", "voice_dna"):
-            setattr(self, f, (getattr(self, f) or "")[:MAX_DOC])
-        return self

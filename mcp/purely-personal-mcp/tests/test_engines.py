@@ -15,7 +15,7 @@ Moreover, a holistic approach is a game-changer. Hope this helps!"""
 
 
 def test_strong_post_scores_higher_than_weak_and_explains_why(docs):
-    p = Profile(token="pp_x", **docs)
+    p = Profile.from_docs(**docs)
     s, w = scoring.diagnose(STRONG, p), scoring.diagnose(WEAK, p)
     assert s["score"] == 4 and s["tier"] == "Magnetic"
     assert w["score"] <= 1 and w["tier"] == "Invisible" and w["fixes"] and w["ai_tells"]
@@ -29,7 +29,7 @@ def test_asking_accepts_question_unless_strict():
 
 
 def test_fix_lines_use_the_participants_signature_phrases(docs):
-    p = Profile(token="pp_x", **docs)
+    p = Profile.from_docs(**docs)
     d = scoring.diagnose(WEAK, p)
     assert any("Test it before you torch it" in f or "Salary handcuffs" in f for f in d["fixes"])
 
@@ -65,7 +65,7 @@ def test_daily_prompt_is_rotating_personal_and_avoids_recent(docs):
     import datetime as dt
 
     from pp_mcp import library
-    p = Profile(token="pp_x", **docs)
+    p = Profile.from_docs(**docs)
     a = library.daily_prompt(p, dt.date(2026, 11, 11))
     b = library.daily_prompt(p, dt.date(2026, 11, 12))
     assert a["today"]["prompt"] != b["today"]["prompt"]
@@ -77,6 +77,6 @@ def test_daily_prompt_is_rotating_personal_and_avoids_recent(docs):
 
 def test_prospect_query_comes_from_the_icp(docs):
     from pp_mcp import library
-    q = library.prospect_query(Profile(token="pp_x", **docs))
+    q = library.prospect_query(Profile.from_docs(**docs))
     assert "United Kingdom" in q["geography"] or "UK" in q["geography"] or "London" in q["geography"]
     assert q["confidence"] in ("medium", "high") and "harvestapi/linkedin-profile-search" in q["apify_actors"]

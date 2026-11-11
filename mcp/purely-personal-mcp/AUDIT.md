@@ -29,15 +29,15 @@ Sources: the live connector at `purely-personal-mcp.vercel.app/mcp` (its 29 publ
 
 | Finding | Fix | Proof |
 |---|---|---|
-| 1, 2 | No profile means a setup message. `get_icp` / `get_voice_dna` return the caller's own. Daniel's sample brain exists only behind the explicit `user_token="demo"`. | `test_no_token_means_setup_not_someone_elses_voice`, `test_each_participant_is_isolated`, smoke script |
+| 1, 2 | No documents means a request for them. `get_icp` / `get_voice_dna` read back only what the caller passed. There is no demo profile and no bundled copy of anyone's brain; a test calls every tool with another person's documents and fails on any trace of the creator. | `test_no_documents_means_a_request_for_them…`, `test_each_call_uses_only_its_own_documents`, `test_nothing_of_the_creator_appears_in_any_tool_output`, smoke script |
 | 3 | Every content tool compiles one of the 12 skills (its real prompt files and process) into a work order. | `test_skill_methods_are_actually_inlined`, `test_every_skill_tool_returns_a_locked_work_order` |
-| 4 | `set_my_context` takes all three documents, name, language, never-claim, platform, brand colours. The Brain is shown first and wins ties. Never-claim is a hard rule in every order. | `_locked()` assertions in `tests/test_tools.py` |
-| 5 | `check_my_brain` and the readiness score returned by `set_my_context`, with the exact fix per gap. | `test_audit_flags_a_thin_brain` |
+| 4 | Every tool takes `brain`, `icp`, `voice_dna`. Name, publishing language, never-claim rules and brand colours are read from the Brain itself. The Brain wins ties. Never-claim is a hard rule in every order. | `_locked()` assertions in `tests/test_tools.py` |
+| 5 | `check_my_brain`: readiness score with the exact fix per gap. | `test_audit_flags_a_thin_brain` |
 | 6 | `score_post` checks Voice against the participant's word bank, signature phrases and customer phrases, and enforces their banned list. | `test_strong_post_scores_higher…`, `test_users_own_banned_list_is_enforced` |
-| 7 | 11 new tools: `weekly_content_drop`, `amplify_post`, `first_post_coach`, `review_homework`, `build_voice_profile`, `setup_marketing_employee`, `check_my_brain`, `get_business_brain`, `get_setup_guide`, `list_skills`, `get_skill`. | `test_inventory_has_every_original_tool…` |
+| 7 | 10 new tools: `weekly_content_drop`, `amplify_post`, `first_post_coach`, `review_homework`, `build_voice_profile`, `setup_marketing_employee`, `check_my_brain`, `get_setup_guide`, `list_skills`, `get_skill`. | `test_inventory_has_every_original_tool…` |
 | 8 | Every skill method passes through `depersonalize()`; author credit removed from the order header. | `_locked()` asserts "Daniel Paul" is absent from every order |
 
-All 29 original tool names are kept, so the Day 2 and Day 3 prompts need no edits.
+26 of the 29 original tool names are kept (the three token tools are gone), so the Day 2 and Day 3 prompts need no edits.
 
 ## Decisions worth knowing
 
@@ -46,11 +46,11 @@ All 29 original tool names are kept, so the Day 2 and Day 3 prompts need no edit
 - **`generate_image` still renders, if you give it a key.** v1 rendered with OpenAI gpt-image-1 and defaulted to Purely Personal's red palette. v2 does the same when `OPENAI_API_KEY` is set on the server, but uses the participant's own palette. With no key it returns a brief for Aura / Canva instead of failing.
 - **Research tools hand the scraping to the participant's Apify connector.** v1 ran Apify itself (`harvestapi/linkedin-profile-search`, `linkedin-profile-posts`). Day 2 already has every participant connect Apify and says "use the Apify connector and the Purely Personal connector", so v2 returns the skill's method, the derived search and the scoring rubric, and Claude runs the actors. Upside: no shared Apify bill and no Apify token on the server. Downside: it needs the Apify connector switched on in that chat; if it is off the order says so rather than guessing.
 - **`polish_post` reports and fixes mechanically; the rewrite is Claude's job.** v1 rewrote inside the tool. v2 applies the safe fixes (dashes, filler words, whitespace) and lists what remains, and the work order tells Claude to rewrite those lines in the participant's words.
-- **v1 parameter names still work**: `post` for `score_post` / `polish_post` / `de_ai_ify`, `profile_url` / `max_posts`, `keywords` / `location`, `existing_token`, `brand_colors`, `brand_guide`, `language_preference`, `linkedin_url`, `days_back` / `platform_filter`.
+- **v1 parameter names still work** where they still make sense: `post` for `score_post` / `polish_post` / `de_ai_ify`, `profile_url` / `max_posts`, `keywords` / `location`, `days_back` / `platform_filter`.
 - **Scores are heuristic.** The tool says so on every result. A script cannot hear that a sentence is not yours.
-- **Storage differs by host.** SQLite locally; Supabase on Vercel. Profiles from v1 (if any were stored) are not migrated, because v1's storage is not accessible from this repository. Participants run `set_my_context` once.
+- **No tokens, no storage (your call).** The hosted server cannot know who is calling, so instead of an identifier it receives the participant's own documents on every call and keeps nothing. Consequences: (1) Claude must pass the Brain each call (the project instructions say so once); (2) post history and revenue/attribution come from rows Claude reads out of Notion and passes as `records=`; (3) the `log_*` tools only work in the local install, which keeps a private ledger. Old `pp_` tokens simply stop mattering.
 
 ## Not done here
 
-- **Not deployed.** The live address serves participants; replacing it is a release decision. `README.md` has the steps and `python -m pp_mcp.smoke <url>` verifies a deployment before cutover. Vercel's Python runtime and a real Supabase project could not be exercised from this sandbox; the HTTP transport was tested with uvicorn in serverless mode (no lifespan, new connection per request) and the Supabase store against a PostgREST fake.
-- The Day 2 / Day 3 pages still say "thirty tools". v2 has 40. Worth a wording pass when it ships.
+- **Not deployed.** The live address serves participants; replacing it is a release decision. `README.md` has the steps and `python -m pp_mcp.smoke <url>` verifies a deployment before cutover. Vercel's Python runtime could not be exercised from this sandbox; the HTTP transport was tested with uvicorn in serverless mode (no lifespan, new connection per request).
+- The Day 2 / Day 3 pages still say "thirty tools" (v2 has 36), and the Day 1 Business Brain page says "you turn this document into a token" (Day 3 wording). Both need a wording pass when this ships: there is no token now.

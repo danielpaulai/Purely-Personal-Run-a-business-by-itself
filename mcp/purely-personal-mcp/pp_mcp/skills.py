@@ -80,21 +80,17 @@ def catalogue() -> list[dict]:
 # Work-order assembly
 # ----------------------------------------------------------------------------
 NEEDS_SETUP = """\
-PURELY PERSONAL: SETUP NEEDED before this can write in your voice.
+PURELY PERSONAL: I need YOUR documents before I can write in your voice.
 
-This tool refuses to fall back to a generic or someone else's voice. It needs your own
-Business Brain, ICP and Voice DNA (the three documents you built on Day 1).
+This connector stores nothing and never falls back to anyone else's voice. You pass your own
+Business Brain with each call (it already sits in your Claude Project knowledge).
 
-Do this once (about 1 minute):
-  1. Open your project knowledge and copy the full text of BUSINESS-BRAIN.md, ICP.md and VOICE-DNA.md.
-  2. Ask Claude: "Call set_my_context with my three documents" and paste them.
-  3. Claude gets back a token that starts with pp_. Save it. Every tool accepts it as user_token.
+Claude: read BUSINESS-BRAIN.md from the project knowledge and call this tool again with its FULL text in
+`brain`. If ICP.md and VOICE-DNA.md are also there, pass them in `icp` and `voice_dna` (richer voice checks).
+Do not shorten or paraphrase them. If there is no Business Brain yet, tell the user to build it first
+(Day 1: ICP, then Voice DNA, then Business Brain) and stop.
 
-In the same message you can pass: name, language, never_claim (what the employee must never claim),
-platform, and brand colours. Then re-run what you just asked for with user_token="pp_...".
-
-Just want to see how it behaves first? Pass user_token="demo" for the sample Business Brain.
-(One-off use without saving: pass brain_override / icp_override / voice_override instead.)"""
+Use check_my_brain(brain=...) to see how complete the documents are."""
 
 
 def depersonalize(text: str) -> str:
@@ -124,7 +120,11 @@ def lock_blocks(p: Profile, depth: str = "standard") -> str:
     parts.append(_box("1. WHO THIS IS FOR", "\n".join(who)))
 
     if p.brain:
-        parts.append(_box("2. THE BUSINESS BRAIN (source of truth; it wins any disagreement)", p.brain))
+        if depth == "full":
+            parts.append(_box("2. THE BUSINESS BRAIN (source of truth; it wins any disagreement)", p.brain))
+        else:
+            parts.append(_box("2. THE BUSINESS BRAIN", "The Business Brain is the full text you passed in `brain=` on this call. It is the source of truth and wins any "
+                                                       "disagreement with the ICP or Voice DNA. Everything below was read from it; re-read it before writing."))
     elif p.icp or p.voice_dna:
         parts.append(_box("2. THE BUSINESS BRAIN", "No combined Brain saved. Use the ICP and Voice DNA below as the Brain."))
 
@@ -170,8 +170,8 @@ def lock_blocks(p: Profile, depth: str = "standard") -> str:
         "Universal blacklist always applies: no contrast frames ('not X, but Y'), no negative stacks, no rhetorical-question openers, no tidy moral at the end, no 'Moreover/Furthermore', no corporate filler (leverage, unlock, delve, seamless...).",
         "If the Brain, ICP and Voice DNA disagree: the Brain wins; say so in one line.",
     ]
-    if p.never_claim.strip():
-        rules.insert(1, "NEVER CLAIM (hard guard rail from the operator): " + p.never_claim.strip())
+    if p.guard_rails:
+        rules.insert(1, "NEVER CLAIM (hard guard rails from the operator's own documents):\n  " + "\n  ".join(f"- {g}" for g in p.guard_rails))
     parts.append(_box("5. HARD RULES", "\n".join(f"- {r}" for r in rules)))
     return "".join(parts)
 
@@ -193,13 +193,13 @@ def work_order(
     body += _box("7. INPUTS FOR THIS RUN", "\n".join(f"- {k}: {v}" for k, v in inputs.items() if v not in (None, "", [])))
     body += _box("8. TASK", task)
     body += _box("9. OUTPUT CONTRACT", contract)
-    tok = p.token if p.token and not p.demo else "<your pp_ token>"
+    same = "brain=/icp=/voice_dna=<the same documents you passed above>"
     chk = list(checks) if checks is not None else [
-        f"Call score_post(text=<draft>, user_token=\"{tok}\"). Anything under 4/4: add the missing element, re-score. Max 2 rounds.",
-        f"Call polish_post(text=<draft>, platform=<platform>, user_token=\"{tok}\").",
-        f"Call de_ai_ify(text=<draft>, user_token=\"{tok}\"), then read it once as the operator and cut any sentence they would not say aloud.",
+        f"Call score_post(text=<draft>, {same}). Anything under 4/4: add the missing element, re-score. Max 2 rounds.",
+        f"Call polish_post(text=<draft>, platform=<platform>, {same}).",
+        f"Call de_ai_ify(text=<draft>, {same}), then read it once as the operator and cut any sentence they would not say aloud.",
     ]
     if checks is not None and not any("de_ai_ify" in c for c in chk):
-        chk.append(f"Call de_ai_ify(text=<anything you will publish or send>, user_token=\"{tok}\").")
+        chk.append(f"Call de_ai_ify(text=<anything you will publish or send>, {same}).")
     body += _box("10. BEFORE YOU DELIVER", "\n".join(f"{i}. {c}" for i, c in enumerate(chk, 1)))
     return head + "\n" + body
