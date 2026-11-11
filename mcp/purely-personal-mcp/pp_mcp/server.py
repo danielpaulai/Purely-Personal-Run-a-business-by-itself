@@ -398,7 +398,7 @@ If the Brain, ICP and Voice DNA disagree, the Brain wins."""
     @tool()
     def write_reel_script(post_or_topic: str, seconds: int = 75, keyword: str = "", brain: str = "", icp: str = "", voice_dna: str = "") -> str:
         """Write a 60-90 second Reels/TikTok script in YOUR voice: hook 0-3s, setup, 3-5 beats with visual cues, spoken DM-keyword CTA,
-        end screen, captions on. Uses the multi-platform-amplifier Reels rules and (if you have one) the danny-video-voice style. Returns a work order."""
+        end screen, captions on. Uses the multi-platform-amplifier Reels rules. Returns a work order."""
         p = load(brain, icp, voice_dna)
         return skills.work_order(
             title="Reels / TikTok script", skill="multi-platform-amplifier", p=p,
