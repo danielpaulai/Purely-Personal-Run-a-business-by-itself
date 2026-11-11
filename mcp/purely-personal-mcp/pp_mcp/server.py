@@ -735,6 +735,12 @@ async def app(scope, receive, send):
     if scope["type"] != "http":
         return
     path = scope.get("path", "/").rstrip("/") or "/"
+    if path in ("/api/index", "/api/index.py"):
+        # Vercel rewrites every request to /api/index and rewrites the path too; vercel.json passes the original
+        # path along as ?__p=<path> so health and /mcp can still be told apart.
+        from urllib.parse import parse_qs
+        orig = parse_qs(scope.get("query_string", b"").decode()).get("__p", [""])[0]
+        path = "/" + orig.strip("/") if orig.strip("/") else "/"
 
     async def reply(status: int, body: dict | str, ctype: str = "application/json"):
         raw = (json.dumps(body) if isinstance(body, dict) else body).encode()
@@ -746,7 +752,7 @@ async def app(scope, receive, send):
         n = len(await srv.list_tools())
         return await reply(200, {"name": "purely-personal-mcp", "version": VERSION, "tools": n, "mcp_endpoint": "/mcp",
                                  "stores_data": False})
-    if path not in ("/mcp", "/api/mcp", "/api/index"):
+    if path not in ("/mcp", "/api/mcp"):
         return await reply(404, {"error": "not found", "mcp_endpoint": "/mcp"})
     mgr = StreamableHTTPSessionManager(app=get_server()._mcp_server, json_response=True, stateless=True,
                                        security_settings=TransportSecuritySettings(enable_dns_rebinding_protection=False))

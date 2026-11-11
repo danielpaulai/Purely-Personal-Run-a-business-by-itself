@@ -98,3 +98,41 @@ def test_stdio_transport():
 def test_smoke_script_passes_against_a_running_server(http_server):
     from pp_mcp.smoke import run
     assert asyncio.run(run(http_server)) == 0
+
+
+def test_routing_survives_vercels_rewrite_to_api_index():
+    """Vercel sends every request to /api/index; vercel.json carries the original path in ?__p=. Reproduce exactly that."""
+    import json as _j
+
+    from pp_mcp.server import app
+
+    async def call(path_qs: bytes, method="GET", body=b""):
+        out = {}
+        sent = False
+
+        async def receive():
+            nonlocal sent
+            if not sent:
+                sent = True
+                return {"type": "http.request", "body": body, "more_body": False}
+            await asyncio.sleep(0.05)
+            return {"type": "http.disconnect"}
+
+        async def send(m):
+            if m["type"] == "http.response.start":
+                out["status"] = m["status"]
+            elif m["type"] == "http.response.body":
+                out["body"] = out.get("body", b"") + m.get("body", b"")
+
+        hdrs = [(b"host", b"x.vercel.app"), (b"content-type", b"application/json"), (b"accept", b"application/json, text/event-stream")]
+        await app({"type": "http", "method": method, "path": "/api/index", "query_string": path_qs, "headers": hdrs, "scheme": "https",
+                   "server": ("x.vercel.app", 443), "client": ("1.1.1.1", 1), "http_version": "1.1", "root_path": ""}, receive, send)
+        return out
+
+    h = asyncio.run(call(b"__p=health"))
+    assert h["status"] == 200 and _j.loads(h["body"])["stores_data"] is False
+    assert asyncio.run(call(b"__p=nope"))["status"] == 404
+    rpc = _j.dumps({"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {
+        "protocolVersion": "2025-03-26", "capabilities": {}, "clientInfo": {"name": "t", "version": "1"}}}).encode()
+    m = asyncio.run(call(b"__p=mcp", "POST", rpc))
+    assert m["status"] == 200 and b"purely-personal" in m["body"]
