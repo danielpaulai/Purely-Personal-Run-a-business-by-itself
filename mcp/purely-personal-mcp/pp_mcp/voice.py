@@ -205,6 +205,8 @@ def find_tells(text: str, extra_banned: list[str] | None = None, lang: str = "")
     de = lang == "de"
 
     for i, line in enumerate(lines, 1):
+        if not line.strip():
+            continue  # blank lines carry no tells; skipping them keeps 100k empty lines from costing seconds
         low = line.lower()
         if "—" in line:
             tells.append(Tell("em-dash", i, "—", "Gedankenstrich (Em dash). Durch Punkt oder Komma ersetzen." if de else "Em dash. Replace with a period or comma."))
@@ -332,9 +334,10 @@ def mechanical_clean(text: str, extra_banned: list[str] | None = None, lang: str
         kept.append(line)
     t = "\n".join(kept)
 
-    t = re.sub(r"[ \t]+\n", "\n", t)
-    t = re.sub(r"[ \t]{2,}", " ", t)
-    t = re.sub(r"\s+([,.;:!?])", r"\1", t)  # no space before punctuation
+    # Whitespace hygiene, written to stay LINEAR. (The obvious regexes, `[ \t]+\n` and `\s+([,.;:!?])`, backtrack quadratically on a long run
+    # of spaces or newlines: 100 KB of whitespace took 7-36 s.) rstrip and greedy `{2,}` runs always succeed in one pass.
+    t = "\n".join(re.sub(r"[ \t]{2,}", " ", l.rstrip()) for l in t.split("\n"))
+    t = re.sub(r" ([,.;:!?])", r"\1", t)  # no space before punctuation (runs of spaces are already collapsed)
     t = re.sub(r"\n{3,}", "\n\n", t).strip()
     return t, changes
 

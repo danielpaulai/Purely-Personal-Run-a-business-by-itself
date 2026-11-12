@@ -29,6 +29,10 @@ from pathlib import Path
 from .ledger import Ledger
 
 VERSION = "2.0.0"
+MAX_TEXT = 60_000        # characters of draft text per quality-tool call (a LinkedIn post is ~1,500; a long newsletter ~20,000)
+MAX_RECORDS = 500_000    # characters of JSON records per report call
+MAX_POSTS = 500          # posts per review_homework call
+MAX_POSTS_CHARS = 400_000
 
 INSTRUCTIONS = """\
 Purely Personal: the toolkit for Build Your 1st AI Employee.
@@ -66,6 +70,13 @@ def _render_image(prompt: str, size: str) -> bytes:
 
 class SetupNeeded(Exception):
     pass
+
+
+def too_long(text: str, what: str = "text") -> str | None:
+    if len(text) > MAX_TEXT:
+        return (f"That {what} is {len(text):,} characters; the limit per call is {MAX_TEXT:,}. "
+                "A post is about 1,500 characters. Send one piece at a time.")
+    return None
 
 
 def build_server(local_dir: str | Path | None = None, ledger: Ledger | None = None) -> FastMCP:
@@ -121,6 +132,8 @@ def build_server(local_dir: str | Path | None = None, ledger: Ledger | None = No
     def load_records(records: str, kind: str | None = None, days: int | None = None) -> list[dict]:
         since = time.time() - days * 86400 if days else None
         rows: list[dict] = []
+        if len(records) > MAX_RECORDS:
+            raise SetupNeeded(f"records is {len(records):,} characters; the limit is {MAX_RECORDS:,}. Pass only the last 60-90 days.")
         if records.strip():
             try:
                 data = json.loads(records)
@@ -561,6 +574,8 @@ APIFY RULES (this work uses the participant's OWN Apify connector, their account
         text = text or post
         if not text.strip():
             return "Pass the post text (text= or post=)."
+        if (msg := too_long(text, "post")):
+            return msg
         p = load(brain, icp, voice_dna, need=False)
         return scoring.render(scoring.diagnose(text, p, strict_asking, language), mode)
 
@@ -572,6 +587,8 @@ APIFY RULES (this work uses the participant's OWN Apify connector, their account
         text = text or post
         if not text.strip():
             return "Pass the post text (text= or post=)."
+        if (msg := too_long(text, "post")):
+            return msg
         p = load(brain, icp, voice_dna, need=False)
         r = voice.polish(text, platform, banned_for(p), language, min_chars, max_chars)
         out = [f"POLISH · {r['platform']} · {r['chars']} chars (target {r['target']})", ""]
@@ -589,6 +606,8 @@ APIFY RULES (this work uses the participant's OWN Apify connector, their account
         text = text or post
         if not text.strip():
             return "Pass the text (text= or post=)."
+        if (msg := too_long(text)):
+            return msg
         p = load(brain, icp, voice_dna, need=False)
         lang = voice.resolve_lang(text, language)
         cleaned, changes = voice.mechanical_clean(text, banned_for(p), lang)
@@ -610,6 +629,8 @@ APIFY RULES (this work uses the participant's OWN Apify connector, their account
         {"name","industry","post"} OR plain text with posts separated by a line containing only ---. Facilitator tool; pass brain to score against a specific voice, or omit it for the universal rules."""
         rows: list[dict] = []
         txt = posts.strip()
+        if len(txt) > MAX_POSTS_CHARS:
+            return f"That batch is {len(txt):,} characters; the limit is {MAX_POSTS_CHARS:,} (about {MAX_POSTS} posts). Review it in several batches."
         try:
             data = json.loads(txt)
             data = data if isinstance(data, list) else data.get("posts", [])
@@ -620,6 +641,8 @@ APIFY RULES (this work uses the participant's OWN Apify connector, their account
                     m = re.match(r"^\s*(?:Name|By)\s*:\s*(.+)\n(?:Industry\s*:\s*(.+)\n)?(.*)$", chunk, re.S | re.I)
                     rows.append({"name": m.group(1).strip() if m else f"Post {i + 1}", "industry": (m.group(2) or "unknown").strip() if m else "unknown",
                                  "post": (m.group(3) if m else chunk).strip()})
+        if len(rows) > MAX_POSTS:
+            return f"{len(rows)} posts is over the limit of {MAX_POSTS} per call. Review the batch in parts."
         if not rows:
             return "No posts found. Pass a JSON list of {name, industry, post} or plain text separated by lines of ---."
         p = load(brain, icp, voice_dna, need=False)
